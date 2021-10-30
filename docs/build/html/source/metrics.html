@@ -39,7 +39,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Model Evaluation</a><ul>
+<li><a class="reference internal" href="#">Model Evaluation</a></li>
 <li><a class="reference internal" href="#regression">Regression</a><ul>
 <li><a class="reference internal" href="#r-squared">R-Squared</a></li>
 <li><a class="reference internal" href="#adjusted-r-squared">Adjusted R-Squared</a></li>
@@ -56,8 +56,6 @@
 <li><a class="reference internal" href="#false-positives">False positives</a></li>
 <li><a class="reference internal" href="#false-negatives">False negatives</a></li>
 <li><a class="reference internal" href="#auc-score">AUC Score</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -86,12 +84,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="model-evaluation">
+  <hr class="docutils" />
+<section id="model-evaluation">
 <h1>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline"></a></h1>
+</section>
+<hr class="docutils" />
 <section id="regression">
-<h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline"></a></h2>
+<h1>Regression<a class="headerlink" href="#regression" title="Permalink to this headline"></a></h1>
 <section id="r-squared">
-<h3>R-Squared<a class="headerlink" href="#r-squared" title="Permalink to this headline"></a></h3>
+<h2>R-Squared<a class="headerlink" href="#r-squared" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Statistical measure of fit that indicates how much variation of a dependent variable is explained by the independent variable(s) in a regression model.</p></li>
 <li><p><strong>Problem 1:</strong> Every time you add a predictor to a model, the R-squared
@@ -103,7 +104,7 @@ Leads to overfitting and  produces misleadingly high R-squared values and a less
 </ul>
 </section>
 <section id="adjusted-r-squared">
-<h3>Adjusted R-Squared<a class="headerlink" href="#adjusted-r-squared" title="Permalink to this headline"></a></h3>
+<h2>Adjusted R-Squared<a class="headerlink" href="#adjusted-r-squared" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Modified version of R-squared that has been adjusted for the number of predictors in the model.</p></li>
 <li><p>Increases only if the new term improves the model more than would be expected by chance.</p></li>
@@ -112,7 +113,7 @@ Leads to overfitting and  produces misleadingly high R-squared values and a less
 </ul>
 </section>
 <section id="root-mean-squared-error">
-<h3>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Permalink to this headline"></a></h3>
+<h2>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The square root of the variance of the residuals. It indicates the absolute fit of the model to the data–how close the observed data points are to the model’s predicted values.</p></li>
 <li><p>Whereas R-squared is a relative measure of fit, RMSE is an absolute measure of fit.</p></li>
@@ -122,7 +123,7 @@ Leads to overfitting and  produces misleadingly high R-squared values and a less
 </ul>
 </section>
 <section id="mean-absolute-error">
-<h3>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline"></a></h3>
+<h2>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>MAE is not identical to root-mean square error (RMSE), although some
 researchers report and interpret it that way.</p></li>
@@ -132,9 +133,9 @@ researchers report and interpret it that way.</p></li>
 </section>
 </section>
 <section id="classification">
-<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this headline"></a></h2>
+<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this headline"></a></h1>
 <section id="accuracy">
-<h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline"></a></h3>
+<h2>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Accuracy = (TP+TN)/(TP+FP+FN+TN)</p></li>
 <li><p>Accuracy is a valid choice of evaluation for classification problems which are well balanced and not skewed or No class imbalance.</p></li>
@@ -142,7 +143,7 @@ researchers report and interpret it that way.</p></li>
 </ul>
 </section>
 <section id="precision">
-<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this headline"></a></h3>
+<h2>Precision<a class="headerlink" href="#precision" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Positive Predictive Rate</p></li>
 <li><p>Precision = (TP)/(TP+FP)</p></li>
@@ -151,7 +152,7 @@ researchers report and interpret it that way.</p></li>
 </ul>
 </section>
 <section id="recall">
-<h3>Recall<a class="headerlink" href="#recall" title="Permalink to this headline"></a></h3>
+<h2>Recall<a class="headerlink" href="#recall" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>True Positives or Sensitivity</p></li>
 <li><p>These are cases in which mode predicted True and label is True</p></li>
@@ -159,7 +160,7 @@ researchers report and interpret it that way.</p></li>
 </ul>
 </section>
 <section id="f1-score">
-<h3>F1 Score<a class="headerlink" href="#f1-score" title="Permalink to this headline"></a></h3>
+<h2>F1 Score<a class="headerlink" href="#f1-score" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Weighted average of the recall and precision</p></li>
 <li><p>F1 score sort of maintains a balance between the precision and recall for your classifier.</p>
@@ -172,7 +173,7 @@ your F1 score is low.</p></li>
 </ul>
 </section>
 <section id="specificity">
-<h3>Specificity<a class="headerlink" href="#specificity" title="Permalink to this headline"></a></h3>
+<h2>Specificity<a class="headerlink" href="#specificity" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>True negative = (1 - False Negative Rate)</p></li>
 <li><p>Model predicted no and label is False.</p></li>
@@ -180,28 +181,27 @@ your F1 score is low.</p></li>
 </ul>
 </section>
 <section id="false-positives">
-<h3>False positives<a class="headerlink" href="#false-positives" title="Permalink to this headline"></a></h3>
+<h2>False positives<a class="headerlink" href="#false-positives" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>TYPE 1 Error</p></li>
 <li><p><strong>Example:</strong> Model predicted yes, but the patient didn’t actually have the disease.</p></li>
 </ul>
 </section>
 <section id="false-negatives">
-<h3>False negatives<a class="headerlink" href="#false-negatives" title="Permalink to this headline"></a></h3>
+<h2>False negatives<a class="headerlink" href="#false-negatives" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>TYPE II Error</p></li>
 <li><p><strong>Example:</strong> Model predicted no, but the patient actually did have the disease.</p></li>
 </ul>
 </section>
 <section id="auc-score">
-<h3>AUC Score<a class="headerlink" href="#auc-score" title="Permalink to this headline"></a></h3>
+<h2>AUC Score<a class="headerlink" href="#auc-score" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>AUC measures the entire two-dimensional area underneath the entire ROC curve ( TPR and FPR)</p></li>
 <li><p>It tells how much a model is capable of distinguishing between classes.</p></li>
 <li><p>Higher the AUC, the better the model is at predicting 0s as 0s and 1s as 1s.</p></li>
 <li><p><strong>Example:</strong> Higher the AUC, then the better the model is at distinguishing between patients with disease and no disease.</p></li>
 </ul>
-</section>
 </section>
 </section>
 
