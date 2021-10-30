@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Evaluation &mdash; Data Science Handbook 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Data Science Handbook
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Model Evaluation</a><ul>
+<li><a class="reference internal" href="#regression">Regression</a><ul>
+<li><a class="reference internal" href="#r-squared">R-Squared</a></li>
+<li><a class="reference internal" href="#adjusted-r-squared">Adjusted R-Squared</a></li>
+<li><a class="reference internal" href="#root-mean-squared-error">Root Mean Squared Error</a></li>
+<li><a class="reference internal" href="#mean-absolute-error">Mean Absolute Error</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classification">Classification</a><ul>
+<li><a class="reference internal" href="#accuracy">Accuracy</a></li>
+<li><a class="reference internal" href="#precision">Precision</a></li>
+<li><a class="reference internal" href="#recall">Recall</a></li>
+<li><a class="reference internal" href="#f1-score">F1 Score</a></li>
+<li><a class="reference internal" href="#specificity">Specificity</a></li>
+<li><a class="reference internal" href="#false-positives">False positives</a></li>
+<li><a class="reference internal" href="#false-negatives">False negatives</a></li>
+<li><a class="reference internal" href="#auc-score">AUC Score</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Science Handbook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Model Evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/metrics.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-evaluation">
+<h1>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline"></a></h1>
+<section id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline"></a></h2>
+<section id="r-squared">
+<h3>R-Squared<a class="headerlink" href="#r-squared" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Statistical measure of fit that indicates how much variation of a dependent variable is explained by the independent variable(s) in a regression model.</p></li>
+<li><p><strong>Problem 1:</strong> Every time you add a predictor to a model, the R-squared
+increases, even if due to chance alone. It never decreases. Consequently, a
+model with more terms may appear to have a better fit simply because it has
+more terms.</p></li>
+<li><p><strong>Problem 2:</strong> If a model has too many predictors and higher order polynomials, it begins to model the random noise in the data.
+Leads to overfitting and  produces misleadingly high R-squared values and a lessened ability to make predictions.</p></li>
+</ul>
+</section>
+<section id="adjusted-r-squared">
+<h3>Adjusted R-Squared<a class="headerlink" href="#adjusted-r-squared" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Modified version of R-squared that has been adjusted for the number of predictors in the model.</p></li>
+<li><p>Increases only if the new term improves the model more than would be expected by chance.</p></li>
+<li><p>Decreases when a predictor improves the model by less than expected by chance. The adjusted R-squared can be negative, but it’s usually not.</p></li>
+<li><p>It is always lower than the R-squared.</p></li>
+</ul>
+</section>
+<section id="root-mean-squared-error">
+<h3>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>The square root of the variance of the residuals. It indicates the absolute fit of the model to the data–how close the observed data points are to the model’s predicted values.</p></li>
+<li><p>Whereas R-squared is a relative measure of fit, RMSE is an absolute measure of fit.</p></li>
+<li><p>As the square root of a variance, RMSE can be interpreted as the standard deviation of the unexplained variance, and has the useful property of being in the same units as the response variable.</p></li>
+<li><p><strong>Lower values of RMSE indicate better fit</strong></p></li>
+<li><p>RMSE is a good measure of how accurately the model predicts the response, and it is the most important criterion for fit if the main purpose of the model is prediction.</p></li>
+</ul>
+</section>
+<section id="mean-absolute-error">
+<h3>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>MAE is not identical to root-mean square error (RMSE), although some
+researchers report and interpret it that way.</p></li>
+<li><p>MAE is conceptually simpler and also easier to interpret than RMSE: it is simply the average absolute vertical or horizontal distance between each point in a scatter plot and the Y=X line.</p></li>
+<li><p>In other words, MAE is the average absolute difference between X and Y.</p></li>
+</ul>
+</section>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this headline"></a></h2>
+<section id="accuracy">
+<h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Accuracy = (TP+TN)/(TP+FP+FN+TN)</p></li>
+<li><p>Accuracy is a valid choice of evaluation for classification problems which are well balanced and not skewed or No class imbalance.</p></li>
+<li><p><strong>Warning:</strong> Let us say that our target class is very sparse. Do we want accuracy as a metric of our model performance? What if we are predicting if an asteroid will hit the earth? Just say No all the time. And you will be 99% accurate.</p></li>
+</ul>
+</section>
+<section id="precision">
+<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Positive Predictive Rate</p></li>
+<li><p>Precision = (TP)/(TP+FP)</p></li>
+<li><p>What proportion of predicted Positives is truly Positive?</p></li>
+<li><p>Precision is a valid choice of evaluation metric when we want to be very sure of our prediction</p></li>
+</ul>
+</section>
+<section id="recall">
+<h3>Recall<a class="headerlink" href="#recall" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>True Positives or Sensitivity</p></li>
+<li><p>These are cases in which mode predicted True and label is True</p></li>
+<li><p><strong>Example:</strong> When the label is True, how often does the model predict True?</p></li>
+</ul>
+</section>
+<section id="f1-score">
+<h3>F1 Score<a class="headerlink" href="#f1-score" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Weighted average of the recall and precision</p></li>
+<li><p>F1 score sort of maintains a balance between the precision and recall for your classifier.</p>
+<ul>
+<li><p>If your precision is low, the F1 is low and if the recall is low again
+your F1 score is low.</p></li>
+</ul>
+</li>
+<li><p><strong>Example:</strong> If you are a police inspector and you want to catch criminals, you want to be sure that the person you catch is a criminal (Precision) and you also want to capture as many criminals (Recall) as possible. The F1 score manages this tradeoff.</p></li>
+</ul>
+</section>
+<section id="specificity">
+<h3>Specificity<a class="headerlink" href="#specificity" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>True negative = (1 - False Negative Rate)</p></li>
+<li><p>Model predicted no and label is False.</p></li>
+<li><p><strong>Example:</strong> When the label is False, how often does the model predict False</p></li>
+</ul>
+</section>
+<section id="false-positives">
+<h3>False positives<a class="headerlink" href="#false-positives" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>TYPE 1 Error</p></li>
+<li><p><strong>Example:</strong> Model predicted yes, but the patient didn’t actually have the disease.</p></li>
+</ul>
+</section>
+<section id="false-negatives">
+<h3>False negatives<a class="headerlink" href="#false-negatives" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>TYPE II Error</p></li>
+<li><p><strong>Example:</strong> Model predicted no, but the patient actually did have the disease.</p></li>
+</ul>
+</section>
+<section id="auc-score">
+<h3>AUC Score<a class="headerlink" href="#auc-score" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>AUC measures the entire two-dimensional area underneath the entire ROC curve ( TPR and FPR)</p></li>
+<li><p>It tells how much a model is capable of distinguishing between classes.</p></li>
+<li><p>Higher the AUC, the better the model is at predicting 0s as 0s and 1s as 1s.</p></li>
+<li><p><strong>Example:</strong> Higher the AUC, then the better the model is at distinguishing between patients with disease and no disease.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
