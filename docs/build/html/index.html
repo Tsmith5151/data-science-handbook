@@ -66,6 +66,26 @@
 <li><a class="reference internal" href="#loss-functions">Loss Functions</a></li>
 <li><a class="reference internal" href="#discriminative-vs-generative">Discriminative vs Generative</a></li>
 <li><a class="reference internal" href="#feature-selection">Feature Selection</a></li>
+<li><a class="reference internal" href="#clustering">Clustering</a></li>
+<li><a class="reference internal" href="#overview-sklearn">Overview (Sklearn)</a></li>
+<li><a class="reference internal" href="#selecting-cluster-algorithm">Selecting Cluster Algorithm</a></li>
+<li><a class="reference internal" href="#k-means-clustering">K-Means Clustering</a></li>
+<li><a class="reference internal" href="#evaluation-of-clusters">Evaluation of Clusters</a></li>
+<li><a class="reference internal" href="#hierarchical-clustering">Hierarchical Clustering</a></li>
+<li><a class="reference internal" href="#dbscan">DBSCAN</a></li>
+<li><a class="reference internal" href="#affinity-propagation">Affinity Propagation</a></li>
+<li><a class="reference internal" href="#machine-learning-algorithms">Machine Learning Algorithms</a></li>
+<li><a class="reference internal" href="#linear-regression">Linear Regression</a></li>
+<li><a class="reference internal" href="#logistic-regression">Logistic Regression</a></li>
+<li><a class="reference internal" href="#k-nearest-neighbor">K-Nearest Neighbor</a></li>
+<li><a class="reference internal" href="#support-vector-machines">Support Vector Machines</a></li>
+<li><a class="reference internal" href="#naive-bayes">Naive Bayes</a></li>
+<li><a class="reference internal" href="#decision-tree">Decision Tree</a></li>
+<li><a class="reference internal" href="#random-forest">Random Forest</a></li>
+<li><a class="reference internal" href="#ada-boost">ADA Boost</a></li>
+<li><a class="reference internal" href="#xgboost">XGBoost</a></li>
+<li><a class="reference internal" href="#lightgbm">LightGBM</a></li>
+<li><a class="reference internal" href="#survival-analysis">Survival Analysis</a></li>
 <li><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
 <li><a class="reference internal" href="#regression">Regression</a><ul>
 <li><a class="reference internal" href="#r-squared">R-Squared</a></li>
@@ -85,6 +105,9 @@
 <li><a class="reference internal" href="#auc-score">AUC Score</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#production-monitoring">Production Monitoring</a></li>
+<li><a class="reference internal" href="#a-b-testing">A/B Testing</a></li>
+<li><a class="reference internal" href="#data-drift">Data Drift</a></li>
 </ul>
 </li>
 </ul>
@@ -115,8 +138,6 @@
              
   <section id="data-science-handbook">
 <h1>Data Science Handbook<a class="headerlink" href="#data-science-handbook" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
-</div>
 <hr class="docutils" />
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h2>
@@ -550,6 +571,450 @@ list.</p></li>
 </ul>
 </section>
 <hr class="docutils" />
+<section id="clustering">
+<h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="overview-sklearn">
+<h2>Overview (Sklearn)<a class="headerlink" href="#overview-sklearn" title="Permalink to this headline"></a></h2>
+<a class="reference external image-reference" href="_static/cluster1.png"><img alt="image" src="_images/cluster1.png" /></a>
+</section>
+<section id="selecting-cluster-algorithm">
+<h2>Selecting Cluster Algorithm<a class="headerlink" href="#selecting-cluster-algorithm" title="Permalink to this headline"></a></h2>
+<a class="reference external image-reference" href="_static/cluster2.png"><img alt="image" src="_images/cluster2.png" /></a>
+</section>
+<section id="k-means-clustering">
+<h2>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>KMeans, is an iterative process and aims to partition ‘N’ observations into
+‘K’ where observation belongs to the cluster with the closest mean.</p></li>
+<li><p>By assigning ‘N’ observations to ‘K’ clusters such that within each the average dissimilarity of the observations from the cluster mean (i.e. centroid) is minimized.</p></li>
+<li><p>Specify the number of clusters ‘k’</p></li>
+<li><p>Randomly pick k centroids from the data points as initial cluster centers
+Assign each sample to the nearest centroid (i.e. Euclidean distance)</p></li>
+<li><p>Move the centroids to the center of the samples that were assigned to it
+Repeat the third and fourth steps until the cluster assignment converges</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/kmeans.png"><img alt="image" src="_images/kmeans.png" /></a>
+</section>
+<section id="evaluation-of-clusters">
+<h2>Evaluation of Clusters<a class="headerlink" href="#evaluation-of-clusters" title="Permalink to this headline"></a></h2>
+<p><strong>Elbow method:</strong></p>
+<ul class="simple">
+<li><p>plot number of clusters versus interia</p></li>
+<li><p><strong>Inertia:</strong> measure of how internally coherent clusters are</p></li>
+<li><p><strong>Cohesion:</strong> measures how closely related are objects in a cluster</p></li>
+<li><p><strong>Separation:</strong> measures how distinctly separated a cluster is from other clusters</p></li>
+</ul>
+<p><strong>Calinski-Harabasz:</strong></p>
+<ul class="simple">
+<li><p>Also known as the Variance Ratio Criterion</p></li>
+<li><p>Indicates how well a clustering model defines its clusters, such that the higher the score, the more dense and well separated the clusters are.</p></li>
+</ul>
+<p><strong>Silhouette Coefficient:</strong></p>
+<ul class="simple">
+<li><p>Is calculated using the mean intra-cluster distance
+(a) and the mean nearest-cluster distance (b) for each sample.</p>
+<ul>
+<li><p>The Silhouette Coefficient for a sample is (b - a) / max(a, b)</p></li>
+<li><p>The best value is 1 and the worst value is -1.</p></li>
+<li><p>Values near 0 indicate overlapping clusters. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Difference between KNN and KMeans</strong></p>
+<ul class="simple">
+<li><p>K-NN is a Supervised machine learning while K-means is an unsupervised machine learning.</p></li>
+<li><p>K-NN is a classification or regression machine learning algorithm while</p></li>
+<li><p>K-NN performs much better if all of the data have the same scale but this is not true for K-means.</p></li>
+<li><p>K-means is a clustering machine learning algorithm and used for unsupervised ML tasks.</p></li>
+</ul>
+</section>
+<section id="hierarchical-clustering">
+<h2>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Agglomerative Clustering is a clustering algorithm that builds nested
+clusters by merging or splitting them successively.</p></li>
+<li><p>This hierarchy of clusters is represented as a tree (or dendrogram).</p></li>
+<li><p>Hierarchical clustering using a bottom up approach: each observation starts in its own cluster, and clusters are successively merged together.
+Hierarchical clustering algorithms aims at optimizing different objective functions:</p></li>
+<li><p><strong>Ward</strong> minimizes the sum of squared differences within all clusters. It is a variance-minimizing approach and in this sense is similar to the k-means objective function but tackled with an agglomerative hierarchical approach.</p></li>
+<li><p><strong>Maximum or complete linkage:</strong> minimizes the maximum distance between observations of pairs of clusters.</p></li>
+<li><p><strong>Average linkage minimizes</strong> the average of the distances between all observations of pairs of clusters.</p></li>
+<li><p><strong>Single linkage</strong> minimizes the distance between the closest observations of pairs of clusters.</p></li>
+</ul>
+</section>
+<section id="dbscan">
+<h2>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Clustering algorithm views clusters as areas of high density separated by areas of low density.</p></li>
+<li><p>Clusters found by DBSCAN can be any shape, as opposed to k-means which assumes that clusters are convex shaped.</p></li>
+</ul>
+</section>
+<section id="affinity-propagation">
+<h2>Affinity Propagation<a class="headerlink" href="#affinity-propagation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Affinity Propagation creates clusters by sending messages between pairs of samples until convergence.</p></li>
+<li><p>The messages sent between pairs represent the suitability for one sample to be the exemplar of the other, which is updated in response to the values from other pairs.</p></li>
+<li><p>This updating happens iteratively until convergence, at which point the final exemplars are chosen, and hence the final clustering is given.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="machine-learning-algorithms">
+<h2>Machine Learning Algorithms<a class="headerlink" href="#machine-learning-algorithms" title="Permalink to this headline"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="linear-regression">
+<h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Multi-variable linear equations might look like this, where 𝑤 represents the coefficients, or weights, our model will try to learn.</p></li>
+<li><p><strong>Goal:</strong> minimize the residual sum of squares between the observed targets in the dataset, and the targets predicted by the linear approximation.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/linear_regression1.png"><img alt="image" src="_images/linear_regression1.png" /></a>
+<ul class="simple">
+<li><p><strong>Loss Function:</strong> To minimize MSE (or L2 Loss) we use Gradient Descent to calculate the gradient of our cost function:</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/linear_regression2.png"><img alt="image" src="_images/linear_regression2.png" /></a>
+</section>
+<section id="logistic-regression">
+<h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Unlike linear regression which outputs continuous number values, logistic regression transforms its output using the logistic sigmoid function to return a probability value which can then be mapped to two or more discrete classes.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/logistic_regression.png"><img alt="image" src="_images/logistic_regression.png" /></a>
+<p><strong>Loss Function</strong>:  Cross-Entropy</p>
+<ul class="simple">
+<li><p>Same process as Linear Regression, except we replace the sigmoid function with the softmax function.</p></li>
+<li><p>Why don’t we use MSE for classification problems?</p>
+<ul>
+<li><p>Our prediction function is nonlinear (due to sigmoid transform).</p></li>
+<li><p>Squaring this prediction as we do in MSE results in a non-convex function with many local minimums.</p></li>
+<li><p>If our cost function has many local minimums, gradient descent may not find the optimal global minimum.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="k-nearest-neighbor">
+<h2>K-Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>An iterative clustering algorithm that groups samples which consist of similar characteristics and that are more related to each other than in other groups.</p></li>
+<li><p>Each group in the data is distributed around a central point called the “centroid” which is the average of the cluster.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/knn.png"><img alt="image" src="_images/knn.png" /></a>
+<p><strong>Steps</strong>:</p>
+<ul class="simple">
+<li><p>Specify the number of clusters ‘k’</p></li>
+<li><p>Randomly pick k centroids from the data points as initial cluster centers</p></li>
+<li><p>Assign each sample to the nearest centroid (i.e. Euclidean distance)</p></li>
+<li><p>Move the centroids to the center of the samples that were assigned to it</p></li>
+<li><p>Repeat the third and fourth steps until the cluster assignment converges</p></li>
+</ul>
+</section>
+<section id="support-vector-machines">
+<h2>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The goal of support vector machines is to find the line that maximizes the minimum distance to the line.</p></li>
+<li><p>The decision boundary is defined as: w^Tx - b</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/svm1.png"><img alt="image" src="_images/svm1.png" /></a>
+<a class="reference external image-reference" href="_static/svm2.png"><img alt="image" src="_images/svm2.png" /></a>
+<p><strong>Kernel Trick:</strong> -</p>
+<ul class="simple">
+<li><p>Non-linear separable -&gt; kernel mapping -&gt; decision boundary in original space</p></li>
+<li><p>The “kernel trick” is used to compute the cost function using the kernel because we actually don’t need to know the explicit mapping ϕ, which is often very</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/svm3.png"><img alt="image" src="_images/svm3.png" /></a>
+</section>
+<section id="naive-bayes">
+<h2>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Naive Bayes is a probabilistic algorithm that is based on Bayes Theorem.</p></li>
+<li><p>Bayes’ Theorem basically describes the probability of a feature, based on prior knowledge of conditions that might be related to that feature.</p></li>
+<li><p>For instance, the conditional probability of B given A.</p></li>
+<li><p>Our assumption is the probability that the tag of a sentence is Sports given that the sentence is “A very close game”</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/naive_bayes1.png"><img alt="image" src="_images/naive_bayes1.png" /></a>
+<p><strong>Example:</strong></p>
+<a class="reference external image-reference" href="_static/naive_bayes2.png"><img alt="image" src="_images/naive_bayes2.png" /></a>
+<ul class="simple">
+<li><p>Classification: Building a classifier that says whether a text is about sports or not</p></li>
+<li><p>Since Naive Bayes is a probabilistic classifier, we want to calculate the probability that the sentence “A very close game” is Sports and the probability that it’s not.</p></li>
+<li><p>Then, we take the largest one. Written mathematically, what we want is P (Sports | a very close game) — the probability that the tag of a sentence is Sports given that the sentence is “A very close game”.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/naive_bayes3.png"><img alt="image" src="_images/naive_bayes3.png" /></a>
+<ul class="simple">
+<li><p>Since for our classifier we’re just trying to find out which tag has a bigger probability, we can discard the divisor —which is the same for both tags— and just compare.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/naive_bayes4.png"><img alt="image" src="_images/naive_bayes4.png" /></a>
+<ul class="simple">
+<li><p>This is better, since we could actually calculate these probabilities!</p></li>
+<li><p>Just count how many times the sentence “A very close game” appears in the Sports tag, divide it by the total, and obtain P.</p></li>
+</ul>
+<p><strong>Problem</strong>:</p>
+<ul class="simple">
+<li><p>“A very close game” doesn’t appear in our training data, so this probability is zero. Unless every sentence that we want to classify appears in our training data, the model won’t be very useful.</p></li>
+<li><p>So here comes the Naive part: we assume that every word in a sentence is independent of the other ones. This means that we’re no longer looking at entire sentences, but rather at individual words.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/naive_bayes5.png"><img alt="image" src="_images/naive_bayes5.png" /></a>
+<ul class="simple">
+<li><p>This assumption is very strong but super useful. It’s what makes this model work well with little data or data that may be mislabeled. The next step is just applying this to what we had be
+Results:</p></li>
+<li><p>In our case, the possible words are [‘a’, ‘great’, ‘very’, ‘over’, ‘it’, ‘but’, ‘game’, ‘election’, ‘clean’, ‘close’, ‘the’, ‘was’, ‘forgettable’, ‘match’].</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/naive_bayes6.png"><img alt="image" src="_images/naive_bayes6.png" /></a>
+</section>
+<section id="decision-tree">
+<h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A decision tree algorithm breaks down our data by making decisions based on asking a series of questions.</p></li>
+<li><p>First, the decision tree algorithm is a top-down approach; we start at the tree root and split the data on the feature that results in the largest <strong>information</strong> <strong>gain</strong>.</p></li>
+<li><p>It is an iterative process and we can then repeat the splitting criteria at each child node until the leaves are pure.</p></li>
+<li><p>To determine how the features are split, we can use the concept of entropy, which measures the uncertainty</p></li>
+<li><p>The lower the entropy, the more predictable the class is and for higher entropy values, it becomes more unpredictable.</p></li>
+<li><p>Next we compute the difference between the entropies before (i.e. parent node) and after the split (i.e. sub-nodes) yields the information gain.</p></li>
+<li><p>Finally, the objective function is to maximize the information gain at each split, thus the attribute with the highest change in entropy is used as the splitting criteria</p></li>
+</ul>
+<p><strong>Problems with Decision Trees:</strong></p>
+<ul class="simple">
+<li><p><strong>Overfitting</strong>:</p>
+<ul>
+<li><p>As the decision tree grows and becomes more complex the issue of overfitting arises. Meaning, the model has virtually memorized the training data but will not be expected to perform well with out-of-sample data.</p></li>
+</ul>
+</li>
+<li><p><strong>Underfitting</strong>:</p>
+<ul>
+<li><p>If the tree is too simple then this could result in underfitting as the learning value is restricted to one level of the decision tree and does not allow the training set to learn the data adequately; a lower complexity decision tree results in high bias.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Methods to address problem:</strong></p>
+<ul class="simple">
+<li><p>We want to prune the tree by setting a limit for the maximum depth of the tree.</p></li>
+<li><p>One way is that we can observe the error vs max_depth plots and also implement Gridsearch to identify the optimal depth.</p></li>
+</ul>
+</section>
+<section id="random-forest">
+<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Is an ensemble based algorithm that’s built on the idea of Decision Trees.</p></li>
+</ul>
+<p><strong>How it Works:</strong></p>
+<ul class="simple">
+<li><p>Random Forest works by training an ensemble of decision trees where each tree is constructed from a different sample of the original training data.</p>
+<ul>
+<li><p><strong>Bagging</strong>: where we sample the data with replacement.</p></li>
+</ul>
+</li>
+<li><p>Random Forest uses this sampling technique to reduce the variance in model predictions, by creating many of these trees, in effect a “forest”, and then averaging them.</p></li>
+<li><p>The variance of the final model can be greatly reduced compared to a single tree.</p></li>
+<li><p>Feature Splitting criteria: choose a random set of features for each split and then compute the entropy and information gain to determine which variable to split on. (see decision tree for more)</p></li>
+<li><p>Strength: works well with missing values and outliers.</p></li>
+<li><p>Easy to tune for - minimal hyper parameters.</p></li>
+<li><p>Weakness: Doesn’t offer the same level of interpretability as decision trees</p></li>
+</ul>
+<p><strong>Bagging vs Boosting</strong></p>
+<ul class="simple">
+<li><p><strong>Bagging</strong></p>
+<ul>
+<li><p>Sampling with replacement (e.g. some observations may be repeated)</p></li>
+<li><p>Is a way to decrease the variance of your prediction by generating additional data for training from your original dataset using combinations with repetitions to produce multisets of the same cardinality/size as your original data.</p></li>
+<li><p>By increasing the size of your training set you can’t improve the model predictive force, but just decrease the variance, narrowly tuning the prediction to expected outcome.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference external image-reference" href="_static/bagging.png"><img alt="image" src="_images/bagging.png" /></a>
+<ul class="simple">
+<li><p><strong>Boosting</strong></p>
+<ul>
+<li><p>Boosting involves the creation and addition of decision trees sequentially, each attempting to correct the mistakes of the learners that came before it.</p></li>
+<li><p>Instead of training models separately, boosting trains models sequentially, each new model being trained to correct the errors of the previous ones.</p></li>
+<li><p>At each iteration (round), the outcomes predicted correctly are given a lower weight, and the ones wrongly predicted a higher weight. It then uses a weighted average to produce a final outcome.</p></li>
+<li><p>Unlike bagging, the subset creation is not random and depends upon the performance of the previous models: every new subset contains the elements that were (likely to be) misclassified by previous models.</p></li>
+<li><p>Generally, boosting algorithms are configured with weak learners, decision trees with few layers, sometimes as simple as just a root node.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference external image-reference" href="_static/boosting.png"><img alt="image" src="_images/boosting.png" /></a>
+<p><strong>Boosting Rounds</strong></p>
+<ul class="simple">
+<li><p>The general reason is that on most problems, adding more trees beyond a limit does not improve the performance of the model.</p></li>
+<li><p>The reason is in the way that the boosted tree model is constructed, sequentially where each new tree attempts to model and correct for the errors made by the sequence of previous trees. Quickly, the model reaches a point of diminishing returns.</p></li>
+</ul>
+</section>
+<section id="ada-boost">
+<h2>ADA Boost<a class="headerlink" href="#ada-boost" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>High weights are put on errors to improve at the next boosting step.</p></li>
+</ul>
+</section>
+<section id="xgboost">
+<h2>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Tree based model that uses the concept of boosting.</p></li>
+<li><p>With boosting, we construct a series of trees that attempt to correct the mistakes of the model before it in the sequence.</p></li>
+<li><p>The first model is built on training data, the second model improves the first model, the third model improves the second, and so on.</p></li>
+<li><p>XGboost also uses <strong>“Gradient Boosting”</strong> – which is an approach where new models are created that predict the residuals of prior models and then added together to make the final prediction so that the loss function is minimized using gradient descent.</p></li>
+<li><p><strong>Loss function:</strong> difference between predicted and actual value</p></li>
+<li><p>XGBoost API</p>
+<ul>
+<li><p><strong>DMatrix</strong>: an internal data structure that is used by XGBoost, which is
+optimized for both memory efficiency and training speed.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Feature Importance:</strong></p>
+<ul class="simple">
+<li><p>Three ways importance is measured:</p>
+<ul>
+<li><p><strong>Weight</strong>: The number of times a feature is used to split the data across all trees.</p></li>
+<li><p><strong>Cover</strong>: The number of times a feature is used to split the data across all trees weighted by the number of training data points that go through those splits.</p></li>
+<li><p><strong>Gain</strong>: The average training loss reduction gained when using a feature for splitting.</p></li>
+</ul>
+</li>
+<li><p>Feature importance orderings are very different for each of the three options provided by XGBoost</p></li>
+</ul>
+<p><strong>Hyperparameters</strong></p>
+<ul class="simple">
+<li><p><strong>Learning Rate</strong>: Step size shrinkage used in updates to prevent overfitting.
+After each boosting step, we can directly get the weights of new features, and eta shrinks the feature weights to make the boosting process more conservative.</p></li>
+<li><p><strong>Lambda</strong>: L2 regularization term on weights. Increasing this value will make the model more conservative.</p></li>
+<li><p><strong>Alpha</strong>: L1 regularization term on weights. Increasing this value will make the model more conservative.</p></li>
+<li><p><strong>Gamma</strong>: Minimum loss reduction required to make a further partition on a leaf node of the tree. The larger gamma is, the more conservative the algorithm will be.</p></li>
+<li><p><strong>Max_depth</strong>: Maximum depth of a tree. Increasing this value will make the model more complex and more likely to overfit.</p>
+<ul>
+<li><p>0 is only accepted in lossguided growing policy when tree_method is set as hist and it indicates no limit on depth.</p></li>
+<li><p>Beware that XGBoost aggressively consumes memory when training a deep tree.</p></li>
+</ul>
+</li>
+<li><p><strong>Subsample</strong>: Subsample ratio of the training instances.</p>
+<ul>
+<li><p>Setting it to 0.5 means that XGBoost would randomly sample half of the training data prior to growing trees. and this will prevent overfitting.</p></li>
+<li><p>Subsampling will occur once in every boosting iteration.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Objective Functions</strong></p>
+<ul class="simple">
+<li><p><strong>multi:softmax:</strong></p>
+<ul>
+<li><p>Set XGBoost to do multiclass classification using the softmax objective.</p></li>
+<li><p>You also need to set num_class(number of classes)</p></li>
+</ul>
+</li>
+<li><p><strong>reg:squarederror:</strong> Regression with squared loss.</p></li>
+<li><p><strong>reg:squaredlogerror:</strong>  Regression with squared log loss</p>
+<ul>
+<li><p>1/2[𝑙𝑜𝑔(𝑝𝑟𝑒𝑑+1)−𝑙𝑜𝑔(𝑙𝑎𝑏𝑒𝑙+1)]^2</p></li>
+<li><p>All input labels are required to be greater than -1</p></li>
+</ul>
+</li>
+<li><p><strong>reg:logistic:</strong>  Logistic regression</p></li>
+<li><p><strong>binary:logistic:</strong> Logistic regression for binary classification, output probability</p></li>
+<li><p><strong>Count:poisson:</strong> Poisson regression for count data, output mean of poisson distribution</p></li>
+</ul>
+<p><strong>Evaluation Metrics XGB</strong></p>
+<ul class="simple">
+<li><p><strong>rmse</strong>: root mean square error</p></li>
+<li><p><strong>rmsle</strong>: root mean square log error:</p></li>
+<li><p>reg:squaredlogerror</p></li>
+<li><p>metric reduces errors generated by outliers in the dataset.</p></li>
+<li><p><strong>mae</strong>: mean absolute error</p></li>
+<li><p><strong>mape</strong>: mean absolute percentage error</p></li>
+<li><p><strong>logloss</strong>: negative log-likelihood</p></li>
+<li><p><strong>error</strong>: Binary classification error rate.</p>
+<ul>
+<li><p>It is calculated as #(wrong cases)/#(all cases).</p></li>
+<li><p>For the predictions, the evaluation will regard the instances with prediction values larger than 0.5 as positive instances, and the others as negative instances.</p></li>
+</ul>
+</li>
+<li><p><strong>merror</strong>: Multiclass classification error rate. It is calculated as #(wrong cases)/#(all cases).</p></li>
+<li><p><strong>mlogloss</strong>: Multiclass logloss.</p></li>
+<li><p><strong>auc</strong>: Area under the curve</p></li>
+<li><p><strong>map</strong>: Mean Average Precision</p></li>
+</ul>
+</section>
+<section id="lightgbm">
+<h2>LightGBM<a class="headerlink" href="#lightgbm" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>An open-source gradient boosting library  developed by Microsoft
+LightGBM brings significant improvements to vanilla GBT and can be used to train models on tabular data with incredible speed and accuracy.</p>
+<ul>
+<li><p>Gradient-based One-Sided Sampling</p></li>
+<li><p>Exclusive Feature Bundling</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>XGboost Vs LightGBM</strong></p>
+<ul class="simple">
+<li><p>The main difference between these frameworks is the way they are growing.</p></li>
+<li><p><strong>XGBoost</strong>:</p>
+<ul>
+<li><p>level-wise: an approach where the trees grows horizontal</p></li>
+<li><p>level-wise splits based on the contribution to loss of particular branch</p></li>
+</ul>
+</li>
+<li><p><strong>LightGBM</strong></p>
+<ul>
+<li><p>leaf-wise an approach where the trees grows vertically.</p></li>
+<li><p>Leaf-wise splits nodes based on the contribution to global loss whereas.</p></li>
+<li><p>leaf-wise is mostly faster than the level-wise (e.g 10x faster than XGboost)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="survival-analysis">
+<h2>Survival Analysis<a class="headerlink" href="#survival-analysis" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Survival analysis models time to an event of interest.</p></li>
+<li><p>It originates from clinical research and is a special kind of regression and differs from the conventional regression task as follows:</p></li>
+<li><p>The label is always positive, since you cannot wait a negative amount of time until the event occurs.</p></li>
+<li><p>The label may not be fully known, or censored, because “it takes time to measure time.”</p></li>
+</ul>
+<p><strong>Censoring</strong></p>
+<ul class="simple">
+<li><p>Some experimenters could not get a complete measurement for that label. We consider this as “partially observed”</p></li>
+<li><p><strong>Example</strong>: if we look at healthcare data and you have a patient who survived the first 30 days and walked out of the clinic on the 31st day, so his death was not directly observed</p></li>
+<li><p>Another possibility: The experiment was cut short (since you cannot run it forever) before his death could be observed.</p></li>
+<li><p><strong>There are four kinds of censoring:</strong></p>
+<ul>
+<li><p><strong>Uncensored</strong>: the label is not censored and given as a single number.</p></li>
+<li><p><strong>Right-censored:</strong> the label is of form [a,+∞), where a is the lower bound.</p></li>
+<li><p><strong>Left-censored</strong>: the label is of form [0,b], where b is the upper bound.</p></li>
+<li><p><strong>Interval-censored</strong>: the label is of form [a,b], where a and b are the lower and upper bounds, respectively.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Prepare Training Data:</strong></p>
+<ul class="simple">
+<li><p>Survival times are subject to right-censoring, therefore, we need to consider an individual’s status in addition to survival time.</p></li>
+<li><p>To structure our training data, we need two fields. The first field indicating whether the actual survival time was observed or if was censored, and the second field denoting the observed survival time, which corresponds to the time of death</p></li>
+</ul>
+<p><strong>Hazard Function</strong></p>
+<ul class="simple">
+<li><p>Along with the survival function, we are also interested in the rate at which event is taking place, out of the surviving population at any given time t.</p></li>
+<li><p>In medical terms, we can define it as “out of the people who survived at time t, what is the rate of dying of those people”.</p></li>
+</ul>
+<p><strong>Kaplan–Meier</strong></p>
+<ul class="simple">
+<li><p>Since we don’t have the true survival curve of the population, thus we will estimate the survival curve from the data.</p></li>
+<li><p>KM is a non-parametric statistic used to estimate the survival function from lifetime data. The survival curve is defined as the probability of surviving in a given length of time.</p></li>
+<li><p>If we choose not to include the censored data, then it is highly likely that our estimates would be highly biased and under-estimated.</p></li>
+<li><p>The inclusion of censored data to calculate the estimates, makes the Survival Analysis very powerful.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/survival_analysis1.png"><img alt="image" src="_images/survival_analysis1.png" /></a>
+<p><strong>Accelerated Failure Time</strong></p>
+<ul class="simple">
+<li><p>The first step is to express the labels in the form of a range, so that every data point has two numbers associated with it, namely the lower and upper bounds for the label.
+<a class="reference external" href="https://xgboost.readthedocs.io/en/latest/tutorials/aft_survival_analysis.html">https://xgboost.readthedocs.io/en/latest/tutorials/aft_survival_analysis.html</a></p></li>
+</ul>
+<a class="reference external image-reference" href="_static/survival_analysis2.png"><img alt="image" src="_images/survival_analysis2.png" /></a>
+<p><strong>XGBoost Survival Embeddings</strong></p>
+<ul class="simple">
+<li><p>Apply Kaplan-Meier on nearest neighbors to generate SA curves for each nearest neighbor segmentation.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/survival_analysis3.png"><img alt="image" src="_images/survival_analysis3.png" /></a>
+</section>
+<hr class="docutils" />
 <section id="model-evaluation">
 <h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline"></a></h2>
 </section>
@@ -668,6 +1133,66 @@ your F1 score is low.</p></li>
 <li><p><strong>Example:</strong> Higher the AUC, then the better the model is at distinguishing between patients with disease and no disease.</p></li>
 </ul>
 </section>
+</section>
+<hr class="docutils" />
+<section id="production-monitoring">
+<h2>Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permalink to this headline"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="a-b-testing">
+<h2>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A/B Testing is a way of conducting an experiment where you compare a control
+group to the performance of one or more test groups by randomly assigning
+each group a specific single-variable treatment.</p></li>
+</ul>
+<p><strong>Experimental Design → Control and Control Groups</strong></p>
+<ul class="simple">
+<li><p>One of the treatments will be the control and the other treatments will be variations on that.</p></li>
+<li><p><strong>Determine Power of the Test:</strong></p>
+<ul>
+<li><p>The minimum sample size for control and experiment groups that yields the highest statistical power (Beta).</p></li>
+<li><p>Statistical power increases as alpha increases, thus beta will decrease <code class="docutils literal notranslate"><span class="pre">beta</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">power</span></code></p></li>
+<li><p>Random sampling is a technique where each sample in a population has an equal chance of being chosen.</p></li>
+<li><p>Essential that you determine the minimum sample size for your A/B test prior to conducting it so that you can eliminate under coverage bias.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Hypothesis Testing (T-Test):</strong></p>
+<ul class="simple">
+<li><p>First, you want to set your alpha, the probability of making a type 1 error. Typically the alpha is set at 5% or 0.05</p></li>
+<li><p>Next, you want to determine the probability value (p-value) by first calculating the t-statistic
+Lastly, compare the p-value to the alpha. If the p-value is greater than the alpha, do not reject the null!</p></li>
+</ul>
+</section>
+<section id="data-drift">
+<h2>Data Drift<a class="headerlink" href="#data-drift" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Drifts involve a statistical change in the data, the best approach to detect them is by monitoring its statistical properties</p></li>
+</ul>
+<p><strong>Address Model Drift:</strong></p>
+<ul class="simple">
+<li><p>You could implement a system that periodically trains your models after some
+time t, or once it detects a drift  you could refresh a model’s weight by
+extending its training with new data.</p></li>
+</ul>
+<p><strong>Alerts</strong></p>
+<ul class="simple">
+<li><p>Recurring, Incremental, Outlier, Abrupt</p></li>
+<li><p>Adaptive Sliding Window (very common approach)</p>
+<ul>
+<li><p>Works by keeping track of several statistical properties of data within a window that automatically grows and shrinks</p></li>
+</ul>
+</li>
+<li><p><strong>Kolmogorov-Smirnov Test</strong></p>
+<ul>
+<li><p>K-S test is nonparametric, meaning doesn’t assume any particular underlying distribution</p></li>
+<li><p>This test compares your data with a known distribution and test if they come from the same distribution.</p></li>
+<li><p>Null Hypothesis</p></li>
+<li><p>Samples are from the same distribution</p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 

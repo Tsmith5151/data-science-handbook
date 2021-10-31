@@ -2,7 +2,6 @@ __________
 ## Machine Learning 
 __________
 
-
 ## Bias Variance Trade-off
 
 - **Bias:** is the difference between the expected (or average) prediction of our model and the correct value which we are trying to predict.

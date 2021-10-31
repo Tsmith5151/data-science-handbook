@@ -2,6 +2,14 @@ __________
 ## Clustering
 __________
 
+## Overview (Sklearn)
+
+![image](_static/cluster1.png)
+
+## Selecting Cluster Algorithm 
+![image](_static/cluster2.png)
+
+
 ## K-Means Clustering
 - KMeans, is an iterative process and aims to partition 'N' observations into
   'K' where observation belongs to the cluster with the closest mean. 
@@ -12,6 +20,8 @@ Assign each sample to the nearest centroid (i.e. Euclidean distance)
 - Move the centroids to the center of the samples that were assigned to it
 Repeat the third and fourth steps until the cluster assignment converges
  
+![image](_static/kmeans.png)
+
 ## Evaluation of Clusters
 
 **Elbow method:** 

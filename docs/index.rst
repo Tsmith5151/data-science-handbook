@@ -6,16 +6,16 @@
 Data Science Handbook
 =====================
 
-.. toctree::
-   :maxdepth: 2
-
-
 .. mdinclude:: source/statistics.md
 
 .. mdinclude:: source/dataprep.md
 
-.. mdinclude:: source/featureselection.md
-
 .. mdinclude:: source/machinelearning.md
 
+.. mdinclude:: source/clustering.md
+
+.. mdinclude:: source/algorithms.md
+
 .. mdinclude:: source/metrics.md
+
+.. mdinclude:: source/monitoring.md
