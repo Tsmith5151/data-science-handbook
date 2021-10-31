@@ -50,6 +50,22 @@
 <li><a class="reference internal" href="#central-limit-theorem">Central Limit Theorem</a></li>
 <li><a class="reference internal" href="#confidence-interval">Confidence Interval</a></li>
 <li><a class="reference internal" href="#multicollinearity">Multicollinearity</a></li>
+<li><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a></li>
+<li><a class="reference internal" href="#missing-values">Missing Values</a></li>
+<li><a class="reference internal" href="#outliers">Outliers</a></li>
+<li><a class="reference internal" href="#categorical-encoding">Categorical Encoding</a></li>
+<li><a class="reference internal" href="#data-normalization">Data Normalization</a></li>
+<li><a class="reference internal" href="#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li><a class="reference internal" href="#machine-learning">Machine Learning</a></li>
+<li><a class="reference internal" href="#bias-variance-trade-off">Bias Variance Trade-off</a></li>
+<li><a class="reference internal" href="#overfitting">Overfitting</a></li>
+<li><a class="reference internal" href="#regularization">Regularization</a></li>
+<li><a class="reference internal" href="#cross-validation">Cross Validation</a></li>
+<li><a class="reference internal" href="#distance-measurements">Distance Measurements</a></li>
+<li><a class="reference internal" href="#cross-entropy">Cross Entropy</a></li>
+<li><a class="reference internal" href="#loss-functions">Loss Functions</a></li>
+<li><a class="reference internal" href="#discriminative-vs-generative">Discriminative vs Generative</a></li>
+<li><a class="reference internal" href="#feature-selection">Feature Selection</a></li>
 <li><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
 <li><a class="reference internal" href="#regression">Regression</a><ul>
 <li><a class="reference internal" href="#r-squared">R-Squared</a></li>
@@ -116,6 +132,7 @@
 <span class="n">P</span><span class="o">-</span><span class="n">Value</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="o">=</span> <span class="n">Fail</span> <span class="n">to</span> <span class="n">reject</span> <span class="n">null</span> <span class="n">hypothesis</span><span class="p">;</span>
 </pre></div>
 </div>
+<a class="reference external image-reference" href="_static/pvalue.png"><img alt="image" src="_images/pvalue.png" /></a>
 <p><strong>Note:</strong> If we reject the null hypothesis, this indicates strong statistical significance.</p>
 </section>
 <section id="z-test">
@@ -131,6 +148,7 @@
 <li><p>The variance of the sample is assumed to be the same as the population</p></li>
 <li><p>The population is assumed to be normally distributed</p></li>
 </ul>
+<a class="reference external image-reference" href="_static/ztest.png"><img alt="image" src="_images/ztest.png" /></a>
 </section>
 <section id="t-test">
 <h2>T-Test<a class="headerlink" href="#t-test" title="Permalink to this headline"></a></h2>
@@ -174,6 +192,7 @@ Observations in the sample are independent of one another</p></li>
 <li><p>Low Power = when there is a lot of over lap between the two distributions and we have a small sample size, we have low power.</p></li>
 <li><p>When we have a lot of power, there is a higher probability that we will correctly reject the null hypothesis.</p></li>
 </ul>
+<a class="reference external image-reference" href="_static/power.png"><img alt="image" src="_images/power.png" /></a>
 </section>
 <section id="anova">
 <h2>ANOVA<a class="headerlink" href="#anova" title="Permalink to this headline"></a></h2>
@@ -228,6 +247,306 @@ of the other independent variables in a multiple regression equation.</p></li>
 <li><p><strong>Problem:</strong> An independent variable that is very highly correlated with one or more other independent variables will have a relatively large standard error.</p></li>
 <li><p>This implies that the partial regression coefficient is unstable and will vary greatly from one sample to the next.</p></li>
 <li><p>Multicollinearity can also be detected with the help of tolerance and its reciprocal, called variance inflation factor (VIF). A VIF &gt;= 10 is problematic.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="data-preprocessing">
+<h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="missing-values">
+<h2>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Reasons:</p>
+<ul>
+<li><p>Missing completely at random (MCAR)</p></li>
+<li><p>Missing at random (MAR)</p></li>
+<li><p>Not missing at random (NMAR)</p></li>
+</ul>
+</li>
+<li><p>How to handle the missing values:</p>
+<ul>
+<li><p>Do Nothing:</p>
+<ul>
+<li><p>Models like XGBoost can deal with missing values by deciding for each sample which is the best way to impute them and learns the best values</p></li>
+</ul>
+</li>
+<li><p>Imputation:</p>
+<ul>
+<li><p>Using (Mean/Median) Value</p></li>
+<li><p>Using (Most Frequent) Value</p></li>
+<li><p>Using k-NN</p></li>
+<li><p>Interpolation (Linear/Nearest Neighbors)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="outliers">
+<h2>Outliers<a class="headerlink" href="#outliers" title="Permalink to this headline"></a></h2>
+<p><strong>Identify Outliers</strong></p>
+<ul class="simple">
+<li><p><strong>Cook’s Distance:</strong></p>
+<ul>
+<li><p>Measures the effect of deleting a given observation. It represents the sum of all the changes in the regression model when observation “i” is removed from it.</p></li>
+</ul>
+</li>
+<li><p><strong>Interquartile Range Method (IQR):</strong></p>
+<ul>
+<li><p>Is a good statistic for summarizing a non-Gaussian distribution sample of data.</p></li>
+<li><p>IQR is calculated as the difference between the 75th and the 25th percentiles of the data and defines the box in a box and whisker plot.</p></li>
+<li><p>The IQR defines the middle 50% of the data, or the body of the data</p></li>
+<li><p>Can be used to identify outliers by defining limits on the sample values that are below the 25th percentile or above the 75th percentile.</p></li>
+<li><p>Linear Models: Projection methods that model the data into lower dimensions using linear correlations.</p></li>
+<li><p>For example, PCA and data with large residual errors may be outliers.</p></li>
+<li><p>Proximity-based Models: Data instances that are isolated from the mass of the data as determined by cluster, density or KNN analysis.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Handling Outliers</strong></p>
+<ul class="simple">
+<li><p><strong>Log-Scale Transformation:</strong> This method is often used to reduce the variability of data including outlying observation.</p></li>
+<li><p><strong>Model Selection:</strong> Tree based models are less impacted by outliers compared to linear models.</p>
+<ul>
+<li><p>XGBoost and boosting in general are very sensitive to outliers.</p></li>
+<li><p>This is because boosting builds each tree on previous trees’ residuals/errors.</p></li>
+</ul>
+</li>
+<li><p>Outliers will have much larger residuals than non-outliers, so boosting will focus a disproportionate amount of its attention on those points</p></li>
+</ul>
+</section>
+<section id="categorical-encoding">
+<h2>Categorical Encoding<a class="headerlink" href="#categorical-encoding" title="Permalink to this headline"></a></h2>
+<p><strong>One Hot Encoding:</strong></p>
+<ul class="simple">
+<li><p>Maps each category to a vector that contains 1 and 0 denoting the presence or absence of the feature.</p></li>
+<li><p>The number of vectors depends on the number of categories for features.</p></li>
+<li><p>This method produces a lot of columns that slows down the learning significantly if the number of the category is very high for the feature.</p></li>
+</ul>
+<p><strong>Label Encoder:</strong></p>
+<ul class="simple">
+<li><p>Each category is assigned a value from 1 through N (here N is the number of categories for the feature.</p></li>
+<li><p>One major issue with this approach is there is no relation or order between these classes, but the algorithm might consider them as some order, or there is some relationship.</p></li>
+</ul>
+<p><strong>Ordinal encoding:</strong></p>
+<ul class="simple">
+<li><p>To ensure the encoding of variables retains the ordinal nature of the variable.</p></li>
+<li><p>This is reasonable only for ordinal variables.</p></li>
+<li><p>The transformation looks almost similar to Label Encoding but slightly different as Label coding would not consider whether a variable is ordinal or not and it will assign a sequence of integers.</p></li>
+</ul>
+<p><strong>Binary Encoding:</strong></p>
+<ul class="simple">
+<li><p>Converts a category into binary digits.</p></li>
+<li><p>Each binary digit creates one feature column.</p></li>
+<li><p>If there are n unique categories, then binary encoding results in the only log(base 2)ⁿ features.</p></li>
+<li><p>Compared to One Hot Encoding, this will require fewer feature columns.</p>
+<ul>
+<li><p><strong>Explain:</strong> for 100 categories One Hot Encoding will have 100 features
+while forBinary encoding, we will need just seven features.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-normalization">
+<h2>Data Normalization<a class="headerlink" href="#data-normalization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Standardize: scaling features by removing the mean and scaling to unit
+variance</p></li>
+<li><p>MinMax: Transform features by scaling each feature to a given range [-1,1].</p></li>
+</ul>
+</section>
+<section id="dimensionality-reduction">
+<h2>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline"></a></h2>
+<p><strong>Principal Component Analysis</strong></p>
+<ul class="simple">
+<li><p>Dimension reduction technique that finds the variance maximizing directions onto which to project the data.</p></li>
+<li><p>Algorithm to reduce the dimensionality of the data by compressing it onto a new feature subspace, where a subset of the principal components (i.e. eigenvectors) accounts for the highest variance and explains the underlying structure of the overall dataset.</p></li>
+<li><p>The eigenvectors of the correlation or covariance matrix represent the principal components (directions of maximum variance and determine the direction of the new feature space) and the eigenvalues (scalar) correspond to the magnitude of the eigenvectors.</p></li>
+<li><p>The eigenvector with the largest eigenvalue is the direction along which the data set has the maximum variance.</p></li>
+<li><p>After applying the linear PCA transformation, we have a lower dimensional subspace where the samples are “most spread” along the new feature axes.</p></li>
+<li><p>PCA reduces high dimensional space down to two or three principal components without losing much information.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="machine-learning">
+<h2>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="bias-variance-trade-off">
+<h2>Bias Variance Trade-off<a class="headerlink" href="#bias-variance-trade-off" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Bias:</strong> is the difference between the expected (or average) prediction of our model and the correct value which we are trying to predict.</p></li>
+<li><p><strong>Variance:</strong> is the variability of a model prediction for a given data point.</p></li>
+<li><p>The sweet spot for any model is the level of complexity at which the increase in bias is equivalent to the reduction in variance.</p></li>
+<li><p>Increasing model complexity tends to increase variance and decrease bias.</p></li>
+<li><p>However our model complexity exceeds this sweet spot we are in effect
+over-fitting; while if our complexity falls short of the sweet spot =
+under-fitting</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/bias_variance.png"><img alt="image" src="_images/bias_variance.png" /></a>
+<p><strong>Addressing Variance:</strong></p>
+<ul class="simple">
+<li><p>Bagging and other resampling techniques can be used to reduce the variance in
+model predictions.</p></li>
+<li><p>In bagging (Bootstrap Aggregating), numerous replicates of the original data set are created using random selection with replacement.</p></li>
+</ul>
+</section>
+<section id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Occurs when the model over fits on the training data and does not generalize
+to the unseen sample population.</p></li>
+<li><p>Ways to address overfitting:</p>
+<ul>
+<li><p>Get more data</p></li>
+<li><p>Add regularization</p></li>
+<li><p>Cross-Validation</p></li>
+<li><p>Less complex model</p></li>
+<li><p>Data augmentation (images)</p></li>
+<li><p>Smaller input dimensionality (remove features)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Technique to help reduce overfitting by adding an additional parameter to the loss function, usually the L1 or L2 norm.</p></li>
+<li><p>In order to help prevent overfitting, we can add in a term into our optimization that keeps the weights small</p></li>
+</ul>
+<p><strong>L1 Regularization (Lasso): “Absolute Value Magnitude”</strong></p>
+<ul class="simple">
+<li><p>Lasso Regularizer forces a lot of feature weights to be zero</p></li>
+</ul>
+<p><strong>L2 Regularization (Ridge): “Squared Magnitude”</strong></p>
+<a class="reference external image-reference" href="_static/regularization.png"><img alt="image" src="_images/regularization.png" /></a>
+</section>
+<section id="cross-validation">
+<h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>To avoid sampling issues, which can cause the training-set to be too optimistic.</p></li>
+<li><p>Cross-validation is used to protect against overfitting in a predictive model, particularly the case where the amount of data is limited.</p></li>
+</ul>
+<p><strong>K-Fold:</strong></p>
+<ul class="simple">
+<li><p>Splits the training data into ‘k’ folds to validate the model on one file while training on the k-1 other folds ‘k’ times. The error is then averages over the fold</p></li>
+</ul>
+</section>
+<section id="distance-measurements">
+<h2>Distance Measurements<a class="headerlink" href="#distance-measurements" title="Permalink to this headline"></a></h2>
+<p><strong>Euclidean Distance</strong></p>
+<ul class="simple">
+<li><p>sqrt((x2-x1)2 + (y2-y2)2)–&gt; Pythagorean Theorem</p></li>
+</ul>
+<p><strong>Manhattan Distance</strong></p>
+<ul class="simple">
+<li><p>Calculates the distance between two data points in a grid like path - absolute sum of difference</p></li>
+</ul>
+<p><strong>Cosine Distance</strong></p>
+<ul class="simple">
+<li><p>Measure the degree of angle between two documents or vectors.</p></li>
+<li><p>Cosine value 1 is for vectors pointing in the same direction i.e. there are
+similarities between the documents/data points.</p></li>
+<li><p>At zero for orthogonal vectors i.e. Unrelated(some similarity found).</p></li>
+<li><p>Value -1 for vectors pointing in opposite directions(No similarity).</p></li>
+</ul>
+<p><strong>Mahalanobis Distance</strong></p>
+<ul class="simple">
+<li><p>A measure of the distance between a point P and a distribution D.</p></li>
+<li><p>Why use it?</p>
+<ul>
+<li><p>If the feature vectors are correlated to one another, which is typically the case in real-world datasets, the Euclidean distance between a point and the center of the points (distribution) can give little or misleading information about how close a point really is to the cluster.</p></li>
+<li><p>Euclidean distance is a distance between two points only. It does not consider how the rest of the points in the dataset vary</p></li>
+</ul>
+</li>
+<li><p>Steps:</p>
+<ul>
+<li><p>It transforms the columns into uncorrelated variables</p></li>
+<li><p>Scale the columns to make their variance equal to 1</p></li>
+<li><p>Finally, it calculates the Euclidean distance.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cross-entropy">
+<h2>Cross Entropy<a class="headerlink" href="#cross-entropy" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Measures the difference between two probability distributions for a given random variable or set of events - classification problems</p></li>
+<li><p>Entropy: is the number of bits required to transmit a randomly selected event
+from a probability distribution.</p></li>
+<li><p>A skewed distribution has a low entropy, whereas a distribution where events have equal probability has a larger entropy.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/cross_entropy1.png"><img alt="image" src="_images/cross_entropy1.png" /></a>
+<a class="reference external image-reference" href="_static/cross_entropy2.png"><img alt="image" src="_images/cross_entropy2.png" /></a>
+</section>
+<section id="loss-functions">
+<h2>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Function that takes as inputs the predicted value ‘z’ corresponding to the
+real data value ‘y’ and outputs how different they are.</p></li>
+</ul>
+<a class="reference external image-reference" href="_static/loss_functions.png"><img alt="image" src="_images/loss_functions.png" /></a>
+</section>
+<section id="discriminative-vs-generative">
+<h2>Discriminative vs Generative<a class="headerlink" href="#discriminative-vs-generative" title="Permalink to this headline"></a></h2>
+<a class="reference external image-reference" href="_static/discrimitive_generative.png"><img alt="image" src="_images/discrimitive_generative.png" /></a>
+</section>
+<section id="feature-selection">
+<h2>Feature Selection<a class="headerlink" href="#feature-selection" title="Permalink to this headline"></a></h2>
+<p><strong>Filter Based</strong></p>
+<ul class="simple">
+<li><p>We specify some metric and based on that filter features.</p>
+<ul>
+<li><p>chi-square test</p></li>
+<li><p>fisher score</p></li>
+<li><p>correlation coefficient</p></li>
+<li><p>variance threshold</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Wrapper-based</strong></p>
+<ul class="simple">
+<li><p>Wrapper methods consider the selection of a set of features as a search problem.</p>
+<ul>
+<li><p>Sequential Feature Selection</p></li>
+<li><p>Forward/Stepwise/Backward Selection</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Embedded</strong></p>
+<ul class="simple">
+<li><p>Embedded methods use algorithms that have built-in feature selection methods.</p>
+<ul>
+<li><p>Lasso</p></li>
+<li><p>Tree based models</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Forward Selection</strong></p>
+<ul class="simple">
+<li><p>The procedure starts with an empty set of features [reduced set]. The best of the original features is determined and added to the reduced set. At each subsequent iteration, the best of the remaining original attributes is added to the set.</p></li>
+</ul>
+<p><strong>Backward Elimination</strong></p>
+<ul class="simple">
+<li><p>The procedure starts with the full set of attributes. At each step, it removes the worst attribute remaining in the set.</p></li>
+</ul>
+<p><strong>Sequential Feature Selection</strong></p>
+<ul class="simple">
+<li><p>Greedy procedure where, at each iteration, we choose the best new feature to add to our selected features based on a cross-validation score.</p></li>
+<li><p>That is, we start with 0 features and choose the best single feature with the highest score.</p></li>
+<li><p>The procedure is repeated until we reach the desired number of selected features.</p></li>
+</ul>
+<p><strong>Embedded Feature Selection</strong></p>
+<ul class="simple">
+<li><p>Augment with noisy data</p></li>
+<li><p>Can apply this approach to Tree based models: XGBoost, DecisionTree, RandomForrest</p></li>
+<li><p>The idea is that we can inject noisy data features into our input training dataset when training model</p></li>
+<li><p>Here we can perform cross-validation with n-folds where at each n-fold inject noisy features in each iteration and determine the threshold in which the first noisy feature is selected when computing feature importance.</p></li>
+<li><p>We select the raw features that are less than this threshold and append to a
+list.</p></li>
+<li><p>We do this iteratively for each fold and then take a set of the final appended list.</p></li>
+<li><p>This approach can help minimize model overfitting.</p></li>
 </ul>
 </section>
 <hr class="docutils" />

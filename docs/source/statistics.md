@@ -12,6 +12,8 @@ P-Value < 0.05 = Reject null hypothesis;
 P-Value > 0.05 = Fail to reject null hypothesis; 
 ```
 
+![image](_static/pvalue.png)
+
 **Note:** If we reject the null hypothesis, this indicates strong statistical significance. 
  
  
@@ -26,6 +28,9 @@ P-Value > 0.05 = Fail to reject null hypothesis;
 - The mean of the sample distribution is known
 - The variance of the sample is assumed to be the same as the population
 - The population is assumed to be normally distributed
+
+
+![image](_static/ztest.png)
 
 
 ## T-Test
@@ -69,6 +74,7 @@ Power = Type II Error = fail to reject a false null hypothesis.
  
 - When we have a lot of power, there is a higher probability that we will correctly reject the null hypothesis. 
  
+![image](_static/power.png)
 
 ## ANOVA
 

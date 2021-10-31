@@ -12,4 +12,10 @@ Data Science Handbook
 
 .. mdinclude:: source/statistics.md
 
+.. mdinclude:: source/dataprep.md
+
+.. mdinclude:: source/featureselection.md
+
+.. mdinclude:: source/machinelearning.md
+
 .. mdinclude:: source/metrics.md
