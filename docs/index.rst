@@ -6,4 +6,10 @@
 Data Science Handbook
 =====================
 
+.. toctree::
+   :maxdepth: 2
+
+
+.. mdinclude:: source/statistics.md
+
 .. mdinclude:: source/metrics.md
