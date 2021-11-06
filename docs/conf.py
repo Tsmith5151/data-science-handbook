@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Data Science Handbook'
+project = 'Data Science Hand..'
 copyright = '2021, Trace Smith, Damon Resnick'
 author = 'Trace Smith, Damon Resnick'
 
@@ -35,12 +35,9 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.viewcode",
-    "sphinxcontrib.mermaid",
-    "sphinx_autodoc_typehints",
     "sphinx.ext.napoleon",
-    "m2r2",
+    'recommonmark',
+    'sphinx_markdown_tables',
 ]
 
 # The master toctree document.
@@ -67,6 +64,17 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
 source_suffix = [".rst", ".md"]
 
+html_theme_options = {
+    'logo_only': True,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': True,
+    # Toc options
+    'collapse_navigation': False,
+    'sticky_navigation': False,
+    'navigation_depth': 3,
+    'includehidden': True,
+    'titles_only': False
+}

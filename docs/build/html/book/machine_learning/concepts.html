@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning Concepts &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Machine Learning Concepts</a><ul>
+<li><a class="reference internal" href="#bias-variance-trade-off">Bias Variance Trade-off</a></li>
+<li><a class="reference internal" href="#overfitting">Overfitting</a></li>
+<li><a class="reference internal" href="#regularization">Regularization</a></li>
+<li><a class="reference internal" href="#cross-validation">Cross Validation</a></li>
+<li><a class="reference internal" href="#distance-measurements">Distance Measurements</a></li>
+<li><a class="reference internal" href="#cross-entropy">Cross Entropy</a></li>
+<li><a class="reference internal" href="#loss-functions">Loss Functions</a></li>
+<li><a class="reference internal" href="#discriminative-vs-generative">Discriminative vs Generative</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Machine Learning Concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/machine_learning/concepts.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="machine-learning-concepts">
+<h1>Machine Learning Concepts<a class="headerlink" href="#machine-learning-concepts" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<section id="bias-variance-trade-off">
+<h2>Bias Variance Trade-off<a class="headerlink" href="#bias-variance-trade-off" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Bias:</strong> is the difference between the expected (or average) prediction of our model and the correct value which we are trying to predict.</p></li>
+<li><p><strong>Variance:</strong> is the variability of a model prediction for a given data point.</p></li>
+<li><p>The sweet spot for any model is the level of complexity at which the increase in bias is equivalent to the reduction in variance.</p></li>
+<li><p>Increasing model complexity tends to increase variance and decrease bias.</p></li>
+<li><p>However our model complexity exceeds this sweet spot we are in effect
+over-fitting; while if our complexity falls short of the sweet spot =
+under-fitting</p></li>
+</ul>
+<p><img alt="image" src="../../_images/bias_variance.png" /></p>
+<p><strong>Addressing Variance:</strong></p>
+<ul class="simple">
+<li><p>Bagging and other resampling techniques can be used to reduce the variance in
+model predictions.</p></li>
+<li><p>In bagging (Bootstrap Aggregating), numerous replicates of the original data set are created using random selection with replacement.</p></li>
+</ul>
+</section>
+<section id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Occurs when the model over fits on the training data and does not generalize
+to the unseen sample population.</p></li>
+<li><p>Ways to address overfitting:</p>
+<ul>
+<li><p>Get more data</p></li>
+<li><p>Add regularization</p></li>
+<li><p>Cross-Validation</p></li>
+<li><p>Less complex model</p></li>
+<li><p>Data augmentation (images)</p></li>
+<li><p>Smaller input dimensionality (remove features)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Technique to help reduce overfitting by adding an additional parameter to the loss function, usually the L1 or L2 norm.</p></li>
+<li><p>In order to help prevent overfitting, we can add in a term into our optimization that keeps the weights small</p></li>
+</ul>
+<p><strong>L1 Regularization (Lasso): “Absolute Value Magnitude”</strong></p>
+<ul class="simple">
+<li><p>Lasso Regularizer forces a lot of feature weights to be zero</p></li>
+</ul>
+<p><strong>L2 Regularization (Ridge): “Squared Magnitude”</strong></p>
+<p><img alt="image" src="../../_images/regularization.png" /></p>
+</section>
+<section id="cross-validation">
+<h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>To avoid sampling issues, which can cause the training-set to be too optimistic.</p></li>
+<li><p>Cross-validation is used to protect against overfitting in a predictive model, particularly the case where the amount of data is limited.</p></li>
+</ul>
+<p><strong>K-Fold:</strong></p>
+<ul class="simple">
+<li><p>Splits the training data into ‘k’ folds to validate the model on one file while training on the k-1 other folds ‘k’ times. The error is then averages over the fold</p></li>
+</ul>
+</section>
+<section id="distance-measurements">
+<h2>Distance Measurements<a class="headerlink" href="#distance-measurements" title="Permalink to this headline"></a></h2>
+<p><strong>Euclidean Distance</strong></p>
+<ul class="simple">
+<li><p>sqrt((x2-x1)2 + (y2-y2)2)–&gt; Pythagorean Theorem</p></li>
+</ul>
+<p><strong>Manhattan Distance</strong></p>
+<ul class="simple">
+<li><p>Calculates the distance between two data points in a grid like path - absolute sum of difference</p></li>
+</ul>
+<p><strong>Cosine Distance</strong></p>
+<ul class="simple">
+<li><p>Measure the degree of angle between two documents or vectors.</p></li>
+<li><p>Cosine value 1 is for vectors pointing in the same direction i.e. there are
+similarities between the documents/data points.</p></li>
+<li><p>At zero for orthogonal vectors i.e. Unrelated(some similarity found).</p></li>
+<li><p>Value -1 for vectors pointing in opposite directions(No similarity).</p></li>
+</ul>
+<p><strong>Mahalanobis Distance</strong></p>
+<ul class="simple">
+<li><p>A measure of the distance between a point P and a distribution D.</p></li>
+<li><p>Why use it?</p>
+<ul>
+<li><p>If the feature vectors are correlated to one another, which is typically the case in real-world datasets, the Euclidean distance between a point and the center of the points (distribution) can give little or misleading information about how close a point really is to the cluster.</p></li>
+<li><p>Euclidean distance is a distance between two points only. It does not consider how the rest of the points in the dataset vary</p></li>
+</ul>
+</li>
+<li><p>Steps:</p>
+<ul>
+<li><p>It transforms the columns into uncorrelated variables</p></li>
+<li><p>Scale the columns to make their variance equal to 1</p></li>
+<li><p>Finally, it calculates the Euclidean distance.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cross-entropy">
+<h2>Cross Entropy<a class="headerlink" href="#cross-entropy" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Measures the difference between two probability distributions for a given random variable or set of events - classification problems</p></li>
+<li><p>Entropy: is the number of bits required to transmit a randomly selected event
+from a probability distribution.</p></li>
+<li><p>A skewed distribution has a low entropy, whereas a distribution where events have equal probability has a larger entropy.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cross_entropy1.png" />
+<img alt="image" src="../../_images/cross_entropy2.png" /></p>
+</section>
+<section id="loss-functions">
+<h2>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Function that takes as inputs the predicted value ‘z’ corresponding to the
+real data value ‘y’ and outputs how different they are.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/loss_functions.png" /></p>
+</section>
+<section id="discriminative-vs-generative">
+<h2>Discriminative vs Generative<a class="headerlink" href="#discriminative-vs-generative" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/discrimitive_generative.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

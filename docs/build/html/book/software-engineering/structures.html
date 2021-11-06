@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Structures &amp; Algorithms &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Data Structures &amp; Algorithms</a><ul>
+<li><a class="reference internal" href="#time-compexity">Time Compexity</a></li>
+<li><a class="reference internal" href="#array">Array</a></li>
+<li><a class="reference internal" href="#deque-python">Deque (Python)</a></li>
+<li><a class="reference internal" href="#linked-list">Linked List</a></li>
+<li><a class="reference internal" href="#stacks">Stacks</a></li>
+<li><a class="reference internal" href="#queues">Queues</a></li>
+<li><a class="reference internal" href="#hash-map">Hash Map</a></li>
+<li><a class="reference internal" href="#recursion">Recursion</a></li>
+<li><a class="reference internal" href="#trees">Trees</a></li>
+<li><a class="reference internal" href="#depth-first-search-trees">Depth First Search Trees</a></li>
+<li><a class="reference internal" href="#heap">Heap</a></li>
+<li><a class="reference internal" href="#backtracking">Backtracking</a></li>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data Structures &amp; Algorithms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/software-engineering/structures.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-structures-algorithms">
+<h1>Data Structures &amp; Algorithms<a class="headerlink" href="#data-structures-algorithms" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<section id="time-compexity">
+<h2>Time Compexity<a class="headerlink" href="#time-compexity" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/time_complexity1.png" /></p>
+<p><strong>Examples</strong></p>
+<ul class="simple">
+<li><p>O(1) -&gt; basic operation</p></li>
+<li><p>O(n) -&gt; loop</p></li>
+<li><p>O(n2) -&gt; loop inside of a loop</p></li>
+<li><p>O(log n) -&gt; input size is divided in half for each loop (Binary Search)</p></li>
+<li><p>O(nlog n)</p></li>
+</ul>
+<p><strong>Linear Time Complexity</strong></p>
+<p><img alt="image" src="../../_images/time_complexity2.png" /></p>
+</section>
+<section id="array">
+<h2>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Structure of fixed-size, which can hold items of the same data type. - It can be an array of integers, an array of floating-point numbers, an array of strings or even an array of arrays (such as 2-dimensional arrays).</p></li>
+<li><p>Arrays are indexed, meaning that random access is possible.</p></li>
+<li><p><strong>Traverse</strong>: Go through the elements and print them.</p></li>
+<li><p><strong>Search</strong>: Search for an element in the array. You can search the element by its value or its index</p></li>
+<li><p><strong>Update</strong>: Update the value of an existing element at a given index</p></li>
+</ul>
+<p><img alt="image" src="../../_images/array.png" /></p>
+</section>
+<section id="deque-python">
+<h2>Deque (Python)<a class="headerlink" href="#deque-python" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Deque (Doubly Ended Queue) in Python is implemented using the module “collections“.</p></li>
+<li><p>Deque is preferred over list in the cases where we need quicker append and pop operations from both the ends of container, as deque provides an O(1) time complexity for append and pop operations as compared to list which provides O(n) time complexity.</p></li>
+</ul>
+</section>
+<section id="linked-list">
+<h2>Linked List<a class="headerlink" href="#linked-list" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Sequential structure that consists of a sequence of items in linear order which are linked to each other. Hence, you have to access data sequentially and random access is not possible. Linked lists provide a simple and flexible representation of dynamic sets</p></li>
+<li><p>Elements in a linked list are known as nodes.</p>
+<ul>
+<li><p>Each node contains a key and a pointer to its successor node, known as next.</p></li>
+<li><p>The attribute named head points to the first element of the linked list.</p></li>
+<li><p>The last element of the linked list is known as the tail.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/linked_list.png" /></p>
+</section>
+<section id="stacks">
+<h2>Stacks<a class="headerlink" href="#stacks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Linear data structure that stores items in a Last-In/First-Out  or First-In/Last-Out</p></li>
+<li><p>A new element is added at one end and an element is removed from that end only.</p></li>
+<li><p>The insert and delete operations are often called push and pop.</p></li>
+<li><p><strong>Push</strong>: Insert an element on to the top of the stack.</p></li>
+<li><p><strong>Pop</strong>: Delete the topmost element and return it.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/stacks.png" /></p>
+</section>
+<section id="queues">
+<h2>Queues<a class="headerlink" href="#queues" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Linear data structure that stores items in First In First Out (FIFO.</p></li>
+<li><p>With a queue the least recently added item is removed first.
+<strong>Enqueue</strong>: Insert an element to the end of the queue.
+<strong>Dequeue</strong>: Delete the element from the beginning of the queue.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/queues.png" /></p>
+</section>
+<section id="hash-map">
+<h2>Hash Map<a class="headerlink" href="#hash-map" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A special function named as the hash function (h) is used to overcome the aforementioned problem in direct addressing.</p></li>
+<li><p>In direct accessing, a value with key k is stored in the slot k. Using the hash function, we calculate the index of the table (slot) to which each value goes. The value calculated using the hash function for a given key is called the hash value which indicates the index of the table to which the value is mapped.</p>
+<ul>
+<li><p><strong>h</strong>: Hash function</p></li>
+<li><p><strong>k</strong>: Key of which the hash value should be determined</p></li>
+<li><p><strong>m</strong>: Size of the hash table (number of slots available). A prime value that is not close to an exact power of 2 is a good choice for m.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/hash_map.png" /></p>
+</section>
+<section id="recursion">
+<h2>Recursion<a class="headerlink" href="#recursion" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Recursion is a method of solving problems that involves breaking a problem down into smaller and smaller subproblems until you get to a small enough problem that it can be solved trivially.</p></li>
+<li><p>Usually recursion involves a function calling itself.</p></li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li><p>A recursive algorithm must have a base case.</p></li>
+<li><p>A recursive algorithm must change its state and move toward the base case.</p></li>
+<li><p>A recursive algorithm must call itself, recursively.</p></li>
+</ul>
+<p><strong>Recursive function in Python</strong></p>
+<ul class="simple">
+<li><p>When a function is called in Python, a stack frame is allocated to handle the local variables of the function.</p></li>
+<li><p>When the function returns, the return value is left on top of the stack for the calling function to access.</p></li>
+<li><p>Even though we are calling the same function over and over, each call creates a new scope for the variables that are local to the function.</p></li>
+</ul>
+</section>
+<section id="trees">
+<h2>Trees<a class="headerlink" href="#trees" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A tree is a hierarchical structure where data is organized hierarchically and are linked together. This structure is different from a linked list whereas, in a linked list, items are linked in a linear order.</p></li>
+<li><p>A binary search tree (BST), as the name suggests, is a binary tree where data is organized in a hierarchical structure. This data structure stores values in sorted order.</p></li>
+<li><p>Every node in a binary search tree comprises the following attributes.
+<strong>key</strong>: The value stored in the node.
+<strong>left</strong>: The pointer to the left child.
+<strong>right</strong>: The pointer to the right child.
+<strong>p</strong>: The pointer to the parent node.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/binary_tree.png" /></p>
+</section>
+<section id="depth-first-search-trees">
+<h2>Depth First Search Trees<a class="headerlink" href="#depth-first-search-trees" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Depth-first search is an algorithm for traversing or searching tree or graph data structures.</p></li>
+<li><p>The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.</p></li>
+</ul>
+<p><strong>Steps</strong>:</p>
+<ul class="simple">
+<li><p>Start from the root or any arbitrary node and mark the node and move to the adjacent unmarked node.
+continue this loop until there is no unmarked adjacent node.</p></li>
+<li><p>Then backtrack and check for other unmarked nodes and traverse them.</p></li>
+<li><p>Finally, print the nodes in the path.</p></li>
+</ul>
+<p><strong>Algorithm</strong>:</p>
+<ul class="simple">
+<li><p>Create a recursive function that takes the index of the node and a visited array.</p></li>
+<li><p>Mark the current node as visited and print the node.</p></li>
+<li><p>Traverse all the adjacent and unmarked nodes and call the recursive function with the index of the adjacent node.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<p><img alt="image" src="../../_images/dfs1.png" />
+<img alt="image" src="../../_images/dfs2.png" /></p>
+<p><strong>DFS vs BFS</strong>
+<img alt="image" src="../../_images/dfs3.png" /></p>
+</section>
+<section id="heap">
+<h2>Heap<a class="headerlink" href="#heap" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A special case of a binary tree where the parent nodes are compared to their children with their values and are arranged accordingly.
+Only the root is deleted when performing a delete operation. So to determine
+the Max value -&gt;</p></li>
+</ul>
+<p><strong>Min Heap</strong></p>
+<ul class="simple">
+<li><p>The key of the parent is less than or equal to those of its children. This is called the min-heap property. The root will contain the minimum value of the heap.</p></li>
+</ul>
+<p><strong>Max Heap</strong></p>
+<ul class="simple">
+<li><p>The key of the parent is greater than or equal to those of its children. This is called the max-heap property. The root will contain the maximum value of the heap.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/max_heap.png" /></p>
+</section>
+<section id="backtracking">
+<h2>Backtracking<a class="headerlink" href="#backtracking" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Common algorithm used when you want to “find all possible solution”</p></li>
+<li><p>Backtracking is an algorithmic-technique for solving problems recursively by trying to build a solution incrementally, one piece at a time, removing those solutions that fail to satisfy the constraints of the problem at any point of time</p></li>
+</ul>
+<p><img alt="image" src="../../_images/backtracking1.png" /></p>
+<p><img alt="image" src="../../_images/backtracking2.png" /></p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw">Abdul Bari YouTube
+Channel</a>
+<a class="reference external" href="https://www.youtube.com/c/NeetCode">NeetCode YouTube Channel</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
