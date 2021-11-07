@@ -2,7 +2,9 @@
 _________
 
 ## Table of Contents
-
+* [Big Data](book/big-data/databases.md)
+  * [Spark](book/big-data/spark.md)
+  * [Hadoop](book/big-data/hadoop.md)
 * [Data Preprocessing](book/data-preprocessing/prep.md)
   * [Dimensionality Reduction](book/data-preprocessing/dimensionality-reduction.md)
 * [Deep Learning](book/deep-learning/dl.md)
@@ -23,6 +25,7 @@ _________
   * [Code Reviews](book/software-engineering/code.md) 
   * [Data Structures](book/software-engineering/structures.md) 
 * [Statistics](book/statistics/stats.md)
+
 
 ### References
 * [Scikit-Learn Documentation](https://scikit-learn.org/stable/)
