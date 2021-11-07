@@ -99,7 +99,7 @@ Tokenizer classes which store the vocabulary for each model and provide methods 
 
 **Reference**: https://arxiv.org/pdf/1904.06690.pdf
 
-### BERT - Semantics Similarity
+### BERT - Semantics Similarity**
 
 - Initial problem with BERT for semantic similarities:
 - Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. 
