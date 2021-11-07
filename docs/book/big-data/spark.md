@@ -2,11 +2,15 @@
 _____
 
 ## Spark  
-- A computing framework for distributing processing tasks across
-multiple nodes in a cluster. Spark APIs: Scala, Java, Python, R, SQL.
+- An in-memory data processing engine for big data workloads 
+- Spark is an open source distributed clustering computing framework 
+- Spark runs 100 times faster in-memory and 10 times faster on disk than Hadoop MapReduce. The reason is that Apache Spark processes data in-memory (RAM), while Hadoop MapReduce has to persist data back to the disk after every Map or Reduce action.
+Does Spark use MapReduce or not? The answer to the question is yes — but only the idea, not the exact implementation -> Example: Map - reduce - filter w/ RDDs
 - Running spark applications consist of two main components:
   - Driver
   - Executors 
+
+![image](../assets/spark.png)
 
 ### SparkSession
 - Object that provides a point of entry to interact with underlying Spark functionality.

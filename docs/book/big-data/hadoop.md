@@ -18,4 +18,5 @@ HDFS
   - Resource Manager
   - Node Manager
   - Pig
+  
 - A high-level scripting language used to execute queries for larger datasets that are used within Hadoop. Pig’s simple SQL-like scripting language is known as Pig Latin and its main objective is to perform the required operations and arrange the final output in the desired format.
