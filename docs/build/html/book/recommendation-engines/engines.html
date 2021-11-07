@@ -37,7 +37,27 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Recommendation Engines</a></li>
+<li><a class="reference internal" href="#">Recommendation Engines</a><ul>
+<li><a class="reference internal" href="#algorithms-overview">Algorithms Overview</a></li>
+<li><a class="reference internal" href="#overview-diagram">Overview Diagram</a></li>
+<li><a class="reference internal" href="#content-based-filtering">Content-based filtering</a></li>
+<li><a class="reference internal" href="#collaborative-filtering">Collaborative Filtering</a></li>
+<li><a class="reference internal" href="#matrix-factorization">Matrix Factorization</a></li>
+<li><a class="reference internal" href="#loss-function">Loss Function</a></li>
+<li><a class="reference internal" href="#regularization">Regularization</a></li>
+<li><a class="reference internal" href="#sparse-matrix">Sparse Matrix</a></li>
+<li><a class="reference internal" href="#alternating-least-squares">Alternating Least Squares</a></li>
+<li><a class="reference internal" href="#implicit-als">Implicit ALS</a></li>
+<li><a class="reference internal" href="#evaluating-recommendation-engines">Evaluating Recommendation Engines</a></li>
+<li><a class="reference internal" href="#similarity-metrics">Similarity Metrics</a></li>
+<li><a class="reference internal" href="#deep-neural-networks">Deep Neural Networks</a></li>
+<li><a class="reference internal" href="#embedding-layers">Embedding Layers</a></li>
+<li><a class="reference internal" href="#candidate-generator-model">Candidate Generator Model</a></li>
+<li><a class="reference internal" href="#ranking-model">Ranking Model</a></li>
+<li><a class="reference internal" href="#neural-collaborative-filtering">Neural Collaborative Filtering</a></li>
+<li><a class="reference internal" href="#approximate-nearest-neighbor">Approximate Nearest Neighbor</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -67,6 +87,306 @@
   <section id="recommendation-engines">
 <h1>Recommendation Engines<a class="headerlink" href="#recommendation-engines" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
+<section id="algorithms-overview">
+<h2>Algorithms Overview<a class="headerlink" href="#algorithms-overview" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/recsys.png" /></p>
+</section>
+<section id="overview-diagram">
+<h2>Overview Diagram<a class="headerlink" href="#overview-diagram" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/recsys2.png" /></p>
+</section>
+<section id="content-based-filtering">
+<h2>Content-based filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Content-based filtering uses item features to recommend other items similar to what the user likes, based on their previous actions or explicit feedback.</p></li>
+</ul>
+<p><strong>Advantages vs Disadvantages</strong></p>
+<p><img alt="image" src="../../_images/contentfiltering.png" /></p>
+</section>
+<section id="collaborative-filtering">
+<h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Collaborative filtering uses similarities between users and items simultaneously to provide recommendations.</p></li>
+<li><p>Collaborative Filtering models can recommend an item to user A based on the interests of a similar user B.</p></li>
+<li><p>In practice, the embeddings can be learned automatically without relying on hand-engineering of features, which is the power of collaborative filtering models.</p></li>
+<li><p>We can apply Matrix Factorization to identify the relationship between users and items entities.</p></li>
+<li><p><strong>Data Sources</strong></p>
+<ul>
+<li><p><strong>Explicit—</strong> users specify how much they liked a particular movie by providing a numerical rating.</p></li>
+<li><p><strong>Implicit—</strong> if a user watches a movie, the system infers that the user is interested.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Advantages vs Disadvantages</strong></p>
+<p><img alt="image" src="../../_images/collaborativefiltering.png" /></p>
+</section>
+<section id="matrix-factorization">
+<h2>Matrix Factorization<a class="headerlink" href="#matrix-factorization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The idea is to take the original user-item matrix, and then reduce that down to two much smaller matrices that approximates the original when multiplied together such that the loss between the multiplication of the two smaller matrices and the true user-item matrix is minimized (See Loss Functions Below)</p></li>
+<li><p>Matrix factorization algorithm tries to find latent factors that represent intrinsic user
+and item attributes in a lower dimension</p></li>
+<li><p>With Matrix Factorization we can throw away having to come up with features that connect users and items and instead use the user-item data we have to</p></li>
+</ul>
+<p><img alt="image" src="../../_images/matrixfactorization.png" />
+<img alt="image" src="../../_images/matrixfactorization2.png" /></p>
+</section>
+<section id="loss-function">
+<h2>Loss Function<a class="headerlink" href="#loss-function" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/matrixfactorization3.png" /></p>
+<ul class="simple">
+<li><p>The objective function is simply the sum of squared distances between predicted ratings and actual ratings, so this is what we need to minimize.</p></li>
+<li><p>Common algorithm to minimize the loss function is Stochastic Gradient Descent</p></li>
+</ul>
+</section>
+<section id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>But in order to prevent overfitting to the training data we need to constrain the learned values for our user and item features by penalizing high values.</p></li>
+<li><p>We do this by multiplying the sum of the squares of the elements of the user and item matrices by a configurable regularization parameter and including this in our cost function.</p></li>
+</ul>
+</section>
+<section id="sparse-matrix">
+<h2>Sparse Matrix<a class="headerlink" href="#sparse-matrix" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The ratings matrix is sparse, meaning most of the values are 0, because each user has only rated a small number of items.</p></li>
+<li><p>The concept of a sparse matrix can actually be translated to a different data structure that retains only information about the non-zero values, making it a much more memory-efficient representation of the same information.</p></li>
+<li><p>One way is to define a vector of row indices, i, a vector of column indices, j, and a vector of values for each (i,j) pair. So only the (i,j) pairs that have values are included. Using this format, known as coordinate list or COO, the above ratings would be expressed as follows:</p></li>
+</ul>
+</section>
+<section id="alternating-least-squares">
+<h2>Alternating Least Squares<a class="headerlink" href="#alternating-least-squares" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The latent factor terms in the loss function are non-convex and therefore Gradient descent method can be applied but this will be expensive computations.</p></li>
+<li><p>The ALS algorithm was developed to overcome this limitation.</p></li>
+<li><p>ALS is to learn one of ‘w’ and ‘f’ at a time for optimization while keeping the other as constant. This makes the objective at each iteration convex and solvable.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/als.png" /></p>
+<p><strong>Advantage:</strong></p>
+<ul class="simple">
+<li><p>Can be parallelised and/or distributed, which makes the algorithm desirable for use cases where the dataset is large and thus the user-item rating matrix is super sparse.</p></li>
+</ul>
+<p><strong>Implementation:</strong></p>
+<ul class="simple">
+<li><p>Scoring metric for explicit data: RMSE, MSE, R^2</p></li>
+<li><p>The recommended items should be different from those that have been rated by the users</p></li>
+<li><p>Prediction performance of a Spark ALS model is often affected by the parameters.</p></li>
+</ul>
+</section>
+<section id="implicit-als">
+<h2>Implicit ALS<a class="headerlink" href="#implicit-als" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Link: https://www.benfrederickson.com/matrix-factorization</p></li>
+</ul>
+</section>
+<section id="evaluating-recommendation-engines">
+<h2>Evaluating Recommendation Engines<a class="headerlink" href="#evaluating-recommendation-engines" title="Permalink to this headline"></a></h2>
+<p><strong>Mean Average Precision (MAP)</strong></p>
+<ul class="simple">
+<li><p>MAP to evaluate a recommender algorithm implies that we are treating the recommendation like a ranking task.</p></li>
+<li><p>We want to show the top recommendations first and maybe market them more aggressively.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/map.png" /></p>
+<p><strong>Coverage</strong></p>
+<ul class="simple">
+<li><p>Is the percent of items in the training data the model is able to recommend on a test set.</p></li>
+</ul>
+<p><strong>Personalization</strong></p>
+<ul class="simple">
+<li><p>Is a great way to assess if a model recommends many of the same items to different users.</p></li>
+<li><p>We can use the cosine similarity metric to measure the similarity among the top “K” items recommended.</p></li>
+<li><p>A high personalization score indicates user’s recommendations are different, meaning the model is offering a personalized experience to each user.</p></li>
+</ul>
+</section>
+<section id="similarity-metrics">
+<h2>Similarity Metrics<a class="headerlink" href="#similarity-metrics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Dot Product:</strong> note that popular items tend to be recommended for everyone, especially when using dot product as a similarity measure.</p></li>
+</ul>
+<p><strong>Cosine Similarity</strong></p>
+<ul class="simple">
+<li><p>Cosine Similarity is a measurement that quantifies the similarity between two or more vectors.
+Range: <code class="docutils literal notranslate"><span class="pre">[0</span> <span class="pre">-</span> <span class="pre">1]</span></code>.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cosine2.png" /></p>
+<ul class="simple">
+<li><p>The similarity measurement is a measure of the cosine of the angle between the two non-zero vectors A and B.</p></li>
+<li><p>As the cosine similarity gets closer to 1, the angle between the two vectors [A,B] is smaller.</p></li>
+<li><p>Computes similarity as the normalized dot product of X and Y:</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cosine.png" /></p>
+<p><strong>Note:</strong> In order to compute similarities, the entire dataset needs to be loaded into memory. One solution would be to convert from a dense to a sparse matrix representation given that many of the rows have zero entries. Using implementation sparse.csr_matrix can be used as it’s very memory efficient for storing sparse datasets</p>
+</section>
+<section id="deep-neural-networks">
+<h2>Deep Neural Networks<a class="headerlink" href="#deep-neural-networks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Deep neural network (DNN) models can address these limitations of matrix factorization.</p></li>
+<li><p>By adding hidden layers and non-linear activation functions (for example, ReLU), the model can capture more complex relationships in the data.</p></li>
+<li><p>DNNs can easily incorporate query features and item features (due to the flexibility of the input layer of the network), which can help capture the specific interests of a user and improve the relevance of recommendations.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/dnn_recsys.png" /></p>
+<p><strong>Matrix Factorization vs DNN</strong></p>
+<ul class="simple">
+<li><p>In both the softmax model and the matrix factorization model, the system learns one embedding vector Vj per item j.</p></li>
+<li><p>What is called the item embedding matrix V∈Rn×d in matrix factorization is now the matrix of weights of the softmax layer.</p></li>
+<li><p>The query embeddings, however, are different.</p></li>
+<li><p>Instead of learning one embedding Ui per query i, the system learns a mapping from the query feature x to an embedding space</p></li>
+<li><p>Therefore, you can think of this DNN model as a generalization of matrix factorization, in which you replace the query side by a <code class="docutils literal notranslate"><span class="pre">nonlinear</span> <span class="pre">function</span></code>.</p></li>
+<li><p>DNN models solve many limitations of Matrix Factorization, but are typically more expensive to train and query.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/softmax_recsys2.png" /></p>
+<p><strong>SoftMax Model</strong></p>
+<ul class="simple">
+<li><p>One possible DNN model is softmax, which treats the problem as a multiclass prediction problem in which:</p></li>
+<li><p>The input is the user query.</p></li>
+<li><p>The output is a probability vector with size equal to the number of items in the corpus, representing the probability to interact with each item; for example, the probability to click on or watch a YouTube video.</p></li>
+<li><p><strong>Inputs:</strong></p>
+<ul>
+<li><p>dense features (for example, watch time and time since last watch)</p></li>
+<li><p>sparse features (for example, watch history and country)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> You can think of this DNN model as a generalization of matrix
+factorization, in which you replace the query side by a nonlinear function</p>
+<p><img alt="image" src="../../_images/softmax_recsys.png" /></p>
+</section>
+<section id="embedding-layers">
+<h2>Embedding Layers<a class="headerlink" href="#embedding-layers" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Embedding layers is a relatively low-dimensional space into which you can translate high-dimensional vectors.</p></li>
+<li><p>Embeddings make it easier to do machine learning on large inputs like sparse vectors.</p></li>
+<li><p>Embedding can basically be thought of as look-up tables</p></li>
+<li><p>Embedding layers capture some of the semantics of an input by placing semantically similar inputs close together in the embedding space.</p></li>
+</ul>
+</section>
+<section id="candidate-generator-model">
+<h2>Candidate Generator Model<a class="headerlink" href="#candidate-generator-model" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>In this first stage, the system starts from a potentially huge corpus and generates a much smaller subset of candidates.</p></li>
+<li><p>It is about selecting an initial set of hundreds of candidates from all possible candidates. The main objective of this model is to efficiently weed out all candidates that the user is not interested in</p></li>
+<li><p>For example, the candidate generator in YouTube reduces billions of videos down to hundreds or thousands.</p></li>
+<li><p>The model needs to evaluate queries quickly given the enormous size of the corpus.</p></li>
+<li><p>A retrieval system is a model that predicts a set of movies from the catalogue that the user is likely to watch. So the train set should be expressing which movies the users watched, and which they did not.</p></li>
+<li><p>The similarity between the query representation (query embedding vector) and the candidate representation (candidate embedding vector) a.k.a. affinity score can be calculated by dot-product (or other similarity measures). The K-nearest candidates (candidates with higher affinity scores) will be chosen for the final list.</p></li>
+<li><p>Let’s say in our training data we only have positive (user, items) pairs.</p></li>
+<li><p>To figure out how good our model is, we need to compare the affinity score that the model calculates for this positive pair to the scores of all the other possible candidates</p></li>
+<li><p>If the score for the positive pair is higher than for all other possible candidates, our model is highly accurate.</p></li>
+<li><p>To measure the performance of a retrieval task, <code class="docutils literal notranslate"><span class="pre">factorized</span> <span class="pre">top-K</span> <span class="pre">categorical</span></code> accuracy metrics over a corpus of candidates can be used. These metrics measure how good the model is at picking the true candidate out of all possible candidates in the system.</p></li>
+</ul>
+<p><strong>Metrics</strong></p>
+<ul class="simple">
+<li><p><strong>factorized_top_k.TopK</strong>: which computes the top K categorical accuracy.</p></li>
+<li><p>How often is the true candidate in the top K candidates for a given query?</p></li>
+<li><p>As the model trains, the top-k retrieval metrics updates.</p></li>
+<li><p>The factorized_top_k retrieval metric measures the number of true positive that are in the top-k retrieved items from the entire candidate set.</p></li>
+<li><p><strong>Example</strong>: a top-5 categorical accuracy metric of 0.2 would tell us that, on average, the true positive is in the top 5 retrieved items 20% of the time.</p></li>
+</ul>
+<p>To compute the nearest neighbors in the embedding space, the system can exhaustively score every potential candidate.</p>
+<ul class="simple">
+<li><p>Exhaustive scoring can be expensive for very large corpora, but you can use either of the following
+strategies to make it more efficient.</p></li>
+<li><p>If the query embedding is known statically (e.g. learned weights), the system can perform exhaustive scoring offline, precomputing and storing a list of the top candidates for each query. This is a common practice for related-item recommendation.</p></li>
+</ul>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p>Brute-Force</p></li>
+<li><p>ANN (Approximate Nearest Neighbor)</p></li>
+</ul>
+</section>
+<section id="ranking-model">
+<h2>Ranking Model<a class="headerlink" href="#ranking-model" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Finally, the system must take into account additional constraints for the final ranking.</p></li>
+<li><p>For example, the system removes items that the user explicitly disliked or boosts the score of fresher content.</p></li>
+<li><p>Re-ranking can also help ensure diversity, freshness, and fairness.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/ranking_metric.png" /></p>
+<p><strong>Diversity:</strong></p>
+<ul class="simple">
+<li><p>If the system always recommends items that are “closest” to the query embedding, the candidates tend to be very similar to each other. This lack of diversity can cause a bad or boring user experience.</p></li>
+</ul>
+<p><strong>TopK Categorical Accuracy</strong></p>
+<ul class="simple">
+<li><p>Calculates the percentage of records for which the targets Y_true are in the top K predictions (Y_pred).</p></li>
+<li><p>We rank the Y_pred predictions in the descending order of probability values.</p></li>
+<li><p>If the rank of the Y_pred present in the index of Y_true is less than or equal to K, it is considered accurate.</p></li>
+<li><p>We then calculate TopK Categorical Accuracy by dividing the number of accurately predicted records by the total number of records.</p></li>
+</ul>
+</section>
+<section id="neural-collaborative-filtering">
+<h2>Neural Collaborative Filtering<a class="headerlink" href="#neural-collaborative-filtering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>One drawback of using implicit feedback is that there is a natural scarcity for negative feedback.</p></li>
+<li><p>By employing a probabilistic treatment, NCF transforms the recommendation problem to a binary classification problem</p></li>
+<li><p>To account for negative instances y- is uniformly sampled from the unobserved interactions.</p></li>
+<li><p>NCF has 2 components GMF and MLP with the following benefitsGMF that applies the linear kernel to model user-item interactions like vanilla MF.</p></li>
+<li><p>MLP that uses multiple neural layers to layer nonlinear interactions</p></li>
+<li><p>NCF combines these models together to superimpose their desirable characteristics. NCF concatenates the output of GMF and MLP before feeding them into NeuMF layer.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/ncf.png" /></p>
+<p><img alt="image" src="../../_images/ncf2.png" /></p>
+<p><strong>Things to know for Neural CF:</strong></p>
+<ul class="simple">
+<li><p>GMF/MLP have separate user and item embeddings. This is to make sure that both of them learn optimal embeddings independently.</p></li>
+<li><p>GMF replicates the vanilla MF by element-wise product of the user-item vector.</p></li>
+<li><p>MLP takes the concatenation of user-item latent vectors as input.</p></li>
+<li><p>The outputs of GMF and MLP are concatenated in the final NeuMF(Neural Matrix Factorisation) layer.</p></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p>NCF is an example of multimodal deep learning as it contains data from 2 pathways namely user and item.</p></li>
+<li><p>The most intuitive way to combine them is by concatenation.</p></li>
+<li><p>But a simple vector concatenation does not account for user-item interactions and is insufficient to model the collaborative filtering effect.</p></li>
+<li><p>To address this NCF adds hidden layers on top of concatenated user-item vectors(MLP framework), to learn user-item interactions.</p></li>
+<li><p>This endows the model with a lot of flexibility and non-linearity to learn the user-item interactions.</p></li>
+<li><p>This is an upgrade over MF that uses a fixed element-wise product on them.</p></li>
+</ul>
+</section>
+<section id="approximate-nearest-neighbor">
+<h2>Approximate Nearest Neighbor<a class="headerlink" href="#approximate-nearest-neighbor" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The idea of ANN is to search for points in space that are close to a given query point</p>
+<ul>
+<li><p>Recommendation Engines</p></li>
+<li><p>Search/Ranking</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Why ANN?</strong></p>
+<ul class="simple">
+<li><p>For finding k nearest neighbors in a vector space, it has linear complexity via brute force in the number of indexed documents and can be extremely costly, compute wise because the retrieved results are exact.</p></li>
+<li><p>Instead, we can approximate results retrieved in sub-linear time.</p></li>
+</ul>
+<p><strong>ANNOY</strong></p>
+<ul class="simple">
+<li><p>Spotify developed an open-source library “ANNOY” which helps the team search millions of tracks in a high dimensional space for similar users/items/</p></li>
+<li><p>ANNOY is a python package that uses a random hyperplane splitting approach to build up a forest of search trees to efficiently calculate the nearest neighbours.</p></li>
+<li><p>Annoy has the ability to use static files as indexes which means you can share index across processes and the indexes can be loaded into memory very quickly.</p></li>
+<li><p>An n index is built with a forest of k trees, where “k” is a tunable parameter that trades off between precision and performance.</p></li>
+</ul>
+<p><strong>How does it work:</strong></p>
+<ul class="simple">
+<li><p>In order to construct the index a forest is created (aka many trees).</p></li>
+<li><p>Each binary tree is constructed in the following way:</p>
+<ul>
+<li><p>1.) We pick two points at random and split the space into two by their hyperplane</p></li>
+<li><p>2.) We keep splitting in the subspaces recursively until the points associated with a node are small enough.</p></li>
+<li><p>3.) We end up with a binary tree that partitions the space. The nice thing is that points that are close to each other in space are more likely to be close to each other in the tree.</p></li>
+</ul>
+</li>
+<li><p>In other words: if two points are close to each other in space, it’s unlikely that any hyperplane will cut them apart.</p></li>
+<li><p>To search for any point in this space, we can traverse the binary tree from the root.</p></li>
+<li><p>Every intermediate node (the small squares in the tree above) defines a hyperplane, so we can figure out what side of the hyperplane we need to go on and that defines if we go down to the left or right child node.</p></li>
+<li><p>Searching for a point can be done in logarithmic time since that is the height of the tree.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/ann.png" /></p>
+<p><strong>Similarity Query</strong></p>
+<ul class="simple">
+<li><p>Example of using <code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code> with <code class="docutils literal notranslate"><span class="pre">ANNOY</span></code> to understand context of query</p></li>
+<li><p><strong>Reference</strong>: https://markroxor.github.io/gensim/static/notebooks/annoytutorial.html</p></li>
+</ul>
+</section>
 </section>
 
 
