@@ -2,9 +2,9 @@
 _________
 
 ## Table of Contents
-* [Big Data](book/big-data/databases.md)
-  * [Spark](book/big-data/spark.md)
+* [Big Data](book/big-data/spark.md)
   * [Hadoop](book/big-data/hadoop.md)
+* [Databases](book/databases/overview.md)
 * [Data Preprocessing](book/data-preprocessing/prep.md)
   * [Dimensionality Reduction](book/data-preprocessing/dimensionality-reduction.md)
 * [Deep Learning](book/deep-learning/dl.md)
