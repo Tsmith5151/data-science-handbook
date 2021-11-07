@@ -1,6 +1,0 @@
-# Data Science Hand..
-
-## Guides
-
-* [Statistics](docs/test.md)
-  * [Test](docs/test.md)

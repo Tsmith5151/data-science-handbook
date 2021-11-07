@@ -37,7 +37,18 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Natural Language Processing</a></li>
+<li><a class="reference internal" href="#">Natural Language Processing</a><ul>
+<li><a class="reference internal" href="#text-preprocessing">Text Preprocessing</a></li>
+<li><a class="reference internal" href="#tokenization">Tokenization</a></li>
+<li><a class="reference internal" href="#tfidf">TFIDF</a><ul>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bag-of-words">Bag of Words</a></li>
+<li><a class="reference internal" href="#skip-grams">Skip Grams</a></li>
+<li><a class="reference internal" href="#named-entity-recognition">Named Entity Recognition</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -67,6 +78,119 @@
   <section id="natural-language-processing">
 <h1>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
+<section id="text-preprocessing">
+<h2>Text Preprocessing<a class="headerlink" href="#text-preprocessing" title="Permalink to this headline"></a></h2>
+<p>Preprocessing Steps:</p>
+<ul class="simple">
+<li><p>Remove stopwords and extra whitespaces</p></li>
+<li><p>Remove punctuation</p></li>
+<li><p><strong>Lemmatization</strong>: converting a word to its base form (e.g. caring to care)</p>
+<ul>
+<li><p>Lemmatization considers the context and converts the word to its meaningful base for</p></li>
+</ul>
+</li>
+<li><p><strong>Stemming</strong>: removes the last few characters, often leading to incorrect mea</p></li>
+</ul>
+</section>
+<section id="tokenization">
+<h2>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Vocabulary refers to the set of unique tokens in the corpus.</p></li>
+<li><p>Vocabulary can be constructed by considering each unique token in the corpus or by considering the top K Frequently Occurring Words.</p>
+<ul>
+<li><p>vocab = sorted(set(text))</p></li>
+<li><p>vocab_to_int = {c: i for i, c in enumerate(vocab)}</p></li>
+<li><p>int_to_vocab = dict(enumerate(vocab))</p></li>
+<li><p>encoded = np.array([vocab_to_int[c] for c in text], dtype=np.int32)Text Feature Extraction</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tfidf">
+<h2>TFIDF<a class="headerlink" href="#tfidf" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Term Frequency — Inverse Document Frequency”.</p></li>
+<li><p>Rare terms are more informative than frequent terms</p></li>
+<li><p>We want to give higher weight to rare terms.</p></li>
+<li><p>Frequent terms are less informative than rare terms</p></li>
+<li><p>We want to give positive weights for frequent terms but lower weights than for rare terms</p></li>
+</ul>
+<p><strong>Term Frequency:</strong></p>
+<ul class="simple">
+<li><p>The number of times a word appears in a document divided by the total number of words in the document.</p></li>
+</ul>
+<p><strong>Inverse Document Frequency</strong></p>
+<ul class="simple">
+<li><p>The log of the number of documents divided by the number of documents that contain the word “w”.</p></li>
+<li><p>The log is used to dampen the inverse document frequency.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/tfidf.png" /></p>
+<p>Where: <code class="docutils literal notranslate"><span class="pre">N</span></code> = number of documents in collection.</p>
+<p><strong>Example</strong>
+<img alt="image" src="../../_images/tfidf2.png" />
+<img alt="image" src="../../_images/tfidf3.png" /></p>
+<p><strong>TF-IDF Code Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">vectors</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">([</span><span class="n">document1</span><span class="p">,</span> <span class="n">document2</span><span class="p">])</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+<span class="n">dense</span> <span class="o">=</span> <span class="n">vectors</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">denlist</span> <span class="o">=</span> <span class="n">dense</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">denselist</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h3>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=pxYkuWEOKjc">Christopher Manning Lectures | Stanford University</a></p>
+</section>
+</section>
+<section id="bag-of-words">
+<h2>Bag of Words<a class="headerlink" href="#bag-of-words" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>In bag of words representation the length of the vector is determined by the number of unique words in our corpus.
+<strong>Disadvantage:</strong></p></li>
+<li><p>Lack of meaningful relations and no consideration for order of words: BOW is a collection of words that appear in the text or sentences with the word counts.</p></li>
+<li><p>Bag of words does not take into consideration the order in which they appear.</p></li>
+<li><p>Sparse Matrix</p></li>
+</ul>
+</section>
+<section id="skip-grams">
+<h2>Skip Grams<a class="headerlink" href="#skip-grams" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Train the neural network to do the following.</p></li>
+<li><p>Given a specific word in the middle of a sentence (the input word), look at the words nearby and pick one at random.</p></li>
+<li><p>The network is going to tell us the probability for every word in our vocabulary of being the “nearby word” that we chose.</p></li>
+<li><p>Skip gram predicts the surrounding context words within a specific window given the current word.</p></li>
+<li><p>The input layer contains the current word and the output layer contains the
+context words.</p></li>
+<li><p>The hidden layer contains the number of dimensions in which
+we want to represent the current word present at the input layer.</p></li>
+</ul>
+</section>
+<section id="named-entity-recognition">
+<h2>Named Entity Recognition<a class="headerlink" href="#named-entity-recognition" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Named entity recognition (NER) seeks to locate and classify named entities in text into predefined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.</p></li>
+<li><p>The idea of NER is to tag a set of words in a sequence with a label representing the kind of entity the word belongs to.</p></li>
+</ul>
+<p><strong>Approaches</strong></p>
+<ul class="simple">
+<li><p>Machine Learning:</p>
+<ul>
+<li><p>Treat the problem as a multi-class classification where named entities are our labels so we can apply different classification algorithms.</p></li>
+<li><p>The problem here is that identifying and labeling named entities require domain understanding of the context of a sentence and sequence of the word labels in it</p></li>
+</ul>
+</li>
+<li><p>Deep Learning:</p>
+<ul>
+<li><p>A bidirectional LSTM is a combination of two LSTMs — one runs forward from “right to left” and one runs backward from “left to right”</p></li>
+<li><p>Embeddings using ELMo: One of the biggest benefits of this approach is that we don’t need any feature engineering; all we need is the sentences and its labeled words, the rest of the work is carried on by ELMo embeddings.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Reference</strong>:
+https://www.depends-on-the-definition.com/sequence-tagging-lstm-crf/</p>
+</section>
 </section>
 
 
