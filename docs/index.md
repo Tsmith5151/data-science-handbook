@@ -22,7 +22,6 @@ _________
 * [Software Engineering](book/software-engineering/swe.md)
   * [Code Reviews](book/software-engineering/code.md) 
   * [Data Structures](book/software-engineering/structures.md) 
-  * [Python Examples](book/software-engineering/python.md)
 * [Statistics](book/statistics/stats.md)
 
 ### References
