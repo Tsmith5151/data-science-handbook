@@ -1,7 +1,7 @@
 # Clustering
 __________
 
-## Overview (Sklearn)
+## Overview
 
 ![image](../assets/cluster1.png)
 

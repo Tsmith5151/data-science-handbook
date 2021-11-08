@@ -37,7 +37,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Feature Selection</a></li>
+<li><a class="reference internal" href="#">Feature Selection</a><ul>
+<li><a class="reference internal" href="#filter-based">Filter Based</a></li>
+<li><a class="reference internal" href="#forward-selection">Forward Selection</a></li>
+<li><a class="reference internal" href="#backward-elimination">Backward Elimination</a></li>
+<li><a class="reference internal" href="#sequential-feature-selection">Sequential Feature Selection</a></li>
+<li><a class="reference internal" href="#embedded-feature-selection">Embedded Feature Selection</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -67,7 +74,8 @@
   <section id="feature-selection">
 <h1>Feature Selection<a class="headerlink" href="#feature-selection" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<p><strong>Filter Based</strong></p>
+<section id="filter-based">
+<h2>Filter Based<a class="headerlink" href="#filter-based" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>We specify some metric and based on that filter features.</p>
 <ul>
@@ -78,7 +86,7 @@
 </ul>
 </li>
 </ul>
-<p><strong>Wrapper-based</strong></p>
+<p>**Wrapper-based</p>
 <ul class="simple">
 <li><p>Wrapper methods consider the selection of a set of features as a search problem.</p>
 <ul>
@@ -96,21 +104,29 @@
 </ul>
 </li>
 </ul>
-<p><strong>Forward Selection</strong></p>
+</section>
+<section id="forward-selection">
+<h2>Forward Selection<a class="headerlink" href="#forward-selection" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The procedure starts with an empty set of features [reduced set]. The best of the original features is determined and added to the reduced set. At each subsequent iteration, the best of the remaining original attributes is added to the set.</p></li>
 </ul>
-<p><strong>Backward Elimination</strong></p>
+</section>
+<section id="backward-elimination">
+<h2>Backward Elimination<a class="headerlink" href="#backward-elimination" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>The procedure starts with the full set of attributes. At each step, it removes the worst attribute remaining in the set.</p></li>
 </ul>
-<p><strong>Sequential Feature Selection</strong></p>
+</section>
+<section id="sequential-feature-selection">
+<h2>Sequential Feature Selection<a class="headerlink" href="#sequential-feature-selection" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Greedy procedure where, at each iteration, we choose the best new feature to add to our selected features based on a cross-validation score.</p></li>
 <li><p>That is, we start with 0 features and choose the best single feature with the highest score.</p></li>
 <li><p>The procedure is repeated until we reach the desired number of selected features.</p></li>
 </ul>
-<p><strong>Embedded Feature Selection</strong></p>
+</section>
+<section id="embedded-feature-selection">
+<h2>Embedded Feature Selection<a class="headerlink" href="#embedded-feature-selection" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Augment with noisy data</p></li>
 <li><p>Can apply this approach to Tree based models: XGBoost, DecisionTree, RandomForrest</p></li>
@@ -121,6 +137,7 @@ list.</p></li>
 <li><p>We do this iteratively for each fold and then take a set of the final appended list.</p></li>
 <li><p>This approach can help minimize model overfitting.</p></li>
 </ul>
+</section>
 </section>
 
 

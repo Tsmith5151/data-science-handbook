@@ -1,36 +1,20 @@
 # Data Science Handbook 
 _________
 
-## Table of Contents
-* [Big Data](book/big-data/spark.md)
-  * [Hadoop](book/big-data/hadoop.md)
-* [Databases](book/databases/overview.md)
-* [Data Preprocessing](book/data-preprocessing/prep.md)
-  * [Dimensionality Reduction](book/data-preprocessing/dimensionality-reduction.md)
-* [Deep Learning](book/deep-learning/dl.md)
-  * [Convolution Neural Networks](book/deep-learning/cnn.md)
-  * [Recurrent Neural Networks](book/deep-learning/rnn.md)
-  * [Reinforcement Learning](book/deep-learning/rl.md)
-  * [Object Detection](book/deep-learning/objectdetection.md)
-  * [Autoencoders](book/deep-learning/autoencoders.md)
-* [Machine Learning](book/machine-learning/concepts.md)
-  * [Feature Selection](book/machine-learning/feature-selection.md)
-  * [Algorithms](book/machine-learning/algorithms.md)
-  * [Clustering](book/machine-learning/clustering.md)
-  * [Metrics](book/machine-learning/metrics.md)
-  * [Monitoring](book/machine-learning/monitor.md)
-* [Machine Learning Engineering](book/machine-learning-engineering/mle.md)
-* [Natural Language Processing](book/nlp/nlp.md)
-  * [Embeddings](book/nlp/embeddings.md)
-  * [Sequence Modeling](book/nlp/sequence.md)
-  * [Topic Modeling](book/nlp/topicmodeling.md)
-  * [Transformers](book/nlp/transformers.md) 
-* [Recommendation Engines](book/recommendation-engines/engines.md)
-* [Software Engineering](book/software-engineering/swe.md)
-  * [Code Reviews](book/software-engineering/code.md) 
-  * [Data Structures](book/software-engineering/structures.md) 
-* [Statistics](book/statistics/stats.md)
+#### Table of Contents
+* [Big Data](book/big-data/index.md)
+* [Databases](book/databases/index.md)
+* [Data Preprocessing](book/data-preprocessing/index.md)
+* [Deep Learning](book/deep-learning/index.md)
+* [Machine Learning](book/machine-learning/index.md)
+* [ML Engineering](book/machine-learning-engineering/index.md)
+* [Natural Language Processing](book/nlp/index.md)
+* [Recommendation Engines](book/recommendation-engines/index.md)
+* [Software Engineering](book/software-engineering/index.md)
+* [Statistics](book/statistics/index.md)
 
-
-### References
-* [Scikit-Learn Documentation](https://scikit-learn.org/stable/)
+________
+#### Notes
+- This site is actively being updated with resources and reference. Stay tuned
+  for more updated. Also, please feel free to contribute to the project by
+  submitting a pull-request with any edits or addtions. 

@@ -37,8 +37,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Transformers</a></li>
-<li><a class="reference internal" href="#why-transformers">Why Transformers:</a><ul>
+<li><a class="reference internal" href="#">Transformers</a><ul>
+<li><a class="reference internal" href="#why-transformers">Why Transformers</a></li>
 <li><a class="reference internal" href="#encoders">Encoders</a></li>
 <li><a class="reference internal" href="#self-attention">Self-Attention</a></li>
 <li><a class="reference internal" href="#decoders">Decoders</a></li>
@@ -79,16 +79,15 @@
              
   <section id="transformers">
 <h1>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline"></a></h1>
-</section>
 <hr class="docutils" />
 <section id="why-transformers">
-<h1>Why Transformers:<a class="headerlink" href="#why-transformers" title="Permalink to this headline"></a></h1>
+<h2>Why Transformers<a class="headerlink" href="#why-transformers" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>“Attention Is All You Need” - 2017</p></li>
 <li><p>Models like ELMo used special networks known as Long Short-Term Memory Networks (LSTMs) to alleviate the consequences of this phenomenon. LSTMs did address this issue, but they didn’t eliminate it.</p></li>
 <li><p>Ultimately, they couldn’t create an efficient way to “focus” on the important word in each sentence. This is the problem the Transformer network addressed by using the attention mechanism .</p></li>
 </ul>
-<p><strong>Quick Overview:</strong></p>
+<p><strong>Quick Overview</strong></p>
 <ul class="simple">
 <li><p>Based solely on attention mechanisms to compute representations of its input and output without using sequence aligned RNNs or convolutions</p></li>
 <li><p>The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU</p></li>
@@ -111,6 +110,7 @@ the encoder or the decoder, but the layers used to create them.</p>
 <li><p>You can think of each attention layer as “learning” more about the input, i.e. looking at different parts of the sentence and trying to discover more semantic or syntactic information. This is important in the context of the vanishing gradient problem.</p></li>
 <li><p><strong>Reference</strong>: http://jalammar.github.io/illustrated-bert/</p></li>
 </ul>
+</section>
 <section id="encoders">
 <h2>Encoders<a class="headerlink" href="#encoders" title="Permalink to this headline"></a></h2>
 <ul class="simple">

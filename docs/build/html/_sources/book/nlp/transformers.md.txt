@@ -1,12 +1,12 @@
 # Transformers
 _____
 
-# Why Transformers: 
+## Why Transformers
 - “Attention Is All You Need” - 2017
 - Models like ELMo used special networks known as Long Short-Term Memory Networks (LSTMs) to alleviate the consequences of this phenomenon. LSTMs did address this issue, but they didn’t eliminate it. 
 - Ultimately, they couldn’t create an efficient way to “focus” on the important word in each sentence. This is the problem the Transformer network addressed by using the attention mechanism .
 
-**Quick Overview:**
+**Quick Overview**
 - Based solely on attention mechanisms to compute representations of its input and output without using sequence aligned RNNs or convolutions 
 - The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU
 - Still lacks contextual understanding 

@@ -28,7 +28,7 @@ desired output.
 - The derivative with respect to the weights is computed using chain rule. 
 - We perform this backward pass to adjust the weights and biases in the network to optimize the cost function and minimize the loss function. 
 
-# Activation Functions 
+### Activation Functions 
 
 - Functions used at the end of a hidden unit to introduce non-linear
   complexities to the model.

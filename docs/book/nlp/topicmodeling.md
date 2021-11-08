@@ -5,7 +5,7 @@ ______
 **Input**: corpus of unstructured text documents with no labels (reviews, news)
 **Output**: Multiple topics for a single document or corpus
 
-#### Steps 
+**Steps:** 
 - Tokenize: split raw text into individual tokens
 - **Bag-of-Words Model:**
   - Method to move from tokens to numeric features
@@ -23,7 +23,7 @@ ______
     - Term Frequency: Number of times a given term appears in a single document.
     - Inverse Document Frequency: basically penalizes common terms that appear in almost every document.
 
-## Two Topic Modeling Approaches:
+**Two Topic Modeling Approaches:**
 1. **Probabilistic** - view each document as a mixture of a small number of topics where words and documents get probability scores for each topic. 
    - Latent Dirichlet Allocation (LDA)
 2. **Matrix Factorisation** - apply methods from linear algebra to decompose a single matrix into a set of smaller matrices
