@@ -45,12 +45,6 @@ ZORDER BY (eventType)
 - This is known as `compaction`.
 - You can compact a table by repartitioning it to a smaller number of files.
 
-### Parquet
-- Default data source in Spark
-- Open-source columnar file format that offers I/O optimization such as data compression, which gives quick access to data columns for querying
-- **Directory Structure:**
-  - Data Files, metadata, number of compressed files, and some status files
-
 ### Data Serialization
 - Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. 
 - Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.

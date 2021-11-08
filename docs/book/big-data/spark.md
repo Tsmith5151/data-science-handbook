@@ -194,29 +194,6 @@ Broadcast variables allow you to keep a read-only variable cached on each machin
 - Serialize an object means to convert its state to a byte stream so that the byte stream can be reverted back into a copy of the object
 - **Serialization** is used for performance tuning on Apache Spark. All data that is sent over the network or written to the disk or persisted in the memory should be serialized. Serialization plays an important role in costly operations.
 
-## Parquet
-- Default data source in Spark
-- Open-source columnar file format that offers I/O optimization such as data compression, which gives quick access to data columns for querying
-
-**Directory Structure:**
-- Data Files, metadata, number of compressed files, and some status files
-
-**Avro**
-- Uses by Kafka for message serialization and deserialization. Direct mapping to JSON, and very quick/efficient 
-
-**Dynamic Allocation**
-  - The Spark driver can request more or fewer compute resources as the demand of large workflows. If workflows vary in their demands for compute capacity then Dynamic Allocation could be an option (e.g. streaming data). 
-  - Example of settings: 
-    - spark.dynamicAllocation.enabled true
-    - spark.dynamicAllocation.minExecutors 2
-- Must configure spark executors’ memory allocation
-  - **Default**:
-    - Execution memory: 60%
-    - Storage memory: 40%
-    - Reserved Memory 300 MB (safe-gaurd OOM)
-  - The default settings work in most cases. - can be tricky to tune %
-  - Storage memory is primarily for caching data structures/partitions from DataFrames
-
 ## Map/Shuffle
 Has heavy I/O activity for reading/writing from disk: Recommendations for handling bottleneck: 
 Spark.driver.memory 

@@ -3,7 +3,35 @@ _____
 
 - In-memory caches such as Memcached and Redis are key-value stores between your application and your data storage. Since the data is held in RAM, it is much faster than typical databases where data is stored on disk
 
-**Cache**
+### Redis 
+- REmote DIctionary Server = Redis
+- Reids is an open source, in-memory, NoSQL key/value store that is used primarily as an application cache or quick-response database. 
+- Because it stores data in memory, rather than on a disk or solid-state drive (SSD), it’s very reliable and highly performant.
+- When an application relies on external data sources, the latency and throughput of those sources can create a performance bottleneck, especially as traffic increases or the application scales. 
+- Redis stores all data in-memory—delivering the fastest possible performance when reading or writing data—and offers built-in replication capabilities that let you place data physically closer to the user for the lowest latency.
+- Unlike NoSQL databases such as MongoDB and PostgreSQL, Redis stores data in the server's main memory rather than on hard disks and solid-state drives. 
+
+**Redis Cluster**
+- Redis Cluster (link resides outside IBM) is a distributed implementation of Redis that automatically splits datasets among multiple nodes. 
+- This supports higher performance and scalability of database deployments, while ensuring continuous operations in the event that node subsets are unable to communicate with the rest of the cluster.
+
+**Redis Search**
+- Query Engine and Full-Text Search over Redis
+- RediSearch has a distributed cluster version that scales to billions of documents, and hundreds of servers.
+Supports: Full-Text indexing of multiple fields in documents.
+  RediSearch comes with a few very basic scoring functions to evaluate document
+  relevance like `TFIDF`.
+
+**TFIDF Scoring:**
+- Basic TF-IDF scoring with a few extra features thrown inside:
+- For each term in each result, we calculate the TF-IDF score of that term to that document. Frequencies are weighted based on field weights that are pre-determined, and each term's frequency is normalized by the highest term frequency in each document.
+- We multiply the total TF-IDF for the query term by the a priory document score given on FT.ADD.
+- We give a penalty to each result based on "slop" or cumulative distance between the search terms: exact matches will get no penalty, but matches where the search terms are distant see their score reduced significantly. 
+- For each 2-gram of consecutive terms, we find the minimal distance between them. 
+- The penalty is the square root of the sum of the distances, squared - 1/sqrt(d(t2-t1)^2 + d(t3-t2)^2 + ...).
+
+
+## Cache
 - Idea: “recently requested data is likely to be requested again”
 - A cache is like short-term memory: it has a limited amount of space, but is typically faster than the original data source and contains the most recently accessed items. 
 - Caches can exist at all levels in architecture, but are often found at the level nearest to the front end, where they are implemented to return data quickly without taxing downstream levels.
