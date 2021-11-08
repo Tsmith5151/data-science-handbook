@@ -7,7 +7,7 @@ _________
 * [Data Preprocessing](book/data-preprocessing/index.md)
 * [Deep Learning](book/deep-learning/index.md)
 * [Machine Learning](book/machine-learning/index.md)
-* [ML Engineering](book/machine-learning-engineering/index.md)
+* [ML Engineering](book/ml-engineering/index.md)
 * [Natural Language Processing](book/nlp/index.md)
 * [Recommendation Engines](book/recommendation-engines/index.md)
 * [Software Engineering](book/software-engineering/index.md)
