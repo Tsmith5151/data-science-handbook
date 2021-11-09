@@ -151,7 +151,7 @@ ______
   - **BERT-Base:** 12-layer, 768-hidden-nodes, 12-attention-heads, 110M parameters	
   - **BERT-Large:** 24-layer, 1024-hidden-nodes, 16-attention-heads, 340M parameters
 
-### BERT - Tensorflow 
+### BERT Example with Tensorflow 
 
 - Load a pre-trained BERT model from `TensorFlow Hub`.
 - **[BERT-Base, Uncased](https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/3)**
@@ -163,6 +163,15 @@ ______
     Transformer blocks, which lets you explore tradeoffs between speed, size
     and quality. 
 
+**Preprocessing the Model**
+
+- Text inputs need to be transformed to numeric token ids and arranged in
+  several Tensors before being input to `BERT`. 
+  
+  ```
+  bert_preprocess_model = hub.KerasLayer(tfhub_handle_preprocess)
+  ```
+
 - BertTokenizer 
   Tokenizer classes which store the vocabulary for each model and provide
   methods for encoding/decoding strings in list of token embeddings indices 
@@ -170,6 +179,18 @@ ______
 - `input_word_ids`
 - `input_mask`
 - `input_type_ids`
+
+**Simple Example using Keras**
+
+```python 
+text_input = tf.keras.layers.Input(shape=(), dtype=tf.string)
+preprocessor = hub.KerasLayer("https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3")
+encoder_inputs = preprocessor(text_input)
+encoder = hub.KerasLayer("https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-10_H-256_A-4/2",trainable=True)
+outputs = encoder(encoder_inputs)
+pooled_output = outputs["pooled_output"]      # [batch_size, 256].
+sequence_output = outputs["sequence_output"]  # [batch_size, seq_length, 256].
+```
 
 ### BERT - Semantics Similarity
 

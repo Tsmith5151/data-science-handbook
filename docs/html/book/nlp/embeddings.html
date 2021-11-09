@@ -68,12 +68,14 @@
 <h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <ul class="simple">
+<li><p>Mechanism to express relationships in relative vector distance.</p></li>
 <li><p>Method where words are encoded as real-valued vectors in a high dimensional space, where the similarity between words in terms of meaning translates to closeness in the vector space.
 The vector representations capture quite a bit of the information, meaning,  and associations of words</p></li>
 <li><p>In other words, emeddings represent words in a way that captures semantic relationships -  the ability to tell if words are similar or not.</p></li>
 <li><p>From the word embeddings model, similar words would be in close proximity.</p></li>
 </ul>
-<p><img alt="image" src="../../_images/embeddings1.png" /></p>
+<p><img alt="image" src="../../_images/embeddings.png" />
+<a class="reference external" href="https://www.youtube.com/watch?v=LE3NfEULV6k">Reference</a></p>
 <p><strong>Why Embeddings</strong></p>
 <ul class="simple">
 <li><p>When you’re dealing with words in text, you end up with tens of thousands of classes to predict, one for each word.</p></li>
@@ -96,8 +98,7 @@ The vector representations capture quite a bit of the information, meaning,  and
 </ul>
 </li>
 </ul>
-<p><img alt="image" src="../../_images/embeddings2.png" />
-<img alt="image" src="../../_images/embeddings3.png" /></p>
+<p><img alt="image" src="../../_images/embeddings2.png" /></p>
 </div>
 <div class="section" id="word2vec">
 <h1>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this headline"></a></h1>
@@ -134,7 +135,8 @@ Word2Vec embeddings are pre-trained embeddings that have been determined in an u
 we take the dot product of the input embedding with each of the context embeddings. In each case, that would result in a number, that number indicates the similarity of the input and context embeddings. To turn into probabilities, we can take the sigmoid.</p></li>
 <li><p>Now that the untrained model has made a prediction, and seeing as though we have an actual target label to compare against, let’s calculate how much error is in the model’s prediction. To do that, we just subtract the sigmoid scores from the target labels. And then we perform back propagation to update the weights.</p></li>
 </ul>
-<p><img alt="image" src="../../_images/word2vec.png" /></p>
+<p><img alt="image" src="../../_images/word2vec.png" />
+<a class="reference external" href="https://www.youtube.com/watch?v=LE3NfEULV6k">Reference</a></p>
 <p><strong>Code Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Word2Vec</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>

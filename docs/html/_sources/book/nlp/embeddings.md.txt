@@ -1,12 +1,13 @@
 # Word Embeddings
 _____
-
+- Mechanism to express relationships in relative vector distance. 
 - Method where words are encoded as real-valued vectors in a high dimensional space, where the similarity between words in terms of meaning translates to closeness in the vector space.
 The vector representations capture quite a bit of the information, meaning,  and associations of words
 - In other words, emeddings represent words in a way that captures semantic relationships -  the ability to tell if words are similar or not.
 - From the word embeddings model, similar words would be in close proximity.
 
-![image](../assets/embeddings1.png)
+![image](../assets/embeddings.png)
+[Reference](https://www.youtube.com/watch?v=LE3NfEULV6k)
 
 **Why Embeddings**
 - When you're dealing with words in text, you end up with tens of thousands of classes to predict, one for each word. 
@@ -26,7 +27,6 @@ The vector representations capture quite a bit of the information, meaning,  and
   - Example: the word “present” - can mean gift or time, depending on the context.
 
 ![image](../assets/embeddings2.png)
-![image](../assets/embeddings3.png)
 
 # Word2Vec 
 - **Summary**: In this technique, we map each word of a sentence to an embedding vector which tends to be smaller than a bag of word representation.
@@ -52,6 +52,7 @@ we take the dot product of the input embedding with each of the context embeddin
 - Now that the untrained model has made a prediction, and seeing as though we have an actual target label to compare against, let’s calculate how much error is in the model’s prediction. To do that, we just subtract the sigmoid scores from the target labels. And then we perform back propagation to update the weights.
  
 ![image](../assets/word2vec.png)
+[Reference](https://www.youtube.com/watch?v=LE3NfEULV6k)
 
 **Code Example**
 ```

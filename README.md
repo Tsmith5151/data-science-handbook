@@ -61,7 +61,7 @@ any potential errors:
 - `check-merge-conflict`: Check for files that contain merge conflicts.
 - `pre-commit-sphinx`: A pre-commit hook that will fail if documentation.
 
-To run the pre-commit checks, you'll need to first stage the content by running
+To run the pre-commit checks, you'll need to first stage the files by running
 `git add` and then run: 
 
 ```
