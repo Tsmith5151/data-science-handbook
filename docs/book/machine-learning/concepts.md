@@ -1,7 +1,11 @@
 # Machine Learning Concepts
 __________
 
-## Bias Variance Trade-off
+## Discriminative vs Generative 
+
+![image](../assets/discrimitive_generative.png)
+
+### Bias Variance Trade-off
 
 - **Bias:** is the difference between the expected (or average) prediction of
   our model and the  correct value which we are trying to predict.
@@ -24,19 +28,28 @@ __________
 - In bagging (Bootstrap Aggregating), numerous replicates of the original data
   set are created using random selection with replacement.
 
-## Overfitting
+### Overfitting
 
 - Occurs when the model over fits on the training data and does not generalize
   to the unseen sample population. 
-- **Ways to address overfitting:**
-	- Get more data
-	- Add regularization
-	- Cross-Validation 
-	- Less complex model
-	- Data augmentation (images)
-	- Smaller input dimensionality (remove features)
+- The model performs better on the training data than it does on data it has
+  never seen before.  
+- After this point, the model over-optimizes and learns representations
+  specific to the training data that do not generalize to test data.
 
-## Regularization
+![image](../assets/overfitting.png)
+
+**Ways to address overfitting:**
+- Get more data
+- Add early stopping (epochs)
+- Add regularization
+- Cross-Validation 
+- Less complex model
+- Data augmentation (images)
+- Smaller input dimensionality (remove features)
+
+
+### Regularization
 - Technique to help reduce overfitting by adding an additional parameter to the
   loss function, usually  the `L1` or `L2` norm. 
 - In order to help prevent overfitting, we can add in a term into our
@@ -49,7 +62,7 @@ __________
 
 ![image](../assets/regularization.png)
 
-## Cross Validation
+### Cross Validation
 - To avoid sampling issues, which can cause the training-set to be too optimistic. 
 - Cross-validation is used to protect against overfitting in a predictive
   model, particularly the case where the amount of data is limited. 
@@ -88,26 +101,64 @@ __________
 	- Scale the columns to make their variance equal to 1
 	- Finally, it calculates the Euclidean distance.
  
-## Cross Entropy
-- Measures the difference between two probability distributions for a given
-  random variable or set of  events - classification problems.
-- **Entropy**: is the number of bits required to transmit a randomly selected event
-from a probability distribution. 
-- A skewed distribution has a low entropy, whereas a distribution where events
-  have equal probability has a larger entropy.
+### Loss Functions
+- A model needs a `loss function` and an `optimizer` for training.
+- Function that takes as inputs the predicted value ‘z’ corresponding to the
+  real data value ‘y’ and outputs how different they are. 
+- See below for examples of loss functions.
+
+![image](../assets/loss_functions.png)
+
+
+#### Binary Cross Entropy
+- Binary Classification problems
+- For a binary classification problem the model outputs a probability 
+- Therefore binary-cross entropy is better for dealing with probabilities as it
+  measures the `distance` between probability distributions, or in our case,
+  between the ground-truth distribution and the predictions.
+
+```
+model.compile(optimizer='adam',
+              loss=tf.losses.BinaryCrossentropy(from_logits=True),
+              metrics=[tf.metrics.BinaryAccuracy(threshold=0.0, name='accuracy')])
+```
+
+**Entropy**: recall that entropy is the number of bits required to transmit a
+randomly selected event from a probability distribution. A skewed distribution
+has a low entropy, whereas a distribution where events have equal probability
+has a larger entropy. 
 
 ![image](../assets/cross_entropy1.png)
 ![image](../assets/cross_entropy2.png)
 
-## Loss Functions
-- Function that takes as inputs the predicted value ‘z’ corresponding to the
-  real data value ‘y’ and outputs how different they are. 
+#### Categorical Cross Entropy
+- Classification problems
+- Computes the cross entropy loss between the labels and predictions.
+- If you want to provide labels using one-hot representation, use this loss
+  function. 
 
-![image](../assets/loss_functions.png)
+#### KLDivergence
+- Used to approximate a more complex function than simply multi-class
+  classification like `Autoencoders`. 
+- Computes `Kullback-Leibler` or `KL Divergence` measures the loss between y_true and y_pred.
+- KL Divergence is a measure of how one probability distribution differs from a
+  baseline distribution. 
+  A KL divergence `loss of 0` suggests the distributions are identical. 
+- The behavior of KL Divergence is very similar to cross-entropy. 
+- It calculates how much information is lost if the predicted probability
+  distribution is used to approximate the desired target probability
+  distribution.
 
-## Discriminative vs Generative 
+#### Mean Absolute Error
+- Regression problems
+- Computes the mean of absolute difference between labels and predictions.
 
-![image](../assets/discrimitive_generative.png)
+#### Mean Absolute Percentage Error
+- Regression problems
+- Computes the mean absolute percentage error between y_true and y_pred.
+
+
+
 
 
 

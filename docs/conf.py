@@ -68,13 +68,14 @@ source_suffix = [".rst", ".md"]
 
 html_theme_options = {
     'logo_only': True,
+    'analytics_anonymize_ip': False,
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
-    'style_external_links': True,
+    'github_url': True,
     # Toc options
     'collapse_navigation': False,
-    'sticky_navigation': False,
-    'navigation_depth': 3,
+    'sticky_navigation': True,
+    'navigation_depth': -1,
     'includehidden': True,
-    'titles_only': False
+    'titles_only': False,
 }

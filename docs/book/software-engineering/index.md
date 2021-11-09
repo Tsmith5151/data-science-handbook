@@ -3,6 +3,7 @@ ____
 
 * [Code Reviews](code.md) 
 * [Data Structures](structures.md) 
+* [DevOps](devops.md) 
 
 ## Leetcode
 
