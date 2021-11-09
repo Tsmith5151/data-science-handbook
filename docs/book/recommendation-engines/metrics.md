@@ -4,15 +4,17 @@ _____
 # Similarity Metrics
 
 **Dot Product:** 
-- Note that popular items tend to be recommended for everyone, especially when using dot product as a similarity measure.
+- Note that popular items tend to be recommended for everyone, especially when
+  using dot product as a  similarity measure.
 
 **Cosine Similarity**
-- Cosine Similarity is a measurement that quantifies the similarity between two or more vectors.
- Range: `[0 - 1]`.
+- Cosine Similarity is a measurement that quantifies the similarity between two
+  or more vectors. Range: `[0 - 1]`.
 
  ![image](../assets/cosine2.png)
 
-- The similarity measurement is a measure of the cosine of the angle between the two non-zero vectors A and B.
+- The similarity measurement is a measure of the cosine of the angle between
+  the two non-zero vectors A and B.
 - As the cosine similarity gets closer to 1, the angle between the two vectors [A,B] is smaller. 
 - Computes similarity as the normalized dot product of X and Y:
 

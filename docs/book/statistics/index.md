@@ -41,10 +41,11 @@ P-Value > 0.05 = Fail to reject null hypothesis;
 
 **One-Sample T-Test:**
 
-- Robust to the normality assumption when the sample size is large enough. Assumptions must be met:  
-- Samples are drawn from a Gaussian Distribution
-- If a two-sample test, both populations are assumed to have the same standard deviation 
-Observations in the sample are independent of one another
+- Assumptions:
+  - Samples are drawn from a Normally distributed population.
+  - The observations in the sample are independent of one another. 
+- When the original (population) distribution is not normal, the one sample t-test is still valid with a large enough sample size.  
+  - That is, the one sample t-test is robust to the normality assumption when the sample size is large enough.  
 
 **Rules of Thumb in Evaluating Assumptions:**
 
@@ -55,6 +56,10 @@ Observations in the sample are independent of one another
 **Transformations**
 
 - If assumptions are not met, look at transforming the data such as taking the logarithmic transformation.
+
+## Choosing a Hypothesis Test
+
+![image](../assets/hypothesis.png)
 
 ## Statistical Power
 

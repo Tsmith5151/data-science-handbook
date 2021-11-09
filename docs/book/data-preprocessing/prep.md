@@ -3,22 +3,20 @@ __________
 
 ## Missing Values
 
-- Reasons:
+- **Reasons:**
 	- Missing completely at random (MCAR)
 	- Missing at random (MAR)
 	- Not missing at random (NMAR)
 - How to handle the missing values:
-	- Do Nothing: 
+	- **Do Nothing:** 
 		- Models like XGBoost can deal with missing values by deciding for each sample which is the best way to impute them and learns the best values 
-	- Imputation: 
+	- **Imputation**: 
 		- Using (Mean/Median) Value
 		- Using (Most Frequent) Value
 		- Using k-NN
 		- Interpolation (Linear/Nearest Neighbors)
 
-## Outliers
-
-**Identify Outliers**
+## Outlier Detection
 
 - **Cook’s Distance:** 
 	- Measures the effect of deleting a given observation. It represents the sum of all the changes in the regression model when observation “i” is removed from it. 
@@ -27,9 +25,9 @@ __________
 	- IQR is calculated as the difference between the 75th and the 25th percentiles of the data and defines the box in a box and whisker plot.
 	- The IQR defines the middle 50% of the data, or the body of the data 
 	- Can be used to identify outliers by defining limits on the sample values that are below the 25th percentile or above the 75th percentile. 
-	- Linear Models: Projection methods that model the data into lower dimensions using linear correlations. 
-	- For example, PCA and data with large residual errors may be outliers.
-	- Proximity-based Models: Data instances that are isolated from the mass of the data as determined by cluster, density or KNN analysis.
+- **Linear Models:** Projection methods that model the data into lower dimensions using linear correlations. 
+  - For example, PCA and data with large residual errors may be outliers.
+  - Proximity-based Models: Data instances that are isolated from the mass of the data as determined by cluster, density or KNN analysis.
 
 **Handling Outliers**
 
@@ -47,11 +45,11 @@ __________
 - The number of vectors depends on the number of categories for features. 
 - This method produces a lot of columns that slows down the learning significantly if the number of the category is very high for the feature.
 
-**Label Encoder:**
+**Label Encoding:**
 - Each category is assigned a value from 1 through N (here N is the number of categories for the feature. 
 - One major issue with this approach is there is no relation or order between these classes, but the algorithm might consider them as some order, or there is some relationship.
 
-**Ordinal encoding:** 
+**Ordinal Encoding:** 
 - To ensure the encoding of variables retains the ordinal nature of the variable. 
 - This is reasonable only for ordinal variables. 
 - The transformation looks almost similar to Label Encoding but slightly different as Label coding would not consider whether a variable is ordinal or not and it will assign a sequence of integers.
@@ -65,8 +63,8 @@ __________
     while forBinary encoding, we will need just seven features.
   
 ## Data Normalization 
-- Standardize: scaling features by removing the mean and scaling to unit
+- **Standardize**: scaling features by removing the mean and scaling to unit
   variance
-- MinMax: Transform features by scaling each feature to a given range [-1,1].
+- **MinMax**: Transform features by scaling each feature to a given range [-1,1].
   
 
