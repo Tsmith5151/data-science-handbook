@@ -51,3 +51,26 @@ the `development` branch for a review. After the changed are approved, a merge
 request will automatically updated the published `readthedocs` page for the
 project. 
 
+## Pre-commit Hooks
+
+Prior to committing the changes and opening a pull-request, you can run the
+following [pre-commit](https://pre-commit.com/#new-hooks) library to check for
+any potential errors: 
+
+**Checks**
+- `check-merge-conflict`: Check for files that contain merge conflicts.
+- `pre-commit-sphinx`: A pre-commit hook that will fail if documentation.
+
+To run the pre-commit checks, you'll need to first stage the content by running
+`git add` and then run: 
+
+```
+make pre-commit
+```
+
+Alternatively before staging the changes, you can run the following command to
+check for any errors:
+
+```
+pre-commit run --all-files
+```

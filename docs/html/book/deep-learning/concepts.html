@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Learning &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Deep Learning</a><ul>
+<li><a class="reference internal" href="#feed-forward-neural-networks">Feed Forward Neural Networks</a></li>
+<li><a class="reference internal" href="#activation-functions">Activation Functions</a></li>
+<li><a class="reference internal" href="#dropout">Dropout</a></li>
+<li><a class="reference internal" href="#epoch">Epoch</a></li>
+<li><a class="reference internal" href="#gradient-descent">Gradient Descent</a></li>
+<li><a class="reference internal" href="#batch-gradient-descent">Batch Gradient Descent</a></li>
+<li><a class="reference internal" href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+<li><a class="reference internal" href="#stochastic-weighting-average">Stochastic Weighting Average</a></li>
+<li><a class="reference internal" href="#mini-batch-gradient-descent">Mini-batch Gradient Descent</a></li>
+<li><a class="reference internal" href="#softmax">Softmax</a></li>
+<li><a class="reference internal" href="#learning-rate">Learning Rate</a></li>
+<li><a class="reference internal" href="#optimizers">Optimizers</a></li>
+<li><a class="reference internal" href="#batch-normalization">Batch Normalization</a></li>
+<li><a class="reference internal" href="#overfitting">Overfitting</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Deep Learning</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/deep-learning/concepts.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="deep-learning">
+<h1>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="feed-forward-neural-networks">
+<h2>Feed Forward Neural Networks<a class="headerlink" href="#feed-forward-neural-networks" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/dnn.png" /></p>
+<p><strong>Steps</strong></p>
+<ul class="simple">
+<li><p><strong>Feed Forward:</strong> takes an input, passes it through multiple layers of hidden
+neurons and outputs a prediction representing the combined input of all the
+neurons.</p></li>
+<li><p><strong>Input Layer:</strong> is the layer consisting of the input data which is passed to
+the first hidden layer in the network. Each layer in the network consists of
+a series of neurons.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Neuron</span></code> is the weighted sum of the inputs plus bias and then feeds the sum
+through a non-linear  activation function.</p>
+<ul>
+<li><p>The outputs of the neurons are then passed to the next layer.</p></li>
+<li><p>This process is repeated for each layer in the network until the output layer.</p></li>
+</ul>
+</li>
+<li><p><strong>Hidden Layers:</strong> reside in-between input and output layers and can consist
+of ‘n’ layers which can  be a hyperparameter to tune for.</p>
+<ul>
+<li><p>The larger the number of hidden layers in a neural network will take longer to train</p></li>
+</ul>
+</li>
+<li><p><strong>Output layer:</strong>: produces the class label or target, depending whether this
+is a classification or regression task.</p>
+<ul>
+<li><p>Model prediction and compare with the ground truth.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Goal</strong></p>
+<ul class="simple">
+<li><p>The objective is to <code class="docutils literal notranslate"><span class="pre">minimize</span> </code>the Loss Function.</p></li>
+<li><p>Where the loss function quantifies how “good” or “bad” a given model is in
+classifying the input  data</p></li>
+</ul>
+<p><strong>Backpropagation</strong>:</p>
+<ul class="simple">
+<li><p>Next we perform back prop which is a method to update the
+weights in the neural network by taking into account the actual output and the
+desired output.</p></li>
+<li><p>The derivative with respect to the weights is computed using chain rule.</p></li>
+<li><p>We perform this backward pass to adjust the weights and biases in the network
+to optimize the cost function and minimize the loss function.</p></li>
+</ul>
+</div>
+<div class="section" id="activation-functions">
+<h2>Activation Functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Functions used at the end of a hidden unit to introduce non-linear
+complexities to the model.</p></li>
+<li><p><strong>Reference</strong>: Andrej Karpathy |CS231n Winter 2016: Lectures on Convolutional
+Neural Nets</p>
+<ul>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=NfnWJUyUJYU&amp;list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC">Link</a></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Sigmoid Function (Logistic Function)</strong></p>
+<ul class="simple">
+<li><p>In order to map predicted values to probabilities, we use the sigmoid
+function. The function maps  any real value into another value between 0 and</p>
+<ol class="simple">
+<li><p>In machine learning, we use sigmoid to map predictions to probabilities.</p></li>
+</ol>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/sigmoid.png" /></p>
+<p><strong>Tanh</strong></p>
+<p><img alt="image" src="../../_images/tanh.png" /></p>
+<p><strong>Relu</strong></p>
+<p><img alt="image" src="../../_images/relu.png" /></p>
+<p><strong>Leaky Relu</strong></p>
+<p><img alt="image" src="../../_images/leaky_relu.png" /></p>
+</div>
+<div class="section" id="dropout">
+<h2>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Is a technique meant to prevent overfitting the training data by dropping out
+units in a neural network. In practice, neurons are either dropped with
+probability.</p></li>
+</ul>
+</div>
+<div class="section" id="epoch">
+<h2>Epoch<a class="headerlink" href="#epoch" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Epoch is a term used to refer to one iteration where the model sees the whole
+training set to update its weights.</p></li>
+</ul>
+</div>
+<div class="section" id="gradient-descent">
+<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Optimization algorithm used to minimize the loss function by iteratively
+moving in the direction of steepest descent as defined by the negative of
+the gradient</p></li>
+</ul>
+<p><img alt="image" src="../../_images/gradient_descent.png" /></p>
+<p><strong>Steps:</strong></p>
+<ul class="simple">
+<li><p>Calculate gradients of the loss/error function, then updating existing
+parameters in response to the gradients.</p></li>
+<li><p>This new gradient tells us the slope of our cost function at our current
+position and the direction we should move to update our parameters.</p></li>
+<li><p>And finally, the size for updating the weights is controlled by the learning rate.</p></li>
+<li><p><strong>Linear Models:</strong> shape of loss function: convex shape</p></li>
+<li><p><strong>Non-Linear Models:</strong> non-convex optimization (needs GPU)</p></li>
+</ul>
+</div>
+<div class="section" id="batch-gradient-descent">
+<h2>Batch Gradient Descent<a class="headerlink" href="#batch-gradient-descent" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Same as vanilla gradient descent and computes the gradient of the cost
+function with respect to the parameters for the entire dataset.</p></li>
+<li><p>During batch gradient descent, the algorithm has to scan every single
+instance of the training set before taking a single step, which can take
+longer to compute, especially for larger datasets.</p></li>
+</ul>
+</div>
+<div class="section" id="stochastic-gradient-descent">
+<h2>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>In SGD, we repeatedly run through the training set data and update the
+parameters according to the  gradient of the error with respect to the
+corresponding training example.
+Often the case, SGD performs much faster than batch gradient descent as moves
+closer to the minimum quicker.</p></li>
+<li><p>In SGD fluctuation enables it to jump to new and potentially better local
+minima and converge quicker.</p></li>
+</ul>
+</div>
+<div class="section" id="stochastic-weighting-average">
+<h2>Stochastic Weighting Average<a class="headerlink" href="#stochastic-weighting-average" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Reference: https://pytorch.org/blog/stochastic-weight-averaging-in-pytorch/</p></li>
+</ul>
+</div>
+<div class="section" id="mini-batch-gradient-descent">
+<h2>Mini-batch Gradient Descent<a class="headerlink" href="#mini-batch-gradient-descent" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Takes the best of both worlds (batch and stochastic) and performs an update
+for every mini-batch of ‘n’ training examples.</p></li>
+</ul>
+</div>
+<div class="section" id="softmax">
+<h2>Softmax<a class="headerlink" href="#softmax" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>In a neural network, the raw predictions which come out of the last layer of
+the network - which converts these values to probabilities for multi-class
+labels.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/softmax_sigmoid.png" /></p>
+</div>
+<div class="section" id="learning-rate">
+<h2>Learning Rate<a class="headerlink" href="#learning-rate" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Controls how much to change the model in response to the estimated error each
+time the model weights  are updated or can be thought of as the size of the
+step size taken when performing gradient descent.</p></li>
+<li><p><strong>High Learning Rate:</strong> If the learning rate is set too high, it can cause
+undesirable divergent  behavior in your loss function
+Large LR puts the model at risk of exceeding the minima so it will not be
+able to converge: what is  known as <code class="docutils literal notranslate"><span class="pre">EXPLODING</span> <span class="pre">GRADIENT</span></code>.</p></li>
+<li><p><strong>Low Learning Rate:</strong> If the LR is set too low, training will progress very
+slowly as you are  making very tiny updates to the weights in your network. A
+smaller LR will increase the risk of overfitting.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/learning_rate.png" /></p>
+<p><strong>Adaptive Learning Rates</strong></p>
+<ul class="simple">
+<li><p>(*) No manual tuning of the learning rate is required;</p></li>
+<li><p>(*) η is adjusted by the optimizer to perform larger or smaller updates
+depending on the importance  of the weight;</p></li>
+<li><p>In practice: decay learning rate over time.</p></li>
+</ul>
+</div>
+<div class="section" id="optimizers">
+<h2>Optimizers<a class="headerlink" href="#optimizers" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Adam</strong>: optimization is a stochastic gradient descent method that is based
+on adaptive estimation  of first-order and second-order moments.</p></li>
+<li><p><strong>Adagrad</strong>: is an optimizer with parameter-specific learning rates, which
+are adapted relative to  how frequently a parameter gets updated during
+training. The more updates a parameter receives, the smaller the updates.</p></li>
+<li><p><strong>Adadelta</strong>: optimization is a stochastic gradient descent method that is
+based on adaptive learning rate per dimension to address two drawbacks:</p>
+<ul>
+<li><p>The continual decay of learning rates throughout training.</p></li>
+<li><p>The need for a manually selected global learning rate</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/optimizers.png" /></p>
+</div>
+<div class="section" id="batch-normalization">
+<h2>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>We normalize the input layer by adjusting and scaling the activations.</p></li>
+<li><p>This allows each layer of a network to learn by itself a little bit more
+independently of other layers.</p></li>
+<li><p>It also allows for a higher learning rate because batch normalization makes
+sure that there’s no activation that’s gone really high or really low.</p></li>
+<li><p>It reduces overfitting because it has a slight regularization effect as it
+adds some noise to each hidden layer’s activations.</p></li>
+<li><p>It works by normalizing the output of a previous activation layer by
+subtracting the batch mean and dividing by the batch standard deviation</p></li>
+<li><p>Therefore, batch normalization adds two trainable parameters to each layer,
+so the normalized output  is multiplied by a “standard deviation” parameter
+and add a “mean” parameter .</p></li>
+<li><p>BN usually done after a fully connected/convolutional layer and before a
+non-linearity layer and aims at allowing higher learning rates and reducing
+the strong dependence on initialization.</p></li>
+</ul>
+</div>
+<div class="section" id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Ways to address overfitting:</p>
+<ul>
+<li><p>Augmentation (e.g. images: flip/scale/rotate)</p></li>
+<li><p>Decrease batch size</p></li>
+<li><p>Add dropout rate</p></li>
+<li><p>Weight decay</p></li>
+<li><p>Early stopping</p></li>
+<li><p>Regularization</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

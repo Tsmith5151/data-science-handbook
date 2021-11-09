@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithms Overview &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Algorithms Overview</a><ul>
+<li><a class="reference internal" href="#overview-diagram">Overview Diagram</a></li>
+<li><a class="reference internal" href="#content-based-filtering">Content-based filtering</a></li>
+<li><a class="reference internal" href="#collaborative-filtering">Collaborative Filtering</a></li>
+<li><a class="reference internal" href="#matrix-factorization">Matrix Factorization</a></li>
+<li><a class="reference internal" href="#loss-function">Loss Function</a></li>
+<li><a class="reference internal" href="#regularization">Regularization</a></li>
+<li><a class="reference internal" href="#sparse-matrix">Sparse Matrix</a></li>
+<li><a class="reference internal" href="#alternating-least-squares">Alternating Least Squares</a></li>
+<li><a class="reference internal" href="#implicit-als">Implicit ALS</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Algorithms Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/recommendation-engines/algorithms.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="algorithms-overview">
+<h1>Algorithms Overview<a class="headerlink" href="#algorithms-overview" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<p><img alt="image" src="../../_images/recsys.png" /></p>
+<div class="section" id="overview-diagram">
+<h2>Overview Diagram<a class="headerlink" href="#overview-diagram" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/recsys2.png" /></p>
+</div>
+<div class="section" id="content-based-filtering">
+<h2>Content-based filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Content-based filtering uses item features to recommend other items similar
+to what the user likes,  based on their previous actions or explicit
+feedback.</p></li>
+</ul>
+<p><strong>Advantages vs Disadvantages</strong></p>
+<p><img alt="image" src="../../_images/contentfiltering.png" /></p>
+</div>
+<div class="section" id="collaborative-filtering">
+<h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Collaborative filtering uses similarities between users and items simultaneously to provide recommendations.</p></li>
+<li><p>Collaborative Filtering models can recommend an item to user A based on the
+interests of a similar  user B.</p></li>
+<li><p>In practice, the embeddings can be learned automatically without relying on
+hand-engineering of  features, which is the power of collaborative filtering
+models.</p></li>
+<li><p>We can apply Matrix Factorization to identify the relationship between users
+and items entities.</p></li>
+<li><p><strong>Data Sources</strong></p>
+<ul>
+<li><p><strong>Explicit—</strong> users specify how much they liked a particular movie by
+providing a numerical rating.</p></li>
+<li><p><strong>Implicit—</strong> if a user watches a movie, the system infers that the user is interested.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Advantages vs Disadvantages</strong></p>
+<p><img alt="image" src="../../_images/collaborativefiltering.png" /></p>
+</div>
+<div class="section" id="matrix-factorization">
+<h2>Matrix Factorization<a class="headerlink" href="#matrix-factorization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The idea is to take the original user-item matrix, and then reduce that down
+to two much smaller  matrices that approximates the original when multiplied
+together such that the loss between the multiplication of the two smaller
+matrices and the true user-item matrix is minimized (See Loss Functions
+Below)</p></li>
+<li><p>Matrix factorization algorithm tries to find latent factors that represent intrinsic user
+and item attributes in a lower dimension</p></li>
+<li><p>With Matrix Factorization we can throw away having to come up with features
+that connect users and items and instead use the user-item data we have to</p></li>
+</ul>
+<p><img alt="image" src="../../_images/matrixfactorization.png" />
+<img alt="image" src="../../_images/matrixfactorization2.png" /></p>
+</div>
+<div class="section" id="loss-function">
+<h2>Loss Function<a class="headerlink" href="#loss-function" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/matrixfactorization3.png" /></p>
+<ul class="simple">
+<li><p>The objective function is simply the sum of squared distances between
+predicted ratings and actual ratings, so this is what we need to minimize.</p></li>
+<li><p>Common algorithm to minimize the loss function is Stochastic Gradient Descent</p></li>
+</ul>
+</div>
+<div class="section" id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>But in order to prevent overfitting to the training data we need to constrain
+the learned values for our user and item features by penalizing high values.</p></li>
+<li><p>We do this by multiplying the sum of the squares of the elements of the user
+and item matrices by a configurable regularization parameter and including
+this in our cost function.</p></li>
+</ul>
+</div>
+<div class="section" id="sparse-matrix">
+<h2>Sparse Matrix<a class="headerlink" href="#sparse-matrix" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The ratings matrix is sparse, meaning most of the values are 0, because each
+user has only rated a small number of items.</p></li>
+<li><p>The concept of a sparse matrix can actually be translated to a different data
+structure that retains only information about the non-zero values, making it
+a much more memory-efficient representation of the same information.</p></li>
+<li><p>One way is to define a vector of row indices, i, a vector of column indices,
+j, and a vector of values for each (i,j) pair. So only the (i,j) pairs that
+have values are included. Using this format, known as coordinate list or COO,
+the above ratings would be expressed as follows:</p></li>
+</ul>
+</div>
+<div class="section" id="alternating-least-squares">
+<h2>Alternating Least Squares<a class="headerlink" href="#alternating-least-squares" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The latent factor terms in the loss function are non-convex and therefore
+Gradient descent method can be applied but this will be expensive
+computations.</p></li>
+<li><p>The ALS algorithm was developed to overcome this limitation.</p></li>
+<li><p>ALS is to learn one of ‘w’ and ‘f’ at a time for optimization while keeping
+the other as constant. This makes the objective at each iteration convex and
+solvable.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/als.png" /></p>
+<p><strong>Advantage:</strong></p>
+<ul class="simple">
+<li><p>Can be parallelised and/or distributed, which makes the algorithm desirable
+for use cases where the dataset is large and thus the user-item rating
+matrix is super sparse.</p></li>
+</ul>
+<p><strong>Implementation:</strong></p>
+<ul class="simple">
+<li><p>Scoring metric for explicit data: RMSE, MSE, R^2</p></li>
+<li><p>The recommended items should be different from those that have been rated by the users</p></li>
+<li><p>Prediction performance of a Spark ALS model is often affected by the parameters.</p></li>
+</ul>
+</div>
+<div class="section" id="implicit-als">
+<h2>Implicit ALS<a class="headerlink" href="#implicit-als" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Link: https://www.benfrederickson.com/matrix-factorization</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

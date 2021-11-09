@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Approximate Nearest Neighbor &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Approximate Nearest Neighbor</a><ul>
+<li><a class="reference internal" href="#annoy">ANNOY</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Approximate Nearest Neighbor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/recommendation-engines/ann.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="approximate-nearest-neighbor">
+<h1>Approximate Nearest Neighbor<a class="headerlink" href="#approximate-nearest-neighbor" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<p><strong>Overview</strong></p>
+<ul class="simple">
+<li><p>The idea of ANN is to search for points in space that are close to a given query point</p>
+<ul>
+<li><p>Recommendation Engines</p></li>
+<li><p>Search/Ranking</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Why ANN?</strong></p>
+<ul class="simple">
+<li><p>For finding k nearest neighbors in a vector space, it has linear complexity
+via brute force in the  number of indexed documents and can be extremely
+costly, compute wise because the retrieved results are exact.</p></li>
+<li><p>Instead, we can approximate results retrieved in sub-linear time.</p></li>
+</ul>
+<div class="section" id="annoy">
+<h2>ANNOY<a class="headerlink" href="#annoy" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Spotify developed an open-source library “ANNOY” which helps the team search
+millions of tracks in a  high dimensional space for similar users/items/</p></li>
+<li><p>ANNOY is a python package that uses a random hyperplane splitting approach to
+build up a forest of  search trees to efficiently calculate the nearest
+neighbours.</p></li>
+<li><p>Annoy has the ability to use static files as indexes which means you can share index across processes and the indexes can be loaded into memory very quickly.</p></li>
+<li><p>An n index is built with a forest of k trees, where “k” is a tunable parameter that trades off between precision and performance.</p></li>
+</ul>
+<p><strong>How does it work:</strong></p>
+<ul class="simple">
+<li><p>In order to construct the index a forest is created (aka many trees).</p></li>
+<li><p>Each binary tree is constructed in the following way:</p>
+<ul>
+<li><p>1.) We pick two points at random and split the space into two by their hyperplane</p></li>
+<li><p>2.) We keep splitting in the subspaces recursively until the points
+associated with a node are  small enough.</p></li>
+<li><p>3.) We end up with a binary tree that partitions the space. The nice
+thing is that points that are close to each other in space are more
+likely to be close to each other in the tree.</p></li>
+</ul>
+</li>
+<li><p>In other words: if two points are close to each other in space, it’s unlikely
+that any hyperplane will cut them apart.</p></li>
+<li><p>To search for any point in this space, we can traverse the binary tree from the root.</p></li>
+<li><p>Every intermediate node (the small squares in the tree above) defines a
+hyperplane, so we can figure out what side of the hyperplane we need to go
+on and that defines if we go down to the left or right child node.</p></li>
+<li><p>Searching for a point can be done in logarithmic time since that is the height of the tree.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/ann.png" /></p>
+<p><strong>Similarity Query</strong></p>
+<ul class="simple">
+<li><p>Example of using <code class="docutils literal notranslate"><span class="pre">Word2Vec</span></code> with <code class="docutils literal notranslate"><span class="pre">ANNOY</span></code> to understand context of query</p></li>
+<li><p><strong>Reference</strong>: https://markroxor.github.io/gensim/static/notebooks/annoytutorial.html</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

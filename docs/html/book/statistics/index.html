@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Statistics</a><ul>
+<li><a class="reference internal" href="#p-value">P-Value</a></li>
+<li><a class="reference internal" href="#z-test">Z-Test</a></li>
+<li><a class="reference internal" href="#t-test">T-Test</a></li>
+<li><a class="reference internal" href="#choosing-a-hypothesis-test">Choosing a Hypothesis Test</a></li>
+<li><a class="reference internal" href="#statistical-power">Statistical Power</a></li>
+<li><a class="reference internal" href="#anova">ANOVA</a></li>
+<li><a class="reference internal" href="#f-test">F-Test</a></li>
+<li><a class="reference internal" href="#central-limit-theorem">Central Limit Theorem</a></li>
+<li><a class="reference internal" href="#confidence-interval">Confidence Interval</a></li>
+<li><a class="reference internal" href="#multicollinearity">Multicollinearity</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Statistics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/statistics/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="statistics">
+<h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="p-value">
+<h2>P-Value<a class="headerlink" href="#p-value" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Statistically significant is detected when the observed p-value from the test statistic is less than the level of significance (i.e. alpha).</p></li>
+<li><p>Meaning, there is a very low probability of observing by random chance something as extreme or more extreme than what was observed under the assumption that the null hypothesis is true.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="o">-</span><span class="n">Value</span> <span class="o">&lt;</span> <span class="mf">0.05</span> <span class="o">=</span> <span class="n">Reject</span> <span class="n">null</span> <span class="n">hypothesis</span><span class="p">;</span> 
+<span class="n">P</span><span class="o">-</span><span class="n">Value</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="o">=</span> <span class="n">Fail</span> <span class="n">to</span> <span class="n">reject</span> <span class="n">null</span> <span class="n">hypothesis</span><span class="p">;</span> 
+</pre></div>
+</div>
+<p><img alt="image" src="../../_images/pvalue.png" /></p>
+<p><strong>Note:</strong> If we reject the null hypothesis, this indicates strong statistical significance.</p>
+</div>
+<div class="section" id="z-test">
+<h2>Z-Test<a class="headerlink" href="#z-test" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The one-sample z-test is used to test whether the mean of a population is greater than, less than, or not equal to a specific value.</p></li>
+<li><p>For large (50 or more observations) normally distributed samples, normal distribution tests <strong>are equivalent to the T-Test</strong>.</p></li>
+</ul>
+<p><strong>Requirements for the Z-test:</strong></p>
+<ul class="simple">
+<li><p>The mean and standard deviation of the population distribution are known</p></li>
+<li><p>The mean of the sample distribution is known</p></li>
+<li><p>The variance of the sample is assumed to be the same as the population</p></li>
+<li><p>The population is assumed to be normally distributed</p></li>
+</ul>
+<p><img alt="image" src="../../_images/ztest.png" /></p>
+</div>
+<div class="section" id="t-test">
+<h2>T-Test<a class="headerlink" href="#t-test" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Statistical test that is used to compare the means of two groups.</p></li>
+<li><p>When the original (population) distribution is not normal, the one sample t-test is still valid with a large enough sample size.</p></li>
+<li><p>We perform a <strong>One-Sample t-test</strong> when we want to compare a sample mean with the population mean.</p></li>
+<li><p>The difference from the Z Test is that we do not have the information on Population Variance here.</p></li>
+<li><p>We use the sample standard deviation instead of population standard deviation in this case.</p></li>
+</ul>
+<p><strong>One-Sample T-Test:</strong></p>
+<ul class="simple">
+<li><p>Assumptions:</p>
+<ul>
+<li><p>Samples are drawn from a Normally distributed population.</p></li>
+<li><p>The observations in the sample are independent of one another.</p></li>
+</ul>
+</li>
+<li><p>When the original (population) distribution is not normal, the one sample t-test is still valid with a large enough sample size.</p>
+<ul>
+<li><p>That is, the one sample t-test is robust to the normality assumption when the sample size is large enough.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Rules of Thumb in Evaluating Assumptions:</strong></p>
+<ul class="simple">
+<li><p>If sample sizes are the same and sufficiently large, the t-tools are valid since they are robust to the violation of normality.</p></li>
+<li><p>If the two populations have the same standard deviation then the t-tests are valid given sufficient sample sizes.</p></li>
+<li><p>If the standard deviations are different and the sample sizes are different, then the t-tools are not valid and another procedure should be used.</p></li>
+</ul>
+<p><strong>Transformations</strong></p>
+<ul class="simple">
+<li><p>If assumptions are not met, look at transforming the data such as taking the logarithmic transformation.</p></li>
+</ul>
+</div>
+<div class="section" id="choosing-a-hypothesis-test">
+<h2>Choosing a Hypothesis Test<a class="headerlink" href="#choosing-a-hypothesis-test" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/hypothesis.png" /></p>
+</div>
+<div class="section" id="statistical-power">
+<h2>Statistical Power<a class="headerlink" href="#statistical-power" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A power test will tell us how many samples we will need to collect to have a good amount of statistical power.</p></li>
+<li><p>It tells you how many trials you need to do to avoid incorrectly rejecting the null hypothesis</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Power</span> <span class="o">=</span> <span class="n">Type</span> <span class="n">II</span> <span class="n">Error</span> <span class="o">=</span> <span class="n">fail</span> <span class="n">to</span> <span class="n">reject</span> <span class="n">a</span> <span class="n">false</span> <span class="n">null</span> <span class="n">hypothesis</span><span class="o">.</span> 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Power is the probability of not making a Type II error.</p></li>
+<li><p>Power = the probability that we correctly reject the null hypothesis (e.g. small p-value). or “the probability of rejecting a null hypothesis when it is false”</p></li>
+<li><p>Low Power = when there is a lot of over lap between the two distributions and we have a small sample size, we have low power.</p></li>
+<li><p>When we have a lot of power, there is a higher probability that we will correctly reject the null hypothesis.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/power.png" /></p>
+</div>
+<div class="section" id="anova">
+<h2>ANOVA<a class="headerlink" href="#anova" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Statistical technique that is used to check if the means of two or more groups are significantly different from each other.</p></li>
+</ul>
+<p><strong>Assumptions:</strong></p>
+<ul class="simple">
+<li><p>Normality:</p>
+<ul>
+<li><p>Similar to Hypothesis Testing, ANOVA is robust to this assumption.</p></li>
+<li><p>Extremely long-tailed distributions (outliers) or skewed distributions coupled with different sample sizes (especially when the sample sizes are small) present the only serious distributional problems.</p></li>
+</ul>
+</li>
+<li><p>Equal Standard Deviations:</p>
+<ul>
+<li><p>This assumption is crucial, paramount, VERY important.</p></li>
+<li><p>The assumptions of independence within and across groups are critical.</p></li>
+<li><p>If lacking, different analysis should be attempted.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="f-test">
+<h2>F-Test<a class="headerlink" href="#f-test" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Hypothesis test to check if Evidence of Inequality of Variance</p></li>
+</ul>
+</div>
+<div class="section" id="central-limit-theorem">
+<h2>Central Limit Theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The distribution of sample x’s will, as the sample size increases, approach a normal distribution.</p></li>
+<li><p>The mean (x) of the sample means is the population mean µ.</p></li>
+<li><p>The standard deviation of the distribution of sample means is sigma/sqrt(n)</p></li>
+</ul>
+</div>
+<div class="section" id="confidence-interval">
+<h2>Confidence Interval<a class="headerlink" href="#confidence-interval" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A 95% confidence interval means that if we were to take 100 different samples and compute a 95% confidence interval for each sample, then approximately 95 of the 100 confidence intervals will contain the true mean value.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CI</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+=</span> <span class="n">Z</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multicollinearity">
+<h2>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Occurs whenever an independent variable is highly correlated with one or more
+of the other independent variables in a multiple regression equation.</p></li>
+<li><p><strong>Problem:</strong> An independent variable that is very highly correlated with one or more other independent variables will have a relatively large standard error.</p></li>
+<li><p>This implies that the partial regression coefficient is unstable and will vary greatly from one sample to the next.</p></li>
+<li><p>Multicollinearity can also be detected with the help of tolerance and its reciprocal, called variance inflation factor (VIF). A VIF &gt;= 10 is problematic.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

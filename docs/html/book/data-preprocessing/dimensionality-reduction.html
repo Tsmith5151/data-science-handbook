@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dimensionality Reduction &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Dimensionality Reduction</a><ul>
+<li><a class="reference internal" href="#principal-component-analysis">Principal Component Analysis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Dimensionality Reduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/data-preprocessing/dimensionality-reduction.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="dimensionality-reduction">
+<h1>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="principal-component-analysis">
+<h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Dimension reduction technique that finds the variance maximizing directions
+onto which to project the data.</p></li>
+<li><p>Algorithm to reduce the dimensionality of the data by compressing it onto a
+new feature subspace, where a subset of the  principal components (i.e.
+eigenvectors) accounts for the <strong>highest variance</strong> and explains the underlying
+structure of the overall dataset.</p></li>
+<li><p>The eigenvectors of the correlation or covariance matrix represent the
+principal components (directions of maximum variance and determine the
+direction of the new feature space) and the eigenvalues (scalar) correspond
+to the magnitude of the eigenvectors.</p></li>
+<li><p>The eigenvector with the <strong>largest eigenvalue</strong> is the direction along which the
+data set has the maximum variance.</p></li>
+<li><p>After applying the linear PCA transformation, we have a lower dimensional
+subspace where the samples are “most spread” along the  new feature axes.</p></li>
+<li><p>PCA reduces high dimensional space down to two or three principal components
+without losing much information.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

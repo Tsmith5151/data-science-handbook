@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.napoleon",
     'recommonmark',
     'sphinx_markdown_tables',
+    'sphinx_toolbox.pre_commit',
 ]
 
 # The master toctree document.
@@ -71,7 +72,6 @@ html_theme_options = {
     'analytics_anonymize_ip': False,
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
-    'github_url': True,
     # Toc options
     'collapse_navigation': False,
     'sticky_navigation': True,

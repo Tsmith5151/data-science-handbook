@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kubernetes &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Kubernetes</a><ul>
+<li><a class="reference internal" href="#pods">Pods</a></li>
+<li><a class="reference internal" href="#volumes">Volumes</a></li>
+<li><a class="reference internal" href="#minikube">MiniKube</a></li>
+<li><a class="reference internal" href="#kubeflow">Kubeflow</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Kubernetes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/ml-engineering/kubernetes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="kubernetes">
+<h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<p><strong>Overview</strong></p>
+<ul class="simple">
+<li><p>Open-source platform for managing your containers</p></li>
+<li><p>Microservices architecture - more agile versus hadoop</p></li>
+<li><p>Containerized applications allows for consistent environments</p>
+<ul>
+<li><p>Moving between Development and Production environments</p></li>
+</ul>
+</li>
+<li><p>Scaling large scale workloads and can leverage frameworks like Spark</p></li>
+<li><p>Spark creates a spark driver running within a kubernetes on a pod</p></li>
+<li><p>Workers are deployed in the Kubernetes cluster</p></li>
+</ul>
+<div class="section" id="pods">
+<h2>Pods<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Group of one or more containers</p></li>
+<li><p>shared storage/network resources</p></li>
+<li><p>Instructions for how to run the containers</p>
+<ul>
+<li><p>Pods scheduled on nodes (e.g. virtual machine)</p></li>
+<li><p>Nodes run node agents called Kublet</p></li>
+</ul>
+</li>
+<li><p>All communication happens through the API server</p></li>
+</ul>
+</div>
+<div class="section" id="volumes">
+<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Volume represents a way to store, retrieve, and persist data across pods and through the application lifecycle</p></li>
+<li><p>Applications often need to be able to store and retrieve data.</p></li>
+<li><p><strong>Ephemeral:</strong></p>
+<ul>
+<li><p>disposable resources, different approaches are available for applications to
+use and persist data as necessary.
+Kubernetes volumes can also be used as a way to inject data into a pod for use by the containers.</p>
+<ul>
+<li><p>Secrets/configs/metadata</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Persistent Volume:</strong></p>
+<ul class="simple">
+<li><p>Volumes that are defined and created as part of the pod lifecycle only exist until the pod is deleted.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kubernetes.png" /></p>
+</div>
+<div class="section" id="minikube">
+<h2>MiniKube<a class="headerlink" href="#minikube" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Runs single node kubernetes cluster on your local laptop</p></li>
+<li><p>Use base docker image for Spark - pull image from DockerHub</p>
+<ul>
+<li><p>Make spark distribution tarball</p></li>
+<li><p>Build the image for Spark</p></li>
+</ul>
+</li>
+<li><p>Instead can use Helm - a package manager to kubernetes for configuration</p>
+<ul>
+<li><p>Helm charts for Spark setup (not familiar with)</p></li>
+<li><p>Assists with building config.yaml file for JupyterHub</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Commands:</strong></p>
+<ul class="simple">
+<li><p><strong>Create pod:</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">jupyperlab.yaml</span></code></p></li>
+<li><p><strong>Create service (DNS entry):</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">jupyperlab-service.yaml</span></code></p></li>
+<li><p><strong>Pod status:</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">get</span> <span class="pre">pods</span></code>, <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">get</span> <span class="pre">services</span></code></p>
+<ul>
+<li><p>Forward ports to access Jupyter Notebooks</p></li>
+<li><p>Access Kubernetes UI</p></li>
+<li><p>Can see status of pods</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="kubeflow">
+<h2>Kubeflow<a class="headerlink" href="#kubeflow" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Curated set of tools for running ML workflows</p></li>
+<li><p>Makes ML use-cases portable and scalable</p></li>
+<li><p>Easily deploy workflows to Kubernetes</p></li>
+<li><p>Train models, Tensorboard, serve model, build pipelines</p></li>
+<li><p>Login to Jupyter Hub</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kubeflow.png" /></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infrastructure &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Infrastructure</a><ul>
+<li><a class="reference internal" href="#load-balancers">Load Balancers</a></li>
+<li><a class="reference internal" href="#application-gateway">Application Gateway</a></li>
+<li><a class="reference internal" href="#content-delivery-networks">Content Delivery Networks</a></li>
+<li><a class="reference internal" href="#microservices">Microservices</a></li>
+<li><a class="reference internal" href="#airflow">Airflow</a></li>
+<li><a class="reference internal" href="#kafka">Kafka</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Infrastructure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/ml-engineering/infrastructure.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="infrastructure">
+<h1>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="load-balancers">
+<h2>Load Balancers<a class="headerlink" href="#load-balancers" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Helps distribute the traffic across a cluster of servers to improve responsiveness and availability of applications.</p></li>
+<li><p>Preventing requests from going to unhealthy servers</p></li>
+<li><p>Preventing overloading resources</p></li>
+<li><p>Helping to eliminate a single point of failure</p></li>
+<li><p>Load balancing helps you scale horizontally across an ever-increasing number of servers</p></li>
+<li><p>Typically a load balancer sits between the client and the server accepting incoming network and application traffic and distributing the traffic across multiple backend servers using various algorithms.</p></li>
+<li><p>By balancing application requests across multiple servers, a load balancer reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.</p></li>
+<li><p>Load balancers should only forward traffic to “healthy” backend servers. To monitor the health of a backend server, “health checks” regularly attempt to connect to backend servers to ensure that servers are listening.</p></li>
+<li><p>The load balancer can be a single point of failure; to overcome this, a second load balancer can be connected to the first to form a cluster.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/loadbalancer.png" /></p>
+<p><strong>Route Traffic</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">4</span> </code>load balancers look at info at the transport layer to decide how to distribute requests.</p></li>
+<li><p>Generally, this involves the source, destination IP addresses, and ports in the header, but not the contents of the packet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">4</span></code>load balancers forward network packets to and from the upstream server, performing Network Address Translation (NAT).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">7</span> </code>load balancers look at the application layer to decide how to distribute requests. This can involve contents of the header, message, and cookies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">7</span></code> load balancers terminate network traffic, reads the message, makes a load-balancing decision, then opens a connection to the selected server.</p></li>
+</ul>
+<p><strong>Disadvantages</strong></p>
+<ul class="simple">
+<li><p>The load balancer can become a performance bottleneck if it does not have enough resources or if it is not configured properly.</p></li>
+<li><p>Introducing a load balancer to help eliminate a single point of failure results in increased complexity.</p></li>
+<li><p>A single load balancer is a single point of failure, configuring multiple load balancers further increases complexity.</p></li>
+</ul>
+</div>
+<div class="section" id="application-gateway">
+<h2>Application Gateway<a class="headerlink" href="#application-gateway" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Is a web traffic load balancer that enables you to manage traffic to your web applications. Traditional load balancers operate at the transport layer (OSI layer 4 - TCP and UDP) and route traffic based on source IP address and port, to a destination IP address and port.</p></li>
+<li><p>Application Gateway can make routing decisions based on additional attributes of an HTTP request, for example URI path or host headers.</p></li>
+<li><p>For example, you can route traffic based on the incoming URL. So if /images is in the incoming URL, you can route traffic to a specific set of servers (known as a pool) configured for images.</p></li>
+</ul>
+</div>
+<div class="section" id="content-delivery-networks">
+<h2>Content Delivery Networks<a class="headerlink" href="#content-delivery-networks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A content delivery network (CDN) is a distributed network of servers that can efficiently deliver web content to users.</p></li>
+<li><p>CDNs’ store cached content on edge servers in point-of-presence (POP) locations that are close to end users, to minimize latency.</p></li>
+<li><p>CDN’s are typically used to cache static content such as images, CSS, or HTML.
+(push or put).</p></li>
+<li><p>A CDN’s mission is to virtually shorten that physical distance, the goal being to improve site rendering speed and performance.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cdn.png" /></p>
+<p><strong>Steps</strong></p>
+<ul class="simple">
+<li><p>A user (Alice) requests a file (also called an asset) by using a URL with a special domain name, such as <endpoint name>.azureedge.net. This name can be an endpoint hostname or a custom domain.</p></li>
+<li><p>The DNS routes the request to the best performing POP location, which is usually the POP that is geographically closest to the user.</p></li>
+<li><p>If no edge servers in the POP have the file in their cache, the POP requests the file from the origin server. The origin server can be a backend file store.</p></li>
+<li><p>The origin server returns the file to an edge server in the POP.</p></li>
+<li><p>An edge server in the POP caches the file and returns the file to the original requestor (Alice). The file remains cached on the edge server in the POP until the time-to-live (TTL) specified by its HTTP headers expires. If the origin server didn’t specify a TTL, the default TTL is seven days.</p></li>
+<li><p>Additional users can then request the same file by using the same URL that Alice used, and can also be directed to the same POP.</p></li>
+<li><p>If the TTL for the file hasn’t expired, the POP edge server returns the file directly from the cache.</p></li>
+<li><p>This process results in a faster, more responsive user experience.</p></li>
+</ul>
+</div>
+<div class="section" id="microservices">
+<h2>Microservices<a class="headerlink" href="#microservices" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Can be described as a suite of independently deployable, small, modular services.</p></li>
+<li><p>Each service runs a unique process and communicates through a well-defined, lightweight mechanism to serve a business goal</p></li>
+</ul>
+</div>
+<div class="section" id="airflow">
+<h2>Airflow<a class="headerlink" href="#airflow" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Airflow is a platform to programmatically author, schedule and monitor workflows</p></li>
+<li><p>Airflow creates workflows as Directed Acyclic Graphs (DAGs) of tasks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DAG</span></code> is defined in a Python script, which represents the DAGs structure (tasks and their dependencies) as code.</p></li>
+<li><p>Interface makes it easy to visualize pipelines running in production, monitor progress, and troubleshoot issues.</p></li>
+<li><p>Airflow pipelines are configured as code (Python), allowing for dynamic pipeline generation. This allows for writing code that instantiates pipelines dynamically.
+Scalable:
+Airflow has a modular architecture and uses a message queue to orchestrate an arbitrary number of workers. Airflow is ready to scale to infinity.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db_operator = DatabricksSubmitRunOperator(task_id=name, json={cluster configs})
+t1 = db_operator(‘name’,’train.py’,[‘--arg’,’arg_name’]
+t2 = db_operator(‘name’,’deploy.py’,[‘--arg’,’arg_name’]
+t1 &gt;&gt; [t2]
+</pre></div>
+</div>
+<p><strong>Create docker image w/ airflow dags</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Docker</span><span class="o">-</span><span class="n">compose</span> <span class="k">for</span> <span class="n">deploying</span> <span class="n">web</span> <span class="n">server</span>
+<span class="n">Create</span> <span class="n">web</span> <span class="n">server</span> <span class="n">using</span> <span class="n">airflow</span> <span class="n">latest</span> <span class="n">image</span>
+<span class="n">Add</span> <span class="n">sqlite</span> <span class="n">database</span> <span class="ow">and</span> <span class="n">configuration</span>
+<span class="n">Add</span> <span class="n">volumes</span>
+<span class="n">Setup</span> <span class="n">ports</span>
+<span class="n">Run</span> <span class="n">command</span> <span class="k">for</span> <span class="n">health</span> <span class="n">checks</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kafka">
+<h2>Kafka<a class="headerlink" href="#kafka" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Producer</strong>: sends message record</p></li>
+<li><p><strong>Consumer</strong>: an application that receives data from Kafka</p></li>
+<li><p><strong>Broker</strong>: Kafka Server (message broker) between producer and consumer</p></li>
+<li><p><strong>Cluster</strong>: A group of servers sharing workload for a common purpose that each executes one instance of a broker.</p></li>
+<li><p><strong>Topic</strong>: is a unique name for a Kafka stream.</p></li>
+<li><p><strong>Partition</strong>: breaks a topic into subsets of data that’s distributed across cluster. The end-user makes a decision on which predicate to partition on.</p></li>
+<li><p><strong>Offset</strong>: a sequence id given to a message as they arrive in a partition.The sequence id is stored in order based on arrival.</p>
+<ul>
+<li><p>Offsets are local to the partition.</p></li>
+</ul>
+</li>
+<li><p><strong>Global Identifier:</strong> Topic Name -&gt; Partition Number -&gt; Offset</p></li>
+<li><p><strong>Consumer Group:</strong> group of consumers acting as a single unit to divide the work.</p>
+<ul>
+<li><p>The maximum consumers in a group is equal to the number of partitions on the topic.</p></li>
+<li><p>Kafka does not allow more than 2 consumers to read from a partition simultaneously; this avoids double reading of records.</p></li>
+</ul>
+</li>
+<li><p><strong>Scaling</strong>: occurs horizontally and does not have to manually scale.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kafka.png" /></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

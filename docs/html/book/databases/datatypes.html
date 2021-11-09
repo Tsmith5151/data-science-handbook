@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Types &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Data Types</a><ul>
+<li><a class="reference internal" href="#json">JSON</a></li>
+<li><a class="reference internal" href="#yaml">YAML</a></li>
+<li><a class="reference internal" href="#parquet">Parquet</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/databases/datatypes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="data-types">
+<h1>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>JSON stands for JavaScript Object Notation</p></li>
+<li><p>JSON is a lightweight format for storing and transporting data</p></li>
+<li><p>JSON is often used when data is sent from a server to a web page</p></li>
+<li><p>JSON is “self-describing” and easy to understand</p></li>
+<li><p>JSON is built on two structures:</p></li>
+<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.</p></li>
+</ul>
+</div>
+<div class="section" id="yaml">
+<h2>YAML<a class="headerlink" href="#yaml" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Yet Another Markup Language</p></li>
+<li><p>YAML is a digestible data serialization language that is often utilized to create configuration files and works in concurrence with any programming language.</p></li>
+<li><p>YAML is a data serialization language designed for human interaction. It’s a strict superset of JSON, another data serialization language.</p></li>
+<li><p>But because it’s a strict superset, it can do everything that JSON can and more.</p></li>
+<li><p>One major difference is that newlines and indentation actually mean something in YAML, as opposed to JSON, which uses brackets and braces.</p></li>
+</ul>
+</div>
+<div class="section" id="parquet">
+<h2>Parquet<a class="headerlink" href="#parquet" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Default data source in Spark</p></li>
+<li><p>Open-source columnar file format that offers I/O optimization such as data compression, which gives quick access to data columns for querying</p></li>
+</ul>
+<p><strong>Directory Structure:</strong></p>
+<ul class="simple">
+<li><p>Data Files, metadata, number of compressed files, and some status files</p></li>
+</ul>
+<p><strong>Avro</strong></p>
+<ul class="simple">
+<li><p>Uses by Kafka for message serialization and deserialization. Direct mapping to JSON, and very quick/efficient</p></li>
+</ul>
+<p><strong>Dynamic Allocation</strong></p>
+<ul class="simple">
+<li><p>The Spark driver can request more or fewer compute resources as the demand of large workflows. If workflows vary in their demands for compute capacity then Dynamic Allocation could be an option (e.g. streaming data).</p></li>
+<li><p>Example of settings:</p>
+<ul>
+<li><p>spark.dynamicAllocation.enabled true</p></li>
+<li><p>spark.dynamicAllocation.minExecutors 2</p></li>
+</ul>
+</li>
+<li><p>Must configure spark executors’ memory allocation</p>
+<ul>
+<li><p><strong>Default</strong>:</p>
+<ul>
+<li><p>Execution memory: 60%</p></li>
+<li><p>Storage memory: 40%</p></li>
+<li><p>Reserved Memory 300 MB (safe-gaurd OOM)</p></li>
+</ul>
+</li>
+<li><p>The default settings work in most cases. - can be tricky to tune %</p></li>
+<li><p>Storage memory is primarily for caching data structures/partitions from DataFrames</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

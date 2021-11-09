@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Stores &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Data Stores</a><ul>
+<li><a class="reference internal" href="#data-storage">Data Storage</a></li>
+<li><a class="reference internal" href="#delta-lakes">Delta Lakes</a></li>
+<li><a class="reference internal" href="#partition-strategy">Partition Strategy</a></li>
+<li><a class="reference internal" href="#data-serialization">Data Serialization</a></li>
+<li><a class="reference internal" href="#data-warehouse">Data Warehouse</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data Stores</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/databases/datastores.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="data-stores">
+<h1>Data Stores<a class="headerlink" href="#data-stores" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="data-storage">
+<h2>Data Storage<a class="headerlink" href="#data-storage" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Solution to Data Challenges of a Data Lake → Delta Lakes</p></li>
+</ul>
+<p><img alt="image" src="../../_images/datastorage.png" /></p>
+</div>
+<div class="section" id="delta-lakes">
+<h2>Delta Lakes<a class="headerlink" href="#delta-lakes" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/delta.png" /></p>
+<ul class="simple">
+<li><p>Delta stores a transaction log to keep track of all the commits made to the table directory to provide ACID transactions</p></li>
+<li><p>ACID = atomicity, consistency, isolation, durability</p></li>
+<li><p>Also enables schema enforcement, by helping to avoid bad data getting your data lakes by providing the ability to specify the schema.</p></li>
+<li><p>Supports schema evolution like adding a new column.</p></li>
+<li><p>Handles Unified Batch and Stream Processing.</p></li>
+<li><p>If we have a use-case of both Stream processing and Batch processing it is normal to follow <code class="docutils literal notranslate"><span class="pre">Lambda</span> <span class="pre">Architecture</span></code>.
+Data coming in as Stream or any historical data you have is the same table being updated.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/delta2.png" /></p>
+<p><strong>Z-Ordering</strong></p>
+<ul class="simple">
+<li><p>is a technique to colocate related information in the same set of files. Z-ordering is basically a data-skipping algorithm to dramatically reduce the amount of data that needs to be read.</p></li>
+<li><p>To Z-Order data, you specify the columns to order on in the <code class="docutils literal notranslate"><span class="pre">ZORDER</span> <span class="pre">BY</span> </code>clause:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMIZE</span> <span class="n">events</span>
+<span class="n">WHERE</span> <span class="n">date</span> <span class="o">&gt;=</span> <span class="n">current_timestamp</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="mi">1</span> <span class="n">day</span>
+<span class="n">ZORDER</span> <span class="n">BY</span> <span class="p">(</span><span class="n">eventType</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="partition-strategy">
+<h2>Partition Strategy<a class="headerlink" href="#partition-strategy" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>You can partition a Delta table by a column.</p></li>
+<li><p>The most commonly used partition column is date.</p></li>
+<li><p>If the cardinality of a column will be very high, do not use that column for partitioning.</p></li>
+<li><p>For example, if you partition by a column userId and if there can be 1M distinct user IDs, then that is a bad partitioning strategy.</p></li>
+<li><p>Amount of data in each partition: You can partition by a column if you expect data in that partition to be at least 1 GB.</p></li>
+</ul>
+<p><strong>Data Compaction:</strong></p>
+<ul class="simple">
+<li><p>If you continuously write data to a Delta table, it will over time accumulate a large number of files, especially if you add data in small batches.</p></li>
+<li><p>This can have an adverse effect on the efficiency of table reads, and it can also affect the performance of your file system. Ideally, a large number of small files should be rewritten into a smaller number of larger files on a regular basis.</p></li>
+<li><p>This is known as <code class="docutils literal notranslate"><span class="pre">compaction</span></code>.</p></li>
+<li><p>You can compact a table by repartitioning it to a smaller number of files.</p></li>
+</ul>
+</div>
+<div class="section" id="data-serialization">
+<h2>Data Serialization<a class="headerlink" href="#data-serialization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file.</p></li>
+<li><p>Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.</p></li>
+<li><p>Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file.</p></li>
+<li><p>Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.</p></li>
+</ul>
+</div>
+<div class="section" id="data-warehouse">
+<h2>Data Warehouse<a class="headerlink" href="#data-warehouse" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A database designed to store and process large volumes of current and historical data collected from multiple sources inside and outside the enterprise for deep analysis.</p></li>
+<li><p>Organizes data into tables and columns, and allows users access via SQL.</p></li>
+<li><p>Optimized for loading, integrating and analyzing very large amounts of data.</p></li>
+<li><p>Designed to support descriptive, diagnostic, predictive and prescriptive analytic workloads.
+Example: Snowflake</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

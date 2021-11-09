@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apache Spark &mdash; Data Science Hand.. 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Apache Spark</a><ul>
+<li><a class="reference internal" href="#spark">Spark</a><ul>
+<li><a class="reference internal" href="#sparksession">SparkSession</a></li>
+<li><a class="reference internal" href="#job">Job</a></li>
+<li><a class="reference internal" href="#stage">Stage</a></li>
+<li><a class="reference internal" href="#task">Task</a></li>
+<li><a class="reference internal" href="#dags">DAGs</a></li>
+<li><a class="reference internal" href="#driver-oom">Driver OOM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#executor-oom">Executor OOM</a></li>
+<li><a class="reference internal" href="#rdd">RDD</a></li>
+<li><a class="reference internal" href="#dataframe-api">DataFrame API</a></li>
+<li><a class="reference internal" href="#transformations">Transformations</a></li>
+<li><a class="reference internal" href="#actions">Actions</a></li>
+<li><a class="reference internal" href="#map-vs-flatmap">Map vs FlatMap</a></li>
+<li><a class="reference internal" href="#spark-sql-api">Spark SQL API</a></li>
+<li><a class="reference internal" href="#dataset-api">DataSet API</a></li>
+<li><a class="reference internal" href="#id1">DataFrame API</a></li>
+<li><a class="reference internal" href="#cache">Cache</a></li>
+<li><a class="reference internal" href="#persist">Persist</a></li>
+<li><a class="reference internal" href="#shuffle">Shuffle</a></li>
+<li><a class="reference internal" href="#serialization">Serialization</a></li>
+<li><a class="reference internal" href="#garbage-collection">Garbage Collection</a></li>
+<li><a class="reference internal" href="#structured-streaming">Structured Streaming</a></li>
+<li><a class="reference internal" href="#broadcast">Broadcast</a></li>
+<li><a class="reference internal" href="#id2">Serialization</a></li>
+<li><a class="reference internal" href="#map-shuffle">Map/Shuffle</a></li>
+<li><a class="reference internal" href="#joins">Joins</a></li>
+<li><a class="reference internal" href="#partitions">Partitions</a></li>
+<li><a class="reference internal" href="#spark-ml">Spark ML</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Science Hand..</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Apache Spark</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/book/big-data/spark.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="apache-spark">
+<h1>Apache Spark<a class="headerlink" href="#apache-spark" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="spark">
+<h2>Spark<a class="headerlink" href="#spark" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>An in-memory data processing engine for big data workloads</p></li>
+<li><p>Spark is an open source distributed clustering computing framework</p></li>
+<li><p>Spark runs 100 times faster in-memory and 10 times faster on disk than Hadoop MapReduce.</p></li>
+<li><p>The reason is that Apache Spark processes data in-memory (RAM), while Hadoop
+MapReduce has to persist data back to the disk  after every Map or Reduce
+action.</p>
+<ul>
+<li><p>Does Spark use MapReduce or not?</p></li>
+<li><p>The answer to the question is yes — but only the idea, not the exact implementation.</p></li>
+<li><p>Example: Map - reduce - filter w/ RDDs</p></li>
+</ul>
+</li>
+<li><p>Running spark applications consist of two main components:</p>
+<ul>
+<li><p>Driver</p></li>
+<li><p>Executors</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/spark.png" /></p>
+<div class="section" id="sparksession">
+<h3>SparkSession<a class="headerlink" href="#sparksession" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Object that provides a point of entry to interact with underlying Spark functionality.</p></li>
+</ul>
+</div>
+<div class="section" id="job">
+<h3>Job<a class="headerlink" href="#job" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Parallel computation consisting of multiple tasks in response to a Spark action (e.g. collect, save, etc.).</p></li>
+</ul>
+</div>
+<div class="section" id="stage">
+<h3>Stage<a class="headerlink" href="#stage" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Each job is divided into smaller sets of tasks that spended on each other.
+Each stage, there will be many tasks.</p></li>
+<li><p>Spark will at best schedule a thread per task per core, and each task will
+process a distinct partition.</p></li>
+</ul>
+</div>
+<div class="section" id="task">
+<h3>Task<a class="headerlink" href="#task" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Single execution that will be sent to the Spark executors.</p></li>
+</ul>
+</div>
+<div class="section" id="dags">
+<h3>DAGs<a class="headerlink" href="#dags" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Spark execution plan</p>
+<ul>
+<li><p><strong>Jobs</strong>: each job is transformed into a DAG where each node could be a single or multiple Spark stages.</p></li>
+<li><p><strong>Stages</strong> - stages are created based on what operations can be performed serially or in parallel</p></li>
+<li><p><strong>Tasks</strong> - each stage is composed of tasks; each task is mapped to a
+single core and works on a single partition.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="driver-oom">
+<h3>Driver OOM<a class="headerlink" href="#driver-oom" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>In typical deployments, a driver is provisioned less memory than executors.</p></li>
+<li><p>Common causes of OOM is calling <code class="docutils literal notranslate"><span class="pre">collect</span></code> or <code class="docutils literal notranslate"><span class="pre">broadcast</span></code> relations to the remote executor.</p></li>
+<li><p>Easiest thing to do is reduce the number of partitions by using <code class="docutils literal notranslate"><span class="pre">coalesce</span></code>
+which avoids a full shuffle</p></li>
+<li><p>Can increase the driver memory</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="executor-oom">
+<h2>Executor OOM<a class="headerlink" href="#executor-oom" title="Permalink to this headline"></a></h2>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>High concurrency</p></li>
+<li><p>Inefficient queries</p></li>
+<li><p>Incorrect configuration</p></li>
+<li><p>How many tasks are executed in parallel on each executor will depend on the
+<code class="docutils literal notranslate"><span class="pre">spark.executor.cores</span></code> property.</p></li>
+<li><p>If this value is set to a higher value without due consideration of the
+memory required, executors may fail with OOM</p></li>
+<li><p>With more concurrency the overhead increase.</p></li>
+<li><p>One Solution is to increase <code class="docutils literal notranslate"><span class="pre">spark.executor.memory</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="rdd">
+<h2>RDD<a class="headerlink" href="#rdd" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Resilient Distributed Dataset</p></li>
+<li><p>Fault-tolerant collection of elements partitioned across the nodes of the cluster that can be operated on in parallel.</p></li>
+<li><p>Spark persists an RDD in memory, allowing it to be reused efficiently across
+parallel operations and automatically recover from  node failures.</p></li>
+</ul>
+<p><strong>RDDs support two types of operations:</strong></p>
+<ul class="simple">
+<li><p>Transformations</p></li>
+<li><p>Actions</p></li>
+</ul>
+<p><strong>Two ways to create RDDs:</strong></p>
+<ul class="simple">
+<li><p>Parallelizing an existing collection in your driver program</p></li>
+<li><p>Referencing a dataset in an external storage system</p></li>
+</ul>
+<p><strong>Disadvantage:</strong></p>
+<ul class="simple">
+<li><p>Being in-memory jvm objects, RDDs involve overhead of Garbage Collection and</p></li>
+<li><p>Java serialization which are expensive when data grows.</p></li>
+</ul>
+</div>
+<div class="section" id="dataframe-api">
+<h2>DataFrame API<a class="headerlink" href="#dataframe-api" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>creating DataFrame you can instruct Spark to create a certain number of partitions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> or <code class="docutils literal notranslate"><span class="pre">join</span></code> - Shuffle partitions are created during the shuffle stage.</p></li>
+<li><p>By default = 200. <code class="docutils literal notranslate"><span class="pre">Spark.sql.shuffle.partitions</span></code>
+<strong>Strategy:</strong></p></li>
+<li><p>If the cardinality of a column will be very high, do not use that column for partitioning.</p></li>
+<li><p><strong>Example:</strong></p>
+<ul>
+<li><p>If you partition by a column userId and if there can be 1M distinct user
+IDs, then that is a bad partitioning strategy.</p></li>
+<li><p>You can partition by a column if you expect data in that partition to be at least 1 GB.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="transformations">
+<h2>Transformations<a class="headerlink" href="#transformations" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Transform Spark DataFrame into a new DataFrame without altering the data (immutable).</p></li>
+<li><p>Lazy transformation - results are not computed immediately by recorded as a
+lineage (which is used later in the execution plan.</p></li>
+</ul>
+<p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">join</span></code>, <code class="docutils literal notranslate"><span class="pre">groupBy</span></code></p>
+<p><strong>coalesce</strong></p>
+<ul class="simple">
+<li><p>Decrease the number of partitions in the RDD to numPartitions.</p></li>
+<li><p>Useful for running operations more efficiently after filtering down a large dataset.</p></li>
+</ul>
+<p><strong>repartition</strong></p>
+<ul class="simple">
+<li><p>Reshuffle the data in the RDD randomly to create either more or fewer partitions and balance it across them.</p></li>
+<li><p>This always shuffles all data over the network.</p></li>
+</ul>
+</div>
+<div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A transformation is not invoked until an action is applied. Actions trigger the lazy executions.</p></li>
+<li><p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">show</span></code>, <code class="docutils literal notranslate"><span class="pre">take</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">collect</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="map-vs-flatmap">
+<h2>Map vs FlatMap<a class="headerlink" href="#map-vs-flatmap" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>map</strong>: It returns a new RDD by applying a function to each element of the RDD.</p>
+<ul>
+<li><p>Function in map can return only one item.</p></li>
+</ul>
+</li>
+<li><p><strong>flatMap</strong>: Similar to map, it returns a new RDD by applying a function to
+each element of the RDD, but output is flattened.</p>
+<ul>
+<li><p>Also, function in <code class="docutils literal notranslate"><span class="pre">flatMap</span></code> can return a list of elements (0 or more)</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="n">Output</span><span class="p">:[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">flatMap</span><span class="p">()</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:  notice the output is flattened out in a single list</p>
+</div>
+<div class="section" id="spark-sql-api">
+<h2>Spark SQL API<a class="headerlink" href="#spark-sql-api" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Spark SQL is a Spark module for structured data processing.</p></li>
+<li><p>ANSI-SQL2003</p></li>
+</ul>
+<p><strong>Catalyst Optimizer</strong></p>
+<ul class="simple">
+<li><p>Takes computation query and convert into an execution plan</p>
+<ul>
+<li><p>Analysis</p></li>
+<li><p>Logical Optimization</p></li>
+<li><p>Physical Planning</p></li>
+<li><p>Code Generation</p></li>
+</ul>
+</li>
+<li><p>Spark SQL takes advantage of the RDD model to support mid-query fault
+tolerance, letting it scale to large jobs too.</p></li>
+</ul>
+</div>
+<div class="section" id="dataset-api">
+<h2>DataSet API<a class="headerlink" href="#dataset-api" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Is a distributed collection of data.</p></li>
+<li><p>Python does not have the support for the Dataset API.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>DataFrame API<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Dataset organized into named columns. It is conceptually equivalent to a
+table in a relational database or a data frame in  R/- Python, but with
+richer optimizations under the hood and has a schema.</p></li>
+</ul>
+</div>
+<div class="section" id="cache">
+<h2>Cache<a class="headerlink" href="#cache" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Data is stored in memory.</p></li>
+<li><p>DataFrames can fractionally be cached but partitions cannot be fractionally cached.</p></li>
+</ul>
+<p><strong>When to Cache?</strong></p>
+<ul class="simple">
+<li><p>DataFrame is commonly used during ML training</p></li>
+<li><p>DataFrame commonly accessed for doing frequent transformations during ETL steps</p></li>
+</ul>
+</div>
+<div class="section" id="persist">
+<h2>Persist<a class="headerlink" href="#persist" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Gives you more control on how your data is cached. For example, memory only,
+disk on and then serialized or unserialized.</p></li>
+</ul>
+<p><strong>When to Persist?</strong></p>
+<ul class="simple">
+<li><p>DataFrame that are too big to fit in memory</p></li>
+<li><p>Inexpensive transformation on a DataFrame no requiring frequent use; regardless of size.</p></li>
+</ul>
+</div>
+<div class="section" id="shuffle">
+<h2>Shuffle<a class="headerlink" href="#shuffle" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Shuffle is re-distributing data so that it’s grouped differently across
+partitions. This involves copying data across executors</p></li>
+<li><p>A shuffle is where Spark reads from all the partitions to find all the values
+for all keys, and then bring together values   across partitions to compute
+the final result for each key</p></li>
+<li><p>Expensive operation since it involves disk I/O, data serialization, and network I/O</p></li>
+</ul>
+</div>
+<div class="section" id="serialization">
+<h2>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Process by which a typed object is encoded into a binary representation or
+format and then decoded from binary format into its  respective data typed
+object.</p></li>
+</ul>
+<p><strong>Task Not Serializable</strong></p>
+<ul class="simple">
+<li><p>If you initialize a variable on the driver and try to run it on the worker nodes, then “Task Not Serializable Exception” is raised.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Transformations</span></code> in Spark like ‘map’ are executed on the worker nodes and not in the driver node.</p>
+<ul>
+<li><p>To avoid having this error throw, initialize an instance of the class
+inside of a lambda function that is being passed to the  map transformation</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="garbage-collection">
+<h2>Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Java programs perform automatic memory management</p></li>
+<li><p>In Java, GC is the process to reclaim garbage, or memory occupied by objects that are no longer in use by the program.</p>
+<ul>
+<li><p>Serial Garbage Collector.</p></li>
+<li><p>Parallel Garbage Collector.</p></li>
+<li><p>CMS Garbage Collector</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Goal</strong>:</p>
+<ul class="simple">
+<li><p>The goal of GC tuning in Spark is to ensure that only long-lived RDDs are
+stored in the old generation and that the young  generation is sufficiently
+sized to store short-lived objects.</p></li>
+<li><p><strong>Link</strong>: https://spark.apache.org/docs/latest/tuning.html#garbage-collection-tuning</p></li>
+</ul>
+<p><strong>Process</strong></p>
+<ul class="simple">
+<li><p>Java Heap space is divided in to two regions Young and Old.</p></li>
+<li><p>The Young generation is meant to hold short-lived objects</p></li>
+<li><p>The Old generation is intended for objects with longer lifetimes.</p></li>
+<li><p>The Young generation is further divided into three regions:</p>
+<ul>
+<li><p>Eden</p></li>
+<li><p>Survivor1</p></li>
+<li><p>Survivor2</p></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p><strong>A simplified description of the garbage collection procedure:</strong></p>
+<ul class="simple">
+<li><p>When Eden is full, a minor GC is run on Eden and objects that are alive from
+Eden and Survivor1 are copied to Survivor2.</p></li>
+<li><p>The Survivor regions are swapped.</p></li>
+<li><p>If an object is old enough or Survivor2 is full, it is moved to Old.</p></li>
+<li><p>Finally, when Old is close to full, a full GC is invoked.</p></li>
+</ul>
+</div>
+<div class="section" id="structured-streaming">
+<h2>Structured Streaming<a class="headerlink" href="#structured-streaming" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The objective is to treat a live data stream as a table that is being continuously appended.</p></li>
+<li><p>This leads to a new stream processing model that is very similar to a batch processing model.</p></li>
+<li><p>You will express your streaming computation as standard batch-like query as
+on a static table, and Spark runs it as an  incremental query on the
+unbounded input table.</p></li>
+</ul>
+</div>
+<div class="section" id="broadcast">
+<h2>Broadcast<a class="headerlink" href="#broadcast" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Broadcast variables allow you to keep a read-only variable cached on each
+machine rather than shipping a copy of it with tasks.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Serialization<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Serialize an object means to convert its state to a byte stream so that the
+byte stream can be reverted back into a copy of the object.</p></li>
+<li><p>Serialization is used for performance tuning on Apache Spark.</p></li>
+<li><p>All data that is sent over the network or written to the disk or persisted in the memory should be serialized.</p></li>
+<li><p>Serialization plays an important role in costly operations.</p></li>
+</ul>
+</div>
+<div class="section" id="map-shuffle">
+<h2>Map/Shuffle<a class="headerlink" href="#map-shuffle" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Has heavy I/O activity for reading/writing from disk: Recommendations for handling bottleneck: <code class="docutils literal notranslate"><span class="pre">Spark.driver.memory</span></code></p></li>
+<li><p>Increase memory if expect larger data from <code class="docutils literal notranslate"><span class="pre">collect</span></code>: <code class="docutils literal notranslate"><span class="pre">Spark.shuffle.file.buffer</span></code></p></li>
+<li><p>Allows Spark more buffering before writing final map results to disk.</p></li>
+</ul>
+</div>
+<div class="section" id="joins">
+<h2>Joins<a class="headerlink" href="#joins" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Broadcast Join - less shuffling required.</p></li>
+<li><p>Spark uses Broadcast join by default if the data is less than <code class="docutils literal notranslate"><span class="pre">10MB</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="partitions">
+<h2>Partitions<a class="headerlink" href="#partitions" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Maximizing Spark Parallelism:</strong></p>
+<ul>
+<li><p>For data management, partition is a way to arrange data into a subset of
+configurable and readable chunks or blocks of data on disk.</p></li>
+</ul>
+</li>
+<li><p><strong>Ideal</strong>: is at least as many partitions as there are cores on the executor.
+If there are more partitions than there cores on each executor, then all the
+cores are kept busy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code> default memory = 128 MB. If you decrease too small, “small file
+problem” increases I/O and causes performance degradation.</p></li>
+</ul>
+</div>
+<div class="section" id="spark-ml">
+<h2>Spark ML<a class="headerlink" href="#spark-ml" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Transformer</strong>: accepts dataframe as an input and returns a new dataframe with
+one or more columns appended to it. - simply  applies rule-based
+transformations.</p></li>
+<li><p><strong>Estimator</strong>: learns or “fits” parameters in a dataframe by calling the .fit
+method and returns a Model, which is a transformer</p></li>
+<li><p><strong>Pipeline</strong>: organizes a series of transformers and estimators into a single
+model. Pipelines are estimators, and the output of  the <code class="docutils literal notranslate"><span class="pre">pipeline.fit()</span> </code>returns a PipelineModel, a transformer.</p></li>
+<li><p><strong>One-hot encoding</strong></p>
+<ul>
+<li><p>Convert categorical values into numeric values</p></li>
+<li><p>After performing StringIndexer - OneHotEncoder mades a column of category
+indices to a column of binary vectors.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
