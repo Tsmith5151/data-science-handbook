@@ -1,48 +1,77 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transformers &mdash; Data Science Hand.. 0.0.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-</head>
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Data Science Hand..
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformers &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Transformers</a><ul>
-<li><a class="reference internal" href="#self-attention">Self-Attention</a><ul>
 <li><a class="reference internal" href="#why-transformers">Why Transformers?</a></li>
+<li><a class="reference internal" href="#attention">Attention</a><ul>
+<li><a class="reference internal" href="#attention-mechanism">Attention Mechanism</a></li>
+<li><a class="reference internal" href="#calculate-self-attention">Calculate Self-Attention</a></li>
 <li><a class="reference internal" href="#encoders">Encoders</a></li>
 <li><a class="reference internal" href="#decoders">Decoders</a></li>
-<li><a class="reference internal" href="#transformer-architecture">Transformer Architecture</a></li>
-<li><a class="reference internal" href="#calculate-self-attention">Calculate Self-Attention</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#bert">BERT</a><ul>
@@ -57,40 +86,50 @@
 </ul>
 </li>
 </ul>
-</div>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
         </div>
-      </div>
-    </nav>
+    </div>
+  </div>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Data Science Hand..</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Transformers</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/book/nlp/transformers.md.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
   <div class="section" id="transformers">
 <h1>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<div class="section" id="self-attention">
-<h2>Self-Attention<a class="headerlink" href="#self-attention" title="Permalink to this headline"></a></h2>
-<div class="section" id="why-transformers">
-<h3>Why Transformers?<a class="headerlink" href="#why-transformers" title="Permalink to this headline"></a></h3>
+<p><strong>Overview</strong></p>
 <ul class="simple">
-<li><p>paper: <em>Attention Is All You Need - 2017</em></p></li>
+<li><p>Transformers compute <code class="docutils literal notranslate"><span class="pre">vector-space</span> <span class="pre">representations</span></code> of natural language that
+are suitable for use in deep learning models.</p></li>
+<li><p>Based solely on attention mechanisms to compute representations of its input
+and output without using sequence aligned RNNs or convolutions.</p></li>
+<li><p>The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU</p></li>
+<li><p>Still lacks contextual understanding.</p></li>
+</ul>
+<div class="section" id="why-transformers">
+<h2>Why Transformers?<a class="headerlink" href="#why-transformers" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>paper</strong>: <em>Attention Is All You Need - 2017</em></p></li>
 <li><p>Attention allows the model to focus on the relevant parts of the input
 sequence as needed.</p></li>
 <li><p>Self-attention is the method the <code class="docutils literal notranslate"><span class="pre">Transformer</span></code> uses to bake the
@@ -100,15 +139,6 @@ processing.</p></li>
 having an attention mechanism to create an efficient way of <code class="docutils literal notranslate"><span class="pre">focusing</span></code> on the
 important word in each sentence.</p></li>
 <li><p>This is the problem the Transformer network addressed by using the attention mechanism.</p></li>
-</ul>
-<p><strong>Overview</strong></p>
-<ul class="simple">
-<li><p>Transformers compute <code class="docutils literal notranslate"><span class="pre">vector-space</span> <span class="pre">representations</span></code> of natural language that
-are suitable for use in deep learning models.</p></li>
-<li><p>Based solely on attention mechanisms to compute representations of its input
-and output without using sequence aligned RNNs or convolutions.</p></li>
-<li><p>The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU</p></li>
-<li><p>Still lacks contextual understanding.</p></li>
 </ul>
 <p><strong>Structure</strong></p>
 <ul class="simple">
@@ -125,6 +155,7 @@ version of the input text (Stack of 6 Decoders).</p></li>
 </ul>
 </li>
 </ul>
+<p><img alt="image" src="../../_images/transformer.png" /></p>
 <p><strong>Notes:</strong></p>
 <ul class="simple">
 <li><p>Neither the encoder nor the decoder used any recurrence or looping, like traditional RNNs.</p></li>
@@ -135,8 +166,58 @@ Transformer passes the input through multiple attention layers.</p></li>
 i.e. looking at different parts of the sentence and trying to discover more
 semantic or syntactic information.</p></li>
 <li><p>This is important in the context of the vanishing gradient problem.</p></li>
-<li><p><strong>Reference</strong>: http://jalammar.github.io/illustrated-bert/</p></li>
+<li><p><a class="reference external" href="http://jalammar.github.io/illustrated-bert/">Reference**</a></p></li>
 </ul>
+</div>
+<div class="section" id="attention">
+<h2>Attention<a class="headerlink" href="#attention" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/attention.png" /></p>
+<div class="section" id="attention-mechanism">
+<h3>Attention Mechanism<a class="headerlink" href="#attention-mechanism" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>Query</strong>: is the input word vector for the token.</p></li>
+<li><p><strong>Keys</strong>: keys are the input word vectors for all the other tokens, and for
+the query token as well.</p></li>
+<li><p><strong>Values</strong>: The values are the values stored in they dictionary for each
+token (e.g. key).</p></li>
+</ul>
+</div>
+<div class="section" id="calculate-self-attention">
+<h3>Calculate Self-Attention<a class="headerlink" href="#calculate-self-attention" title="Permalink to this headline"></a></h3>
+<ol class="simple">
+<li><p>For each word, create a <code class="docutils literal notranslate"><span class="pre">Query</span></code> vector, a <code class="docutils literal notranslate"><span class="pre">Key</span></code> vector, and a <code class="docutils literal notranslate"><span class="pre">Value</span></code> vector and
+are created by multiplying the embedding by three matrices that we trained
+during the training process.</p></li>
+<li><p>Calculate a score to determine how much focus to place on other parts of the
+input sentence as we encode a word at a certain position.</p>
+<ul class="simple">
+<li><p>The score is calculated by taking the <code class="docutils literal notranslate"><span class="pre">dot</span> <span class="pre">product</span></code> of the query vector with
+the key vector; the result is a scaler;</p>
+<ul>
+<li><p>This value provides us an <strong>attention score</strong> and measures how relevant the
+key is to a query. The output is a <strong>weighted sum</strong>.</p></li>
+</ul>
+</li>
+<li><p>So if we’re processing the self-attention for the word in position #1, the
+first score would be the dot product of <code class="docutils literal notranslate"><span class="pre">q1</span></code> and <code class="docutils literal notranslate"><span class="pre">k1</span></code>.</p></li>
+<li><p>The second score would be the dot product of <code class="docutils literal notranslate"><span class="pre">q1</span></code> and <code class="docutils literal notranslate"><span class="pre">k2</span></code> and so on…</p></li>
+</ul>
+</li>
+<li><p>Divide scores by 8; having more stable gradients (paper)</p></li>
+<li><p>Apply <code class="docutils literal notranslate"><span class="pre">softmax</span></code> to normalize the scores so they’re all positive and add up to 1.</p>
+<ul class="simple">
+<li><p>Determines how much each word will be expressed at this position (e.g. first
+word, etc.)</p></li>
+</ul>
+</li>
+<li><p>Multiply each value vector by the <code class="docutils literal notranslate"><span class="pre">softmax</span></code> score; this helps drown-out
+irrelevant words when multiplying by small values.</p></li>
+<li><p>Sum up the weighted value vectors, which produces the output of the
+self-attention layer</p></li>
+<li><p>Resulting vector is one we can send along to the feed-forward neural
+network.</p></li>
+</ol>
+<p><a class="reference external" href="https://jalammar.github.io/illustrated-transformer/">Reference</a></p>
 </div>
 <div class="section" id="encoders">
 <h3>Encoders<a class="headerlink" href="#encoders" title="Permalink to this headline"></a></h3>
@@ -166,32 +247,6 @@ associated with it is produced as the output for this time step.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/decoder.png" /></p>
 </div>
-<div class="section" id="transformer-architecture">
-<h3>Transformer Architecture<a class="headerlink" href="#transformer-architecture" title="Permalink to this headline"></a></h3>
-<p><img alt="image" src="../../_images/bert1.png" /></p>
-</div>
-<div class="section" id="calculate-self-attention">
-<h3>Calculate Self-Attention<a class="headerlink" href="#calculate-self-attention" title="Permalink to this headline"></a></h3>
-<ol class="simple">
-<li><p>For each word, create a Query vector, a Key vector, and a Value vector and
-are created by multiplying the embedding by three matrices that we trained
-during the training process</p></li>
-<li><p>Calculate a score to determine how much focus to place on other parts of the
-input sentence as we encode a word at a certain position.<br />The score is calculated by taking the dot product of the query vector with
-the key vector<br />So if we’re processing the self-attention for the word in position #1, the
-first score would be the dot product of q1 and k1.<br />The second score would be the dot product of q1 and k2 and so on</p></li>
-<li><p>Divide scores by 8; having more stable gradients (paper)</p></li>
-<li><p>Apply softmax to normalize the scores so they’re all positive and add up to 1.
-Determines how much each word will be expressed at this position (e.g. first
-word, etc.)</p></li>
-<li><p>Multiply each value vector by the softmax score; this helps drown-out
-irrelevant words when multiplying by small values.</p></li>
-<li><p>Sum up the weighted value vectors, which produces the output of the
-self-attention layer</p></li>
-<li><p>Resulting vector is one we can send along to the feed-forward neural
-network.</p></li>
-</ol>
-</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="bert">
@@ -202,7 +257,8 @@ process each token of  input text in the full context of all tokens before
 and after, hence the name: <code class="docutils literal notranslate"><span class="pre">Bidirectional</span> <span class="pre">Encoder</span> <span class="pre">Representations</span> <span class="pre">from</span> <span class="pre">Transformers</span></code>.</p></li>
 <li><p>BERT models are usually pre-trained on a large corpus of text, then
 fine-tuned for specific tasks.</p></li>
-<li><p><a class="reference external" href="https://www.tensorflow.org/text/tutorials/classify_text_with_bert">Reference</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/text/tutorials/classify_text_with_bert">Tensorflow Example Reference</a></p></li>
+<li><p><a class="reference external" href="https://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/">Visual Guide to Using BERT Reference</a></p></li>
 </ul>
 <div class="section" id="bert-tasks">
 <h3>BERT Tasks<a class="headerlink" href="#bert-tasks" title="Permalink to this headline"></a></h3>
@@ -338,31 +394,28 @@ information.</p></li>
 </div>
 
 
-           </div>
-          </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Trace Smith, Damon Resnick.</p>
+    </div>
+      
   </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/nlp/transformers.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+  </body>
 </html>

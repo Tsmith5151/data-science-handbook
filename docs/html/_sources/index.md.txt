@@ -1,20 +1,80 @@
 # Data Science Handbook 
 _________
 
-#### Table of Contents
-* [Big Data](book/big-data/index.md)
-* [Databases](book/databases/index.md)
-* [Data Preprocessing](book/data-preprocessing/index.md)
-* [Deep Learning](book/deep-learning/index.md)
-* [Machine Learning](book/machine-learning/index.md)
-* [ML Engineering](book/ml-engineering/index.md)
-* [Natural Language Processing](book/nlp/index.md)
-* [Recommendation Engines](book/recommendation-engines/index.md)
-* [Software Engineering](book/software-engineering/index.md)
-* [Statistics](book/statistics/index.md)
+###### Databases
+* [Data Stores](book/databases/datastores.md)
+* [Data Types](book/databases/datatypes.md)
+* [Distributed Storage](book/databases/distributed.md)
+* [In-Memory Data Stores](book/databases/inmemory.md)
+* [NoSQL](book/databases/nosql.md)
+* [Relational Databases](book/databases/relational.md)
 
-________
-#### Notes
+###### Data Preprocessing
+* [Data Prep](book/data-preprocessing/prep.md)
+* [Dimensionality Reduction](book/data-preprocessing/dimensionality-reduction.md)
+  
+###### Big Data
+* [Apache Spark](book/big-data/spark.md)
+* [Hadoop](book/big-data/hadoop.md)
+
+###### Deep Learning
+* [Concepts](book/deep-learning/concepts.md)
+* [Autoencoders](book/deep-learning/autoencoders.md)
+* [Convolution Neural Networks](book/deep-learning/cnn.md)
+* [Object Detection](book/deep-learning/objectdetection.md)
+* [Recurrent Neural Networks](book/deep-learning/rnn.md)
+* [Reinforcement Learning](book/deep-learning/rl.md)
+
+###### Machine Learning
+* [Concepts](book/machine-learning/concepts.md)
+* [Algorithms](book/machine-learning/algorithms.md)
+* [Clustering](book/machine-learning/clustering.md)
+* [Feature Selection](book/machine-learning/feature-selection.md)
+* [Metrics](book/machine-learning/metrics.md)
+* [Monitoring](book/machine-learning/monitor.md)
+
+###### ML Engineering 
+* [Docker](book/ml-engineering/docker.md)
+* [Feature Store](book/ml-engineering/featurestore.md)
+* [Infrastructure](book/ml-engineering/infrastructure.md)
+* [Kubernetes](book/ml-engineering/kubernetes.md)
+* [Networking](book/ml-engineering/networking.md)
+
+###### Natural Language Processing
+* [Concepts](book/nlp/concepts.md)
+* [Embeddings](book/nlp/embeddings.md)
+* [Sequence Modeling](book/nlp/sequence.md)
+* [Topic Modeling](book/nlp/topicmodeling.md)
+* [Transformers](book/nlp/transformers.md) 
+
+###### Recommendation Engines 
+* [Algorithms](book/recommendation-engines/algorithms.md)
+* [Approximate Nearest Neighbors](book/recommendation-engines/ann.md)
+* [Deep Learning](book/recommendation-engines/dnn.md)
+* [Metrics](book/recommendation-engines/metrics.md)
+
+###### Software Engineering
+* [Data Structures](book/software-engineering/structures.md) 
+* [DevOps](book/software-engineering/devops.md) 
+* [Leetcode](book/software-engineering/code.md) 
+
+###### Statistics 
+* [Statistics](book/statistics/concepts.md)
+
+<br>
+</br>
+
+**Note**: 
 - This site is actively being updated with resources and reference. Stay tuned
   for more updated. Also, please feel free to contribute to the project by
-  submitting a pull-request with any edits or addtions. 
+  submitting a pull-request with any edits or additions. 
+
+
+
+
+
+
+
+
+
+

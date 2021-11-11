@@ -2,10 +2,8 @@
 ______
 
 ## Ecosystem
-- The Hadoop ecosystem include HDFS, Hive, Pig, YARN, MapReduce, Spark, HBase, Oozie, Sqoop, Zookeeper, etc.  
-HDFS
-- Hadoop Distributed File System (HDFS), is one of the largest Apache projects
-  and primary storage system of Hadoop.  
+- The Hadoop ecosystem include HDFS, Hive, Pig, YARN, MapReduce, Spark, HBase, Oozie, Sqoop, Zookeeper, etc. HDFS
+- Hadoop Distributed File System (HDFS), is one of the largest Apache projects and primary storage system of Hadoop.  
 - It employs a NameNode and DataNode architecture. 
 - It is a distributed file system able to store large files running over the
   cluster of commodity hardware. 

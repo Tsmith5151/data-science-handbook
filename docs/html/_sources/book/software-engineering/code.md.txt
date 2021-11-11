@@ -1,10 +1,16 @@
-# Code Reviews
+# Coding Notes
 _____
 
+### Leetcode
+
+- Link to [leetcode](https://leetcode.com/problemset/all/) problems.
+- Link to a collection of solved [leetcode](https://github.com/Tsmith5151/coding-challenges/tree/master/scripts) problems.
+  
+
+### Code Review
 [Reference](https://www.youtube.com/watch?v=1Ge__2Yx_XQ)
 
 **Three tips when submitting code review:**
-
 
 
 - Keep the amount of code being reviewed as minimal as possible. Takes a lot of

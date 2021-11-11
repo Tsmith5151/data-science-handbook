@@ -1,24 +1,26 @@
-# Master + Slave
+# Distributed Databases 
 ______
 
+### Master + Slave
 - Master-slave is a way to optimize the I/O in your application other than using caching. 
 - The master database serves as the keeper of most current information.
 - The true data is kept at the master database, thus writing only occurs there.
 - Reading is only done in the slave. 
 - Master is the true data keeper while a slave is a replication of master.
 - This architecture serves the purpose of safeguarding site reliability. 
-- If a site receives a lot of traffic and the only available database is one master, it will be overloaded with reading and writing requests. 
+- If a site receives a lot of traffic and the only available database is one
+  master, it will be overloaded with reading and writing requests. 
 - Making the entire system slow for everyone on the site.
 
 ![image](../assets/masterslave.png)
 ![image](../assets/masterslave2.png)
 
-
 ### Sharding 
 - Is the process of making partitions of data in a database or search engine, such that the data is divided into various smaller distinct chunks, or shards.
 - Sharding results in less read and write traffic, less replication, and more cache hits.
 - Index size is also reduced, which generally improves performance with faster queries. 
-- Common approach is performing horizontal sharding. For example, you can take a tweets table and shard by User ID (Number of User Ids  % mod Number of Database Master Servers) 
+- Common approach is performing horizontal sharding. 
+- For example, you can take a tweets table and shard by User ID (Number of User Ids  % mod Number of Database Master Servers) 
 
 ![image](../assets/sharding.png)
 
@@ -69,9 +71,9 @@ Sharding adds more hardware and additional complexity.
 - Stackoverflow Answer on Lucene
 https://stackoverflow.com/questions/2602253/how-does-lucene-index-documents
 - In reality of course things are more complicated:
-  - Lucene may skip some words based on the particular Analyzer given;
-    words can be preprocessed using stemming algorithm to reduce flexia of the
-    language;
+- Lucene may skip some words based on the particular Analyzer given;
+  words can be preprocessed using stemming algorithm to reduce flexia of the
+  language;
 - It's important to understand though, that the Lucene index is append only. 
 - In some point in time the application decides to commit (publish) all the changes in the index. Lucene finishes all service operations with index and closes it, so it's available for searching. 
 - After commit index basically immutable. 
