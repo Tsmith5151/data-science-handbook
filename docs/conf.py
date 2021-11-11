@@ -39,13 +39,11 @@ extensions = [
     'recommonmark',
     'sphinx_markdown_tables',
     'sphinx_toolbox.pre_commit',
+    'sphinx_rtd_theme',
 ]
 
 # The master toctree document.
 master_doc = "index"
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -54,28 +52,70 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ['_templates']
+
+html_theme_options = {
+    # Navigation bar title. 
+    'navbar_title': "Handbook",
+
+    # Tab name for entire site.
+    'navbar_site_name': "Site",
+
+    # Render the next and previous page links in navbar.
+    'navbar_sidebarrel': False,
+
+    # Render the current pages TOC in the navbar.
+    'navbar_pagenav': True,
+
+    # Tab name for the current pages TOC. 
+    'navbar_pagenav_name': "Section",
+
+    # Global TOC depth for "site" navbar tab.
+    # Switching to -1 shows all levels.
+    'globaltoc_depth': 2,
+
+    # Include hidden TOCs in Site navbar?
+    # Values: "true" (default) or "false"
+    'globaltoc_includehidden': "true",
+
+    # HTML navbar class (Default: "navbar") to attach to <div> element.
+    # For black navbar, do "navbar navbar-inverse"
+    'navbar_class': "navbar navbar-inverse",
+
+    # Fix navigation bar to top of page?
+    # Values: "true" (default) or "false"
+    'navbar_fixed_top': "true",
+
+    # Location of link to source.
+    # Options are "nav" (default), "footer" or anything else to exclude.
+    'source_link_position': "footer",
+
+    # Bootswatch (http://bootswatch.com/) theme.
+    # - Bootstrap 2: https://bootswatch.com/2
+    # - Bootstrap 3: https://bootswatch.com/3
+    'bootswatch_theme': "cosmo",
+
+    # Choose Bootstrap version.
+    # Values: "3" (default) or "2" (in quotes)
+    'bootstrap_version': "3",
+}
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'bootstrap'
+html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'sphinx'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = [
+    'css/style.css',
+]
 
 source_suffix = [".rst", ".md"]
-
-html_theme_options = {
-    'logo_only': True,
-    'analytics_anonymize_ip': False,
-    'display_version': True,
-    'prev_next_buttons_location': 'bottom',
-    # Toc options
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'navigation_depth': -1,
-    'includehidden': True,
-    'titles_only': False,
-}

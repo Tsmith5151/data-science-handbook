@@ -1,16 +1,17 @@
 # NLP Concepts 
 ______
 
-## Text Preprocessing
+### Text Preprocessing
 
-Preprocessing Steps:
+**Preprocessing Steps:**
 - Remove stopwords and extra whitespaces 
+- Normalize text to lowercase
 - Remove punctuation
 - **Lemmatization**: converting a word to its base form (e.g. caring to care)
   - Lemmatization considers the context and converts the word to its meaningful base for
-- **Stemming**: removes the last few characters, often leading to incorrect mea
+- **Stemming**: removes the last few characters, often leading to incorrect meaning.
 
-## Tokenization
+### Tokenization
 - Vocabulary refers to the set of unique tokens in the corpus.
 - Vocabulary can be constructed by considering each unique token in the corpus or by considering the top K Frequently Occurring Words.
   - vocab = sorted(set(text))
@@ -18,7 +19,7 @@ Preprocessing Steps:
   - int_to_vocab = dict(enumerate(vocab))
   - encoded = np.array([vocab_to_int[c] for c in text], dtype=np.int32)Text Feature Extraction
  
-## TFIDF
+### TFIDF
 - Term Frequency — Inverse Document Frequency”. 
 - Rare terms are more informative than frequent terms
 - We want to give higher weight to rare terms. 
@@ -53,10 +54,10 @@ denlist = dense.tolist()
 df = pd.DataFrame(denselist, columns=feature_names)
 ```
 
-### Reference
+**Reference**
 [Christopher Manning Lectures | Stanford University](https://www.youtube.com/watch?v=pxYkuWEOKjc)
 
-## Bag of Words
+### Bag of Words
 
 - In bag of words representation the length of the vector is determined by the number of unique words in our corpus.
 **Disadvantage:**
@@ -64,7 +65,7 @@ df = pd.DataFrame(denselist, columns=feature_names)
 - Bag of words does not take into consideration the order in which they appear.
 - Sparse Matrix
 
-## Skip Grams
+### Skip Grams
 - Train the neural network to do the following. 
 - Given a specific word in the middle of a sentence (the input word), look at the words nearby and pick one at random. 
 - The network is going to tell us the probability for every word in our vocabulary of being the “nearby word” that we chose.
@@ -75,7 +76,7 @@ df = pd.DataFrame(denselist, columns=feature_names)
   we want to represent the current word present at the input layer.
 
 
-## Named Entity Recognition
+### Named Entity Recognition
 - Named entity recognition (NER) seeks to locate and classify named entities in text into predefined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.
 - The idea of NER is to tag a set of words in a sequence with a label representing the kind of entity the word belongs to.
 

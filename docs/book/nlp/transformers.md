@@ -1,10 +1,16 @@
 # Transformers
 _____
 
-## Self-Attention 
+**Overview**
+- Transformers compute `vector-space representations` of natural language that
+  are suitable for use in deep learning models.  
+- Based solely on attention mechanisms to compute representations of its input
+  and output without using sequence aligned RNNs or convolutions.  
+- The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU
+- Still lacks contextual understanding.  
 
 ### Why Transformers?
-- paper: *Attention Is All You Need - 2017*
+- **paper**: *Attention Is All You Need - 2017*
 - Attention allows the model to focus on the relevant parts of the input
   sequence as needed.  
 - Self-attention is the method the `Transformer` uses to bake the
@@ -14,14 +20,6 @@ _____
   having an attention mechanism to create an efficient way of `focusing` on the
   important word in each sentence.  
 - This is the problem the Transformer network addressed by using the attention mechanism.
-
-**Overview**
-- Transformers compute `vector-space representations` of natural language that
-  are suitable for use in deep learning models.  
-- Based solely on attention mechanisms to compute representations of its input
-  and output without using sequence aligned RNNs or convolutions.  
-- The benefit of the transformer architecture is that it helps the model to retain infinitely long sequences that were not possible from the traditional RNNs, LSTMs, and GRU
-- Still lacks contextual understanding.  
 
 **Structure**
 - `Attention is all you need` paper used attention to improve the performance
@@ -34,6 +32,8 @@ _____
     and then turns that embedding back into a text output, i.e. the translated
     version of the input text (Stack of 6 Decoders). 
 
+![image](../assets/transformer.png)
+
 **Notes:**
 - Neither the encoder nor the decoder used any recurrence or looping, like traditional RNNs. 
 - Instead, they used layers of `attention` through which the information passes
@@ -43,8 +43,45 @@ _____
   i.e. looking at different parts of the sentence and trying to discover more
   semantic or syntactic information.  
 - This is important in the context of the vanishing gradient problem.
-- **Reference**: http://jalammar.github.io/illustrated-bert/
+- [Reference**](http://jalammar.github.io/illustrated-bert/)
 
+## Attention
+
+![image](../assets/attention.png)
+
+##### Attention Mechanism 
+
+- **Query**: is the input word vector for the token. 
+- **Keys**: keys are the input word vectors for all the other tokens, and for
+  the query token as well. 
+- **Values**: The values are the values stored in they dictionary for each
+  token (e.g. key). 
+
+##### Calculate Self-Attention 
+1. For each word, create a `Query` vector, a `Key` vector, and a `Value` vector and
+   are created by multiplying the embedding by three matrices that we trained
+   during the training process.
+2. Calculate a score to determine how much focus to place on other parts of the
+   input sentence as we encode a word at a certain position.  
+   - The score is calculated by taking the `dot product` of the query vector with
+     the key vector; the result is a scaler; 
+     - This value provides us an **attention score** and measures how relevant the
+       key is to a query. The output is a **weighted sum**. 
+   - So if we’re processing the self-attention for the word in position #1, the
+   first score would be the dot product of `q1` and `k1`.  
+   - The second score would be the dot product of `q1` and `k2` and so on...
+3. Divide scores by 8; having more stable gradients (paper) 
+4. Apply `softmax` to normalize the scores so they’re all positive and add up to 1.
+   - Determines how much each word will be expressed at this position (e.g. first
+   word, etc.) 
+5. Multiply each value vector by the `softmax` score; this helps drown-out
+   irrelevant words when multiplying by small values. 
+6. Sum up the weighted value vectors, which produces the output of the
+   self-attention layer  
+7. Resulting vector is one we can send along to the feed-forward neural
+   network. 
+
+[Reference](https://jalammar.github.io/illustrated-transformer/)
 ### Encoders
 - The encoders are all identical in structure (yet they do not share weights).
   Each one is broken down into two sublayers: self-attention and feed-forward  
@@ -69,32 +106,6 @@ _____
 
 ![image](../assets/decoder.png)
 
-### Transformer Architecture
-
-![image](../assets/bert1.png)
-
-### Calculate Self-Attention 
-1. For each word, create a Query vector, a Key vector, and a Value vector and
-   are created by multiplying the embedding by three matrices that we trained
-   during the training process
-2. Calculate a score to determine how much focus to place on other parts of the
-   input sentence as we encode a word at a certain position.  
-   The score is calculated by taking the dot product of the query vector with
-   the key vector  
-   So if we’re processing the self-attention for the word in position #1, the
-   first score would be the dot product of q1 and k1.  
-The second score would be the dot product of q1 and k2 and so on
-3. Divide scores by 8; having more stable gradients (paper) 
-4. Apply softmax to normalize the scores so they’re all positive and add up to 1.
-   Determines how much each word will be expressed at this position (e.g. first
-   word, etc.) 
-5. Multiply each value vector by the softmax score; this helps drown-out
-   irrelevant words when multiplying by small values. 
-6. Sum up the weighted value vectors, which produces the output of the
-   self-attention layer  
-7. Resulting vector is one we can send along to the feed-forward neural
-   network. 
-
 ______
 
 ##  BERT
@@ -105,7 +116,9 @@ ______
   Transformers`.
 - BERT models are usually pre-trained on a large corpus of text, then
   fine-tuned for specific tasks. 
-- [Reference](https://www.tensorflow.org/text/tutorials/classify_text_with_bert)
+- [Tensorflow Example Reference](https://www.tensorflow.org/text/tutorials/classify_text_with_bert)
+- [Visual Guide to Using BERT Reference](https://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
+  
 
 #### BERT Tasks
 - Question answering

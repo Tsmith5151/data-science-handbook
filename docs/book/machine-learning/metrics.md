@@ -3,7 +3,7 @@ __________
 
 # Regression 
 
-## R-Squared
+### R-Squared
 - Statistical measure of fit that indicates how much variation of a dependent
   variable is explained by  the independent variable(s) in a regression model.
 
@@ -17,7 +17,7 @@ __________
   Leads to overfitting and  produces misleadingly high R-squared values and a
   lessened ability to make  predictions.
 
-## Adjusted R-Squared
+### Adjusted R-Squared
 - Modified version of R-squared that has been adjusted for the number of
   predictors in the model.  
 - Increases only if the new term improves the model more than would be expected
@@ -26,7 +26,7 @@ __________
 - The adjusted R-squared can be negative, but it’s usually not.  
 - It is always lower than the R-squared.
 
-## Root Mean Squared Error 
+### Root Mean Squared Error 
 - The square root of the variance of the residuals. It indicates the absolute
   fit of the model to the  data–how close the observed data points are to the
   model’s predicted values. 
@@ -40,7 +40,7 @@ __________
   it is the most important criterion for fit if the main purpose of the model
   is prediction.
  
-## Mean Absolute Error 
+### Mean Absolute Error 
 - MAE is not identical to root-mean square error (RMSE), although some
 researchers report and interpret it that way. 
 - MAE is conceptually simpler and also easier to interpret than RMSE: it is
@@ -48,9 +48,10 @@ researchers report and interpret it that way.
   point in a scatter plot and the Y=X line.
 - In other words, MAE is the average absolute difference between X and Y.
 
+______
 # Classification 
 
-## Accuracy
+### Accuracy
 - Accuracy = (TP+TN)/(TP+FP+FN+TN)
 - Accuracy is a valid choice of evaluation for classification problems which
   are well balanced and not  skewed or No class imbalance.
@@ -59,19 +60,19 @@ researchers report and interpret it that way.
   an asteroid will hit the earth? Just say No all the time. And you will be 99%
   accurate. 
 
-## Precision
+### Precision
 - `Positive Predictive Rate`
 - Precision = (TP)/(TP+FP)
 - What proportion of predicted Positives is truly Positive? 
 - Precision is a valid choice of evaluation metric when we want to be very sure
   of our prediction 
 
-## Recall
+### Recall
 - `True Positives` or `Sensitivity`
 - These are cases in which mode predicted True and label is True
 - **Example:** When the label is True, how often does the model predict True?
 
-## F1 Score
+### F1 Score
 - Weighted average of the recall and precision
 - F1 score sort of maintains a balance between the precision and recall for
   your classifier.  
@@ -82,20 +83,20 @@ researchers report and interpret it that way.
   you also want to capture as many criminals (Recall) as possible. The F1 score
   manages this tradeoff.
 
-## Specificity
+### Specificity
 - `True negative` = (1 - False Negative Rate)
 - Model predicted no and label is False. 
 - **Example:** When the label is False, how often does the model predict False
 
-## False positives 
+### False positives 
 - `Type 1 Error`
 - **Example:** Model predicted yes, but the patient didn't actually have the disease.
 
-## False negatives 
+### False negatives 
 - `Type II Error`
 - **Example:** Model predicted no, but the patient actually did have the disease. 
 
-## AUC Score
+### AUC Score
 - AUC measures the entire two-dimensional area underneath the entire ROC curve
   ( TPR and FPR)  
 - It tells how much a model is capable of distinguishing between classes. 
