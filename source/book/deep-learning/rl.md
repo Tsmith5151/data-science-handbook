@@ -4,7 +4,9 @@ ______
 ## Q-Learning
 - Is an algorithm where the agent attempts to learn what the optimal policy is
   from its history of  interacting with the environment. 
-- **Steps** 
+
+**<span class="label label-success">Steps</span>**
+
   - We first initialize the `Q-Table`, which is the backbone of the Q-Learning
     Algorithm. 
   - This is what stores all the Q-Values for any given state/action pair the

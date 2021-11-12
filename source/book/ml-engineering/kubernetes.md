@@ -1,7 +1,7 @@
 # Kubernetes
 _____
 
-**Overview**
+### Overview
 
 - Open-source platform for managing your containers
 - Microservices architecture - more agile versus hadoop 
@@ -51,7 +51,6 @@ _____
   - Forward ports to access Jupyter Notebooks
   - Access Kubernetes UI
   - Can see status of pods
-
 
 ### Kubeflow
 - Curated set of tools for running ML workflows

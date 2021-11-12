@@ -1,7 +1,7 @@
 # Autoencoders 
 _____
 
-## Overview
+## Autoencoders Overview
 
 - The `autoencoder` is a machine learning solution made up of two blocks,
   encoder and decoder, whose  purpose is to obtain internal representations
@@ -24,7 +24,7 @@ _____
     layers are called `deconvolution` or `upsampling` layers.
 
 
-## LSTM Autoencoder 
+### LSTM Autoencoder 
 
 - Recurrent neural networks, such as the Long Short-Term Memory, or LSTM,
   network are specifically designed to support sequences of input data.

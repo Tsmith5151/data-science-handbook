@@ -1,7 +1,7 @@
 # Data Structures & Algorithms
 _____
 
-## Time Compexity 
+### Time Compexity 
 
 ![image](../assets/time_complexity1.png)
 
@@ -16,7 +16,7 @@ _____
 
 ![image](../assets/time_complexity2.png)
 
-## Array
+### Array
 - Structure of fixed-size, which can hold items of the same data type. - It can
   be an array of  integers, an array of floating-point numbers, an array of
   strings or even an array of arrays (such as 2-dimensional arrays). 
@@ -29,14 +29,14 @@ _____
 ![image](../assets/array.png)
 
 
-## Deque (Python)
+### Deque (Python)
 - Deque (Doubly Ended Queue) in Python is implemented using the module “collections“. 
 - Deque is preferred over list in the cases where we need quicker append and
   pop operations from both the ends of container, as deque provides an O(1)
   time complexity for append and pop operations as compared to list which
   provides O(n) time complexity.
 
-## Linked List
+### Linked List
 - Sequential structure that consists of a sequence of items in linear order
   which are linked to each  other. Hence, you have to access data sequentially
   and random access is not possible. 
@@ -48,7 +48,7 @@ _____
 
 ![image](../assets/linked_list.png)
 
-## Stacks
+### Stacks
 - Linear data structure that stores items in a `Last-In/First-Out` or `First-In/Last-Out`.
 - A new element is added at one end and an element is removed from that end only. 
 - The insert and delete operations are often called push and pop.
@@ -57,7 +57,7 @@ _____
 
 ![image](../assets/stacks.png)
 
-## Queues
+### Queues
 - Linear data structure that stores items in First In First Out (FIFO). 
 - With a queue the least recently added item is removed first. 
 **Enqueue**: Insert an element to the end of the queue.
@@ -65,7 +65,7 @@ _____
 
 ![image](../assets/queues.png)
   
-## Hash Map
+### Hash Map
 - A special function named as the hash function (h) is used to overcome the
   aforementioned problem in direct addressing.
 - In direct accessing, a value with key k is stored in the slot k. Using the
@@ -80,14 +80,14 @@ _____
    
 ![image](../assets/hash_map.png)
 
-## Recursion
+### Recursion
  
 - Recursion is a method of solving problems that involves breaking a problem
   down into smaller and smaller subproblems until you get to a small enough
   problem that it can be solved trivially. 
 - Usually recursion involves a function calling itself.
 
-**Notes**
+**<span class="label label-info">Notes</span>**
 - A recursive algorithm must have a base case.
 - A recursive algorithm must change its state and move toward the base case.
 - A recursive algorithm must call itself, recursively.
@@ -100,7 +100,7 @@ _____
 - Even though we are calling the same function over and over, each call creates
   a new scope for the variables that are local to the function.
 
-## Trees
+### Trees
 - A tree is a hierarchical structure where data is organized hierarchically and
   are linked together. This structure is different from a linked list whereas,
   in a linked list, items are linked in a linear order.
@@ -115,7 +115,7 @@ _____
 
 ![image](../assets/binary_tree.png)
  
-## Depth First Search Trees
+### Depth First Search Trees
 
 - Depth-first search is an algorithm for traversing or searching tree or graph
   data structures. 
@@ -123,7 +123,7 @@ _____
   root node in the case of  a graph) and explores as far as possible along each
   branch before backtracking. 
 
-**Steps**:
+**<span class="label label-info">Stpes</span>**
 - Start from the root or any arbitrary node and mark the node and move to the
   adjacent unmarked node. 
 continue this loop until there is no unmarked adjacent node. 
@@ -141,14 +141,13 @@ continue this loop until there is no unmarked adjacent node.
 ![image](../assets/dfs1.png)
 ![image](../assets/dfs2.png)
 
-**DFS vs BFS**
+### DFS vs BFS
 ![image](../assets/dfs3.png)
 
-## Heap
+### Heaps
 - A special case of a binary tree where the parent nodes are compared to their
   children with their values and are arranged accordingly.
-  Only the root is deleted when performing a delete operation. So to determine
-  the Max value -> 
+  Only the root is deleted when performing a delete operation. 
 
 **Min Heap** 
 - The key of the parent is less than or equal to those of its children. This is
@@ -163,7 +162,7 @@ continue this loop until there is no unmarked adjacent node.
  ![image](../assets/max_heap.png)
 
 
-## Backtracking
+### Backtracking
 - Common algorithm used when you want to “find all possible solution” 
 - Backtracking is an algorithmic-technique for solving problems recursively by
   trying to build a solution incrementally, one piece at a time, removing
@@ -175,7 +174,7 @@ continue this loop until there is no unmarked adjacent node.
 ![image](../assets/backtracking2.png)
 
 
-## Reference
+**References**
 [Abdul Bari YouTube
 Channel](https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw)
 [NeetCode YouTube Channel](https://www.youtube.com/c/NeetCode)

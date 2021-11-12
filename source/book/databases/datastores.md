@@ -51,9 +51,12 @@ ZORDER BY (eventType)
 - Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. 
 - Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.
 
-## Data Warehouse
-- A database designed to store and process large volumes of current and historical data collected from multiple sources inside and outside the enterprise for deep analysis.
+### Data Warehouse
+- A database designed to store and process large volumes of current and
+  historical data collected from multiple sources inside and outside the
+  enterprise for deep analysis. 
 - Organizes data into tables and columns, and allows users access via SQL.
 - Optimized for loading, integrating and analyzing very large amounts of data.
-- Designed to support descriptive, diagnostic, predictive and prescriptive analytic workloads.
-Example: Snowflake
+- Designed to support descriptive, diagnostic, predictive and prescriptive
+  analytic workloads. 
+- **Example**: Snowflake 

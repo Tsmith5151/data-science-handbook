@@ -1,7 +1,7 @@
 # Feature Store
 _____
 
-**Overview**
+### Overview
 - Data engineers, data scientists and ML engineers spend an inordinately large amount of time transforming data from its raw form into the final “features” that can be consumed by ML models.
 - This process is also called “feature engineering” and can involve anything from aggregating data (e.g. number of purchases for a user in a given time window) to complex features that are the result of ML algorithms (e.g. word embeddings).
 
@@ -9,7 +9,7 @@ _____
 ![image](../assets/featurestore1.png)
 ![image](../assets/featurestore2.png)
 
-**Challenges**
+**<span class="label label-warning">Challenges</span>**
 
 - Online/offline skew: For some of the most meaningful ML use cases, models need to be deployed online at low latency (think of a recommendation model that needs to run in tens of milliseconds when a webpage loads). The transformations that were used to compute features at training time (offline) now need to be repeated in model deployment (online) at low latency. 
 - `Reusability` and `discoverability`: In most cases, features get reimplemented several times because they are not discoverable, and if they are, they are not managed in a way that facilitates reuse. Naive approaches to this problem provide search based on feature names, which requires data scientists to correctly guess which names someone else used for their features. 

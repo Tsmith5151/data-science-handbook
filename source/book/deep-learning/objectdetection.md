@@ -28,7 +28,7 @@ ______
 - Focal Loss reduces the loss contribution from easy examples and increases the
   importance of correcting misclassified examples.
 
-**Advantage**
+**<span class="label label-success">Advantages</span>**
 - Highest accuracy object detectors to date are based on a two-stage approach
   popularized by R-CNN 
 - Surpassing the accuracy of all existing state-of-the-art two-stage detector
@@ -71,12 +71,14 @@ goal is to predict each pixel's class in an image.
 **Metric:** 
 - `IoU (intersection of union)` -> Area overlap / Area of Union 
 
-**Comments:** 
+**<span class="label label-info">Notes</span>**
+
 - Means converting a high resolution image to a low resolution image. By down
   sampling, the model better understands `What` is present in the image, but
   it loses the information of `Where` it is present.
 
-**Advantages:** 
+**<span class="label label-success">Advantages</span>**
+
 - UNet combines the location information from the downsampling path to finally
   obtain a general information combining localisation and context, which is
   necessary to predict a good segmentation map.

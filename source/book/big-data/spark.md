@@ -48,7 +48,8 @@ _____
 - Can increase the driver memory
 
 ## Executor OOM
-**Problems:** 
+
+<span class="label label-warning">Problems</span>
 - High concurrency
 - Inefficient queries
 - Incorrect configuration

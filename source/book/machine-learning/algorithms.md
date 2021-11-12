@@ -1,7 +1,7 @@
 # Machine Learning Algorithms 
 __________
 
-## Linear Regression
+### Linear Regression
 
 - Multi-variable linear equations might look like this, where 𝑤 represents the
   coefficients, or  weights, our model will try to learn. 
@@ -16,7 +16,7 @@ __________
 
 ![image](../assets/linear_regression2.png)
 
-## Logistic Regression 
+### Logistic Regression 
 
 - Unlike linear regression which outputs continuous number values, logistic
   regression transforms its  output using the logistic sigmoid function to
@@ -35,7 +35,7 @@ __________
   - If our cost function has many local minimums, gradient descent may not find
     the optimal global  minimum.
 
-## K-Nearest Neighbor
+### K-Nearest Neighbor
 - An iterative clustering algorithm that groups samples which consist of
   similar characteristics and that are more related to each other than in
   other groups.
@@ -44,7 +44,7 @@ __________
 
 ![image](../assets/knn.png)
 
-**Steps**:
+**<span class="label label-success">Steps</span>**
 - Specify the number of clusters `k`
 - Randomly pick k centroids from the data points as initial cluster centers
 - Assign each sample to the nearest centroid (i.e. Euclidean distance)
@@ -52,7 +52,7 @@ __________
 - Repeat the third and fourth steps until the cluster assignment converges
  
  
-## Support Vector Machines 
+### Support Vector Machines 
 - The goal of support vector machines is to find the line that maximizes the
   minimum distance to the line.
 - The decision boundary is defined as: `w^Tx - b`
@@ -69,7 +69,7 @@ __________
 
 ![image](../assets/svm3.png)
 
-## Naive Bayes
+### Naive Bayes
 - Naive Bayes is a probabilistic algorithm that is based on Bayes Theorem.  
 - Bayes’ Theorem basically describes the probability of a feature, based on
   prior knowledge of conditions that might be related to that feature. 
@@ -104,7 +104,8 @@ __________
 - Just count how many times the sentence “A very close game” appears in the
   Sports tag, divide it by  the total, and obtain P.
 
-**Problem**: 
+
+**<span class="label label-warning">Problem</span>**
 - “A very close game” doesn’t appear in our training data, so this probability
   is zero. Unless every  sentence that we want to classify appears in our
   training data, the model won’t be very useful.
@@ -126,7 +127,7 @@ Results:
 ![image](../assets/naive_bayes6.png)
 
 
-## Decision Tree
+### Decision Tree
 
 - A decision tree algorithm breaks down our data by making decisions based on
   asking a series of questions. 
@@ -145,7 +146,7 @@ Results:
   split, thus the  attribute with the highest change in entropy is used as the
   splitting criteria
 
-**Problems with Decision Trees:**
+**<span class="label label-warning">Problems with Decision Trees:</span>**
 - **Overfitting**: 
   - As the decision tree grows and becomes more complex the issue of
     overfitting arises. Meaning, the model has virtually memorized the
@@ -163,7 +164,7 @@ Results:
 - One way is that we can observe the error vs max_depth plots and also
   implement `Gridsearch` to identify the optimal depth.
 
-## Random Forest
+### Random Forest
 - Is an ensemble based algorithm that’s built on the idea of Decision Trees. 
 
 **How it Works:**
@@ -177,16 +178,16 @@ Results:
 - **Feature Splitting criteria:** choose a random set of features for each split
   and then compute the entropy and information gain to determine which
   variable to split on. (see decision tree for more) 
-- **Strength**: 
+- **<span class="label label-info">Strength:</span>**
   - Works well with missing values and outliers. 
   - Easy to tune for - minimal hyper parameters. 
-- **Weakness**: 
+- **<span class="label label-warning">Weakness:</span>****Weakness**: 
   - Doesn’t offer the same level of interpretability as decision trees.
 
-**Bagging vs Boosting**
+### Bagging vs Boosting**
 
 - **Bagging**
-  - Sampling with replacement (e.g. some observations may be repeated) 
+  - `Bagging` uses sampling with replacement (e.g. some observations may be repeated) 
   - Is a way to decrease the variance of your prediction by generating
     additional data for training from your original dataset using combinations
     with repetitions to produce multisets of the same cardinality/size as your
@@ -199,7 +200,7 @@ Results:
 
 - **Boosting** 
 
-  - Boosting involves the creation and addition of decision trees sequentially,
+  - `Boosting` involves the creation and addition of decision trees sequentially,
     each attempting to  correct the mistakes of the learners that came before
     it.
   - Instead of training models separately, boosting trains models sequentially,
@@ -223,10 +224,10 @@ Results:
   errors made by the sequence of previous trees. Quickly, the model reaches a
   point of diminishing returns.
  
-## ADA Boost
+### ADA Boost
 - High weights are put on errors to improve at the next boosting step.
 
-## XGBoost
+### XGBoost
 - Tree based model that uses the concept of boosting. 
 - With boosting, we construct a series of trees that attempt to correct the
   mistakes of the model  before it in the sequence. 
@@ -253,7 +254,6 @@ Results:
     for splitting. 
 - Feature importance orderings are very different for each of the three options
   provided by XGBoost 
-
 
 **Hyperparameters**
 
@@ -311,7 +311,7 @@ Results:
 - **auc**: Area under the curve
 - **map**: Mean Average Precision
 
-## LightGBM
+### LightGBM
 
 - An open-source gradient boosting library developed by Microsoft
   LightGBM brings significant improvements to vanilla GBT and can be used to
@@ -330,7 +330,7 @@ Results:
   - leaf-wise is mostly faster than the level-wise (e.g 10x faster than XGboost)
 
 
-## Survival Analysis
+### Survival Analysis
 
 - Survival analysis models time to an event of interest. 
 - It originates from clinical research and is a special kind of regression and
