@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kubernetes &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Kubernetes</a><ul>
+<li><a class="reference internal" href="#pods">Pods</a></li>
+<li><a class="reference internal" href="#volumes">Volumes</a></li>
+<li><a class="reference internal" href="#minikube">MiniKube</a></li>
+<li><a class="reference internal" href="#kubeflow">Kubeflow</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="kubernetes">
+<h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<p><strong>Overview</strong></p>
+<ul class="simple">
+<li><p>Open-source platform for managing your containers</p></li>
+<li><p>Microservices architecture - more agile versus hadoop</p></li>
+<li><p>Containerized applications allows for consistent environments</p>
+<ul>
+<li><p>Moving between Development and Production environments</p></li>
+</ul>
+</li>
+<li><p>Scaling large scale workloads and can leverage frameworks like Spark</p></li>
+<li><p>Spark creates a spark driver running within a kubernetes on a pod</p></li>
+<li><p>Workers are deployed in the Kubernetes cluster</p></li>
+</ul>
+<div class="section" id="pods">
+<h2>Pods<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Group of one or more containers</p></li>
+<li><p>shared storage/network resources</p></li>
+<li><p>Instructions for how to run the containers</p>
+<ul>
+<li><p>Pods scheduled on nodes (e.g. virtual machine)</p></li>
+<li><p>Nodes run node agents called Kublet</p></li>
+</ul>
+</li>
+<li><p>All communication happens through the API server</p></li>
+</ul>
+</div>
+<div class="section" id="volumes">
+<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Volume represents a way to store, retrieve, and persist data across pods and through the application lifecycle</p></li>
+<li><p>Applications often need to be able to store and retrieve data.</p></li>
+<li><p><strong>Ephemeral:</strong></p>
+<ul>
+<li><p>disposable resources, different approaches are available for applications to
+use and persist data as necessary.
+Kubernetes volumes can also be used as a way to inject data into a pod for use by the containers.</p>
+<ul>
+<li><p>Secrets/configs/metadata</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Persistent Volume:</strong></p>
+<ul class="simple">
+<li><p>Volumes that are defined and created as part of the pod lifecycle only exist until the pod is deleted.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kubernetes.png" /></p>
+</div>
+<div class="section" id="minikube">
+<h2>MiniKube<a class="headerlink" href="#minikube" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Runs single node kubernetes cluster on your local laptop</p></li>
+<li><p>Use base docker image for Spark - pull image from DockerHub</p>
+<ul>
+<li><p>Make spark distribution tarball</p></li>
+<li><p>Build the image for Spark</p></li>
+</ul>
+</li>
+<li><p>Instead can use Helm - a package manager to kubernetes for configuration</p>
+<ul>
+<li><p>Helm charts for Spark setup (not familiar with)</p></li>
+<li><p>Assists with building config.yaml file for JupyterHub</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Commands:</strong></p>
+<ul class="simple">
+<li><p><strong>Create pod:</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">jupyperlab.yaml</span></code></p></li>
+<li><p><strong>Create service (DNS entry):</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">jupyperlab-service.yaml</span></code></p></li>
+<li><p><strong>Pod status:</strong> <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">get</span> <span class="pre">pods</span></code>, <code class="docutils literal notranslate"><span class="pre">Kubectl</span> <span class="pre">get</span> <span class="pre">services</span></code></p>
+<ul>
+<li><p>Forward ports to access Jupyter Notebooks</p></li>
+<li><p>Access Kubernetes UI</p></li>
+<li><p>Can see status of pods</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="kubeflow">
+<h2>Kubeflow<a class="headerlink" href="#kubeflow" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Curated set of tools for running ML workflows</p></li>
+<li><p>Makes ML use-cases portable and scalable</p></li>
+<li><p>Easily deploy workflows to Kubernetes</p></li>
+<li><p>Train models, Tensorboard, serve model, build pipelines</p></li>
+<li><p>Login to Jupyter Hub</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kubeflow.png" /></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/ml-engineering/kubernetes.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

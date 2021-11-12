@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convolution Neural Networks &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Convolution Neural Networks</a><ul>
+<li><a class="reference internal" href="#cnns">CNNs</a></li>
+<li><a class="reference internal" href="#convolution-filter">Convolution Filter</a></li>
+<li><a class="reference internal" href="#padding">Padding</a></li>
+<li><a class="reference internal" href="#strides">Strides</a></li>
+<li><a class="reference internal" href="#pooling">Pooling</a></li>
+<li><a class="reference internal" href="#transferred-learning">Transferred Learning</a></li>
+<li><a class="reference internal" href="#d-cnn">1D CNN</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="convolution-neural-networks">
+<h1>Convolution Neural Networks<a class="headerlink" href="#convolution-neural-networks" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="cnns">
+<h2>CNNs<a class="headerlink" href="#cnns" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Input Image</p></li>
+<li><p>Convolutional Layer</p></li>
+<li><p>Nonlinearity (Activation Function; relu)</p></li>
+<li><p>Max Pooling Layer</p></li>
+<li><p>Fully Connected</p></li>
+<li><p>Output Layer</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cnn.png" /></p>
+<p><strong>Steps</strong></p>
+<ul class="simple">
+<li><p>Receive some input volume (image) and pass it thru a series of convolution
+layers to abstract high level features from the image.</p></li>
+<li><p>For each convolution layer, we slide a filter across the input image
+spatially and compute a series  of dot products.</p></li>
+<li><p>The filters are small spatially (e.g. 5x5) and are initialized randomly,
+which we eventually learn these weights using <code class="docutils literal notranslate"><span class="pre">backpropagation</span></code>.</p></li>
+<li><p>At each convolution layer, we perform the convolutions (which are linear
+operations), apply <code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">pooling</span></code> to downsample the input spatially (reduce
+the number of total parameters in the network) and then apply the non-linear
+activation function for thresholding at zero with Relu.</p></li>
+<li><p>In each <code class="docutils literal notranslate"><span class="pre">activation</span> <span class="pre">map</span></code>, the grid of neurons share parameters and local connectivity:</p>
+<ul>
+<li><p>Meaning use the same weights as it’s one filter computing all of the outputs.</p></li>
+</ul>
+</li>
+<li><p>So the neurons all have the same weights but looking at different parts of the image.</p></li>
+<li><p>We repeat this process for each convolution layer.</p></li>
+<li><p>In the last layer, we flatten the output vector and then feed into a fully
+connected layer.</p></li>
+<li><p>The output layer makes a prediction and then we compute the loss and then
+backpropagate the error such that the weights are updated in order to
+minimize the loss.</p></li>
+<li><p>CNNs use a cross-entropy loss on the one-hot encoded output.</p></li>
+</ul>
+</div>
+<div class="section" id="convolution-filter">
+<h2>Convolution Filter<a class="headerlink" href="#convolution-filter" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A convolution is a linear operation that involves the multiplication of a set
+of weights with the input, much like a traditional neural network.</p></li>
+<li><p>Multiplication is performed between an array of input data and a
+two-dimensional array of weights, called a <code class="docutils literal notranslate"><span class="pre">filter</span></code> or a <code class="docutils literal notranslate"><span class="pre">kernel</span></code></p></li>
+<li><p>Filter is smaller than the input data and the type of multiplication applied
+between a filter-sized  patch of the input and the filter is a dot product.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">dot</span> <span class="pre">product</span></code> is the element-wise multiplication between the filter-sized
+patch of the input and  filter, which is then summed, always resulting in a
+single value.</p></li>
+<li><p>The output from multiplying the filter with the input array one time is a
+single value. As the  filter is applied multiple times to the input array,
+the result is a two-dimensional array of output values that represent a
+filtering of the input. As such, the two-dimensional output array from this
+operation: <code class="docutils literal notranslate"><span class="pre">“feature</span> <span class="pre">map“</span></code>.</p></li>
+<li><p>Once a feature map is created, we can pass each value in the feature map
+through a nonlinearity,  such as a ReLU, much like we do for the outputs of a
+fully connected layer.</p></li>
+</ul>
+</div>
+<div class="section" id="padding">
+<h2>Padding<a class="headerlink" href="#padding" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>During the sliding process, the edges essentially get “trimmed off”</p></li>
+<li><p>The pixels on the edge are never at the center of the kernel, because there
+is nothing for the  kernel to extend to beyond the edge.</p></li>
+<li><p>Padding does something pretty clever to solve this: pad the edges with extra,
+“fake” pixels (usually of value 0, hence the oft-used term “zero padding”).</p></li>
+<li><p>This way, the kernel when sliding can allow the original edge pixels to be at
+its center, while extending into the fake pixels beyond the edge, producing
+an output the same size as the input.</p></li>
+</ul>
+</div>
+<div class="section" id="strides">
+<h2>Strides<a class="headerlink" href="#strides" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The idea of the stride is to skip some of the slide locations of the kernel.</p></li>
+<li><p>A stride of 1 means to pick slides a pixel apart, so basically every single
+slide, acting as a standard convolution.</p></li>
+<li><p>A stride of 2 means picking slides 2 pixels apart, skipping every other slide
+in the process, downsizing by roughly a factor of 2, a stride of 3 means
+skipping every 2 slides, downsizing roughly by factor 3, and so on.</p></li>
+<li></li>
+</ul>
+<p><img alt="image" src="../../_images/cnn_strides.png" /></p>
+</div>
+<div class="section" id="pooling">
+<h2>Pooling<a class="headerlink" href="#pooling" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Downsample the input spatially (reduce the number of total parameters).</p></li>
+<li><p>Pooling is required to down sample the detection of features in feature maps.</p></li>
+<li><p>This is where a lower resolution version of an input signal is created that
+still contains the large or important structural elements, without the fine
+detail that may not be as useful to the task.</p></li>
+</ul>
+<p><strong>Why pooling?</strong></p>
+<ul class="simple">
+<li><p>A limitation of the feature map output of convolutional layers is that they
+record the precise position of features in the input.</p></li>
+<li><p>This means that small movements in the position of the feature in the input
+image will result in a different feature map.</p></li>
+<li><p>This can happen with re-cropping, rotation, shifting, and other minor changes
+to the input image.</p></li>
+</ul>
+<p><strong>Types of Pooling:</strong></p>
+<ul class="simple">
+<li><p><strong>Average Pooling:</strong> Calculates the average value for each patch on the
+feature map.</p></li>
+<li><p><strong>Maximum Pooling</strong> (or Max Pooling): Calculates the maximum value for each patch of
+the feature map.</p></li>
+</ul>
+</div>
+<div class="section" id="transferred-learning">
+<h2>Transferred Learning<a class="headerlink" href="#transferred-learning" title="Permalink to this headline"></a></h2>
+<p><strong>Steps:</strong></p>
+<ul class="simple">
+<li><p>Take layers from a previously trained model.</p></li>
+<li><p>Freeze them, so as to avoid destroying any of the information they contain
+during future training rounds.</p></li>
+<li><p>Add some new, trainable layers on top of the frozen layers. They will learn
+to turn the old features into predictions on a new dataset.</p></li>
+<li><p>Train the new layers on your dataset.</p></li>
+</ul>
+<p><strong>VGG 16:</strong></p>
+<ul class="simple">
+<li><p>Pre-trained on Imagenet dataset of over 14 million labeled high-resolution images</p></li>
+<li><p><strong>Input image:</strong> 224 x 224 RGB image; 3.x3 filters; max pooling; stride of 2
+steps. Total of 5 convolution layers followed by 3 stacked dense layers.</p></li>
+</ul>
+<p><strong>ResNet-18:</strong></p>
+<ul class="simple">
+<li><p>18 layer deeps and trained on over 1+ million images from ImageNet.</p></li>
+</ul>
+</div>
+<div class="section" id="d-cnn">
+<h2>1D CNN<a class="headerlink" href="#d-cnn" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Time series classification - using KNN or SVMs, they all require some kind of
+feature engineering as a separate stage before classification is performed.</p></li>
+<li><p>With CNNs extract features and create informative representations of time
+series automatically.</p></li>
+</ul>
+<p><strong>Steps:</strong></p>
+<ul class="simple">
+<li><p>Take a LxN matrix (length of time series X number of variables in the sequence)</p></li>
+<li><p>Slide a 1xN kernel across the length of the sequence performing a convolution
+followed by a  non-linear activation function.</p></li>
+<li><p>Next apply global max pooling to obtain the largest value from the vector at
+each step into a fully connected layer and then outputs the final prediction</p></li>
+<li><p>We can also then feed the fully connected layer into a LSTM model for
+sequence modeling.</p></li>
+</ul>
+<p><strong>Main Idea</strong></p>
+<ul class="simple">
+<li><p>Each new time series consolidates information from different frequencies of
+the original data.</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/deep-learning/cnn.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Networking &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Networking</a><ul>
+<li><a class="reference internal" href="#tcp-icp">TCP/ICP</a></li>
+<li><a class="reference internal" href="#http">HTTP</a></li>
+<li><a class="reference internal" href="#polling">Polling</a></li>
+<li><a class="reference internal" href="#long-polling">Long Polling</a></li>
+<li><a class="reference internal" href="#server-sent-events">Server Sent Events</a></li>
+<li><a class="reference internal" href="#websockets">WebSockets</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="networking">
+<h1>Networking<a class="headerlink" href="#networking" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="tcp-icp">
+<h2>TCP/ICP<a class="headerlink" href="#tcp-icp" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Stands for Transmission Control Protocol, a communications standard that enables application programs and computing devices to exchange messages over a network.</p></li>
+<li><p>It is designed to send packets across the internet and ensure the successful delivery of data and messages over networks.</p></li>
+</ul>
+</div>
+<div class="section" id="http">
+<h2>HTTP<a class="headerlink" href="#http" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The Hypertext Transfer Protocol (HTTP) is designed to enable communications between clients and servers.</p></li>
+<li><p>HTTP works as a request-response protocol between a client and server.</p></li>
+<li><p><strong>Example</strong>:</p>
+<ul>
+<li><p>A client (browser) sends an HTTP request to the server; then the server returns a response to the client.</p></li>
+<li><p>The response contains status information about the request and may also contain the requested content.</p></li>
+</ul>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">POST</span></code> is used to send data to a server to create/update a resource.</p>
+<ul class="simple">
+<li><p>POST requests are never cached</p></li>
+<li><p>POST requests do not remain in the browser history</p></li>
+<li><p>POST requests cannot be bookmarked</p></li>
+<li><p>POST requests have no restrictions on data length
+<code class="docutils literal notranslate"><span class="pre">GET</span></code> is used to request data from a specified resource.</p></li>
+<li><p>GET requests can be cached</p></li>
+<li><p>GET requests remain in the browser history</p></li>
+<li><p>GET requests can be bookmarked</p></li>
+<li><p>GET requests should never be used when dealing with sensitive data</p></li>
+<li><p>GET requests have length restrictions</p></li>
+<li><p>GET requests are only used to request data (not modify)</p></li>
+</ul>
+</div>
+<div class="section" id="polling">
+<h2>Polling<a class="headerlink" href="#polling" title="Permalink to this headline"></a></h2>
+<p><strong>Short polling</strong></p>
+<ul class="simple">
+<li><p>Is the original polling protocol for clients to get regular information updates from a server. The steps of short polling are:</p>
+<ul>
+<li><p>Client sends Server an HTTP request for new information.</p></li>
+<li><p>Server responds with new information, or no information.</p></li>
+<li><p>Client repeats the request at a set interval (e.g. 2s)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Advantages</strong></p>
+<ul class="simple">
+<li><p>The advantages of Short polling are that it’s very simple and widely supported because it’s part of the HTTP.</p></li>
+</ul>
+<p><strong>Disadvantage</strong></p>
+<ul class="simple">
+<li><p>The downside of short polling is that it has a lot of request overhead from both sides: the client has to constantly make new requests, and the server has to handle them whether or not there’s new information.</p></li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul class="simple">
+<li><p>In practice if you want a polling connection, long polling is preferred to short polling.</p></li>
+</ul>
+</div>
+<div class="section" id="long-polling">
+<h2>Long Polling<a class="headerlink" href="#long-polling" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Long polling is a more efficient version of short polling. The steps of long polling are:
+<strong>Steps:</strong></p></li>
+<li><p>When a client requests the server for information, the server holds the connection open until there are new messages for the client or the connection times out.</p></li>
+<li><p>When the server responds with the new messages, the connection ends. Once the connection ends, the client immediately initiates another request to the server for messages and the cycle repeats.</p></li>
+<li><p>This approach lowers the latencies and resources involved in the pull approach (polling).</p></li>
+<li><p>Benefits of long polling are that it’s part of the HTTP protocol, so it’s widely supported, and it produces less traffic than short polling because it takes fewer requests. In order to support this, the server-side implementation is slightly more complex than short polling, but not nearly as complex as the other two protocols we’ll look at: <code class="docutils literal notranslate"><span class="pre">Websockets</span></code> and <code class="docutils literal notranslate"><span class="pre">Server</span> <span class="pre">Sent</span> <span class="pre">Events</span></code>.</p></li>
+</ul>
+<p><strong>Distadvantages</strong></p>
+<ul class="simple">
+<li><p>Drawbacks to long polling: In some implementations holding unfulfilled requests can take more server resources than short polling, and limit the overall number of possible connections.</p></li>
+<li><p>Also if there are multiple open requests from the same client, message ordering can’t be guaranteed, and messages can get lost.</p></li>
+</ul>
+</div>
+<div class="section" id="server-sent-events">
+<h2>Server Sent Events<a class="headerlink" href="#server-sent-events" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Server Sent Events provide a one-way connection for a server to push new data to a client, without reestablishing a connection every time.</p></li>
+<li><p>For example a social media app could use SSE to push new posts to a user feed as soon as they’re available.</p></li>
+<li><p>SSE connections follow the EventSource interface, which uses HTTP to make the underlying communications.</p></li>
+<li><p>At a high level, the steps of SSE are:</p>
+<ul>
+<li><p>Client creates a new EventSource object targeting the server</p></li>
+<li><p>Server registers SSE connection</p></li>
+<li><p>Server sends new data to the client</p></li>
+<li><p>Client receives messages with EventSource handlers</p></li>
+<li><p>Either side closes the connection</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="websockets">
+<h2>WebSockets<a class="headerlink" href="#websockets" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Is a two-way message passing protocol based on TCP (the protocol at Layer 4 of the OSI networking model). WebSockets are faster for data transmission than HTTP because it has less protocol overhead and operates at a lower level in the network stack.</p></li>
+<li><p>At a high level, the steps of a websocket connection are:</p>
+<ul>
+<li><p>Client and Server establish a connection over HTTP and then “upgraded” using the WebSockets handshake</p></li>
+<li><p>WebSockets TCP messages are transmitted in both directions over port 443 (or 80 if it’s not TLS encrypted)</p></li>
+<li><p>Either side closes the connection</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Advantage</strong></p>
+<ul class="simple">
+<li><p>The main advantage of <code class="docutils literal notranslate"><span class="pre">WebSockets</span></code> is <strong>speed</strong>: the client and server don’t have to find and reestablish their connection with each other every time a message is sent. Once the WebSockets connection is established, data can flow immediately and securely in either direction.</p></li>
+<li><p>TCP ensures that the messages will always arrive in order.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<ul class="simple">
+<li><p>WebSockets are really useful in multiplayer online gaming, where the high-quality graphics of the world need to be transmitted to distributed users with real-time state updates and tight synchronization.</p></li>
+<li><p>Overall, WebSockets are a good choice if you know you need a fast, high-quality, bi-directional connection.</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/ml-engineering/networking.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

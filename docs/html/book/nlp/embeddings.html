@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Embeddings &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Word Embeddings</a></li>
+<li><a class="reference internal" href="#word2vec">Word2Vec</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="word-embeddings">
+<h1>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Mechanism to express relationships in relative vector distance.</p></li>
+<li><p>Method where words are encoded as real-valued vectors in a high dimensional space, where the similarity between words in terms of meaning translates to closeness in the vector space.
+The vector representations capture quite a bit of the information, meaning,  and associations of words</p></li>
+<li><p>In other words, emeddings represent words in a way that captures semantic relationships -  the ability to tell if words are similar or not.</p></li>
+<li><p>From the word embeddings model, similar words would be in close proximity.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/embeddings.png" />
+<a class="reference external" href="https://www.youtube.com/watch?v=LE3NfEULV6k">Reference</a></p>
+<p><strong>Why Embeddings</strong></p>
+<ul class="simple">
+<li><p>When you’re dealing with words in text, you end up with tens of thousands of classes to predict, one for each word.</p></li>
+<li><p>Trying to one-hot encode these words is massively inefficient; you’ll have a sparse vector representation where an element is set to 1 and the other 50,000+ set to 0.</p></li>
+<li><p>This ends up causing the matrix multiplication in the first hidden layer to have almost all of the resulting values be zero and is a huge waste of computation.</p></li>
+<li><p>To solve this problem and greatly increase the efficiency of our networks, we can use embeddings</p></li>
+</ul>
+<p><strong>How do embedding work?</strong></p>
+<ul class="simple">
+<li><p>We basically train a simple neural network with a single hidden layer with the goal to learn the weights of the hidden layer, which are the work vectors.</p></li>
+<li><p>We cannot just feed a word just as a text string to a neural network, so we instead create a one-hot encoded vector for each of these words in the vocabulary; which is the length of our one-hot encoded vector.</p></li>
+<li><p>The hidden layer is going to be represented by a weight matrix with one for every word in our vocabulary and one for every hidden neuron.</p></li>
+<li><p>The output of the hidden layer is just the “word vector” for the input word.</p></li>
+<li><p>The output of the network is a single vector containing, for every word in our vocabulary, compute the softmax to obtain the probability that a randomly selected nearby word is that vocabulary word.</p></li>
+<li><p>Can compute the cosine similarity of the angle between such vectors should be close to 1, angle between vectors close to 0).</p></li>
+<li><p><strong>Limitations:</strong></p>
+<ul>
+<li><p>Impossible to know word representation in the context of the full sentence.</p></li>
+<li><p>Example: the word “present” - can mean gift or time, depending on the context.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/embeddings2.png" /></p>
+</div>
+<div class="section" id="word2vec">
+<h1>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><strong>Summary</strong>: In this technique, we map each word of a sentence to an embedding vector which tends to be smaller than a bag of word representation.
+Word2Vec embeddings are pre-trained embeddings that have been determined in an unsupervised manner.</p>
+<ul>
+<li><p>These vectors have a really nice property, similar context words tend to have vectors that are collinear; point to roughly the same direction.</p></li>
+<li><p>Example: Words that show up in similar contexts, such as:</p>
+<ul>
+<li><p>“blue”, “red”, and “white” will have vectors near each other.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Pre-trained Model:</strong></p>
+<ul>
+<li><p>Data size 1.5GB</p></li>
+<li><p>It includes word vectors for a vocabulary of 3 million words phrases that they trained on roughly 100 billion words from a Google News dataset.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Problem</strong>:</p>
+<ul class="simple">
+<li><p>Perhaps the biggest problem with word2vec is the inability to handle unknown or out-of-vocabulary (OOV) words. If your model hasn’t encountered a word before, it will have no idea how to interpret it or how to build a vector for it</p></li>
+</ul>
+<p><strong>How it works</strong></p>
+<ul class="simple">
+<li><p>Before the training process starts, we pre-process the text we’re training the model against. In this step, we determine the size of our vocabulary and which words belong to it.</p></li>
+<li><p>At the start of the training phase, we create two matrices – an Embedding matrix and a Context matrix.</p></li>
+<li><p>These two matrices have an embedding for each word in our vocabulary (So vocab_size is one of their dimensions). The second dimension is the number of units in the hidden layer, which is the embedding_size – 300 is a common value.</p></li>
+<li><p>At the start of the training process, we initialize these matrices with random values. Then we start the training process. In each training step, we take one positive example and its associated negative examples.</p></li>
+<li><p>We proceed to look up their embeddings – for the input word, we look in the Embedding matrix. For the context words, we look in the Context matrix
+we take the dot product of the input embedding with each of the context embeddings. In each case, that would result in a number, that number indicates the similarity of the input and context embeddings. To turn into probabilities, we can take the sigmoid.</p></li>
+<li><p>Now that the untrained model has made a prediction, and seeing as though we have an actual target label to compare against, let’s calculate how much error is in the model’s prediction. To do that, we just subtract the sigmoid scores from the target labels. And then we perform back propagation to update the weights.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/word2vec.png" />
+<a class="reference external" href="https://www.youtube.com/watch?v=LE3NfEULV6k">Reference</a></p>
+<p><strong>Code Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Word2Vec</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span> <span class="s1">&#39;machines&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/nlp/embeddings.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docker &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Docker</a><ul>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#containers">Containers</a></li>
+<li><a class="reference internal" href="#architecture">Architecture</a></li>
+<li><a class="reference internal" href="#docker-compose">Docker Compose</a></li>
+<li><a class="reference internal" href="#docker-vs-virtual-machine">Docker vs Virtual Machine</a></li>
+<li><a class="reference internal" href="#dockerfile-commands">Dockerfile Commands</a></li>
+<li><a class="reference internal" href="#docker-command-line">Docker Command Line</a></li>
+<li><a class="reference internal" href="#dockerfile-example">Dockerfile Example</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<p><strong>Overview</strong></p>
+<ul class="simple">
+<li><p>Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/docker.png" /></p>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</p></li>
+</ul>
+</div>
+<div class="section" id="containers">
+<h2>Containers<a class="headerlink" href="#containers" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.</p></li>
+</ul>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Docker uses a client-server architecture.</p></li>
+<li><p>The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers.</p></li>
+<li><p>Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon.</p></li>
+<li><p>The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.</p></li>
+<li><p>Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes.</p></li>
+</ul>
+</div>
+<div class="section" id="docker-compose">
+<h2>Docker Compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Compose is a tool for defining and running multi-container Docker applications.</p></li>
+<li><p>With Compose, you use a YAML file to configure your application’s services</p></li>
+<li><p>In short, Docker Compose works by applying many rules declared within a single docker-compose.yml configuration file.</p></li>
+<li><p>These YAML rules, both human-readable and machine-optimized, provide us an effective way to snapshot the whole project from ten-thousand feet in a few lines.</p></li>
+<li><p>Almost every rule replaces a specific Docker command so that in the end we just need to run: <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>.</p></li>
+<li><p><strong>Volumes</strong>: on the other hand, are physical areas of disk space shared between the host and a container, or even between containers. In other words, a volume is a shared directory in the host, visible from some or all containers.</p></li>
+<li><p><strong>Networks</strong>: define the communication rules between containers, and between a container and the host. Common network zones will make containers’ services discoverable by each other, while private zones will segregate them in virtual sandboxes.</p></li>
+<li><p>Docker containers communicate between themselves in networks created, implicitly or through configuration, by Docker Compose. A service can communicate with another service on the same network by simply referencing it by container name and port (for example network-example-service:80), provided that we’ve made the port accessible through the expose keyword.</p></li>
+</ul>
+</div>
+<div class="section" id="docker-vs-virtual-machine">
+<h2>Docker vs Virtual Machine<a class="headerlink" href="#docker-vs-virtual-machine" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Lightweight architecture of <code class="docutils literal notranslate"><span class="pre">Docker</span></code> makes it less resource-intensive feature makes it
+a better choice than a virtual machine in some cases.</p></li>
+</ul>
+<p><strong>Advantages of using Docker</strong></p>
+<ul class="simple">
+<li><p>Reduced IT management resources</p></li>
+<li><p>Reduced size of snapshots</p></li>
+<li><p>Quicker spinning up apps</p></li>
+<li><p>Reduced and simplified security updates</p></li>
+<li><p>Less code to transfer, migrate, and upload workloads</p></li>
+</ul>
+<p><strong>I. OS Support and Architecture</strong></p>
+<ul class="simple">
+<li><p>Virtual machine has its guest operating system above the host operating
+system, making virtual machines <code class="docutils literal notranslate"><span class="pre">heavy</span></code>.</p></li>
+<li><p>Docker containers share the host operating system, and that is why they are <code class="docutils literal notranslate"><span class="pre">lightweight</span></code>.</p>
+<ul>
+<li><p>Sharing the host operating system between the containers make them very light and helps them to boot up in just a few seconds.</p></li>
+<li><p>The overhead to manage the container system is very low compared to that of virtual machines</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/docker_vm.png" /></p>
+<p><strong>II. Security</strong></p>
+<ul class="simple">
+<li><p>Virtual machines are stand-alone with their kernel and security features. Therefore, applications needing more privileges and security run on virtual machines.</p></li>
+<li><p>providing root access to applications and running them with administrative premises is not recommended in the case of Docker containers because containers share the host kernel. The container technology has access to the kernel subsystems; as a result, a single infected application is capable of hacking the entire host system</p></li>
+<li><p><a class="reference external" href="https://www.linkedin.com/pulse/what-docker-benefits-over-virtual-machine-rama-krishna-palnati/?trackingId=c9Z7FMiTShaELfEoeH32DQ%3D%3D">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="dockerfile-commands">
+<h2>Dockerfile Commands<a class="headerlink" href="#dockerfile-commands" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>RUN</strong>: Instruction will execute any commands in a new layer on top of the current image and commit the results. The resulting committed image will be used for the next step in the Dockerfile.</p></li>
+<li><p><strong>COPY</strong>: copies new files or directories from <src> and adds them to the filesystem of the container at the path destination</p></li>
+<li><p><strong>CMD</strong>: can be used to provide default arguments for the ENTRYPOINT instruction</p></li>
+<li><p><strong>EXPOSE</strong>: instruction informs Docker that the container listens on the specified network ports at runtime.</p></li>
+<li><p><strong>ENV</strong>: instruction sets the environment variable <key> to the value <value></p></li>
+<li><p><strong>ADD</strong>: Instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the image at the path <dest></p></li>
+<li><p><strong>ENTRYPOINT</strong>: allows you to configure a container that will run as an executable.
+You can specify a plain string for the ENTRYPOINT; will execute in /bin/sh -c</p></li>
+<li><p><strong>VOLUME</strong>: instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers.</p></li>
+<li><p><strong>USER</strong>: instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.</p></li>
+<li><p><strong>WORKDIR</strong>: instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions</p></li>
+<li><p><strong>ARG</strong>: instruction defines a variable that users can pass at build-time to the builder with the docker build</p></li>
+</ul>
+</div>
+<div class="section" id="docker-command-line">
+<h2>Docker Command Line<a class="headerlink" href="#docker-command-line" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">tag</span> <span class="n">example</span><span class="o">.</span><span class="n">azurecr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">example</span><span class="p">:</span><span class="n">latest</span>
+<span class="n">Builds</span> <span class="n">image</span>
+<span class="n">docker</span> <span class="n">push</span> <span class="n">example</span><span class="o">.</span><span class="n">azurecr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">example</span><span class="p">:</span><span class="n">latest</span>
+<span class="n">Pushes</span> <span class="n">image</span> <span class="n">to</span> <span class="n">container</span> <span class="n">registry</span> 
+<span class="n">docker</span> <span class="n">images</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
+<span class="n">Remove</span> <span class="n">image</span>
+<span class="n">docker</span> <span class="n">prune</span> <span class="n">images</span>
+<span class="n">Remove</span> <span class="nb">all</span> <span class="n">images</span>
+<span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<p><strong>Starting a docker container in detached mode</strong></p>
+<ul class="simple">
+<li><p>Runs the container in the background so it doesn’t receive any
+inputs/outputs: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code></p></li>
+</ul>
+<p><strong>View containers running in the background</strong></p>
+<ul class="simple">
+<li><p>Allows you to launch airflow instance and execute bash commands inside the
+container: <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">exec</span> <span class="pre">webserver</span> <span class="pre">/bin/bash</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="dockerfile-example">
+<h2>Dockerfile Example<a class="headerlink" href="#dockerfile-example" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>FROM python-36-rhel7
+	COPY requirements.txt ./
+RUN /bin/bash -c “””pip install -r requirements.txt”””
+	RUN mkdir /source
+	ADD ./dags /usr/local/airflow/dags
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/ml-engineering/docker.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

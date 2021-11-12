@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Preprocessing &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Data Preprocessing</a><ul>
+<li><a class="reference internal" href="#missing-values">Missing Values</a></li>
+<li><a class="reference internal" href="#outlier-detection">Outlier Detection</a></li>
+<li><a class="reference internal" href="#categorical-encoding">Categorical Encoding</a></li>
+<li><a class="reference internal" href="#data-normalization">Data Normalization</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="data-preprocessing">
+<h1>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="missing-values">
+<h2>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Reasons:</strong></p>
+<ul>
+<li><p>Missing completely at random (MCAR)</p></li>
+<li><p>Missing at random (MAR)</p></li>
+<li><p>Not missing at random (NMAR)</p></li>
+</ul>
+</li>
+<li><p>How to handle the missing values:</p>
+<ul>
+<li><p><strong>Do Nothing:</strong></p>
+<ul>
+<li><p>Models like XGBoost can deal with missing values by deciding for each sample which is the best way to impute them and learns the best values</p></li>
+</ul>
+</li>
+<li><p><strong>Imputation</strong>:</p>
+<ul>
+<li><p>Using (Mean/Median) Value</p></li>
+<li><p>Using (Most Frequent) Value</p></li>
+<li><p>Using k-NN</p></li>
+<li><p>Interpolation (Linear/Nearest Neighbors)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="outlier-detection">
+<h2>Outlier Detection<a class="headerlink" href="#outlier-detection" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Cook’s Distance:</strong></p>
+<ul>
+<li><p>Measures the effect of deleting a given observation. It represents the sum of all the changes in the regression model when observation “i” is removed from it.</p></li>
+</ul>
+</li>
+<li><p><strong>Interquartile Range Method (IQR):</strong></p>
+<ul>
+<li><p>Is a good statistic for summarizing a non-Gaussian distribution sample of data.</p></li>
+<li><p>IQR is calculated as the difference between the 75th and the 25th percentiles of the data and defines the box in a box and whisker plot.</p></li>
+<li><p>The IQR defines the middle 50% of the data, or the body of the data</p></li>
+<li><p>Can be used to identify outliers by defining limits on the sample values that are below the 25th percentile or above the 75th percentile.</p></li>
+</ul>
+</li>
+<li><p><strong>Linear Models:</strong> Projection methods that model the data into lower dimensions using linear correlations.</p>
+<ul>
+<li><p>For example, PCA and data with large residual errors may be outliers.</p></li>
+<li><p>Proximity-based Models: Data instances that are isolated from the mass of the data as determined by cluster, density or KNN analysis.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Handling Outliers</strong></p>
+<ul class="simple">
+<li><p><strong>Log-Scale Transformation:</strong> This method is often used to reduce the variability of data including outlying observation.</p></li>
+<li><p><strong>Model Selection:</strong> Tree based models are less impacted by outliers compared to linear models.</p>
+<ul>
+<li><p>XGBoost and boosting in general are very sensitive to outliers.</p></li>
+<li><p>This is because boosting builds each tree on previous trees’ residuals/errors.</p></li>
+</ul>
+</li>
+<li><p>Outliers will have much larger residuals than non-outliers, so boosting will focus a disproportionate amount of its attention on those points</p></li>
+</ul>
+</div>
+<div class="section" id="categorical-encoding">
+<h2>Categorical Encoding<a class="headerlink" href="#categorical-encoding" title="Permalink to this headline"></a></h2>
+<p><strong>One Hot Encoding:</strong></p>
+<ul class="simple">
+<li><p>Maps each category to a vector that contains 1 and 0 denoting the presence or absence of the feature.</p></li>
+<li><p>The number of vectors depends on the number of categories for features.</p></li>
+<li><p>This method produces a lot of columns that slows down the learning significantly if the number of the category is very high for the feature.</p></li>
+</ul>
+<p><strong>Label Encoding:</strong></p>
+<ul class="simple">
+<li><p>Each category is assigned a value from 1 through N (here N is the number of categories for the feature.</p></li>
+<li><p>One major issue with this approach is there is no relation or order between these classes, but the algorithm might consider them as some order, or there is some relationship.</p></li>
+</ul>
+<p><strong>Ordinal Encoding:</strong></p>
+<ul class="simple">
+<li><p>To ensure the encoding of variables retains the ordinal nature of the variable.</p></li>
+<li><p>This is reasonable only for ordinal variables.</p></li>
+<li><p>The transformation looks almost similar to Label Encoding but slightly different as Label coding would not consider whether a variable is ordinal or not and it will assign a sequence of integers.</p></li>
+</ul>
+<p><strong>Binary Encoding:</strong></p>
+<ul class="simple">
+<li><p>Converts a category into binary digits.</p></li>
+<li><p>Each binary digit creates one feature column.</p></li>
+<li><p>If there are n unique categories, then binary encoding results in the only log(base 2)ⁿ features.</p></li>
+<li><p>Compared to One Hot Encoding, this will require fewer feature columns.</p>
+<ul>
+<li><p><strong>Explain:</strong> for 100 categories One Hot Encoding will have 100 features
+while forBinary encoding, we will need just seven features.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="data-normalization">
+<h2>Data Normalization<a class="headerlink" href="#data-normalization" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Standardize</strong>: scaling features by removing the mean and scaling to unit
+variance</p></li>
+<li><p><strong>MinMax</strong>: Transform features by scaling each feature to a given range [-1,1].</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/data-preprocessing/prep.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

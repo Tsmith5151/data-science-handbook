@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Detection &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Object Detection</a><ul>
+<li><a class="reference internal" href="#retianet">RetiaNet</a></li>
+<li><a class="reference internal" href="#unets">UNETs</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="object-detection">
+<h1>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="retianet">
+<h2>RetiaNet<a class="headerlink" href="#retianet" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Object detection model <code class="docutils literal notranslate"><span class="pre">RetinaNet</span></code> has been formed by making two improvements
+over existing single stage object detection models - Feature Pyramid
+Networks and Focal Loss.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/retianet.png" /></p>
+<p><strong>Feature Pyramid Network</strong></p>
+<ul class="simple">
+<li><p>Feature image pyramids used to detect objects with varying scales in an image.</p></li>
+<li><p>In feature image pyramids, we take an input image and subsample it into lower
+resolution and smaller size images</p></li>
+<li><p>With the advancements of deep learning, we now use the pyramidal hierarchical
+structure with CNNs.</p></li>
+<li><p>In a CNN architecture, the output size of feature maps decreases after each
+successive block of convolutional operations, and forms a pyramidal
+structure.</p></li>
+</ul>
+<p><strong>Focal Loss</strong></p>
+<ul class="simple">
+<li><p>Focal Loss is an enhancement over Cross-Entropy Loss and is introduced to
+handle the class imbalance  problem with single-stage object detection
+models.</p></li>
+<li><p>Single Stage models suffer from a extreme foreground-background class
+imbalance problem due to dense sampling of anchor boxes</p></li>
+<li><p>Focal Loss reduces the loss contribution from easy examples and increases the
+importance of correcting misclassified examples.</p></li>
+</ul>
+<p><strong>Advantage</strong></p>
+<ul class="simple">
+<li><p>Highest accuracy object detectors to date are based on a two-stage approach
+popularized by R-CNN</p></li>
+<li><p>Surpassing the accuracy of all existing state-of-the-art two-stage detector</p></li>
+</ul>
+</div>
+<div class="section" id="unets">
+<h2>UNETs<a class="headerlink" href="#unets" title="Permalink to this headline"></a></h2>
+<p><strong>UNet</strong> is a fully convolutional network (FCN) used for image segmentation. The
+goal is to predict each pixel’s class in an image.</p>
+<p><strong>Architecture</strong></p>
+<ul class="simple">
+<li><p>Three Main Components):</p>
+<ul>
+<li><p>Encoder or Downsampling Path</p></li>
+<li><p>Bottleneck</p></li>
+<li><p>Decoder or Upsampling Path</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Downsampling Path:</strong></p>
+<ul class="simple">
+<li><p>Consists of two convolution layers each followed by a ReLU activation
+function and a 2x2 max pooling  operation for <code class="docutils literal notranslate"><span class="pre">downsampling</span></code>.</p></li>
+<li><p>At each <code class="docutils literal notranslate"><span class="pre">downsampling</span></code> step we double the number of feature channels</p></li>
+</ul>
+<p><strong>Bottleneck:</strong></p>
+<ul class="simple">
+<li><p>part of the network is between the contracting and expanding paths. The
+bottleneck is built from 2  convolutional layers (with batch normalization)
+and with dropout.</p></li>
+</ul>
+<p><strong>Upsampling Path:</strong></p>
+<ul class="simple">
+<li><p>Every step in the decoder path consists of an <code class="docutils literal notranslate"><span class="pre">upsampling</span></code> of the feature map
+followed by a 2x2  convolution, a concatenation with the corresponding
+feature map from the <code class="docutils literal notranslate"><span class="pre">downsampling</span></code> path, and two convolutions layers, each
+followed by a ReLU.</p></li>
+</ul>
+<p><strong>Final Layer:</strong></p>
+<ul class="simple">
+<li><p>A 1x1 convolution is used to map each feature vector to the desired number of
+classes.</p></li>
+</ul>
+<p><strong>Loss function:</strong></p>
+<ul class="simple">
+<li><p>The energy function is computed by a pixel-wise softmax over the final
+feature map and then applied cross-entropy loss function.</p></li>
+</ul>
+<p><strong>Metric:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IoU</span> <span class="pre">(intersection</span> <span class="pre">of</span> <span class="pre">union)</span></code> -&gt; Area overlap / Area of Union</p></li>
+</ul>
+<p><strong>Comments:</strong></p>
+<ul class="simple">
+<li><p>Means converting a high resolution image to a low resolution image. By down
+sampling, the model better understands <code class="docutils literal notranslate"><span class="pre">What</span></code> is present in the image, but
+it loses the information of <code class="docutils literal notranslate"><span class="pre">Where</span></code> it is present.</p></li>
+</ul>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>UNet combines the location information from the downsampling path to finally
+obtain a general information combining localisation and context, which is
+necessary to predict a good segmentation map.</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/deep-learning/objectdetection.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

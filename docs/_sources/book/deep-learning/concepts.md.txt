@@ -7,35 +7,35 @@ ______
 
 **Steps**
 
-- **Feed Forward:** takes an input, passes it through multiple layers of hidden
+- **Feed Forward:** takes an input and passes it through multiple layers of hidden
   neurons and outputs a prediction representing the combined input of all the
   neurons.
-- **Input Layer:** is the layer consisting of the input data which is passed to
+- **Input Layer:** consists of the input data which is passed to
   the first hidden layer in the network. Each layer in the network consists of
   a series of neurons. 
-- `Neuron` is the weighted sum of the inputs plus bias and then feeds the sum
-  through a non-linear  activation function. 
+  - A `Neuron` is the weighted sum of the inputs plus bias and then feeds the sum
+  through a non-linear activation function. 
   - The outputs of the neurons are then passed to the next layer. 
   - This process is repeated for each layer in the network until the output layer. 
-- **Hidden Layers:** reside in-between input and output layers and can consist
-  of ‘n’ layers which can  be a hyperparameter to tune for. 
-  - The larger the number of hidden layers in a neural network will take longer to train
+- **Hidden Layers:** resides in-between input and output layers and can consist
+  of ‘n’ layers (hyperparameter to tune for). 
+  - As the number of hidden layers in the network increases, so does the
+    training time.
 - **Output layer:**: produces the class label or target, depending whether this
   is a classification or regression task.
-  - Model prediction and compare with the ground truth. 
 
 **Goal**
-- The objective is to `minimize `the Loss Function.
+- The objective is to `minimize` the Loss Function.
 - Where the loss function quantifies how “good” or “bad” a given model is in
   classifying the input  data 
 
 **Backpropagation**: 
-- Next we perform back prop which is a method to update the
-weights in the neural network by taking into account the actual output and the
-desired output. 
-- The derivative with respect to the weights is computed using chain rule. 
-- We perform this backward pass to adjust the weights and biases in the network
+- Back prop is the method to update the weights in the neural network by taking
+  into account the actual output and the desired output.  
+- The backward pass adjusts the weights and biases in the network
   to optimize the cost function and minimize the loss function. 
+- The derivative with respect to the weights is computed using chain rule. 
+
 
 ### Activation Functions 
 
@@ -76,10 +76,22 @@ desired output.
   training set to update its weights.
 
 ### Gradient Descent
-
+- Gradient descent is an `iterative algorithm`, that starts from a random point on
+a function and travels down its slope in steps until it reaches the lowest
+point of that function. 
+- Gradient Descent involves calculating the `gradient` of the target function.
 - Optimization algorithm used to minimize the loss function by iteratively
   moving in the direction of steepest descent as defined by the negative of
-  the gradient
+  the gradient. 
+  - **Derivative**: Slope or curvature of a target function with respect to
+    specific input values to the function. 
+  - **Gradient**: Vector of partial derivatives of a target function with
+    respect to input variables. 
+  - **Step Size:** Learning rate or alpha, a hyperparameter used to control
+    how much to change each input variable with respect to the gradient.
+- Shape of the loss function:
+  - **Linear Models:** convex shape
+  - **Non-Linear Models:** non-convex optimization (needs GPU)
 
 ![image](../assets/gradient_descent.png)
 
@@ -88,38 +100,63 @@ desired output.
   parameters in response to the gradients.
 - This new gradient tells us the slope of our cost function at our current
   position and the direction we should move to update our parameters. 
-- And finally, the size for updating the weights is controlled by the learning rate.
-- **Linear Models:** shape of loss function: convex shape
-- **Non-Linear Models:** non-convex optimization (needs GPU)
+- The size for updating the weights is controlled by the learning rate.
+  - `step size = gradient * learning rate`
+- Calculate the new parameters as:
+  -  `new params = old params -step size`
+- Repeat until convergence (e.g. gradient is small enough to stop).
+
+**Disadvantages:**
+- For large datasets, the gradient descent algorithm can be slow. 
+- An alternative is to use a stochastic gradient descent algorithm (SGD) which
+  is faster and more efficient.
 
 ### Batch Gradient Descent
 - Same as vanilla gradient descent and computes the gradient of the cost
-  function with respect to the parameters for the entire dataset.
+  function with respect to the parameters for the entire dataset. 
 - During batch gradient descent, the algorithm has to scan every single
   instance of the training set before taking a single step, which can take
   longer to compute, especially for larger datasets.
-  
-### Stochastic Gradient Descent
-- In SGD, we repeatedly run through the training set data and update the
-  parameters according to the  gradient of the error with respect to the
-  corresponding training example.
-  Often the case, SGD performs much faster than batch gradient descent as moves
-  closer to the minimum quicker. 
-- In SGD fluctuation enables it to jump to new and potentially better local
-  minima and converge quicker.
+- Batch Gradient Descent is not often used in practice as it's simply too
+  computationally expensive. 
 
-### Stochastic Weighting Average
-- Reference: https://pytorch.org/blog/stochastic-weight-averaging-in-pytorch/
+### Stochastic Gradient Descent
+- Stochastic gradient descent (SGD) is the dominant method used to train deep
+  learning models. 
+- While selecting data points at each step to calculate the derivatives, SGD
+  `randomly` picks *one data point* from the whole data set at each iteration. 
+- Often the case, SGD performs much faster than batch gradient descent as moves
+  closer to the minimum quicker. 
+- Given that SGD computes the gradient using a single sample. - single samples
+  are really noisy. 
+  - Fluctuation enables it to jump to new and potentially better local
+  minima and converge quicker.
 
 ### Mini-batch Gradient Descent 
 - Takes the best of both worlds (batch and stochastic) and performs an update
-  for every mini-batch of ‘n’ training examples.
+  for every mini-batch of `n` training examples.
+- Mini-batches tend to average a little of the noise out relatively to using
+  just SGD. 
+- A good balance is struck when the mini-batch size is small enough to avoid
+  some of the poor local minima, but large enough that it doesn't avoid the
+  global minima or better-performing local minima.
+
+### Stochastic Gradient Descent vs. Batch Gradient Descent
+
+![image](../assets/sgd_bgd.png)
+
+[Reference](https://www.geeksforgeeks.org/difference-between-batch-gradient-descent-and-stochastic-gradient-descent/)
+
+
+### Stochastic Weighting Average
+- Stochastic weighting is a technique that allows us to update the weights of
+  the network in a way that is more efficient than the traditional way.
+- **Reference**: https://pytorch.org/blog/stochastic-weight-averaging-in-pytorch/
   
 ### Softmax 
-
-- In a neural network, the raw predictions which come out of the last layer of
-  the network - which converts these values to probabilities for multi-class
-  labels. 
+- In a neural network, the raw predictions are produced from the last layer of
+  the network. The softmax function converts these values to probabilities for
+  multi-class labels. 
 
 ![image](../assets/softmax_sigmoid.png)
 

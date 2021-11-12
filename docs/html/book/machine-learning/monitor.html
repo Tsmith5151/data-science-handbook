@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Production Monitoring &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Production Monitoring</a><ul>
+<li><a class="reference internal" href="#a-b-testing">A/B Testing</a></li>
+<li><a class="reference internal" href="#data-drift">Data Drift</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="production-monitoring">
+<h1>Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="a-b-testing">
+<h2>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A/B Testing is a way of conducting an experiment where you compare a control
+group to the performance of one or more test groups by randomly assigning
+each group a specific single-variable treatment.</p></li>
+</ul>
+<p><strong>Experimental Design → Control and Control Groups</strong></p>
+<ul class="simple">
+<li><p>One of the treatments will be the control and the other treatments will be
+variations on that.</p></li>
+<li><p><strong>Determine Power of the Test:</strong></p>
+<ul>
+<li><p>The minimum sample size for control and experiment groups that yields the
+highest statistical power (Beta).</p></li>
+<li><p>Statistical power increases as alpha increases, thus beta will decrease
+<code class="docutils literal notranslate"><span class="pre">beta</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">power</span></code>.</p></li>
+<li><p>Random sampling is a technique where each sample in a population has an
+equal chance of being chosen.</p></li>
+<li><p>Essential that you determine the minimum sample size for your A/B test
+prior to conducting it so  that you can eliminate under coverage bias.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Hypothesis Testing (T-Test):</strong></p>
+<ul class="simple">
+<li><p>First, you want to set your alpha, the probability of making a type 1 error.
+Typically the alpha is set at 5% or 0.05.</p></li>
+<li><p>Next, you want to determine the probability value (p-value) by first
+calculating the t-statistic.
+Lastly, compare the p-value to the alpha. If the p-value is greater than the
+alpha, do not reject the null!</p></li>
+</ul>
+</div>
+<div class="section" id="data-drift">
+<h2>Data Drift<a class="headerlink" href="#data-drift" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Drifts involve a statistical change in the data, the best approach to detect
+them is by monitoring  its statistical properties</p></li>
+</ul>
+<p><strong>Address Model Drift:</strong></p>
+<ul class="simple">
+<li><p>You could implement a system that periodically trains your models after some
+time t, or once it detects a drift  you could refresh a model’s weight by
+extending its training with new data.</p></li>
+</ul>
+<p><strong>Alerts</strong></p>
+<ul class="simple">
+<li><p>Recurring, Incremental, Outlier, Abrupt</p></li>
+<li><p>Adaptive Sliding Window (very common approach)</p>
+<ul>
+<li><p>Works by keeping track of several statistical properties of data within a
+window that  automatically grows and shrinks</p></li>
+</ul>
+</li>
+<li><p><strong>Kolmogorov-Smirnov Test</strong></p>
+<ul>
+<li><p>K-S test is nonparametric, meaning doesn’t assume any particular
+underlying distribution</p></li>
+<li><p>This test compares your data with a known distribution and test if they
+come from the same distribution.</p></li>
+<li><p>Null Hypothesis</p></li>
+<li><p>Samples are from the same distribution</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/machine-learning/monitor.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

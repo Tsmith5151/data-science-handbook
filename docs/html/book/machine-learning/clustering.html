@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clustering &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Clustering</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#selecting-cluster-algorithm">Selecting Cluster Algorithm</a></li>
+<li><a class="reference internal" href="#k-means-clustering">K-Means Clustering</a></li>
+<li><a class="reference internal" href="#evaluation-of-clusters">Evaluation of Clusters</a><ul>
+<li><a class="reference internal" href="#difference-between-knn-and-kmeans">Difference between KNN and KMeans</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hierarchical-clustering">Hierarchical Clustering</a></li>
+<li><a class="reference internal" href="#dbscan">DBSCAN</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="clustering">
+<h1>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/cluster1.png" /></p>
+</div>
+<div class="section" id="selecting-cluster-algorithm">
+<h2>Selecting Cluster Algorithm<a class="headerlink" href="#selecting-cluster-algorithm" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/cluster2.png" /></p>
+</div>
+<div class="section" id="k-means-clustering">
+<h2>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>KMeans is an iterative process and aims to partition <code class="docutils literal notranslate"><span class="pre">N</span></code> observations into
+<code class="docutils literal notranslate"><span class="pre">K</span></code> where observation belongs to the cluster with the closest mean.</p></li>
+<li><p>By assigning <code class="docutils literal notranslate"><span class="pre">N</span></code> observations to <code class="docutils literal notranslate"><span class="pre">K</span></code> clusters such that within each the
+average dissimilarity of the  observations from the cluster mean (i.e.
+centroid) is minimized.</p></li>
+<li><p>Specify the number of clusters <code class="docutils literal notranslate"><span class="pre">k</span></code></p></li>
+<li><p>Randomly pick k centroids from the data points as initial cluster centers</p></li>
+<li><p>Assign each sample to the nearest centroid (i.e. Euclidean distance)</p></li>
+<li><p>Move the centroids to the center of the samples that were assigned to it</p></li>
+<li><p>Repeat the <code class="docutils literal notranslate"><span class="pre">third</span></code> and <code class="docutils literal notranslate"><span class="pre">fourth</span></code> steps until the cluster assignment converges</p></li>
+</ul>
+<p><img alt="image" src="../../_images/kmeans.png" /></p>
+</div>
+<div class="section" id="evaluation-of-clusters">
+<h2>Evaluation of Clusters<a class="headerlink" href="#evaluation-of-clusters" title="Permalink to this headline"></a></h2>
+<p><strong>Elbow method:</strong></p>
+<ul class="simple">
+<li><p>plot number of clusters versus interia</p></li>
+<li><p><strong>Inertia:</strong> measure of how internally coherent clusters are</p></li>
+<li><p><strong>Cohesion:</strong> measures how closely related are objects in a cluster</p></li>
+<li><p><strong>Separation:</strong> measures how distinctly separated a cluster is from other clusters</p></li>
+</ul>
+<p><strong>Calinski-Harabasz:</strong></p>
+<ul class="simple">
+<li><p>Also known as the <code class="docutils literal notranslate"><span class="pre">Variance</span> <span class="pre">Ratio</span> <span class="pre">Criterion</span></code></p></li>
+<li><p>Indicates how well a clustering model defines its clusters, such that the
+higher the score, the more  dense and well separated the clusters are.</p></li>
+</ul>
+<p><strong>Silhouette Coefficient:</strong></p>
+<ul class="simple">
+<li><p>Is calculated using the mean intra-cluster distance
+(a) and the mean nearest-cluster distance (b) for each sample.</p>
+<ul>
+<li><p>The Silhouette Coefficient for a sample is (b - a) / max(a, b)</p></li>
+<li><p>The best value is 1 and the worst value is -1.</p></li>
+<li><p>Values near 0 indicate overlapping clusters. Negative values generally
+indicate that a sample  has been assigned to the wrong cluster, as a
+different cluster is more similar.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="difference-between-knn-and-kmeans">
+<h3>Difference between KNN and KMeans<a class="headerlink" href="#difference-between-knn-and-kmeans" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>K-NN is a Supervised machine learning while K-means is an unsupervised machine learning.</p></li>
+<li><p>K-NN is a classification or regression machine learning algorithm while</p></li>
+<li><p>K-NN performs much better if all of the data have the same scale but this is
+not true for K-means.</p></li>
+<li><p>K-means is a clustering machine learning algorithm and used for unsupervised ML tasks.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="hierarchical-clustering">
+<h2>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Agglomerative Clustering is a clustering algorithm that builds nested
+clusters by merging or splitting them successively.</p></li>
+<li><p>This hierarchy of clusters is represented as a tree (or dendrogram).</p></li>
+<li><p>Hierarchical clustering using a bottom up approach:</p>
+<ul>
+<li><p>Each observation starts in its own cluster, and clusters are successively merged together.</p></li>
+</ul>
+</li>
+<li><p>Hierarchical clustering algorithms aims at optimizing different objective functions:</p></li>
+<li><p><strong>Ward</strong> minimizes the sum of squared differences within all clusters. It is
+a variance-minimizing  approach and in this sense is similar to the k-means
+objective function but tackled with an agglomerative hierarchical approach.</p></li>
+<li><p><strong>Maximum or complete linkage:</strong> minimizes the maximum distance between observations of pairs of clusters.</p></li>
+<li><p><strong>Average linkage minimizes</strong> the average of the distances between all observations of pairs of clusters.</p></li>
+<li><p><strong>Single linkage</strong> minimizes the distance between the closest observations of pairs of clusters.</p></li>
+</ul>
+</div>
+<div class="section" id="dbscan">
+<h2>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Clustering algorithm views clusters as areas of high density separated by areas of low density.</p></li>
+<li><p>Clusters found by DBSCAN can be any shape, as opposed to k-means which
+assumes that clusters are  convex shaped.</p></li>
+</ul>
+<p><strong>Affinity Propagation</strong></p>
+<ul class="simple">
+<li><p>Affinity Propagation creates clusters by sending messages between pairs of
+samples until convergence.</p></li>
+<li><p>The messages sent between pairs represent the suitability for one sample to
+be the exemplar of the  other, which is updated in response to the values
+from other pairs.</p></li>
+<li><p>This updating happens iteratively until convergence, at which point the final
+exemplars are chosen,  and hence the final clustering is given.</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/machine-learning/clustering.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

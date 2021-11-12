@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Topic Modeling &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Topic Modeling</a><ul>
+<li><a class="reference internal" href="#nfm-model">NFM Model</a></li>
+<li><a class="reference internal" href="#latent-dirichlet-allocation">Latent Dirichlet Allocation</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="topic-modeling">
+<h1>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Topic modelling is an unsupervised text mining approach.
+<strong>Input</strong>: corpus of unstructured text documents with no labels (reviews, news)
+<strong>Output</strong>: Multiple topics for a single document or corpus</p></li>
+</ul>
+<p><strong>Steps:</strong></p>
+<ul class="simple">
+<li><p>Tokenize: split raw text into individual tokens</p></li>
+<li><p><strong>Bag-of-Words Model:</strong></p>
+<ul>
+<li><p>Method to move from tokens to numeric features</p></li>
+<li><p>Each document is represented by a vector where m is the number of unique terms across all documents</p></li>
+</ul>
+</li>
+<li><p><strong>Create document-term matrix:</strong></p>
+<ul>
+<li><p>Each document can be represented as a term vector, with an entry indicating the number of time a term appears in the document:</p></li>
+</ul>
+</li>
+<li><p><strong>Additional Preprocessing steps:</strong></p>
+<ul>
+<li><p>Minimum token length, like excluding tokens of length &lt; 2</p></li>
+<li><p>Converting all words to lowercase.</p></li>
+<li><p>Filter stop words</p></li>
+<li><p>Stemming</p></li>
+</ul>
+</li>
+<li><p><strong>Translate Document Term Matrix to:</strong></p>
+<ul>
+<li><p>TF-IDF in order to give higher weights to more “important” terms.</p></li>
+<li><p>TF-IDF: Common approach for weighting the score for a term in a document.</p>
+<ul>
+<li><p>Term Frequency: Number of times a given term appears in a single document.</p></li>
+<li><p>Inverse Document Frequency: basically penalizes common terms that appear in almost every document.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Two Topic Modeling Approaches:</strong></p>
+<ol class="simple">
+<li><p><strong>Probabilistic</strong> - view each document as a mixture of a small number of topics where words and documents get probability scores for each topic.</p>
+<ul class="simple">
+<li><p>Latent Dirichlet Allocation (LDA)</p></li>
+</ul>
+</li>
+<li><p><strong>Matrix Factorisation</strong> - apply methods from linear algebra to decompose a single matrix into a set of smaller matrices</p>
+<ul class="simple">
+<li><p>Non-negative Matrix Factorisation (NMF)</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Evaluate number of topics:</strong></p>
+<ol class="simple">
+<li><p><strong>Perplexity</strong>: how surprised a model is of new data it has not seen before, and is measured as the normalized log-likelihood of a held-out test set.</p></li>
+<li><p><strong>Coherence</strong>: Measures score a single topic by measuring the degree of semantic similarity between high scoring words in the topic</p></li>
+</ol>
+<p><img alt="image" src="../../_images/topic_model1.png" /></p>
+<div class="section" id="nfm-model">
+<h2>NFM Model<a class="headerlink" href="#nfm-model" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>NMF can be applied for topic modeling, where the input is a document-term matrix</p>
+<ul>
+<li><p><strong>Input</strong>: Document-term matrix A; Number of topics k.</p></li>
+<li><p><strong>Output</strong>:  Two k-dimensional factors W and H approximating A
+<strong>H Factor:</strong></p></li>
+</ul>
+</li>
+<li><p>Contains term weights relative to each of the k topics.</p></li>
+<li><p>Each row corresponds to a topic, and each column corresponds to a unique term in the corpus vocabulary.</p></li>
+<li><p>Sorting the values in each row gives us a ranking of terms
+<strong>W Factor</strong></p></li>
+<li><p>Contains document membership weights across the k topics.</p></li>
+<li><p>Each row corresponds to a different document, and each column corresponds to a topic.</p></li>
+<li><p>Sorting the values gives us a ranking of the most relevant documents for each topic.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/nfm_model.png" /></p>
+</div>
+<div class="section" id="latent-dirichlet-allocation">
+<h2>Latent Dirichlet Allocation<a class="headerlink" href="#latent-dirichlet-allocation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>LDA assumes that all words in the document can be assigned a probability of belonging to a topic.</p></li>
+<li><p>Topics in a document are unknown, but the idea is topics are present as the text is generated based on a distribution of topics and distribution of words in that topic.</p></li>
+</ul>
+<p><strong>Goal</strong></p>
+<ul class="simple">
+<li><p>Determine the number of topics that a document contains.</p></li>
+<li><p>Each document is modeled as a multinomial distribution of topics</p></li>
+<li><p>Each topic is also modeled as a multinomial distribution of words.</p></li>
+<li><p>LDA assumes the text feed into the model will contain words that are related.</p></li>
+</ul>
+<p><strong>Steps</strong></p>
+<ul class="simple">
+<li><p>Tokenization: Split the text into sentences and the sentences into words, and lowercase words and remove punctuation</p></li>
+<li><p>Remove stopwords</p></li>
+<li><p>Lemmatize: Words in third person are changed to first person and verbs in past and future tenses are changed into present</p></li>
+<li><p>Stemming: Words are reduced to their root form</p></li>
+<li><p>Create Bag-of-Words Model</p>
+<ul>
+<li><p>Dictionary containing the number of times a word appears in the training set.</p></li>
+</ul>
+</li>
+<li><p>Can also create a N_Gram Model:</p>
+<ul>
+<li><p><strong>bigrams</strong> which are two words frequently occurring together in the document</p></li>
+<li><p><strong>trigrams</strong>, which  are 3 words frequently occurring - for example. This can provide more contextual information than just bag of words</p></li>
+</ul>
+</li>
+<li><p>Perform TF-IDF on document set</p></li>
+<li><p>Perform Topic Model (e.g. LDA) + Evaluate</p></li>
+</ul>
+<p><strong>Example Output:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Topic 1:
+ _0.016“car” + 0.014“power” + 0.010“light” + 0.009“drive” + 0.007“mount” + 0.007“controller” + 0.007“cool” + 0.007“engine” + 0.007“back” + ‘0.006“turn”.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It means the top 10 keywords that contribute to this topic are: ‘car’, ‘power’, ‘light’.. and so on and the weight of ‘car’ on topic 1 is 0.016.</p></li>
+<li><p>The weights reflect how important a keyword is to that topic</p></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/nlp/topicmodeling.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
