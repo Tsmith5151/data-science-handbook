@@ -10,7 +10,7 @@ _____
 - Below are some handy commands when working with `pytest`.
 - [ZenML Reference](https://blog.zenml.io/level-up-your-testing/)
   
-```
+```bash
 # make the test output verbose
 pytest tests/ -v
 

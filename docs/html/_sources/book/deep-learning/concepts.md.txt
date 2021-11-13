@@ -5,7 +5,7 @@ ______
 
 ![image](../assets/dnn.png)
 
-**Steps**
+**<span class="label label-success">Steps</span>**
 
 - **Feed Forward:** takes an input and passes it through multiple layers of hidden
   neurons and outputs a prediction representing the combined input of all the
@@ -95,7 +95,7 @@ point of that function.
 
 ![image](../assets/gradient_descent.png)
 
-**Steps:**
+**<span class="label label-success">Steps</span>**
 - Calculate gradients of the loss/error function, then updating existing
   parameters in response to the gradients.
 - This new gradient tells us the slope of our cost function at our current
@@ -106,7 +106,7 @@ point of that function.
   -  `new params = old params -step size`
 - Repeat until convergence (e.g. gradient is small enough to stop).
 
-**Disadvantages:**
+**<span class="label label-warning">Disadvantages</span>**
 - For large datasets, the gradient descent algorithm can be slow. 
 - An alternative is to use a stochastic gradient descent algorithm (SGD) which
   is faster and more efficient.
@@ -211,7 +211,6 @@ point of that function.
 - BN usually done after a fully connected/convolutional layer and before a
   non-linearity layer and aims at allowing higher learning rates and reducing
   the strong dependence on initialization.
-
 
 ### Overfitting
 - Ways to address overfitting:

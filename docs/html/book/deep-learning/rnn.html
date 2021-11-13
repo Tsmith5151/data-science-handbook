@@ -109,7 +109,7 @@ can modify that state at what it receives at every step. With RNNs, we use
 <code class="docutils literal notranslate"><span class="pre">Backpropagation</span></code> in time.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/rnn.png" /></p>
-<p><strong>Problem with RNNs:</strong></p>
+<p><strong><span class="label label-warning">Problem with RNNs</span></strong></p>
 <ul class="simple">
 <li><p>You are repeatedly multiplying by the same weight matrix.</p></li>
 <li><p>This can cause <code class="docutils literal notranslate"><span class="pre">exploding</span></code> or <code class="docutils literal notranslate"><span class="pre">vanishing</span> <span class="pre">gradients</span></code> – where the model is not
@@ -119,7 +119,7 @@ simple gradient clipping algorithm.</p></li>
 <li><p><strong>Vanishing gradients</strong> can also be difficult to spot making it more dangerous
 when deploying your system into production.</p></li>
 </ul>
-<p><strong>Method:</strong></p>
+<p><strong><span class="label label-info">Method</span></strong></p>
 <ul class="simple">
 <li><p>First, the initial hidden state, which is typically a vector of zeros and the
 hidden state weight is multiplied and then the hidden state bias is added to

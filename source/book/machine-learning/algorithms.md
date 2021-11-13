@@ -181,10 +181,10 @@ Results:
 - **<span class="label label-info">Strength:</span>**
   - Works well with missing values and outliers. 
   - Easy to tune for - minimal hyper parameters. 
-- **<span class="label label-warning">Weakness:</span>****Weakness**: 
+- **<span class="label label-warning">Weakness:</span>**: 
   - Doesn’t offer the same level of interpretability as decision trees.
 
-### Bagging vs Boosting**
+### Bagging vs Boosting
 
 - **Bagging**
   - `Bagging` uses sampling with replacement (e.g. some observations may be repeated) 

@@ -1,7 +1,7 @@
 # Deep Neural Networks (RecSys)
 ____
 
-**Overview**
+### Overview
 - Deep neural network (DNN) models can address these limitations of matrix factorization.
 - By adding hidden layers and non-linear activation functions (for example,
   ReLU), the model can capture more complex relationships in the data.
@@ -37,7 +37,8 @@ ____
   - dense features (for example, watch time and time since last watch)
   - sparse features (for example, watch history and country)
  
-**Note:** You can think of this DNN model as a generalization of matrix
+**<span class="label label-info">Notes</span>**
+You can think of this DNN model as a generalization of matrix
 factorization, in which you replace the query side by a nonlinear function
 
 ![image](../assets/softmax_recsys.png)
@@ -157,7 +158,7 @@ ______
 - The outputs of GMF and MLP are concatenated in the final NeuMF(Neural Matrix
   Factorisation) layer. 
 
-**Notes:**
+**<span class="label label-info">Info</span>**
 - NCF is an example of multimodal deep learning as it contains data from 2
   pathways namely user and item.  
 - The most intuitive way to combine them is by concatenation. 

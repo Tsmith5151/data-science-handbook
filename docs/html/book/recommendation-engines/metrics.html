@@ -65,8 +65,8 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Evaluate RecSys</a></li>
-<li><a class="reference internal" href="#similarity-metrics">Similarity Metrics</a><ul>
+<li><a class="reference internal" href="#">Evaluate RecSys</a><ul>
+<li><a class="reference internal" href="#similarity-metrics">Similarity Metrics</a></li>
 <li><a class="reference internal" href="#mean-average-precision-map">Mean Average Precision (MAP)</a></li>
 <li><a class="reference internal" href="#coverage">Coverage</a></li>
 <li><a class="reference internal" href="#personalization">Personalization</a></li>
@@ -103,10 +103,9 @@
       
   <div class="section" id="evaluate-recsys">
 <h1>Evaluate RecSys<a class="headerlink" href="#evaluate-recsys" title="Permalink to this headline"></a></h1>
-</div>
 <hr class="docutils" />
 <div class="section" id="similarity-metrics">
-<h1>Similarity Metrics<a class="headerlink" href="#similarity-metrics" title="Permalink to this headline"></a></h1>
+<h2>Similarity Metrics<a class="headerlink" href="#similarity-metrics" title="Permalink to this headline"></a></h2>
 <p><strong>Dot Product:</strong></p>
 <ul class="simple">
 <li><p>Note that popular items tend to be recommended for everyone, especially when
@@ -121,20 +120,27 @@ or more vectors. Range: <code class="docutils literal notranslate"><span class="
 <ul class="simple">
 <li><p>The similarity measurement is a measure of the cosine of the angle between
 the two non-zero vectors A and B.</p></li>
-<li><p>As the cosine similarity gets closer to 1, the angle between the two vectors [A,B] is smaller.</p></li>
+<li><p>As the cosine similarity gets closer to 1, the angle between the two vectors
+[A,B] is smaller.</p></li>
 <li><p>Computes similarity as the normalized dot product of X and Y:</p></li>
 </ul>
 <p><img alt="image" src="../../_images/cosine.png" /></p>
-<p><strong>Note:</strong> In order to compute similarities, the entire dataset needs to be
+<p><strong><span class="label label-info">Notes</span></strong></p>
+<ul class="simple">
+<li><p>In order to compute similarities, the entire dataset needs to be
 loaded into memory. One solution would be to convert from a dense to a sparse
-matrix representation given that many of the rows have zero entries. Using
-implementation sparse.csr_matrix can be used as it’s very memory efficient for
-storing sparse datasets</p>
+matrix representation given that many of the rows have zero entries.</p></li>
+<li><p>Using implementation sparse.csr_matrix can be used as it’s very memory efficient for
+storing sparse datasets.</p></li>
+</ul>
+</div>
 <div class="section" id="mean-average-precision-map">
 <h2>Mean Average Precision (MAP)<a class="headerlink" href="#mean-average-precision-map" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>MAP to evaluate a recommender algorithm implies that we are treating the recommendation like a ranking task.</p></li>
-<li><p>We want to show the top recommendations first and maybe market them more aggressively.</p></li>
+<li><p>MAP to evaluate a recommender algorithm implies that we are treating the
+recommendation like a ranking task.</p></li>
+<li><p>We want to show the top recommendations first and maybe market them more
+aggressively.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/map.png" /></p>
 </div>
@@ -148,8 +154,10 @@ storing sparse datasets</p>
 <h2>Personalization<a class="headerlink" href="#personalization" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Is a great way to assess if a model recommends many of the same items to different users.</p></li>
-<li><p>We can use the cosine similarity metric to measure the similarity among the top “K” items recommended.</p></li>
-<li><p>A high personalization score indicates user’s recommendations are different, meaning the model is offering a personalized experience to each user.</p></li>
+<li><p>We can use the cosine similarity metric to measure the similarity among the
+top “K” items recommended.</p></li>
+<li><p>A high personalization score indicates user’s recommendations are different,
+meaning the model is offering a personalized experience to each user.</p></li>
 </ul>
 </div>
 </div>

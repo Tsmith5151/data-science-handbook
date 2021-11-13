@@ -53,6 +53,10 @@ _________
 * [Deep Learning](book/recommendation-engines/dnn.md)
 * [Metrics](book/recommendation-engines/metrics.md)
 
+###### Search and Ranking
+* [Search](book/search-ranking/search.md)
+* [Learn to Rank](book/search-ranking/learntorank.md)
+
 ###### Software Engineering
 * [Data Structures](book/software-engineering/structures.md) 
 * [DevOps](book/software-engineering/devops.md) 

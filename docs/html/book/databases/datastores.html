@@ -130,9 +130,9 @@ Data coming in as Stream or any historical data you have is the same table being
 <li><p>is a technique to colocate related information in the same set of files. Z-ordering is basically a data-skipping algorithm to dramatically reduce the amount of data that needs to be read.</p></li>
 <li><p>To Z-Order data, you specify the columns to order on in the <code class="docutils literal notranslate"><span class="pre">ZORDER</span> <span class="pre">BY</span> </code>clause:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMIZE</span> <span class="n">events</span>
-<span class="n">WHERE</span> <span class="n">date</span> <span class="o">&gt;=</span> <span class="n">current_timestamp</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="mi">1</span> <span class="n">day</span>
-<span class="n">ZORDER</span> <span class="n">BY</span> <span class="p">(</span><span class="n">eventType</span><span class="p">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>OPTIMIZE events
+WHERE date &gt;<span class="o">=</span> current_timestamp<span class="o">()</span> - INTERVAL <span class="m">1</span> day
+ZORDER BY <span class="o">(</span>eventType<span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -165,11 +165,14 @@ Data coming in as Stream or any historical data you have is the same table being
 <div class="section" id="data-warehouse">
 <h2>Data Warehouse<a class="headerlink" href="#data-warehouse" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>A database designed to store and process large volumes of current and historical data collected from multiple sources inside and outside the enterprise for deep analysis.</p></li>
+<li><p>A database designed to store and process large volumes of current and
+historical data collected from multiple sources inside and outside the
+enterprise for deep analysis.</p></li>
 <li><p>Organizes data into tables and columns, and allows users access via SQL.</p></li>
 <li><p>Optimized for loading, integrating and analyzing very large amounts of data.</p></li>
-<li><p>Designed to support descriptive, diagnostic, predictive and prescriptive analytic workloads.
-Example: Snowflake</p></li>
+<li><p>Designed to support descriptive, diagnostic, predictive and prescriptive
+analytic workloads.</p></li>
+<li><p><strong>Example</strong>: Snowflake</p></li>
 </ul>
 </div>
 </div>

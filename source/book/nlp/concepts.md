@@ -44,7 +44,7 @@ Where: `N` = number of documents in collection.
 
 **TF-IDF Code Example**
 
-```
+```python
 vectorizer = TfidfVectorizer(stop_words='english')
 vectors = vectorizer.fit([document1, document2])
 feature_names = vectorizer.get_feature_names()

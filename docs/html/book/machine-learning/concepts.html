@@ -66,22 +66,18 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Machine Learning Concepts</a><ul>
-<li><a class="reference internal" href="#discriminative-vs-generative">Discriminative vs Generative</a><ul>
+<li><a class="reference internal" href="#discriminative-vs-generative">Discriminative vs Generative</a></li>
 <li><a class="reference internal" href="#bias-variance-trade-off">Bias Variance Trade-off</a></li>
 <li><a class="reference internal" href="#overfitting">Overfitting</a></li>
 <li><a class="reference internal" href="#regularization">Regularization</a></li>
 <li><a class="reference internal" href="#cross-validation">Cross Validation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#distance-measurements">Distance Measurements</a><ul>
+<li><a class="reference internal" href="#distance-measurements">Distance Measurements</a></li>
 <li><a class="reference internal" href="#loss-functions">Loss Functions</a><ul>
 <li><a class="reference internal" href="#binary-cross-entropy">Binary Cross Entropy</a></li>
 <li><a class="reference internal" href="#categorical-cross-entropy">Categorical Cross Entropy</a></li>
 <li><a class="reference internal" href="#kldivergence">KLDivergence</a></li>
 <li><a class="reference internal" href="#mean-absolute-error">Mean Absolute Error</a></li>
 <li><a class="reference internal" href="#mean-absolute-percentage-error">Mean Absolute Percentage Error</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -121,8 +117,9 @@
 <div class="section" id="discriminative-vs-generative">
 <h2>Discriminative vs Generative<a class="headerlink" href="#discriminative-vs-generative" title="Permalink to this headline"></a></h2>
 <p><img alt="image" src="../../_images/discrimitive_generative.png" /></p>
+</div>
 <div class="section" id="bias-variance-trade-off">
-<h3>Bias Variance Trade-off<a class="headerlink" href="#bias-variance-trade-off" title="Permalink to this headline"></a></h3>
+<h2>Bias Variance Trade-off<a class="headerlink" href="#bias-variance-trade-off" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><strong>Bias:</strong> is the difference between the expected (or average) prediction of
 our model and the  correct value which we are trying to predict.</p></li>
@@ -144,7 +141,7 @@ set are created using random selection with replacement.</p></li>
 </ul>
 </div>
 <div class="section" id="overfitting">
-<h3>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline"></a></h3>
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Occurs when the model over fits on the training data and does not generalize
 to the unseen sample population.</p></li>
@@ -166,7 +163,7 @@ specific to the training data that do not generalize to test data.</p></li>
 </ul>
 </div>
 <div class="section" id="regularization">
-<h3>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h3>
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Technique to help reduce overfitting by adding an additional parameter to the
 loss function, usually  the <code class="docutils literal notranslate"><span class="pre">L1</span></code> or <code class="docutils literal notranslate"><span class="pre">L2</span></code> norm.</p></li>
@@ -181,7 +178,7 @@ optimization that keeps the weights small.</p></li>
 <p><img alt="image" src="../../_images/regularization.png" /></p>
 </div>
 <div class="section" id="cross-validation">
-<h3>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline"></a></h3>
+<h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>To avoid sampling issues, which can cause the training-set to be too optimistic.</p></li>
 <li><p>Cross-validation is used to protect against overfitting in a predictive
@@ -193,7 +190,6 @@ model, particularly the case where the amount of data is limited.</p></li>
 while training on the k-1 other folds ‘k’ times.</p></li>
 <li><p>The error is then averages over the fold.</p></li>
 </ul>
-</div>
 </div>
 <div class="section" id="distance-measurements">
 <h2>Distance Measurements<a class="headerlink" href="#distance-measurements" title="Permalink to this headline"></a></h2>
@@ -234,8 +230,9 @@ consider how the rest of  the points in the dataset vary</p></li>
 </ul>
 </li>
 </ul>
+</div>
 <div class="section" id="loss-functions">
-<h3>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline"></a></h3>
+<h2>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A model needs a <code class="docutils literal notranslate"><span class="pre">loss</span> <span class="pre">function</span></code> and an <code class="docutils literal notranslate"><span class="pre">optimizer</span></code> for training.</p></li>
 <li><p>Function that takes as inputs the predicted value ‘z’ corresponding to the
@@ -244,7 +241,7 @@ real data value ‘y’ and outputs how different they are.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/loss_functions.png" /></p>
 <div class="section" id="binary-cross-entropy">
-<h4>Binary Cross Entropy<a class="headerlink" href="#binary-cross-entropy" title="Permalink to this headline"></a></h4>
+<h3>Binary Cross Entropy<a class="headerlink" href="#binary-cross-entropy" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Binary Classification problems</p></li>
 <li><p>For a binary classification problem the model outputs a probability</p></li>
@@ -265,7 +262,7 @@ has a larger entropy.</p>
 <img alt="image" src="../../_images/cross_entropy2.png" /></p>
 </div>
 <div class="section" id="categorical-cross-entropy">
-<h4>Categorical Cross Entropy<a class="headerlink" href="#categorical-cross-entropy" title="Permalink to this headline"></a></h4>
+<h3>Categorical Cross Entropy<a class="headerlink" href="#categorical-cross-entropy" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Classification problems</p></li>
 <li><p>Computes the cross entropy loss between the labels and predictions.</p></li>
@@ -274,7 +271,7 @@ function.</p></li>
 </ul>
 </div>
 <div class="section" id="kldivergence">
-<h4>KLDivergence<a class="headerlink" href="#kldivergence" title="Permalink to this headline"></a></h4>
+<h3>KLDivergence<a class="headerlink" href="#kldivergence" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Used to approximate a more complex function than simply multi-class
 classification like <code class="docutils literal notranslate"><span class="pre">Autoencoders</span></code>.</p></li>
@@ -289,19 +286,18 @@ distribution.</p></li>
 </ul>
 </div>
 <div class="section" id="mean-absolute-error">
-<h4>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline"></a></h4>
+<h3>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Regression problems</p></li>
 <li><p>Computes the mean of absolute difference between labels and predictions.</p></li>
 </ul>
 </div>
 <div class="section" id="mean-absolute-percentage-error">
-<h4>Mean Absolute Percentage Error<a class="headerlink" href="#mean-absolute-percentage-error" title="Permalink to this headline"></a></h4>
+<h3>Mean Absolute Percentage Error<a class="headerlink" href="#mean-absolute-percentage-error" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Regression problems</p></li>
 <li><p>Computes the mean absolute percentage error between y_true and y_pred.</p></li>
 </ul>
-</div>
 </div>
 </div>
 </div>

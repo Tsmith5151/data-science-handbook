@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning to Rank &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Learning to Rank</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#methods">Methods</a></li>
+<li><a class="reference internal" href="#loss-function">Loss Function</a></li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a><ul>
+<li><a class="reference internal" href="#mean-average-precision">Mean Average Precision</a></li>
+<li><a class="reference internal" href="#mean-reciprocal-rank">Mean Reciprocal Rank</a></li>
+<li><a class="reference internal" href="#compute-normalized-discounted-cumulative-gain">Compute Normalized Discounted Cumulative Gain</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#affinity-scores">Affinity Scores</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="learning-to-rank">
+<h1>Learning to Rank<a class="headerlink" href="#learning-to-rank" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>We try to learn a function f(q,D), given a query “q” and a relevant list of
+items “D” to predict the order (ranking) of all items within a list.</p></li>
+<li><p><strong>Goal:</strong> we really want is to know how relevant is an item.</p></li>
+<li><p>The training data for a learning to rank model consists of a list of results
+for a query and a relevance rating for each of those results with respect to
+the query.</p></li>
+<li><p><strong>Search Engines:</strong></p>
+<ul>
+<li><p>To perform learning to rank you need access to training data, user
+behaviors, user profiles, and a powerful search engine such as SOLR.</p></li>
+<li><p>The training data for a LTR model consists of a list of items and a “ground
+truth” score for each of those items.</p></li>
+<li><p>This translates to a list of results for a query and a relevance rating for
+each of those results with respect to the query.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The below methods are distinguished by how we formulate the loss function in
+the underlying machine learning task.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/learntorank.png" /></p>
+<p><strong>Pointwise</strong></p>
+<ul class="simple">
+<li><p>One instance of the set is considered at a time, using any kind of classifier
+or regression to predict how relevant it is in the current query.</p></li>
+<li><p>Use each point’s predicted relevance to order the set.</p></li>
+</ul>
+<p><strong><span class="label label-warning">Drawbacks</span></strong></p>
+<ul class="simple">
+<li><p>Ignores the fact that some documents are associated with the same query and
+some are not.</p></li>
+<li><p>If the number of documents varies largely for different queries, the overall
+loss function will be dominated by those queries with a large number of
+documents.</p></li>
+<li><p>The position of documents in the ranked list is not factored into the loss
+function(s).</p></li>
+</ul>
+<p><strong>Pairwise</strong></p>
+<ul class="simple">
+<li><p>This approach looks at two documents together and uses classification or
+regression — to decide which of the pair ranks higher.</p></li>
+<li><p>Pairs of queries and documents with a corresponding label representing a score.</p></li>
+<li><p>If 𝑠𝑐𝑜𝑟𝑒 (𝑞, 𝑑1) &gt; 𝑠𝑐𝑜𝑟𝑒(𝑞, 𝑑2), then 𝑑1 is more relevant to
+query 𝑞 than 𝑑2.</p></li>
+<li><p>The goal is to minimize the number of cases where the pair of results are in
+the wrong order relative to the ground truth (also called inversions).</p></li>
+<li><p><strong>Training Data:</strong></p>
+<ul>
+<li><p>Query-document pairs are converted into feature vectors that include features
+such as PageRank score, number of times the query keyword appears in the
+document, etc.</p></li>
+<li><p><strong>Slack Approach:</strong> This approach is used to judge the relative relevance of
+documents within a single search using clicks.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Listwise</strong></p>
+<ul class="simple">
+<li><p>Approaches decide on the optimal ordering of an entire list of documents.</p></li>
+<li><p>Ground truth lists are identified, and the machine uses that data to rank its
+list.</p></li>
+<li><p>Listwise approaches use probability models to minimize the ordering error</p></li>
+</ul>
+</div>
+<div class="section" id="loss-function">
+<h2>Loss Function<a class="headerlink" href="#loss-function" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LambdaMART</span></code> is a loss function (“Lambda”) attached to a gradient boosting
+forest (“MART” — Multiple additive regression tree).</p></li>
+<li><p>A gradient boosting forest improves its predictions by training a new tree to
+predict the errors (“gradients” of the loss function) of the trees which came
+before.</p></li>
+<li><p>Predictions are made by summing the original estimate of the first tree with
+all corrections imposed by subsequent trees.</p></li>
+<li><p><strong>Ease of implementation.</strong> The xgboost package has a highly optimized implementation of LambdaMART which allows us to prototype models in minutes with a single line of code.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rank:pairwise</span></code>: set XGBoost to do ranking task by minimizing the pairwise
+loss.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Average</span> <span class="pre">Precision</span></code>, or MAP. This is a very popular evaluation metric
+for algorithms that do information retrieval, like google search.</p></li>
+<li><p>If you have an algorithm that is returning a ranked ordering of items, each
+item is either hit or miss (like relevant vs. irrelevant search results) and
+items further down in the list are less likely to be used (like search
+results at the bottom of the page).</p></li>
+<li><p>We want a metric that rewards us for getting lots of “correct” or relevant
+recommendations, and rewards us for having them earlier on in the list
+(higher ranked).</p></li>
+</ul>
+<div class="section" id="mean-average-precision">
+<h3>Mean Average Precision<a class="headerlink" href="#mean-average-precision" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MAP</span></code> is very popular evaluation metric for algorithms that do information
+retrieval like google search results.</p></li>
+<li><p>Average Precision is a measure that takes in a ranked list of your N
+recommendations and compares it to a list of the true set of “correct” or
+“relevant” recommendations for that user.</p></li>
+<li><p>Average Precision rewards you for having a lot of “correct” (relevant)
+recommendations in your list, and rewards you for putting the most likely
+correct recommendations at the top (you are penalized more when incorrect
+guesses are higher up in the ranking).</p></li>
+<li><p>So the order of “hits” and “misses” matters a lot in computing an AP score.</p></li>
+<li><p><a class="reference external" href="http://sdsawtelle.github.io/blog/output/mean-average-precision-MAP-for-recommender-systems.html">Reference</a></p></li>
+</ul>
+<p><img alt="image" src="../../_images/map1.png" />
+<img alt="image" src="../../_images/map2.png" /></p>
+</div>
+<div class="section" id="mean-reciprocal-rank">
+<h3>Mean Reciprocal Rank<a class="headerlink" href="#mean-reciprocal-rank" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>A statistic that measures for evaluating any process that produces a list of
+possible responses to a sample of queries, ordered by probability of
+correctness.</p></li>
+<li><p>The reciprocal rank of a query response is the multiplicative inverse of the
+rank of the first correct answer:</p></li>
+</ul>
+<p><img alt="image" src="../../_images/mrr.png" /></p>
+<p><strong><span class="label label-success">Example</span></strong></p>
+<ul class="simple">
+<li><p>Given those three samples, we could calculate the mean reciprocal rank as (1/3 + 1/2 + 1)/3 = 11/18 or about 0.61.</p></li>
+</ul>
+</div>
+<div class="section" id="compute-normalized-discounted-cumulative-gain">
+<h3>Compute Normalized Discounted Cumulative Gain<a class="headerlink" href="#compute-normalized-discounted-cumulative-gain" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Sum the true scores ranked in the order induced by the predicted scores,after
+applying a logarithmic discount.</p></li>
+<li><p>Then divide by the best possible score (Ideal DCG, obtained for a perfect
+ranking) to obtain a score between 0 and 1.</p></li>
+<li><p>This ranking metric yields a high value if true labels are ranked high by y_score.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="affinity-scores">
+<h2>Affinity Scores<a class="headerlink" href="#affinity-scores" title="Permalink to this headline"></a></h2>
+<p>Derive a metric for computing affinity or user-user relevance:</p>
+<p><strong>1. The strength of the action:</strong></p>
+<ul class="simple">
+<li><p>Each action amongst share, like, tag, comment, etc. has a weight associated
+with it.</p></li>
+<li><p>So, the more effort you put into that post, the higher is your
+affinity score.</p></li>
+<li><p>Affinity score is taken into account only if you interact with it.<br /><strong>2. How close the person who took the action was to you:</strong></p></li>
+<li><p>Your linkage with the person posting the content is considered an important
+factor for calculating the affinity score.</p></li>
+<li><p>So, a friend that shares 50 mutual friends will have a higher affinity than
+a friend who shares 10 mutual friends.
+<strong>3. How long ago they took the action</strong></p></li>
+<li><p>Time is inversely proportional to the affinity score.</p></li>
+<li><p>So, if a person is posting about his birthday and you open your feeds after
+a week, then definitely those posts are not displayed on your wall.</p></li>
+<li><p><strong>Edge Weight:</strong></p>
+<ul>
+<li><p>For example, photos and videos have a higher weight than links.</p></li>
+<li><p>So, comments on photos are more likely to be highlighted than comments on links.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/search-ranking/learntorank.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

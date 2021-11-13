@@ -76,9 +76,10 @@
 <li><a class="reference internal" href="#recursion">Recursion</a></li>
 <li><a class="reference internal" href="#trees">Trees</a></li>
 <li><a class="reference internal" href="#depth-first-search-trees">Depth First Search Trees</a></li>
-<li><a class="reference internal" href="#heap">Heap</a></li>
+<li><a class="reference internal" href="#dfs-vs-bfs">DFS vs BFS</a></li>
+<li><a class="reference internal" href="#heaps">Heaps</a></li>
 <li><a class="reference internal" href="#backtracking">Backtracking</a></li>
-<li><a class="reference internal" href="#reference">Reference</a></li>
+<li><a class="reference internal" href="#trie-data-structure">Trie Data Structure</a></li>
 </ul>
 </li>
 </ul>
@@ -217,7 +218,7 @@ down into smaller and smaller subproblems until you get to a small enough
 problem that it can be solved trivially.</p></li>
 <li><p>Usually recursion involves a function calling itself.</p></li>
 </ul>
-<p><strong>Notes</strong></p>
+<p><strong><span class="label label-info">Notes</span></strong></p>
 <ul class="simple">
 <li><p>A recursive algorithm must have a base case.</p></li>
 <li><p>A recursive algorithm must change its state and move toward the base case.</p></li>
@@ -259,7 +260,7 @@ data structures.</p></li>
 root node in the case of  a graph) and explores as far as possible along each
 branch before backtracking.</p></li>
 </ul>
-<p><strong>Steps</strong>:</p>
+<p><strong><span class="label label-info">Stpes</span></strong></p>
 <ul class="simple">
 <li><p>Start from the root or any arbitrary node and mark the node and move to the
 adjacent unmarked node.
@@ -277,16 +278,17 @@ with the index of the adjacent node.</p></li>
 <p><strong>Example</strong></p>
 <p><img alt="image" src="../../_images/dfs1.png" />
 <img alt="image" src="../../_images/dfs2.png" /></p>
-<p><strong>DFS vs BFS</strong>
-<img alt="image" src="../../_images/dfs3.png" /></p>
 </div>
-<div class="section" id="heap">
-<h2>Heap<a class="headerlink" href="#heap" title="Permalink to this headline"></a></h2>
+<div class="section" id="dfs-vs-bfs">
+<h2>DFS vs BFS<a class="headerlink" href="#dfs-vs-bfs" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/dfs3.png" /></p>
+</div>
+<div class="section" id="heaps">
+<h2>Heaps<a class="headerlink" href="#heaps" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A special case of a binary tree where the parent nodes are compared to their
 children with their values and are arranged accordingly.
-Only the root is deleted when performing a delete operation. So to determine
-the Max value -&gt;</p></li>
+Only the root is deleted when performing a delete operation.</p></li>
 </ul>
 <p><strong>Min Heap</strong></p>
 <ul class="simple">
@@ -314,9 +316,27 @@ point of time</p></li>
 <p><img alt="image" src="../../_images/backtracking1.png" /></p>
 <p><img alt="image" src="../../_images/backtracking2.png" /></p>
 </div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
-<p><a class="reference external" href="https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw">Abdul Bari YouTube
+<div class="section" id="trie-data-structure">
+<h2>Trie Data Structure<a class="headerlink" href="#trie-data-structure" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Common task for using this type of data structure is used for is for
+<code class="docutils literal notranslate"><span class="pre">Autocomplete</span></code> tasks. See steps below:</p></li>
+</ul>
+<p><img alt="image" src="../../_images/trie.png" /></p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
+<ul class="simple">
+<li><p>Search for the given query using the standard Trie search algorithm.</p></li>
+<li><p>If the query prefix itself is not present, return -1 to indicate the same.</p></li>
+<li><p>If the query is present and is the end of a word in Trie, print the query.
+This can quickly be checked by - seeing if the last matching node has
+isEndWord flag set. We use this flag in Trie to mark the end of word nodes
+for the purpose of searching.</p></li>
+<li><p>If the last matching node of the query has no children, return.</p></li>
+<li><p>Else recursively print all nodes under a subtree of the last matching node.</p></li>
+</ul>
+<p>[Reference](Reference: https://www.geeksforgeeks.org/auto-complete-feature-using-trie/)</p>
+<p><strong>References</strong>
+<a class="reference external" href="https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw">Abdul Bari YouTube
 Channel</a>
 <a class="reference external" href="https://www.youtube.com/c/NeetCode">NeetCode YouTube Channel</a></p>
 </div>

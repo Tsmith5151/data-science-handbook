@@ -173,6 +173,23 @@ continue this loop until there is no unmarked adjacent node.
 
 ![image](../assets/backtracking2.png)
 
+### Trie Data Structure
+- Common task for using this type of data structure is used for is for
+  `Autocomplete` tasks. See steps below:
+
+![image](../assets/trie.png)
+
+**<span class="label label-success">Steps</span>**
+- Search for the given query using the standard Trie search algorithm.
+- If the query prefix itself is not present, return -1 to indicate the same.
+- If the query is present and is the end of a word in Trie, print the query.
+  This can quickly be checked by - seeing if the last matching node has
+  isEndWord flag set. We use this flag in Trie to mark the end of word nodes
+  for the purpose of searching.
+- If the last matching node of the query has no children, return.
+- Else recursively print all nodes under a subtree of the last matching node.
+
+[Reference](Reference: https://www.geeksforgeeks.org/auto-complete-feature-using-trie/)
 
 **References**
 [Abdul Bari YouTube

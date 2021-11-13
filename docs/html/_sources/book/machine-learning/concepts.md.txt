@@ -1,7 +1,7 @@
 # Machine Learning Concepts
 __________
 
-## Discriminative vs Generative 
+### Discriminative vs Generative 
 
 ![image](../assets/discrimitive_generative.png)
 
@@ -72,7 +72,7 @@ __________
   while training on the k-1 other folds ‘k’ times. 
 - The error is then averages over the fold.
 
-## Distance Measurements
+### Distance Measurements
 
 **Euclidean Distance**
 - sqrt((x2-x1)2 + (y2-y2)2)--> Pythagorean Theorem

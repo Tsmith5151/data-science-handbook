@@ -26,7 +26,7 @@ _______
 - is a technique to colocate related information in the same set of files. Z-ordering is basically a data-skipping algorithm to dramatically reduce the amount of data that needs to be read. 
 - To Z-Order data, you specify the columns to order on in the `ZORDER BY `clause:
 
-```
+```bash
 OPTIMIZE events
 WHERE date >= current_timestamp() - INTERVAL 1 day
 ZORDER BY (eventType)

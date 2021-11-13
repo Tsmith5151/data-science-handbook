@@ -103,73 +103,103 @@
 <h1>In Memory Stores<a class="headerlink" href="#in-memory-stores" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <ul class="simple">
-<li><p>In-memory caches such as Memcached and Redis are key-value stores between your application and your data storage. Since the data is held in RAM, it is much faster than typical databases where data is stored on disk</p></li>
+<li><p>In-memory caches such as Memcached and Redis are key-value stores between
+your application and your data storage. Since the data is held in RAM, it is
+much faster than typical databases where data is stored on disk.</p></li>
 </ul>
 <div class="section" id="redis">
 <h2>Redis<a class="headerlink" href="#redis" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>REmote DIctionary Server = Redis</p></li>
-<li><p>Reids is an open source, in-memory, NoSQL key/value store that is used primarily as an application cache or quick-response database.</p></li>
-<li><p>Because it stores data in memory, rather than on a disk or solid-state drive (SSD), it’s very reliable and highly performant.</p></li>
-<li><p>When an application relies on external data sources, the latency and throughput of those sources can create a performance bottleneck, especially as traffic increases or the application scales.</p></li>
-<li><p>Redis stores all data in-memory—delivering the fastest possible performance when reading or writing data—and offers built-in replication capabilities that let you place data physically closer to the user for the lowest latency.</p></li>
-<li><p>Unlike NoSQL databases such as MongoDB and PostgreSQL, Redis stores data in the server’s main memory rather than on hard disks and solid-state drives.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REmote</span> <span class="pre">DIctionary</span> <span class="pre">Server</span> <span class="pre">=</span> <span class="pre">Redis</span></code></p></li>
+<li><p>Redis is an open source, in-memory, NoSQL key/value store that is used
+primarily as an application cache or quick-response database.</p></li>
+<li><p>Because it stores data in memory, rather than on a disk or solid-state drive
+(SSD), it’s very reliable and highly performant.</p></li>
+<li><p>When an application relies on external data sources, the latency and
+throughput of those sources can create a performance bottleneck, especially
+as traffic increases or the application scales.</p></li>
+<li><p>Redis stores all data in-memory—delivering the fastest possible performance
+when reading or writing data—and offers built-in replication capabilities
+that let you place data physically closer to the user for the lowest latency.</p></li>
+<li><p>Unlike NoSQL databases such as MongoDB and PostgreSQL, Redis stores data in
+the server’s main memory rather than on hard disks and solid-state drives.</p></li>
 </ul>
 <p><strong>Redis Cluster</strong></p>
 <ul class="simple">
-<li><p>Redis Cluster (link resides outside IBM) is a distributed implementation of Redis that automatically splits datasets among multiple nodes.</p></li>
-<li><p>This supports higher performance and scalability of database deployments, while ensuring continuous operations in the event that node subsets are unable to communicate with the rest of the cluster.</p></li>
+<li><p>Redis Cluster (link resides outside IBM) is a distributed implementation of
+Redis that automatically splits datasets among multiple nodes.</p></li>
+<li><p>This supports higher performance and scalability of database deployments,
+while ensuring continuous operations in the event that node subsets are
+unable to communicate with the rest of the cluster.</p></li>
 </ul>
 <p><strong>Redis Search</strong></p>
 <ul class="simple">
 <li><p>Query Engine and Full-Text Search over Redis</p></li>
-<li><p>RediSearch has a distributed cluster version that scales to billions of documents, and hundreds of servers.
-Supports: Full-Text indexing of multiple fields in documents.
+<li><p>RediSearch has a distributed cluster version that scales to billions of
+documents, and hundreds of servers.</p></li>
+<li><p>Supports: Full-Text indexing of multiple fields in documents.
 RediSearch comes with a few very basic scoring functions to evaluate document
 relevance like <code class="docutils literal notranslate"><span class="pre">TFIDF</span></code>.</p></li>
 </ul>
 <p><strong>TFIDF Scoring:</strong></p>
 <ul class="simple">
 <li><p>Basic TF-IDF scoring with a few extra features thrown inside:</p></li>
-<li><p>For each term in each result, we calculate the TF-IDF score of that term to that document. Frequencies are weighted based on field weights that are pre-determined, and each term’s frequency is normalized by the highest term frequency in each document.</p></li>
-<li><p>We multiply the total TF-IDF for the query term by the a priory document score given on FT.ADD.</p></li>
-<li><p>We give a penalty to each result based on “slop” or cumulative distance between the search terms: exact matches will get no penalty, but matches where the search terms are distant see their score reduced significantly.</p></li>
+<li><p>For each term in each result, we calculate the TF-IDF score of that term to
+that document. Frequencies are weighted based on field weights that are
+pre-determined, and each term’s frequency is normalized by the highest term
+frequency in each document.</p></li>
+<li><p>We multiply the total TF-IDF for the query term by the a priory document
+score given on FT.ADD.</p></li>
+<li><p>We give a penalty to each result based on “slop” or cumulative distance
+between the search terms: exact matches will get no penalty, but matches
+where the search terms are distant see their score reduced significantly.</p></li>
 <li><p>For each 2-gram of consecutive terms, we find the minimal distance between them.</p></li>
-<li><p>The penalty is the square root of the sum of the distances, squared - 1/sqrt(d(t2-t1)^2 + d(t3-t2)^2 + …).</p></li>
+<li><p>The penalty is the square root of the sum of the distances, squared -
+1/sqrt(d(t2-t1)^2 + d(t3-t2)^2 + …).</p></li>
 </ul>
 </div>
 <div class="section" id="cache">
 <h2>Cache<a class="headerlink" href="#cache" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Idea: “recently requested data is likely to be requested again”</p></li>
-<li><p>A cache is like short-term memory: it has a limited amount of space, but is typically faster than the original data source and contains the most recently accessed items.</p></li>
-<li><p>Caches can exist at all levels in architecture, but are often found at the level nearest to the front end, where they are implemented to return data quickly without taxing downstream levels.</p></li>
-<li><p>Placing a cache directly on a request layer node enables the local storage of response data.</p></li>
-<li><p>Each time a request is made to the service, the node will quickly return locally cached data if it exists.</p></li>
+<li><p><strong>Idea:</strong> “recently requested data is likely to be requested again”.</p></li>
+<li><p>A cache is like short-term memory: it has a limited amount of space, but is
+typically faster than the original data source and contains the most recently
+accessed items.</p></li>
+<li><p>Caches can exist at all levels in architecture, but are often found at the
+level nearest to the front end, where they are implemented to return data
+quickly without taxing downstream levels.</p></li>
+<li><p>Placing a cache directly on a request layer node enables the local storage of
+response data.</p></li>
+<li><p>Each time a request is made to the service, the node will quickly return
+locally cached data if it exists.</p></li>
 </ul>
-<p><strong>Advantages</strong></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
 <ul class="simple">
 <li><p>Reduce Network Calls</p></li>
 <li><p>Cached data stores like Redis stores Key/Value pairs.</p></li>
-<li><p>Avoid Re-Calculations</p>
+<li><p><strong>Avoid Re-Calculations</strong></p>
 <ul>
 <li><p>Example: an application makes a request to find the average age of the users.</p></li>
-<li><p>You would have to go to the database, search all in the records and compute the average each time! Very Expensive!</p></li>
+<li><p>You would have to go to the database, search all in the records and compute
+the average each time! Very Expensive!</p></li>
 <li><p>You could compute it once and save it as a key/value pair.</p></li>
 </ul>
 </li>
 <li><p>Avoid Loads on the Database</p>
 <ul>
-<li><p>If you have a lot of servers trying to get data from the database, could put a heavy load on the database and slow performance</p></li>
+<li><p>If you have a lot of servers trying to get data from the database, could
+put a heavy load on the database and slow performance.</p></li>
 <li><p>Could keep some data in cache to help on this.</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>Disadvantages</strong></p>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
 <ul class="simple">
 <li><p>Can be expensive (hardware = SSD)</p></li>
-<li><p>Need to maintain consistency between caches and the source of truth such as the database through cache invalidation.</p></li>
-<li><p>Cache invalidation is a difficult problem, there is additional complexity associated with when to update the cache.</p></li>
+<li><p>Need to maintain consistency between caches and the source of truth such as
+the database through cache invalidation.</p></li>
+<li><p>Cache invalidation is a difficult problem, there is additional complexity
+associated with when to update the cache.</p></li>
 <li><p>Need to make application changes such as adding <code class="docutils literal notranslate"><span class="pre">Redis</span></code> or <code class="docutils literal notranslate"><span class="pre">memcached</span></code>.</p></li>
 <li><p>Cache &amp; Database Sync</p></li>
 </ul>
@@ -177,14 +207,16 @@ relevance like <code class="docutils literal notranslate"><span class="pre">TFID
 <ul class="simple">
 <li><p>For immutable operations (read):</p></li>
 <li><p>Client will always simply read from cache.</p></li>
-<li><p>Either cache hit or cache miss is transparent to the client. If it is a cache miss, the cache should have the ability to automatically fetch from the database.</p></li>
+<li><p>Either cache hit or cache miss is transparent to the client. If it is a cache
+miss, the cache should have the ability to automatically fetch from the
+database.</p></li>
 <li><p>For mutable operations (create, update, delete):</p></li>
 <li><p>This strategy does not handle mutable operations.</p></li>
 <li><p>It should be combined with write through (or write behind) pattern.</p></li>
 <li><p><strong>Drawback:</strong></p>
 <ul>
-<li><p>Many cache layers may not support it. For example, Redis would not be able to
-fetch from</p></li>
+<li><p>Many cache layers may not support it. For example, Redis would not be able
+to fetch from</p></li>
 <li><p>MySQL automatically (unless you write a plugin for Redis).</p></li>
 </ul>
 </li>
@@ -192,14 +224,18 @@ fetch from</p></li>
 <p><strong>Write Through</strong></p>
 <ul class="simple">
 <li><p>For immutable operations (read):</p></li>
-<li><p>This strategy does not handle immutable operations. It should be combined with read through pattern.</p></li>
+<li><p>This strategy does not handle immutable operations. It should be combined
+with read through pattern.</p></li>
 <li><p>For mutable operations (create, update, delete):</p></li>
-<li><p>The client only needs to create, update or delete the entry in Redis. The cache layer has to atomically synchronize this change to MySQL.</p></li>
+<li><p>The client only needs to create, update or delete the entry in Redis. The
+cache layer has to atomically synchronize this change to MySQL.</p></li>
 <li><p><strong>Drawback</strong></p>
 <ul>
 <li><p>First, many cache layers would not natively support this.</p></li>
-<li><p>Second, Redis is a cache rather than an RDBMS. It is not designed to be resilient. Thus, changes may be lost before they are replicated to MySQL.</p></li>
-<li><p>Even if Redis has now supported persistence techniques such as RDB and AOF, this approach is still not recommended.</p></li>
+<li><p>Second, Redis is a cache rather than an RDBMS. It is not designed to be
+resilient. Thus, changes may be lost before they are replicated to MySQL.</p></li>
+<li><p>Even if Redis has now supported persistence techniques such as RDB and AOF,
+this approach is still not recommended.</p></li>
 </ul>
 </li>
 </ul>
