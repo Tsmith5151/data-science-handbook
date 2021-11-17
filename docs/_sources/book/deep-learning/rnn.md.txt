@@ -9,7 +9,7 @@ ____
 ![image](../assets/rnn.png)
 
 
-**Problem with RNNs:**
+**<span class="label label-warning">Problem with RNNs</span>**
 - You are repeatedly multiplying by the same weight matrix. 
 - This can cause `exploding` or `vanishing gradients` -- where the model is not
   capable learning long sequences. 
@@ -18,7 +18,7 @@ ____
 - **Vanishing gradients** can also be difficult to spot making it more dangerous
   when deploying your system into production. 
 
-**Method:**
+**<span class="label label-info">Method</span>**
 - First, the initial hidden state, which is typically a vector of zeros and the
   hidden state weight is multiplied and then the hidden state bias is added to
   the result. 

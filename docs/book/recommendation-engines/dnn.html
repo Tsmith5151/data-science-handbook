@@ -66,6 +66,7 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Deep Neural Networks (RecSys)</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#softmax-model">SoftMax Model</a></li>
 <li><a class="reference internal" href="#embedding-layers">Embedding Layers</a></li>
 <li><a class="reference internal" href="#candidate-generator-model">Candidate Generator Model</a></li>
@@ -105,7 +106,8 @@
   <div class="section" id="deep-neural-networks-recsys">
 <h1>Deep Neural Networks (RecSys)<a class="headerlink" href="#deep-neural-networks-recsys" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<p><strong>Overview</strong></p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Deep neural network (DNN) models can address these limitations of matrix factorization.</p></li>
 <li><p>By adding hidden layers and non-linear activation functions (for example,
@@ -130,6 +132,7 @@ factorization, in which you replace the query side by a <code class="docutils li
 more expensive to train and query.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/softmax_recsys2.png" /></p>
+</div>
 <div class="section" id="softmax-model">
 <h2>SoftMax Model<a class="headerlink" href="#softmax-model" title="Permalink to this headline"></a></h2>
 <ul class="simple">
@@ -146,7 +149,8 @@ example, the probability to click on or watch a YouTube video.</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>Note:</strong> You can think of this DNN model as a generalization of matrix
+<p><strong><span class="label label-info">Notes</span></strong>
+You can think of this DNN model as a generalization of matrix
 factorization, in which you replace the query side by a nonlinear function</p>
 <p><img alt="image" src="../../_images/softmax_recsys.png" /></p>
 </div>
@@ -273,7 +277,7 @@ both of them learn optimal  embeddings independently.</p></li>
 <li><p>The outputs of GMF and MLP are concatenated in the final NeuMF(Neural Matrix
 Factorisation) layer.</p></li>
 </ul>
-<p><strong>Notes:</strong></p>
+<p><strong><span class="label label-info">Info</span></strong></p>
 <ul class="simple">
 <li><p>NCF is an example of multimodal deep learning as it contains data from 2
 pathways namely user and item.</p></li>

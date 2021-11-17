@@ -11,7 +11,7 @@ _____
 
 ![image](../assets/cnn.png)
 
-**Steps**
+**<span class="label label-success">Steps</span>**
 - Receive some input volume (image) and pass it thru a series of convolution
   layers to abstract high level features from the image.
 - For each convolution layer, we slide a filter across the input image
@@ -97,7 +97,7 @@ the feature map.
 
 ### Transferred Learning
 
-**Steps:**
+**<span class="label label-success">Steps</span>**
 - Take layers from a previously trained model.
 - Freeze them, so as to avoid destroying any of the information they contain
   during future training rounds.
@@ -119,8 +119,7 @@ the feature map.
 - With CNNs extract features and create informative representations of time
   series automatically.
 
-**Steps:**
-
+**<span class="label label-success">Steps</span>**
 - Take a LxN matrix (length of time series X number of variables in the sequence) 
 - Slide a 1xN kernel across the length of the sequence performing a convolution
   followed by a  non-linear activation function.
@@ -129,7 +128,7 @@ the feature map.
 - We can also then feed the fully connected layer into a LSTM model for
   sequence modeling. 
 
-**Main Idea**
+**<span class="label label-info">Main Idea</span>**
 - Each new time series consolidates information from different frequencies of
   the original data. 
 

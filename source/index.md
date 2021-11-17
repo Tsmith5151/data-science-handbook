@@ -68,7 +68,7 @@ _________
 <br>
 </br>
 
-<span class="label label-success">Note:</span>
+<span class="label label-success">Note</span>
 This site is actively being updated with resources and reference. Stay tuned
 for more updated. Also, please feel free to contribute to the project by
 submitting a pull-request with any edits or additions. 

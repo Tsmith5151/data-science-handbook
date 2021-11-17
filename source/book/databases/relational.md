@@ -1,7 +1,6 @@
 # Relational Databases
 _____
 
-
 ### RDBMS 
 - Relational database management system (RDBMS)
 - A relational database like SQL is a collection of data items organized in tables.
@@ -20,7 +19,7 @@ _____
 - Denormalization might circumvent the need for such complex joins.
 - To avoid expensive joins, Denormalize where performance demands it.
 
-<span class="label label-warning">Disadvantages</span>
+**<span class="label label-warning">Disadvantages</span>**
 - Data is duplicated.
 - Constraints can help redundant copies of information stay in sync, which
   increases complexity of the database design.  

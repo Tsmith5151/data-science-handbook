@@ -131,7 +131,7 @@ imbalance problem due to dense sampling of anchor boxes</p></li>
 <li><p>Focal Loss reduces the loss contribution from easy examples and increases the
 importance of correcting misclassified examples.</p></li>
 </ul>
-<p><strong>Advantage</strong></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
 <ul class="simple">
 <li><p>Highest accuracy object detectors to date are based on a two-stage approach
 popularized by R-CNN</p></li>
@@ -185,13 +185,13 @@ feature map and then applied cross-entropy loss function.</p></li>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">IoU</span> <span class="pre">(intersection</span> <span class="pre">of</span> <span class="pre">union)</span></code> -&gt; Area overlap / Area of Union</p></li>
 </ul>
-<p><strong>Comments:</strong></p>
+<p><strong><span class="label label-info">Notes</span></strong></p>
 <ul class="simple">
 <li><p>Means converting a high resolution image to a low resolution image. By down
 sampling, the model better understands <code class="docutils literal notranslate"><span class="pre">What</span></code> is present in the image, but
 it loses the information of <code class="docutils literal notranslate"><span class="pre">Where</span></code> it is present.</p></li>
 </ul>
-<p><strong>Advantages:</strong></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
 <ul class="simple">
 <li><p>UNet combines the location information from the downsampling path to finally
 obtain a general information combining localisation and context, which is

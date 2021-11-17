@@ -106,7 +106,8 @@
 <div class="section" id="master-slave">
 <h2>Master + Slave<a class="headerlink" href="#master-slave" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Master-slave is a way to optimize the I/O in your application other than using caching.</p></li>
+<li><p>Master-slave is a way to optimize the I/O in your application other than
+using caching.</p></li>
 <li><p>The master database serves as the keeper of most current information.</p></li>
 <li><p>The true data is kept at the master database, thus writing only occurs there.</p></li>
 <li><p>Reading is only done in the slave.</p></li>
@@ -122,34 +123,48 @@ master, it will be overloaded with reading and writing requests.</p></li>
 <div class="section" id="sharding">
 <h2>Sharding<a class="headerlink" href="#sharding" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Is the process of making partitions of data in a database or search engine, such that the data is divided into various smaller distinct chunks, or shards.</p></li>
+<li><p>Is the process of making partitions of data in a database or search engine,
+such that the data is divided into various smaller distinct chunks, or
+shards.</p></li>
 <li><p>Sharding results in less read and write traffic, less replication, and more cache hits.</p></li>
 <li><p>Index size is also reduced, which generally improves performance with faster queries.</p></li>
 <li><p>Common approach is performing horizontal sharding.</p></li>
-<li><p>For example, you can take a tweets table and shard by User ID (Number of User Ids  % mod Number of Database Master Servers)</p></li>
+<li><p>For example, you can take a tweets table and shard by User ID (Number of User
+Ids  % mod Number of Database Master Servers).</p></li>
 </ul>
 <p><img alt="image" src="../../_images/sharding.png" /></p>
-<p><strong>Disadvantages</strong>
-You’ll need to update your application logic to work with shards, which could result in complex SQL queries.
-Data distribution can become lopsided in a shard. For example, a set of power users on a shard could result in increased load to that shard compared to others.
-Rebalancing adds additional complexity. A sharding function based on consistent hashing can reduce the amount of transferred data.
-Joining data from multiple shards is more complex.
-Sharding adds more hardware and additional complexity.</p>
+<p><span class="label label-warning">Distadvantages</span></p>
+<ul class="simple">
+<li><p>You’ll need to update your application logic to work with shards, which could
+result in complex SQL queries.</p></li>
+<li><p>Data distribution can become lopsided in a shard. For example, a set of power
+users on a shard could result in increased load to that shard compared to
+others.</p></li>
+<li><p>Rebalancing adds additional complexity. A sharding function based on consistent
+hashing can reduce the amount of transferred data.</p></li>
+<li><p>Joining data from multiple shards is more complex.</p></li>
+<li><p>Sharding adds more hardware and additional complexity.</p></li>
+</ul>
 </div>
 <div class="section" id="apache-solr">
 <h2>Apache Solr<a class="headerlink" href="#apache-solr" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Solr is highly reliable, scalable and fault tolerant, providing distributed indexing, replication and load-balanced querying; it is a client-server model</p></li>
+<li><p>Solr is highly reliable, scalable and fault tolerant, providing distributed
+indexing, replication and load-balanced querying; it is a client-server
+model.</p></li>
 <li><p>Apache Solr can run in a master-slave mode.</p></li>
 <li><p>Index replicator is responsible for distributing indexes across multiple slaves.</p></li>
-<li><p>The master server maintains index update and the slaves are responsible for talking with the master to get them replicated for high availability
-Internally uses <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">Lucene</span></code> libraries to generate the indexes as well as
+<li><p>The master server maintains index update and the slaves are responsible for
+talking with the master to get them replicated for high availability.</p></li>
+<li><p>Internally uses <code class="docutils literal notranslate"><span class="pre">Apache</span> <span class="pre">Lucene</span></code> libraries to generate the indexes as well as
 to provide a user friendly search.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/solr.png" /></p>
 <p><strong>Four logical layers of Solr:</strong></p>
 <ul class="simple">
-<li><p><strong>Storage layer:</strong> is responsible for management of indexes and configuration metadata. It is typically a file store, locally configured in the configuration of Apache Solr.</p></li>
+<li><p><strong>Storage layer:</strong> is responsible for management of indexes and configuration
+metadata. It is typically a file store, locally configured in the
+configuration of Apache Solr.</p></li>
 <li><p><strong>Container</strong>: java based container on which the instance will run</p></li>
 <li><p><strong>Solr Application:</strong> is the application package that runs on top of the container.</p>
 <ul>
@@ -158,7 +173,8 @@ to provide a user friendly search.</p></li>
 are handlers to handle data within specific category (XML, CSV, PDF, database, and so on)</p></li>
 </ul>
 </li>
-<li><p><strong>Query parser:</strong> is responsible for parsing the queries, and converting it to Lucene query objects</p>
+<li><p><strong>Query parser:</strong> is responsible for parsing the queries, and converting it
+to Lucene query objects.</p>
 <ul>
 <li><p>Tokenizer breaks field data into lexical units or tokens.</p></li>
 <li><p>Interaction: refers to how clients/browser can interact with Apache Solr server.</p></li>
@@ -169,16 +185,23 @@ are handlers to handle data within specific category (XML, CSV, PDF, database, a
 <p><strong>Solr Terms</strong></p>
 <ul class="simple">
 <li><p><strong>Document</strong>:  is a set of data that describes something.</p></li>
-<li><p><strong>Fields</strong>: documents are composed of fields, which are more specific pieces of information. Fields can contain different kinds of data.</p></li>
-<li><p>Solr’s schema is a single file (in XML) that stores the details about the fields and field types Solr is expected to understand.</p></li>
-<li><p>The schema defines not only the field or field type names, but also any modifications that should happen to a field before it is indexed.</p></li>
+<li><p><strong>Fields</strong>: documents are composed of fields, which are more specific pieces
+of information. Fields can contain different kinds of data.</p></li>
+<li><p>Solr’s schema is a single file (in XML) that stores the details about the
+fields and field types Solr is expected to understand.</p></li>
+<li><p>The schema defines not only the field or field type names, but also any
+modifications that should happen to a field before it is indexed.</p></li>
 </ul>
 <p><strong>Index</strong></p>
 <ul class="simple">
-<li><p>When you add a document, Solr takes the information in the document’s fields and adds that information to an index.</p></li>
-<li><p>The index stores statistics about terms in order to make term-based search more efficient.</p></li>
-<li><p>Lucene’s Index (inverted index family): when lucene indexes a document it breaks it down into a number of terms.</p></li>
-<li><p>It then stores the terms in an index file where each term is associated with the documents that contain it.</p></li>
+<li><p>When you add a document, Solr takes the information in the document’s fields
+and adds that information to an index.</p></li>
+<li><p>The index stores statistics about terms in order to make term-based search
+more efficient.</p></li>
+<li><p>Lucene’s Index (inverted index family): when lucene indexes a document it
+breaks it down into a number of terms.</p></li>
+<li><p>It then stores the terms in an index file where each term is associated with
+the documents that contain it.</p></li>
 <li><p>You could think of it as a bit like a hashtable.</p></li>
 </ul>
 <p><strong>Lucene</strong></p>
@@ -188,19 +211,27 @@ https://stackoverflow.com/questions/2602253/how-does-lucene-index-documents</p><
 <li><p>In reality of course things are more complicated:</p></li>
 <li><p>Lucene may skip some words based on the particular Analyzer given;
 words can be preprocessed using stemming algorithm to reduce flexia of the
-language;</p></li>
+language.</p></li>
 <li><p>It’s important to understand though, that the Lucene index is append only.</p></li>
-<li><p>In some point in time the application decides to commit (publish) all the changes in the index. Lucene finishes all service operations with index and closes it, so it’s available for searching.</p></li>
+<li><p>In some point in time the application decides to commit (publish) all the
+changes in the index.</p></li>
+<li><p>Lucene finishes all service operations with index and closes it, so it’s
+available for searching.</p></li>
 <li><p>After commit index basically immutable.</p></li>
 <li><p>This index (or index part) is called segment.</p></li>
 <li><p>When Lucene executes a search for a query it searches in all available segments.</p></li>
 <li><p>So the question arises – how can we change an already indexed document?</p></li>
-<li><p>New documents or new versions of already indexed documents are indexed in new segments and old versions invalidated in previous segments using the so-called kill list.</p></li>
+<li><p>New documents or new versions of already indexed documents are indexed in new
+segments and old versions invalidated in previous segments using the
+so-called kill list.</p></li>
 <li><p>Kill list is the only part of committed index which can change.</p></li>
-<li><p>As you might guess, index efficiency drops with time, because old indexes might contain mostly removed documents.</p></li>
+<li><p>As you might guess, index efficiency drops with time, because old indexes
+might contain mostly removed documents.</p></li>
 <li><p>This is where merging comes in.</p></li>
-<li><p>Merging – is the process of combining several indexes to make an index more efficient overall.</p></li>
-<li><p>What is basically happens during merge is live documents copied to the new segment and old segments removed entirely.</p></li>
+<li><p>Merging – is the process of combining several indexes to make an index more
+efficient overall.</p></li>
+<li><p>What is basically happens during merge is live documents copied to the new
+segment and old segments removed entirely.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/solr2.png" /></p>
 </div>

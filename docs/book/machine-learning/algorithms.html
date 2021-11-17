@@ -73,6 +73,7 @@
 <li><a class="reference internal" href="#naive-bayes">Naive Bayes</a></li>
 <li><a class="reference internal" href="#decision-tree">Decision Tree</a></li>
 <li><a class="reference internal" href="#random-forest">Random Forest</a></li>
+<li><a class="reference internal" href="#bagging-vs-boosting">Bagging vs Boosting</a></li>
 <li><a class="reference internal" href="#ada-boost">ADA Boost</a></li>
 <li><a class="reference internal" href="#xgboost">XGBoost</a></li>
 <li><a class="reference internal" href="#lightgbm">LightGBM</a></li>
@@ -160,7 +161,7 @@ other groups.</p></li>
 “centroid” which is the average of the cluster.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/knn.png" /></p>
-<p><strong>Steps</strong>:</p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
 <ul class="simple">
 <li><p>Specify the number of clusters <code class="docutils literal notranslate"><span class="pre">k</span></code></p></li>
 <li><p>Randomly pick k centroids from the data points as initial cluster centers</p></li>
@@ -222,7 +223,7 @@ and just compare.</p></li>
 <li><p>Just count how many times the sentence “A very close game” appears in the
 Sports tag, divide it by  the total, and obtain P.</p></li>
 </ul>
-<p><strong>Problem</strong>:</p>
+<p><strong><span class="label label-warning">Problem</span></strong></p>
 <ul class="simple">
 <li><p>“A very close game” doesn’t appear in our training data, so this probability
 is zero. Unless every  sentence that we want to classify appears in our
@@ -263,7 +264,7 @@ node) and after the split (i.e. sub-nodes) yields the information gain.</p></li>
 split, thus the  attribute with the highest change in entropy is used as the
 splitting criteria</p></li>
 </ul>
-<p><strong>Problems with Decision Trees:</strong></p>
+<p><strong><span class="label label-warning">Problems with Decision Trees:</span></strong></p>
 <ul class="simple">
 <li><p><strong>Overfitting</strong>:</p>
 <ul>
@@ -309,23 +310,25 @@ averaging them.</p></li>
 <li><p><strong>Feature Splitting criteria:</strong> choose a random set of features for each split
 and then compute the entropy and information gain to determine which
 variable to split on. (see decision tree for more)</p></li>
-<li><p><strong>Strength</strong>:</p>
+<li><p><strong><span class="label label-info">Strength:</span></strong></p>
 <ul>
 <li><p>Works well with missing values and outliers.</p></li>
 <li><p>Easy to tune for - minimal hyper parameters.</p></li>
 </ul>
 </li>
-<li><p><strong>Weakness</strong>:</p>
+<li><p><strong><span class="label label-warning">Weakness:</span></strong>:</p>
 <ul>
 <li><p>Doesn’t offer the same level of interpretability as decision trees.</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>Bagging vs Boosting</strong></p>
+</div>
+<div class="section" id="bagging-vs-boosting">
+<h2>Bagging vs Boosting<a class="headerlink" href="#bagging-vs-boosting" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><strong>Bagging</strong></p>
 <ul>
-<li><p>Sampling with replacement (e.g. some observations may be repeated)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bagging</span></code> uses sampling with replacement (e.g. some observations may be repeated)</p></li>
 <li><p>Is a way to decrease the variance of your prediction by generating
 additional data for training from your original dataset using combinations
 with repetitions to produce multisets of the same cardinality/size as your
@@ -340,7 +343,7 @@ prediction to expected outcome.</p></li>
 <ul class="simple">
 <li><p><strong>Boosting</strong></p>
 <ul>
-<li><p>Boosting involves the creation and addition of decision trees sequentially,
+<li><p><code class="docutils literal notranslate"><span class="pre">Boosting</span></code> involves the creation and addition of decision trees sequentially,
 each attempting to  correct the mistakes of the learners that came before
 it.</p></li>
 <li><p>Instead of training models separately, boosting trains models sequentially,

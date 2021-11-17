@@ -69,6 +69,7 @@
 <li><a class="reference internal" href="#json">JSON</a></li>
 <li><a class="reference internal" href="#yaml">YAML</a></li>
 <li><a class="reference internal" href="#parquet">Parquet</a></li>
+<li><a class="reference internal" href="#dynamic-allocation">Dynamic Allocation</a></li>
 </ul>
 </li>
 </ul>
@@ -106,46 +107,64 @@
 <div class="section" id="json">
 <h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>JSON stands for JavaScript Object Notation</p></li>
+<li><p>JSON stands for <code class="docutils literal notranslate"><span class="pre">JavaScript</span> <span class="pre">Object</span> <span class="pre">Notation</span></code></p></li>
 <li><p>JSON is a lightweight format for storing and transporting data</p></li>
 <li><p>JSON is often used when data is sent from a server to a web page</p></li>
 <li><p>JSON is “self-describing” and easy to understand</p></li>
 <li><p>JSON is built on two structures:</p></li>
-<li><p>A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.</p></li>
-<li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.</p></li>
+<li><p>A collection of name/value pairs. In various languages, this is realized as
+an object, record, struct, dictionary, hash table, keyed list, or associative
+array.</p></li>
+<li><p>An ordered list of values. In most languages, this is realized as an array,
+vector, list, or sequence.</p></li>
 </ul>
 </div>
 <div class="section" id="yaml">
 <h2>YAML<a class="headerlink" href="#yaml" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Yet Another Markup Language</p></li>
-<li><p>YAML is a digestible data serialization language that is often utilized to create configuration files and works in concurrence with any programming language.</p></li>
-<li><p>YAML is a data serialization language designed for human interaction. It’s a strict superset of JSON, another data serialization language.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Yet</span> <span class="pre">Another</span> <span class="pre">Markup</span> <span class="pre">Language</span></code></p></li>
+<li><p>YAML is a digestible data serialization language that is often utilized to
+create configuration files and works in concurrence with any programming
+language.</p></li>
+<li><p>YAML is a data serialization language designed for human interaction. It’s a
+strict superset of JSON, another data serialization language.</p></li>
 <li><p>But because it’s a strict superset, it can do everything that JSON can and more.</p></li>
-<li><p>One major difference is that newlines and indentation actually mean something in YAML, as opposed to JSON, which uses brackets and braces.</p></li>
+<li><p>One major difference is that newlines and indentation actually mean something
+in YAML, as opposed to JSON, which uses brackets and braces.</p></li>
 </ul>
 </div>
 <div class="section" id="parquet">
 <h2>Parquet<a class="headerlink" href="#parquet" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Default data source in Spark</p></li>
-<li><p>Open-source columnar file format that offers I/O optimization such as data compression, which gives quick access to data columns for querying</p></li>
+<li><p>Open-source columnar file format that provides I/O optimization such as data
+compression, which gives quick access to data columns for querying.</p></li>
+<li><p>Columnar storage is designed to bring efficiency compared to row-based files
+like CSV. When querying, columnar storage you can skip over the non-relevant
+data very quickly.</p></li>
+<li><p>With columnar storage, aggregation queries are less time consuming compared
+to row-oriented databases.</p></li>
+<li><p>This way of storage has translated into hardware savings and minimized
+latency for accessing data.</p></li>
 </ul>
-<p><strong>Directory Structure:</strong></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
 <ul class="simple">
-<li><p>Data Files, metadata, number of compressed files, and some status files</p></li>
+<li><p>Parquet has helped reduce storage requirements by at least one-third
+on large datasets, in addition, it greatly improved scan and deserialization
+time which ultimately reduces the overall costs.</p></li>
+<li><p>Parquet is a columnar file format, which means that it can be used to store
+data in a more efficient way than CSV.</p></li>
 </ul>
-<p><strong>Avro</strong></p>
+</div>
+<div class="section" id="dynamic-allocation">
+<h2>Dynamic Allocation<a class="headerlink" href="#dynamic-allocation" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Uses by Kafka for message serialization and deserialization. Direct mapping to JSON, and very quick/efficient</p></li>
-</ul>
-<p><strong>Dynamic Allocation</strong></p>
-<ul class="simple">
-<li><p>The Spark driver can request more or fewer compute resources as the demand of large workflows. If workflows vary in their demands for compute capacity then Dynamic Allocation could be an option (e.g. streaming data).</p></li>
-<li><p>Example of settings:</p>
+<li><p>The Spark driver can request more or fewer compute resources as the demand
+of large workflows. If workflows vary in their demands for compute capacity
+then Dynamic Allocation could be an option (e.g. streaming data).</p></li>
+<li><p><strong>Example of settings:</strong></p>
 <ul>
-<li><p>spark.dynamicAllocation.enabled true</p></li>
-<li><p>spark.dynamicAllocation.minExecutors 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spark.dynamicAllocation.enabled</span> <span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spark.dynamicAllocation.minExecutors</span> <span class="pre">2</span></code></p></li>
 </ul>
 </li>
 <li><p>Must configure spark executors’ memory allocation</p>
@@ -158,7 +177,8 @@
 </ul>
 </li>
 <li><p>The default settings work in most cases. - can be tricky to tune %</p></li>
-<li><p>Storage memory is primarily for caching data structures/partitions from DataFrames</p></li>
+<li><p>Storage memory is primarily for caching data structures/partitions from
+DataFrames.</p></li>
 </ul>
 </li>
 </ul>

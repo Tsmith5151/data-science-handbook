@@ -66,11 +66,12 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Data Stores</a><ul>
-<li><a class="reference internal" href="#data-storage">Data Storage</a></li>
+<li><a class="reference internal" href="#data-lakes">Data Lakes</a></li>
 <li><a class="reference internal" href="#delta-lakes">Delta Lakes</a></li>
-<li><a class="reference internal" href="#partition-strategy">Partition Strategy</a></li>
-<li><a class="reference internal" href="#data-serialization">Data Serialization</a></li>
 <li><a class="reference internal" href="#data-warehouse">Data Warehouse</a></li>
+<li><a class="reference internal" href="#snowflake">Snowflake</a></li>
+<li><a class="reference internal" href="#partition-strategies">Partition Strategies</a></li>
+<li><a class="reference internal" href="#data-serialization">Data Serialization</a></li>
 </ul>
 </li>
 </ul>
@@ -105,71 +106,183 @@
   <div class="section" id="data-stores">
 <h1>Data Stores<a class="headerlink" href="#data-stores" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<div class="section" id="data-storage">
-<h2>Data Storage<a class="headerlink" href="#data-storage" title="Permalink to this headline"></a></h2>
+<div class="section" id="data-lakes">
+<h2>Data Lakes<a class="headerlink" href="#data-lakes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Solution to Data Challenges of a Data Lake → Delta Lakes</p></li>
+<li><p>A storage repository that holds a large amount of data in its raw format.</p></li>
+<li><p>Data lake stores are optimized for scaling to gigabytes/petabytes of data.</p></li>
+<li><p>The data typically comes from multiple sources and can be structured,
+semi-structured, or unstructured.</p></li>
+<li><p>The idea with a data lake is to store everything in its original
+untransformed state.</p></li>
 </ul>
-<p><img alt="image" src="../../_images/datastorage.png" /></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
+<ul class="simple">
+<li><p>Data is never thrown away since the data is stored in its raw format.</p></li>
+<li><p>This is especially useful when you may not know in advance what insights can be drawn from the data.</p></li>
+<li><p>More flexible than a data warehouse as data can stored as unstructured and semi-structured in a Data Lake.</p></li>
+</ul>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
+<ul class="simple">
+<li><p><strong>Data Reliability:</strong></p>
+<ul>
+<li><p>Lack of a schema enforcement</p></li>
+<li><p>Lack of consistency across the data can make it challenging to
+perform analysis on the data.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Governance:</strong></p>
+<ul>
+<li><p>Data change catalog is not maintained (e.g. inserts, updates, etc.)</p></li>
+</ul>
+</li>
+<li><p><strong>Query performance:</strong></p>
+<ul>
+<li><p>Unnecessary reads from disk</p></li>
+<li><p>Small files to scan</p></li>
+<li><p>Metadata management</p></li>
+</ul>
+</li>
+<li><p>See Delta Lakes below to address some of these challenges.</p></li>
+</ul>
+<p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/data-guide/scenarios/data-lake">Reference</a></p>
 </div>
+<hr class="docutils" />
 <div class="section" id="delta-lakes">
 <h2>Delta Lakes<a class="headerlink" href="#delta-lakes" title="Permalink to this headline"></a></h2>
 <p><img alt="image" src="../../_images/delta.png" /></p>
 <ul class="simple">
-<li><p>Delta stores a transaction log to keep track of all the commits made to the table directory to provide ACID transactions</p></li>
-<li><p>ACID = atomicity, consistency, isolation, durability</p></li>
-<li><p>Also enables schema enforcement, by helping to avoid bad data getting your data lakes by providing the ability to specify the schema.</p></li>
+<li><p>Delta stores a transaction log to keep track of all the commits made to the
+table directory to provide ACID transactions.</p></li>
+<li><p><strong>ACID</strong> = <code class="docutils literal notranslate"><span class="pre">atomicity</span></code>, <code class="docutils literal notranslate"><span class="pre">consistency</span></code>, <code class="docutils literal notranslate"><span class="pre">isolation</span></code>, <code class="docutils literal notranslate"><span class="pre">durability</span></code></p></li>
+<li><p>Also enables schema enforcement, by helping to avoid bad data getting your
+data lakes by providing the ability to specify the schema.</p></li>
 <li><p>Supports schema evolution like adding a new column.</p></li>
 <li><p>Handles Unified Batch and Stream Processing.</p></li>
-<li><p>If we have a use-case of both Stream processing and Batch processing it is normal to follow <code class="docutils literal notranslate"><span class="pre">Lambda</span> <span class="pre">Architecture</span></code>.
-Data coming in as Stream or any historical data you have is the same table being updated.</p></li>
+<li><p>If we have a use-case of both Stream processing and Batch processing it is
+normal to follow <code class="docutils literal notranslate"><span class="pre">Lambda</span> <span class="pre">Architecture</span></code>.
+Data coming in as Stream or any historical data you have is the same table
+being updated.</p></li>
 </ul>
-<p><img alt="image" src="../../_images/delta2.png" /></p>
-<p><strong>Z-Ordering</strong></p>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
 <ul class="simple">
-<li><p>is a technique to colocate related information in the same set of files. Z-ordering is basically a data-skipping algorithm to dramatically reduce the amount of data that needs to be read.</p></li>
+<li><p>100% compatible with Apache Spark api.</p></li>
+<li><p>Time travel</p></li>
+<li><p>ACID transactions</p></li>
+<li><p>Schema enforcement</p></li>
+<li><p>Small file compaction</p></li>
+<li><p>Statistic and data skipping</p></li>
+<li><p>Unified batch and stream processing</p></li>
+<li><p><strong>Z-Ordering</strong></p>
+<ul>
+<li><p>A technique to colocate related information in the same set of files.
+Z-ordering is basically a data-skipping algorithm to dramatically reduce the
+amount of data that needs to be read.</p></li>
 <li><p>To Z-Order data, you specify the columns to order on in the <code class="docutils literal notranslate"><span class="pre">ZORDER</span> <span class="pre">BY</span> </code>clause:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMIZE</span> <span class="n">events</span>
-<span class="n">WHERE</span> <span class="n">date</span> <span class="o">&gt;=</span> <span class="n">current_timestamp</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="mi">1</span> <span class="n">day</span>
-<span class="n">ZORDER</span> <span class="n">BY</span> <span class="p">(</span><span class="n">eventType</span><span class="p">)</span>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>OPTIMIZE events
+WHERE date &gt;<span class="o">=</span> current_timestamp<span class="o">()</span> - INTERVAL <span class="m">1</span> day
+ZORDER BY <span class="o">(</span>eventType<span class="o">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="partition-strategy">
-<h2>Partition Strategy<a class="headerlink" href="#partition-strategy" title="Permalink to this headline"></a></h2>
+<hr class="docutils" />
+<div class="section" id="data-warehouse">
+<h2>Data Warehouse<a class="headerlink" href="#data-warehouse" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>You can partition a Delta table by a column.</p></li>
+<li><p>A database designed to store and process large volumes of current and
+historical data collected from multiple sources inside and outside the
+enterprise for deep analysis.</p></li>
+<li><p>Organizes data into tables and columns, and allows users access via SQL.</p></li>
+<li><p>Optimized for loading, integrating and analyzing very large amounts of data.</p></li>
+<li><p>Designed to support descriptive, diagnostic, predictive and prescriptive
+analytic workloads.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="snowflake">
+<h2>Snowflake<a class="headerlink" href="#snowflake" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Snowflake offers a cloud-based data storage and analytics service, generally
+termed <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">warehouse-as-a-service</span></code>.</p></li>
+<li><p>Snowflake uses virtual compute instances for its compute needs and a storage
+service for persistent storage of data.</p></li>
+<li><p><a class="reference external" href="https://docs.snowflake.com/en/user-guide/intro-key-concepts.html">Reference</a></p></li>
+</ul>
+<p><strong>Architecture</strong></p>
+<ul class="simple">
+<li><p>Snowflake’s architecture allows storage and compute to scale independently.</p></li>
+<li><p>Similar to shared-disk architectures, Snowflake uses a central data
+repository for persisted data that is accessible from all compute nodes in
+the platform.</p></li>
+<li><p>Snowflake processes queries using <code class="docutils literal notranslate"><span class="pre">MPP</span></code> (massively parallel processing)
+compute clusters where each node in the cluster stores a portion of the
+entire data set locally.</p></li>
+<li><p>This approach offers the data management simplicity of a shared-disk
+architecture.</p></li>
+</ul>
+<p><strong>Database storage</strong></p>
+<ul class="simple">
+<li><p>The database storage layer holds all data loaded into Snowflake, including
+structured and semistructured data.</p></li>
+<li><p>Snowflake automatically manages all aspects of how the data is stored:
+organization, file size, structure, compression, metadata, and statistics.</p></li>
+</ul>
+<p><strong>Compute layer</strong></p>
+<ul class="simple">
+<li><p>The compute layer is made up of virtual warehouses that execute data
+processing tasks required for queries.</p></li>
+<li><p>Each virtual warehouse (or cluster) can access all the data in the storage
+layer, then work independently, so the warehouses does not share, or compete
+for, compute resources.</p></li>
+<li><p>This enables nondisruptive, automatic scaling, which means that while queries
+are running, compute resources can scale without the need to redistribute or
+rebalance the data in the storage layer.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="partition-strategies">
+<h2>Partition Strategies<a class="headerlink" href="#partition-strategies" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>You can partition a <code class="docutils literal notranslate"><span class="pre">Delta</span></code> table by a column.</p></li>
 <li><p>The most commonly used partition column is date.</p></li>
-<li><p>If the cardinality of a column will be very high, do not use that column for partitioning.</p></li>
-<li><p>For example, if you partition by a column userId and if there can be 1M distinct user IDs, then that is a bad partitioning strategy.</p></li>
-<li><p>Amount of data in each partition: You can partition by a column if you expect data in that partition to be at least 1 GB.</p></li>
+<li><p>If the cardinality of a column will be very high, do not use that column for
+partitioning.</p></li>
+<li><p>For example, if you partition by a column userId and if there can be 1M
+distinct user IDs, then that is a bad partitioning strategy.</p></li>
+<li><p>Amount of data in each partition: You can partition by a column if you expect
+data in that partition to be at least 1 GB.</p></li>
 </ul>
 <p><strong>Data Compaction:</strong></p>
 <ul class="simple">
-<li><p>If you continuously write data to a Delta table, it will over time accumulate a large number of files, especially if you add data in small batches.</p></li>
-<li><p>This can have an adverse effect on the efficiency of table reads, and it can also affect the performance of your file system. Ideally, a large number of small files should be rewritten into a smaller number of larger files on a regular basis.</p></li>
+<li><p>If you continuously write data to a Delta table, it will over time accumulate
+a large number of files, especially if you add data in small batches.</p></li>
+<li><p>This can have an adverse effect on the efficiency of table reads, and it can
+also affect the performance of your file system. Ideally, a large number of
+small files should be rewritten into a smaller number of larger files on a
+regular basis.</p></li>
 <li><p>This is known as <code class="docutils literal notranslate"><span class="pre">compaction</span></code>.</p></li>
 <li><p>You can compact a table by repartitioning it to a smaller number of files.</p></li>
 </ul>
 </div>
+<hr class="docutils" />
 <div class="section" id="data-serialization">
 <h2>Data Serialization<a class="headerlink" href="#data-serialization" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file.</p></li>
-<li><p>Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.</p></li>
-<li><p>Serialization is the process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file.</p></li>
-<li><p>Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization.</p></li>
+<li><p>Serialization is the process of converting an object into a stream of bytes
+to store the object or transmit it to memory, a database, or a file.</p></li>
+<li><p>Its main purpose is to save the state of an object in order to be able to
+recreate it when needed.</p>
+<ul>
+<li><p>The reverse process is called deserialization.</p></li>
 </ul>
-</div>
-<div class="section" id="data-warehouse">
-<h2>Data Warehouse<a class="headerlink" href="#data-warehouse" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p>A database designed to store and process large volumes of current and historical data collected from multiple sources inside and outside the enterprise for deep analysis.</p></li>
-<li><p>Organizes data into tables and columns, and allows users access via SQL.</p></li>
-<li><p>Optimized for loading, integrating and analyzing very large amounts of data.</p></li>
-<li><p>Designed to support descriptive, diagnostic, predictive and prescriptive analytic workloads.
-Example: Snowflake</p></li>
+</li>
+<li><p>Serialization is the process of converting an object into a stream of bytes
+to store the object or transmit it to memory, a database, or a file.</p></li>
+<li><p>Its main purpose is to save the state of an object in order to be able to
+recreate it when needed. The reverse process is called deserialization.</p></li>
 </ul>
 </div>
 </div>

@@ -114,28 +114,28 @@
 <li><p>Below are some handy commands when working with <code class="docutils literal notranslate"><span class="pre">pytest</span></code>.</p></li>
 <li><p><a class="reference external" href="https://blog.zenml.io/level-up-your-testing/">ZenML Reference</a></p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># make the test output verbose
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make the test output verbose</span>
 pytest tests/ -v
 
-# stop testing whenever you get to a test that fails
+<span class="c1"># stop testing whenever you get to a test that fails</span>
 pytest tests/ -x
 
-# run only a single test
+<span class="c1"># run only a single test</span>
 pytest tests/test_base.py::test_initialization
 
-# run only tests tagged with a particular word
+<span class="c1"># run only tests tagged with a particular word</span>
 pytest tests/ -m specialword
 
-# print out all the output of tests to the console
+<span class="c1"># print out all the output of tests to the console</span>
 pytest tests/ -s
 
-# run all the tests, but run the last failures first
+<span class="c1"># run all the tests, but run the last failures first</span>
 pytest tests/ --ff
 
-# see which tests will be run with the given options and config
+<span class="c1"># see which tests will be run with the given options and config</span>
 pytest tests/ —collect-only
 
-# show local variables in tracebacks
+<span class="c1"># show local variables in tracebacks</span>
 pytest tests/ —showlocals
 </pre></div>
 </div>

@@ -66,15 +66,13 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Apache Spark</a><ul>
-<li><a class="reference internal" href="#spark">Spark</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#sparksession">SparkSession</a></li>
 <li><a class="reference internal" href="#job">Job</a></li>
 <li><a class="reference internal" href="#stage">Stage</a></li>
 <li><a class="reference internal" href="#task">Task</a></li>
 <li><a class="reference internal" href="#dags">DAGs</a></li>
 <li><a class="reference internal" href="#driver-oom">Driver OOM</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#executor-oom">Executor OOM</a></li>
 <li><a class="reference internal" href="#rdd">RDD</a></li>
 <li><a class="reference internal" href="#dataframe-api">DataFrame API</a></li>
@@ -96,6 +94,8 @@
 <li><a class="reference internal" href="#joins">Joins</a></li>
 <li><a class="reference internal" href="#partitions">Partitions</a></li>
 <li><a class="reference internal" href="#spark-ml">Spark ML</a></li>
+<li><a class="reference internal" href="#mapreduce">MapReduce</a></li>
+<li><a class="reference internal" href="#spark-vs-mapreduce">Spark vs MapReduce</a></li>
 </ul>
 </li>
 </ul>
@@ -130,43 +130,38 @@
   <div class="section" id="apache-spark">
 <h1>Apache Spark<a class="headerlink" href="#apache-spark" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
-<div class="section" id="spark">
-<h2>Spark<a class="headerlink" href="#spark" title="Permalink to this headline"></a></h2>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>An in-memory data processing engine for big data workloads</p></li>
-<li><p>Spark is an open source distributed clustering computing framework</p></li>
-<li><p>Spark runs 100 times faster in-memory and 10 times faster on disk than Hadoop MapReduce.</p></li>
-<li><p>The reason is that Apache Spark processes data in-memory (RAM), while Hadoop
-MapReduce has to persist data back to the disk  after every Map or Reduce
-action.</p>
-<ul>
-<li><p>Does Spark use MapReduce or not?</p></li>
-<li><p>The answer to the question is yes — but only the idea, not the exact implementation.</p></li>
-<li><p>Example: Map - reduce - filter w/ RDDs</p></li>
+<li><p>An in-memory data processing engine for big data workloads.</p></li>
+<li><p>Spark is an open source distributed clustering computing framework.</p></li>
+<li><p>Spark processes data in-memory (RAM), while Hadoop MapReduce has to persist
+data back to the disk after every Map or Reduce action.</p></li>
+<li><p>Running spark applications consist of two main components: <code class="docutils literal notranslate"><span class="pre">Driver</span></code> and <code class="docutils literal notranslate"><span class="pre">Executors</span></code></p></li>
 </ul>
-</li>
-<li><p>Running spark applications consist of two main components:</p>
-<ul>
-<li><p>Driver</p></li>
-<li><p>Executors</p></li>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
+<ul class="simple">
+<li><p>Spark can be <strong>100x</strong> faster than Hadoop for large data by exploiting in memory
+data processing.</p></li>
+<li><p>Unified processing engine that can analyze big data using SQL, machine
+learning, graph processing, or real-time streaming analytics.</p></li>
+<li><p>Can write applications in <code class="docutils literal notranslate"><span class="pre">Java</span></code>, <code class="docutils literal notranslate"><span class="pre">Scala</span></code>, <code class="docutils literal notranslate"><span class="pre">python</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span></code>, and <code class="docutils literal notranslate"><span class="pre">SQL</span></code>.</p></li>
 </ul>
-</li>
-</ul>
-<p><img alt="image" src="../../_images/spark.png" /></p>
+</div>
 <div class="section" id="sparksession">
-<h3>SparkSession<a class="headerlink" href="#sparksession" title="Permalink to this headline"></a></h3>
+<h2>SparkSession<a class="headerlink" href="#sparksession" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Object that provides a point of entry to interact with underlying Spark functionality.</p></li>
 </ul>
 </div>
 <div class="section" id="job">
-<h3>Job<a class="headerlink" href="#job" title="Permalink to this headline"></a></h3>
+<h2>Job<a class="headerlink" href="#job" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Parallel computation consisting of multiple tasks in response to a Spark action (e.g. collect, save, etc.).</p></li>
 </ul>
 </div>
 <div class="section" id="stage">
-<h3>Stage<a class="headerlink" href="#stage" title="Permalink to this headline"></a></h3>
+<h2>Stage<a class="headerlink" href="#stage" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Each job is divided into smaller sets of tasks that spended on each other.
 Each stage, there will be many tasks.</p></li>
@@ -175,13 +170,13 @@ process a distinct partition.</p></li>
 </ul>
 </div>
 <div class="section" id="task">
-<h3>Task<a class="headerlink" href="#task" title="Permalink to this headline"></a></h3>
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Single execution that will be sent to the Spark executors.</p></li>
 </ul>
 </div>
 <div class="section" id="dags">
-<h3>DAGs<a class="headerlink" href="#dags" title="Permalink to this headline"></a></h3>
+<h2>DAGs<a class="headerlink" href="#dags" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Spark execution plan</p>
 <ul>
@@ -194,7 +189,7 @@ single core and works on a single partition.</p></li>
 </ul>
 </div>
 <div class="section" id="driver-oom">
-<h3>Driver OOM<a class="headerlink" href="#driver-oom" title="Permalink to this headline"></a></h3>
+<h2>Driver OOM<a class="headerlink" href="#driver-oom" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>In typical deployments, a driver is provisioned less memory than executors.</p></li>
 <li><p>Common causes of OOM is calling <code class="docutils literal notranslate"><span class="pre">collect</span></code> or <code class="docutils literal notranslate"><span class="pre">broadcast</span></code> relations to the remote executor.</p></li>
@@ -203,10 +198,9 @@ which avoids a full shuffle</p></li>
 <li><p>Can increase the driver memory</p></li>
 </ul>
 </div>
-</div>
 <div class="section" id="executor-oom">
 <h2>Executor OOM<a class="headerlink" href="#executor-oom" title="Permalink to this headline"></a></h2>
-<p><strong>Problems:</strong></p>
+<p><span class="label label-warning">Problems</span></p>
 <ul class="simple">
 <li><p>High concurrency</p></li>
 <li><p>Inefficient queries</p></li>
@@ -266,8 +260,8 @@ IDs, then that is a bad partitioning strategy.</p></li>
 <li><p>Transform Spark DataFrame into a new DataFrame without altering the data (immutable).</p></li>
 <li><p>Lazy transformation - results are not computed immediately by recorded as a
 lineage (which is used later in the execution plan.</p></li>
+<li><p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">join</span></code>, <code class="docutils literal notranslate"><span class="pre">groupBy</span></code></p></li>
 </ul>
-<p><strong>Example</strong>: <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">join</span></code>, <code class="docutils literal notranslate"><span class="pre">groupBy</span></code></p>
 <p><strong>coalesce</strong></p>
 <ul class="simple">
 <li><p>Decrease the number of partitions in the RDD to numPartitions.</p></li>
@@ -275,7 +269,8 @@ lineage (which is used later in the execution plan.</p></li>
 </ul>
 <p><strong>repartition</strong></p>
 <ul class="simple">
-<li><p>Reshuffle the data in the RDD randomly to create either more or fewer partitions and balance it across them.</p></li>
+<li><p>Reshuffle the data in the RDD randomly to create either more or fewer
+partitions and balance it across them.</p></li>
 <li><p>This always shuffles all data over the network.</p></li>
 </ul>
 </div>
@@ -427,7 +422,6 @@ sized to store short-lived objects.</p></li>
 <li><p>Eden</p></li>
 <li><p>Survivor1</p></li>
 <li><p>Survivor2</p></li>
-<li></li>
 </ul>
 </li>
 </ul>
@@ -513,6 +507,32 @@ model. Pipelines are estimators, and the output of  the <code class="docutils li
 <li><p>Convert categorical values into numeric values</p></li>
 <li><p>After performing StringIndexer - OneHotEncoder mades a column of category
 indices to a column of binary vectors.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="mapreduce">
+<h2>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>MapReduce is a technique for parallelizing the execution of a large
+collection of tasks.</p></li>
+<li><p>MapReduce persists data back to the disk after a map or reduce action</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Map</span></code> filters and sorts data while converting it into key-value pairs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Reduce</span></code> then takes this input and reduces its size by performing some kind
+of summary operation over the dataset.</p></li>
+</ul>
+</div>
+<div class="section" id="spark-vs-mapreduce">
+<h2>Spark vs MapReduce<a class="headerlink" href="#spark-vs-mapreduce" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Apache Spark processes data in random access memory (RAM)</p></li>
+<li><p>Hadoop MapReduce persists data back to the disk after a map or reduce action.</p></li>
+<li><p>In terms of fault tolerance, MapReduce has a slight advantage here because
+it relies on hard drives, rather than RAM.</p>
+<ul>
+<li><p>If a MapReduce process crashes in the middle of execution, it can
+continue where it left off, whereas Spark will have to start processing
+from the beginning.</p></li>
 </ul>
 </li>
 </ul>

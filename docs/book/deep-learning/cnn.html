@@ -118,7 +118,7 @@
 <li><p>Output Layer</p></li>
 </ul>
 <p><img alt="image" src="../../_images/cnn.png" /></p>
-<p><strong>Steps</strong></p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
 <ul class="simple">
 <li><p>Receive some input volume (image) and pass it thru a series of convolution
 layers to abstract high level features from the image.</p></li>
@@ -221,7 +221,7 @@ the feature map.</p></li>
 </div>
 <div class="section" id="transferred-learning">
 <h2>Transferred Learning<a class="headerlink" href="#transferred-learning" title="Permalink to this headline"></a></h2>
-<p><strong>Steps:</strong></p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
 <ul class="simple">
 <li><p>Take layers from a previously trained model.</p></li>
 <li><p>Freeze them, so as to avoid destroying any of the information they contain
@@ -249,7 +249,7 @@ feature engineering as a separate stage before classification is performed.</p><
 <li><p>With CNNs extract features and create informative representations of time
 series automatically.</p></li>
 </ul>
-<p><strong>Steps:</strong></p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
 <ul class="simple">
 <li><p>Take a LxN matrix (length of time series X number of variables in the sequence)</p></li>
 <li><p>Slide a 1xN kernel across the length of the sequence performing a convolution
@@ -259,7 +259,7 @@ each step into a fully connected layer and then outputs the final prediction</p>
 <li><p>We can also then feed the fully connected layer into a LSTM model for
 sequence modeling.</p></li>
 </ul>
-<p><strong>Main Idea</strong></p>
+<p><strong><span class="label label-info">Main Idea</span></strong></p>
 <ul class="simple">
 <li><p>Each new time series consolidates information from different frequencies of
 the original data.</p></li>

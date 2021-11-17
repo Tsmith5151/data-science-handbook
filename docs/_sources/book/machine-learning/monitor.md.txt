@@ -1,7 +1,7 @@
 # Production Monitoring 
 __________
 
-## A/B Testing
+### A/B Testing
 - A/B Testing is a way of conducting an experiment where you compare a control
   group to the performance of one or more test groups by randomly assigning
   each group a specific single-variable treatment. 
@@ -28,7 +28,7 @@ __________
   Lastly, compare the p-value to the alpha. If the p-value is greater than the
   alpha, do not reject the null!
 
-## Data Drift
+### Data Drift
 - Drifts involve a statistical change in the data, the best approach to detect
   them is by monitoring  its statistical properties
 

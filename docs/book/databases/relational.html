@@ -66,6 +66,7 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Relational Databases</a><ul>
+<li><a class="reference internal" href="#rdbms">RDBMS</a></li>
 <li><a class="reference internal" href="#denormalization">Denormalization</a></li>
 </ul>
 </li>
@@ -101,6 +102,8 @@
   <div class="section" id="relational-databases">
 <h1>Relational Databases<a class="headerlink" href="#relational-databases" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
+<div class="section" id="rdbms">
+<h2>RDBMS<a class="headerlink" href="#rdbms" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Relational database management system (RDBMS)</p></li>
 <li><p>A relational database like SQL is a collection of data items organized in tables.</p></li>
@@ -108,24 +111,30 @@
 <ul>
 <li><p><strong>Atomicity</strong> - Each transaction is all or nothing</p></li>
 <li><p><strong>Consistency</strong> - Any transaction will bring the database from one valid state to another</p></li>
-<li><p><strong>Isolation</strong> - Executing transactions concurrently has the same results as if the transactions were executed serially</p></li>
+<li><p><strong>Isolation</strong> - Executing transactions concurrently has the same results as
+if the transactions were executed serially</p></li>
 <li><p><strong>Durability</strong> - Once a transaction has been committed, it will remain so</p></li>
 </ul>
 </li>
 </ul>
+</div>
 <div class="section" id="denormalization">
 <h2>Denormalization<a class="headerlink" href="#denormalization" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Denormalization attempts to improve read performance at the expense of some write performance.</p></li>
-<li><p>Once data becomes distributed with techniques such as federation and sharding, managing joins across data centers further increases complexity.</p></li>
+<li><p>Denormalization attempts to improve read performance at the expense of some
+write performance.</p></li>
+<li><p>Once data becomes distributed with techniques such as federation and
+sharding, managing joins across data centers further increases complexity.</p></li>
 <li><p>Denormalization might circumvent the need for such complex joins.</p></li>
 <li><p>To avoid expensive joins, Denormalize where performance demands it.</p></li>
 </ul>
-<p><strong>Disadvantages</strong></p>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
 <ul class="simple">
 <li><p>Data is duplicated.</p></li>
-<li><p>Constraints can help redundant copies of information stay in sync, which increases complexity of the database design.</p></li>
-<li><p>A denormalized database under heavy write load might perform worse than its normalized counterpart.</p></li>
+<li><p>Constraints can help redundant copies of information stay in sync, which
+increases complexity of the database design.</p></li>
+<li><p>A denormalized database under heavy write load might perform worse than its
+normalized counterpart.</p></li>
 </ul>
 </div>
 </div>

@@ -2,7 +2,7 @@
 ____
 
 ### JSON
-- JSON stands for JavaScript Object Notation
+- JSON stands for `JavaScript Object Notation`
 - JSON is a lightweight format for storing and transporting data
 - JSON is often used when data is sent from a server to a web page
 - JSON is "self-describing" and easy to understand
@@ -14,7 +14,7 @@ ____
   vector, list, or sequence. 
 
 ### YAML
-- Yet Another Markup Language
+- `Yet Another Markup Language`
 - YAML is a digestible data serialization language that is often utilized to
   create configuration files and works in concurrence with any programming
   language. 
@@ -25,24 +25,31 @@ ____
   in YAML, as opposed to JSON, which uses brackets and braces. 
 
 ### Parquet
-- Default data source in Spark
-- Open-source columnar file format that offers I/O optimization such as data
+- Open-source columnar file format that provides I/O optimization such as data
   compression, which gives quick access to data columns for querying. 
+- Columnar storage is designed to bring efficiency compared to row-based files
+  like CSV. When querying, columnar storage you can skip over the non-relevant
+  data very quickly.  
+- With columnar storage, aggregation queries are less time consuming compared
+  to row-oriented databases.   
+- This way of storage has translated into hardware savings and minimized
+  latency for accessing data.  
 
-**Directory Structure:**
-- Data Files, metadata, number of compressed files, and some status files. 
 
-**Avro**
-- Uses by Kafka for message serialization and deserialization. Direct mapping
-  to JSON, and very quick/efficient.  
+**<span class="label label-success">Advantages</span>**
+- Parquet has helped reduce storage requirements by at least one-third
+on large datasets, in addition, it greatly improved scan and deserialization
+time which ultimately reduces the overall costs. 
+- Parquet is a columnar file format, which means that it can be used to store
+  data in a more efficient way than CSV.
 
-**Dynamic Allocation**
+### Dynamic Allocation
   - The Spark driver can request more or fewer compute resources as the demand
     of large workflows. If workflows vary in their demands for compute capacity
     then Dynamic Allocation could be an option (e.g. streaming data).  
-  - **Example of settings: **
-    - spark.dynamicAllocation.enabled true
-    - spark.dynamicAllocation.minExecutors 2
+  - **Example of settings:**
+    - `spark.dynamicAllocation.enabled true`
+    - `spark.dynamicAllocation.minExecutors 2`
 - Must configure spark executors’ memory allocation
   - **Default**:
     - Execution memory: 60%

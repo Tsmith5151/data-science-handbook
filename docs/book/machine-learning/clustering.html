@@ -140,7 +140,8 @@ centroid) is minimized.</p></li>
 <li><p>plot number of clusters versus interia</p></li>
 <li><p><strong>Inertia:</strong> measure of how internally coherent clusters are</p></li>
 <li><p><strong>Cohesion:</strong> measures how closely related are objects in a cluster</p></li>
-<li><p><strong>Separation:</strong> measures how distinctly separated a cluster is from other clusters</p></li>
+<li><p><strong>Separation:</strong> measures how distinctly separated a cluster is from other
+clusters.</p></li>
 </ul>
 <p><strong>Calinski-Harabasz:</strong></p>
 <ul class="simple">
@@ -164,11 +165,13 @@ different cluster is more similar.</p></li>
 <div class="section" id="difference-between-knn-and-kmeans">
 <h3>Difference between KNN and KMeans<a class="headerlink" href="#difference-between-knn-and-kmeans" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>K-NN is a Supervised machine learning while K-means is an unsupervised machine learning.</p></li>
+<li><p>K-NN is a Supervised machine learning while K-means is an unsupervised
+machine learning.</p></li>
 <li><p>K-NN is a classification or regression machine learning algorithm while</p></li>
 <li><p>K-NN performs much better if all of the data have the same scale but this is
 not true for K-means.</p></li>
-<li><p>K-means is a clustering machine learning algorithm and used for unsupervised ML tasks.</p></li>
+<li><p>K-means is a clustering machine learning algorithm and used for unsupervised
+ML tasks.</p></li>
 </ul>
 </div>
 </div>
@@ -180,22 +183,31 @@ clusters by merging or splitting them successively.</p></li>
 <li><p>This hierarchy of clusters is represented as a tree (or dendrogram).</p></li>
 <li><p>Hierarchical clustering using a bottom up approach:</p>
 <ul>
-<li><p>Each observation starts in its own cluster, and clusters are successively merged together.</p></li>
+<li><p>Each observation starts in its own cluster, and clusters are successively
+merged together.</p></li>
 </ul>
 </li>
-<li><p>Hierarchical clustering algorithms aims at optimizing different objective functions:</p></li>
+<li><p>Hierarchical clustering algorithms aims at optimizing different objective
+functions:</p>
+<ul>
 <li><p><strong>Ward</strong> minimizes the sum of squared differences within all clusters. It is
 a variance-minimizing  approach and in this sense is similar to the k-means
 objective function but tackled with an agglomerative hierarchical approach.</p></li>
-<li><p><strong>Maximum or complete linkage:</strong> minimizes the maximum distance between observations of pairs of clusters.</p></li>
-<li><p><strong>Average linkage minimizes</strong> the average of the distances between all observations of pairs of clusters.</p></li>
-<li><p><strong>Single linkage</strong> minimizes the distance between the closest observations of pairs of clusters.</p></li>
+<li><p><strong>Maximum or complete linkage:</strong> minimizes the maximum distance between
+observations of pairs of clusters.</p></li>
+<li><p><strong>Average linkage minimizes</strong> the average of the distances between all
+observations of pairs of clusters.</p></li>
+<li><p><strong>Single linkage</strong> minimizes the distance between the closest observations of
+pairs of clusters.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="dbscan">
 <h2>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Clustering algorithm views clusters as areas of high density separated by areas of low density.</p></li>
+<li><p>Clustering algorithm views clusters as areas of high density separated by
+areas of low density.</p></li>
 <li><p>Clusters found by DBSCAN can be any shape, as opposed to k-means which
 assumes that clusters are  convex shaped.</p></li>
 </ul>

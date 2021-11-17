@@ -88,7 +88,8 @@ and item attributes in a lower dimension
  
 ![image](../assets/als.png)
 
-**Advantage:** 
+**<span class="label label-success">Advantage</span>**
+
 - Can be parallelised and/or distributed, which makes the algorithm desirable
   for use cases where the dataset is large and thus the user-item rating
   matrix is super sparse.
