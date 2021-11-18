@@ -1,6 +1,17 @@
 # NoSQL
 ____
 
+### BASE
+
+- Like Cap Theorem is used to describe relational databases, `BASE` is often used
+to describe the properties of NoSQL databases. 
+- **Basically available**:  the system guarantees availability. 
+- **Soft State**:  the state of the system may change over time, even without
+  input. 
+- **Eventual Consistency**: the system will become consistent over a period of
+  time, given that the system doesn't receive input during that period. 
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+
 ### NoSQL Databases
 
 - NoSQL is a collection of data items represented in a key-value store,
