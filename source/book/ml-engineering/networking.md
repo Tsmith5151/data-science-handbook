@@ -81,7 +81,6 @@ ______
 - WebSockets are really useful in multiplayer online gaming, where the high-quality graphics of the world need to be transmitted to distributed users with real-time state updates and tight synchronization.
 - Overall, WebSockets are a good choice if you know you need a fast, high-quality, bi-directional connection.
 
-
 ### Domain Name System (DNS) 
 - DNS translates a domain name such as www.example.com to an IP address
 - DNS is hierarchical, with a few authoritative servers at the top level. 
@@ -133,3 +132,38 @@ ______
 - Content might be stale if it is updated before the TTL expires it.
 - CDNs require changing URLs for static content to point to the CDN.
 - [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+
+### Virtual Networks
+
+-  VNet enables many types of Azure resources, such as Virtual Machines to
+   securely communicate with each other, the internet, and on-premises
+   networks.  
+
+### Subnets
+- A subnet is a range of IP addresses in the virtual network. Y
+- You can divide a virtual network into multiple subnets for organization and security. 
+
+### Network Security Groups: 
+- NSGs and application security groups can contain multiple
+  inbound and outbound security rules that enable you to filter traffic to and
+  from resources by source and destination IP address, port, and protocol.  
+- Each rule has properties of:
+  - Protocol
+  - Source and destination port ranges
+  - Address prefixes
+  - Direction of traffic
+  - Priority
+  - Access type
+
+### IP Addresses
+
+- IP stands for `Internet Protocol` which is the set of rules governing the
+  format of data sent via the internet or local network.  
+- IP addresses are the identifier that allows information to be sent between
+  devices on a network.  
+- There are two methods in which an IP address is given to a resource: `dynamic`
+  or `static`.   
+- **Public IP addresses:** Used to communicate inbound and outbound with the
+  Internet and other resources not connected to a virtual network. 
+- **Private IP addresses** - Used for communication within a virtual network,
+your on-premises network, and the Internet.  

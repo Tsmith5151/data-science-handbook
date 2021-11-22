@@ -66,7 +66,6 @@ ______
   - Client receives messages with EventSource handlers
   - Either side closes the connection
 
-
 ### WebSockets 
 - Is a two-way message passing protocol based on TCP (the protocol at Layer 4 of the OSI networking model). WebSockets are faster for data transmission than HTTP because it has less protocol overhead and operates at a lower level in the network stack. 
 - At a high level, the steps of a websocket connection are:
@@ -81,3 +80,90 @@ ______
 **Example**
 - WebSockets are really useful in multiplayer online gaming, where the high-quality graphics of the world need to be transmitted to distributed users with real-time state updates and tight synchronization.
 - Overall, WebSockets are a good choice if you know you need a fast, high-quality, bi-directional connection.
+
+### Domain Name System (DNS) 
+- DNS translates a domain name such as www.example.com to an IP address
+- DNS is hierarchical, with a few authoritative servers at the top level. 
+- A router or ISP provides information about which DNS server(s) to contact when doing a lookup. 
+- Services such as CloudFlare and Route 53 provide managed DNS services.
+
+**<span class="label label-warning">Disadvantages</span>**
+- A DNS server can introduce slight delays, but can be mitigated by caching.
+- DNS server management could be complex and is generally managed by
+  governments and large companies. 
+- DNS services have recently come under DDoS attack, which prevent users from 
+  accessing websites.  
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+
+### Content Delivery Networks
+
+- A content delivery network (`CDN`) is a distributed network of servers that can
+  efficiently deliver web content to users.  
+- CDNs' store cached content on edge servers in point-of-presence (POP)
+  locations that are close to end users, to minimize latency. 
+- CDN’s are typically used to cache static content such as images, CSS, or HTML.
+(push or put).  
+- A CDN’s mission is to virtually shorten that physical distance, the goal
+  being to improve site rendering speed and performance. 
+
+![image](../assets/cdn.png)
+
+
+**<span class="label label-success">Steps</span>**
+- A user (Alice) requests a file (also called an asset) by using a URL with a special domain name, such as `<endpoint name>.azureedge.net`. This name can be an endpoint hostname or a custom domain. 
+- The DNS routes the request to the best performing POP location, which is
+  usually the POP that is geographically closest to the user. 
+- If no edge servers in the POP have the file in their cache, the POP requests
+  the file from the origin server. The origin server can be a backend file
+  store. 
+- The origin server returns the file to an edge server in the POP.
+- An edge server in the POP caches the file and returns the file to the
+  original requestor (Alice). The file remains cached on the edge server in the
+  POP until the time-to-live (TTL) specified by its HTTP headers expires. If
+  the origin server didn't specify a TTL, the default TTL is seven days. 
+- Additional users can then request the same file by using the same URL that
+  Alice used, and can also be directed to the same POP. 
+- If the TTL for the file hasn't expired, the POP edge server returns the file directly from the cache. 
+- This process results in a faster, more responsive user experience.
+
+
+**<span class="label label-warning">Disadvantages</span>**
+- CDN costs could be significant depending on traffic.
+- Content might be stale if it is updated before the TTL expires it.
+- CDNs require changing URLs for static content to point to the CDN.
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+
+### Virtual Networks
+
+-  VNet enables many types of Azure resources, such as Virtual Machines to
+   securely communicate with each other, the internet, and on-premises
+   networks.  
+
+### Subnets
+- A subnet is a range of IP addresses in the virtual network. Y
+- You can divide a virtual network into multiple subnets for organization and security. 
+
+### Network Security Groups: 
+- NSGs and application security groups can contain multiple
+  inbound and outbound security rules that enable you to filter traffic to and
+  from resources by source and destination IP address, port, and protocol.  
+- Each rule has properties of:
+  - Protocol
+  - Source and destination port ranges
+  - Address prefixes
+  - Direction of traffic
+  - Priority
+  - Access type
+
+### IP Addresses
+
+- IP stands for `Internet Protocol` which is the set of rules governing the
+  format of data sent via the internet or local network.  
+- IP addresses are the identifier that allows information to be sent between
+  devices on a network.  
+- There are two methods in which an IP address is given to a resource: `dynamic`
+  or `static`.   
+- **Public IP addresses:** Used to communicate inbound and outbound with the
+  Internet and other resources not connected to a virtual network. 
+- **Private IP addresses** - Used for communication within a virtual network,
+your on-premises network, and the Internet.  

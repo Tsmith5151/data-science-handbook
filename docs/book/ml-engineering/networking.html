@@ -72,6 +72,12 @@
 <li><a class="reference internal" href="#long-polling">Long Polling</a></li>
 <li><a class="reference internal" href="#server-sent-events">Server Sent Events</a></li>
 <li><a class="reference internal" href="#websockets">WebSockets</a></li>
+<li><a class="reference internal" href="#domain-name-system-dns">Domain Name System (DNS)</a></li>
+<li><a class="reference internal" href="#content-delivery-networks">Content Delivery Networks</a></li>
+<li><a class="reference internal" href="#virtual-networks">Virtual Networks</a></li>
+<li><a class="reference internal" href="#subnets">Subnets</a></li>
+<li><a class="reference internal" href="#network-security-groups">Network Security Groups:</a></li>
+<li><a class="reference internal" href="#ip-addresses">IP Addresses</a></li>
 </ul>
 </li>
 </ul>
@@ -221,6 +227,111 @@
 <ul class="simple">
 <li><p>WebSockets are really useful in multiplayer online gaming, where the high-quality graphics of the world need to be transmitted to distributed users with real-time state updates and tight synchronization.</p></li>
 <li><p>Overall, WebSockets are a good choice if you know you need a fast, high-quality, bi-directional connection.</p></li>
+</ul>
+</div>
+<div class="section" id="domain-name-system-dns">
+<h2>Domain Name System (DNS)<a class="headerlink" href="#domain-name-system-dns" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>DNS translates a domain name such as www.example.com to an IP address</p></li>
+<li><p>DNS is hierarchical, with a few authoritative servers at the top level.</p></li>
+<li><p>A router or ISP provides information about which DNS server(s) to contact when doing a lookup.</p></li>
+<li><p>Services such as CloudFlare and Route 53 provide managed DNS services.</p></li>
+</ul>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
+<ul class="simple">
+<li><p>A DNS server can introduce slight delays, but can be mitigated by caching.</p></li>
+<li><p>DNS server management could be complex and is generally managed by
+governments and large companies.</p></li>
+<li><p>DNS services have recently come under DDoS attack, which prevent users from
+accessing websites.</p></li>
+<li><p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="content-delivery-networks">
+<h2>Content Delivery Networks<a class="headerlink" href="#content-delivery-networks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A content delivery network (<code class="docutils literal notranslate"><span class="pre">CDN</span></code>) is a distributed network of servers that can
+efficiently deliver web content to users.</p></li>
+<li><p>CDNs’ store cached content on edge servers in point-of-presence (POP)
+locations that are close to end users, to minimize latency.</p></li>
+<li><p>CDN’s are typically used to cache static content such as images, CSS, or HTML.
+(push or put).</p></li>
+<li><p>A CDN’s mission is to virtually shorten that physical distance, the goal
+being to improve site rendering speed and performance.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/cdn.png" /></p>
+<p><strong><span class="label label-success">Steps</span></strong></p>
+<ul class="simple">
+<li><p>A user (Alice) requests a file (also called an asset) by using a URL with a special domain name, such as <code class="docutils literal notranslate"><span class="pre">&lt;endpoint</span> <span class="pre">name&gt;.azureedge.net</span></code>. This name can be an endpoint hostname or a custom domain.</p></li>
+<li><p>The DNS routes the request to the best performing POP location, which is
+usually the POP that is geographically closest to the user.</p></li>
+<li><p>If no edge servers in the POP have the file in their cache, the POP requests
+the file from the origin server. The origin server can be a backend file
+store.</p></li>
+<li><p>The origin server returns the file to an edge server in the POP.</p></li>
+<li><p>An edge server in the POP caches the file and returns the file to the
+original requestor (Alice). The file remains cached on the edge server in the
+POP until the time-to-live (TTL) specified by its HTTP headers expires. If
+the origin server didn’t specify a TTL, the default TTL is seven days.</p></li>
+<li><p>Additional users can then request the same file by using the same URL that
+Alice used, and can also be directed to the same POP.</p></li>
+<li><p>If the TTL for the file hasn’t expired, the POP edge server returns the file directly from the cache.</p></li>
+<li><p>This process results in a faster, more responsive user experience.</p></li>
+</ul>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
+<ul class="simple">
+<li><p>CDN costs could be significant depending on traffic.</p></li>
+<li><p>Content might be stale if it is updated before the TTL expires it.</p></li>
+<li><p>CDNs require changing URLs for static content to point to the CDN.</p></li>
+<li><p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="virtual-networks">
+<h2>Virtual Networks<a class="headerlink" href="#virtual-networks" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>VNet enables many types of Azure resources, such as Virtual Machines to
+securely communicate with each other, the internet, and on-premises
+networks.</p></li>
+</ul>
+</div>
+<div class="section" id="subnets">
+<h2>Subnets<a class="headerlink" href="#subnets" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A subnet is a range of IP addresses in the virtual network. Y</p></li>
+<li><p>You can divide a virtual network into multiple subnets for organization and security.</p></li>
+</ul>
+</div>
+<div class="section" id="network-security-groups">
+<h2>Network Security Groups:<a class="headerlink" href="#network-security-groups" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>NSGs and application security groups can contain multiple
+inbound and outbound security rules that enable you to filter traffic to and
+from resources by source and destination IP address, port, and protocol.</p></li>
+<li><p>Each rule has properties of:</p>
+<ul>
+<li><p>Protocol</p></li>
+<li><p>Source and destination port ranges</p></li>
+<li><p>Address prefixes</p></li>
+<li><p>Direction of traffic</p></li>
+<li><p>Priority</p></li>
+<li><p>Access type</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ip-addresses">
+<h2>IP Addresses<a class="headerlink" href="#ip-addresses" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>IP stands for <code class="docutils literal notranslate"><span class="pre">Internet</span> <span class="pre">Protocol</span></code> which is the set of rules governing the
+format of data sent via the internet or local network.</p></li>
+<li><p>IP addresses are the identifier that allows information to be sent between
+devices on a network.</p></li>
+<li><p>There are two methods in which an IP address is given to a resource: <code class="docutils literal notranslate"><span class="pre">dynamic</span></code>
+or <code class="docutils literal notranslate"><span class="pre">static</span></code>.</p></li>
+<li><p><strong>Public IP addresses:</strong> Used to communicate inbound and outbound with the
+Internet and other resources not connected to a virtual network.</p></li>
+<li><p><strong>Private IP addresses</strong> - Used for communication within a virtual network,
+your on-premises network, and the Internet.</p></li>
 </ul>
 </div>
 </div>

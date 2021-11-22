@@ -5,12 +5,22 @@ _____
 
 ![image](../assets/time_complexity1.png)
 
+**<span class="label label-success">Cheat Sheet</span>**
+- [Link](https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/)
+  
 **Examples**
-- O(1) -> basic operation
-- O(n) -> loop
-- O(n2) -> loop inside of a loop
-- O(log n) -> input size is divided in half for each loop (Binary Search)
-- O(nlog n) 
+- O(1):
+  - linear operation
+  - hashmap lookup  
+- O(n):
+  - for loop
+- O(n2):
+  - loop inside of a loop
+- O(log n):
+  - Binary Search: input size is divided in half for each loop
+  - Heaps 
+- O(nlog n)
+  - sort array 
 
 **Linear Time Complexity**
 
@@ -167,7 +177,12 @@ continue this loop until there is no unmarked adjacent node.
 - Backtracking is an algorithmic-technique for solving problems recursively by
   trying to build a solution incrementally, one piece at a time, removing
   those solutions that fail to satisfy the constraints of the problem at any
-  point of time 
+  tpoint of time 
+
+**Main points of Backtracking**
+1.) Choice: you a make a choice at each step,
+2.) Constrains on the choices.
+3.) Converge on goals.
 
 ![image](../assets/backtracking1.png)
 

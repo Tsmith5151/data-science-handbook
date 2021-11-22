@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Design &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">System Design</a><ul>
+<li><a class="reference internal" href="#how-to-approach-a-system-design">How to Approach a System Design</a></li>
+<li><a class="reference internal" href="#messaging-application">Messaging Application</a><ul>
+<li><a class="reference internal" href="#key-features">Key Features</a></li>
+<li><a class="reference internal" href="#key-requirements">Key Requirements</a></li>
+<li><a class="reference internal" href="#server-client-connection">Server-Client Connection</a></li>
+<li><a class="reference internal" href="#receive-messages">Receive Messages</a></li>
+<li><a class="reference internal" href="#storing-online-offline-status">Storing Online/Offline Status</a></li>
+<li><a class="reference internal" href="#send-receive-notification">Send/Receive Notification</a></li>
+<li><a class="reference internal" href="#group-chats">Group Chats</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#online-learning">Online Learning</a></li>
+<li><a class="reference internal" href="#search-and-ranking-slack">Search and Ranking (Slack)</a><ul>
+<li><a class="reference internal" href="#feature-engineering">Feature Engineering</a></li>
+<li><a class="reference internal" href="#offline-and-updates-to-the-solr-rank-service">Offline and updates to the Solr Rank Service</a></li>
+<li><a class="reference internal" href="#model-training">Model Training</a></li>
+<li><a class="reference internal" href="#success-metrics">Success Metrics</a></li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#predicting-user-engagement-slack">Predicting User Engagement (Slack)</a></li>
+<li><a class="reference internal" href="#search-engine">Search Engine</a></li>
+<li><a class="reference internal" href="#learn-to-rank-wayfair">Learn to Rank (Wayfair)</a></li>
+<li><a class="reference internal" href="#autocomplete">Autocomplete</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="system-design">
+<h1>System Design<a class="headerlink" href="#system-design" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="how-to-approach-a-system-design">
+<h2>How to Approach a System Design<a class="headerlink" href="#how-to-approach-a-system-design" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#study-guide">Reference</a></p>
+<p><strong>Step 1: Outline use cases, constraints, and assumptions</strong></p>
+<ul class="simple">
+<li><p>Who is going to use it?</p></li>
+<li><p>How are they going to use it?</p></li>
+<li><p>How many users are there?</p></li>
+<li><p>What does the system do?</p></li>
+</ul>
+<p><strong>Step 2: Create a high level design</strong></p>
+<p><strong>Step 3: Design core components</strong></p>
+<ul class="simple">
+<li><p>SQL or NoSQL</p></li>
+<li><p>Database schema</p></li>
+</ul>
+<p><strong>Step 4: Scale the design</strong></p>
+<ul class="simple">
+<li><p>Load balancer</p></li>
+<li><p>Horizontal scaling</p></li>
+<li><p>Caching</p></li>
+<li><p>Database sharding</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="messaging-application">
+<h2>Messaging Application<a class="headerlink" href="#messaging-application" title="Permalink to this headline"></a></h2>
+<div class="section" id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>One-on-one-chat and group chats between users.</p></li>
+<li><p>Allow users to send text, pictures, videos and other files.</p></li>
+<li><p>Store chat history.</p></li>
+<li><p>Show the online/offline status of users.</p></li>
+<li><p>Sent/delivered/read notifications.</p></li>
+<li></li>
+</ul>
+</div>
+<div class="section" id="key-requirements">
+<h3>Key Requirements<a class="headerlink" href="#key-requirements" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>The service should be able to handle millions of users, with around &gt;10B
+messages sent each day.</p></li>
+<li><p>Real-time chatting with minimum latency.</p></li>
+<li><p>The messaging service should be highly available, but consistency is of
+higher priority than availability in this case.</p></li>
+<li><p>The system needs to be highly consistent. In other words, all users should
+see messages in the same order through any device they login from.</p></li>
+</ul>
+</div>
+<div class="section" id="server-client-connection">
+<h3>Server-Client Connection<a class="headerlink" href="#server-client-connection" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Communication between the server and the client:</p></li>
+<li><p>Long Polling and WebSockets.</p></li>
+<li><p>Client communicates with service using HTTP - widely used protocol.</p></li>
+</ul>
+</div>
+<div class="section" id="receive-messages">
+<h3>Receive Messages<a class="headerlink" href="#receive-messages" title="Permalink to this headline"></a></h3>
+<p><strong>Pull Approach</strong></p>
+<ul class="simple">
+<li><p>The receiving client periodically requests the server for any new messages.</p></li>
+<li><p>The server maintains a queue of messages for the client and as soon as the
+client makes a get request, the server will send all the pending messages in
+the queue for that client.</p></li>
+<li><p>To minimize delay in receiving messages, the receiving client needs to make
+requests to the server at a high frequency, even if many of these requests are
+returned with no new messages for the client.</p></li>
+<li><p>With requests and responses at such high frequencies sent for each client,
+the system will ask for a lot of resources, making it infeasible for a
+messaging app.</p></li>
+</ul>
+<p><strong>Push Approach</strong></p>
+<ul class="simple">
+<li><p>The active clients will maintain a connection with the server in the form of
+a thread or a process and will wait for the server to deliver them any new
+messages that appear for the client through that open connection.</p></li>
+<li><p>Since the server immediately relays all incoming messages to the clients, the
+server will not need to handle any pending messages and the overheads
+involved in establishing a new connection will be eliminated.</p></li>
+<li><p>This approach lowers the latency to a minimum, allowing for a faster chat
+between clients, which is exactly what we want in your messaging system.</p></li>
+<li><p><strong>Note</strong>: push approach is a more fitting option since it involves minimum
+resources and minimum latency.</p></li>
+</ul>
+</div>
+<div class="section" id="storing-online-offline-status">
+<h3>Storing Online/Offline Status<a class="headerlink" href="#storing-online-offline-status" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Users’ statuses are also stored in addition to messages.</p></li>
+<li><p>However, status is just the memory cache.</p></li>
+<li><p>To know if the user is online or offline or when the user was ‘Last Seen’, we
+need a heartbeat that the online users periodically send to the server.</p></li>
+<li><p>The server continues updating the heartbeat timestamp in a table stored in
+the memory cache.</p></li>
+<li><p>All the active users will have an entry in this table with a timestamp value
+against their user ID.</p></li>
+<li><p>For example if user B wants to know A’s status, the server can read A’s
+timestamp in the table to check if he/she is online or offline and display it
+to B.</p></li>
+</ul>
+</div>
+<div class="section" id="send-receive-notification">
+<h3>Send/Receive Notification<a class="headerlink" href="#send-receive-notification" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>A sends a message for B via a server.</p></li>
+<li><p>Because the connection will follow some messaging protocol, for example TCP, an
+acknowledgment will be sent to A when the server receives the message.</p></li>
+<li><p>The server sends the message to the database for storage and also to the open
+connection for user B.</p></li>
+<li><p>When user B receives the message, it sends an acknowledgment to the server.</p></li>
+<li><p>The server sends a notification to A that the message has been delivered to B.</p></li>
+<li><p>This is the delivered notification as shown in the chat or channel.</p></li>
+<li><p>As soon as B opens his/her phone and sees the message, an acknowledgment will
+need to be sent to the server.</p></li>
+<li><p>Now, this acknowledgment does not need to be sent to the same server through
+which the message was sent.</p></li>
+<li><p>The read notification may be treated as an independent message with a unique
+message ID.</p></li>
+<li><p>The notification will be sent over a server to A. and A sees this message as
+let’s say double blue tick.</p></li>
+</ul>
+</div>
+<div class="section" id="group-chats">
+<h3>Group Chats<a class="headerlink" href="#group-chats" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Each group chat is considered as a unique object and is assigned a
+GroupChatID.</p></li>
+<li><p>If user A sends a message in a group with 1 as the GroupChatID. The load
+balancer will look up the server that handles group 1 and sends the message
+to that server.</p></li>
+<li><p>The server has a service that handles group messages and it queries this
+service for the other users that are also a part of the group chat.</p></li>
+<li><p>The group service maintains a table that stores all the members of each
+GroupChatID as you can see in the picture.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/messageapp.png" /></p>
+<p><img alt="image" src="../../_images/messageapp2.png" /></p>
+<p><img alt="image" src="../../_images/messageapp3.png" /></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="online-learning">
+<h2>Online Learning<a class="headerlink" href="#online-learning" title="Permalink to this headline"></a></h2>
+<p><img alt="image" src="../../_images/onlinelearning.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="search-and-ranking-slack">
+<h2>Search and Ranking (Slack)<a class="headerlink" href="#search-and-ranking-slack" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Ranking of candidate results from input query (TFIDF, Word2Vec)</p></li>
+<li><p>Things to think about when ranking:</p>
+<ul>
+<li><p>If a user shares channels/interactions with specific authors, give them higher rankings.</p></li>
+<li><p>We can rank by actions like number of replies, reactions, or recency</p></li>
+</ul>
+</li>
+</ul>
+<p><strong><span class="label label-success">Method</span></strong></p>
+<div class="section" id="feature-engineering">
+<h3>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Security: Can’t leak any information across companies/channels/etc.</p>
+<ul>
+<li><p>To help account for this, we can create non-private attributes.</p></li>
+<li><p>Example: is user ‘A’ a  member of channel XYZ?</p></li>
+</ul>
+</li>
+<li><p>“Work Graph”</p>
+<ul>
+<li><p>Affinity between searcher and author/channel</p></li>
+<li><p>Message-level engagement stats</p>
+<ul>
+<li><p>Some might be more frequently engaged with</p></li>
+</ul>
+</li>
+<li><p>Search-specific engagement rates</p></li>
+<li><p>Text Features</p></li>
+<li><p>Recency</p></li>
+<li><p>Solr Signals</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="offline-and-updates-to-the-solr-rank-service">
+<h3>Offline and updates to the Solr Rank Service<a class="headerlink" href="#offline-and-updates-to-the-solr-rank-service" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Labels (e.g. Relevance or Ranking)</p></li>
+<li><p>API sends results of queries and other logs to storage</p></li>
+<li><p>Capture metrics like whether or not the user clicked or engaged with the
+candidates returned from the search results (relevance or click rate).</p></li>
+<li><p>Data is sent to a Data Warehouse with Airflow job to join data</p></li>
+</ul>
+</div>
+<div class="section" id="model-training">
+<h3>Model Training<a class="headerlink" href="#model-training" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Model: XGboost</p></li>
+<li><p>Single Model:</p>
+<ul>
+<li><p>Does not train a model per team (very sparse; won’t work on small teams; not enough data).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="success-metrics">
+<h3>Success Metrics<a class="headerlink" href="#success-metrics" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Clicks alone might be difficult to determine success (could mean different things)
+Add surveys using Slack bots to determine if the returned results provided
+what they were looking for.</p></li>
+</ul>
+</div>
+<div class="section" id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Updates to the rankings are performed offline and evaluated by:</p>
+<ul>
+<li><p>Mean reciprocal rank</p></li>
+<li><p>Mean average precision</p></li>
+</ul>
+</li>
+<li><p>Generally works well with online data</p></li>
+<li><p>Perform A/B testing</p>
+<ul>
+<li><p>Control/Treatment,</p></li>
+<li><p>Statistical Power (how many users do we need to get statistical power).</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Online Architecture</strong></p>
+<p><img alt="image" src="../../_images/searchrank2.png" /></p>
+<p><strong>Offline Architecture</strong></p>
+<p><img alt="image" src="../../_images/searchrank2.png" /></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="predicting-user-engagement-slack">
+<h2>Predicting User Engagement (Slack)<a class="headerlink" href="#predicting-user-engagement-slack" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>The engagement problem is formulated as a <code class="docutils literal notranslate"><span class="pre">logistic</span> <span class="pre">regression</span></code> using features
+such as summary statistics capturing information about the message’s author,
+content, channel, reactions, and interactions.</p></li>
+<li><p>The output of the regression is a vector of feature weights that can be fed
+into the logistic function to produce values between <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">and</span> <span class="pre">1</span></code>.</p></li>
+<li><p>We can interpret these values as the probability of a given message
+triggering a particular engagement from a particular user.</p></li>
+<li><p><strong>Features:</strong> view time, clicks, time since following channel, #hashtags,
+tagging, file/content uploads, engagement with other users, user/author meta
+info.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Affinity</span> <span class="pre">Scores</span></code> as Features</p></li>
+<li><p>To predict the likelihood that a user engages with a message, we employ a
+measure of the user-to-author affinity (defined roughly as the general
+propensity of the user to read the author’s messages) as well as a measure of
+the user’s priority for the channel in which the message was posted.</p></li>
+<li><p>In addition, we create personalized features for each class of message
+engagements, weighted by the affinities of the users who engaged.</p></li>
+<li><p>These features allow the model to capture predictive signals like people
+being more likely to reply to a message that several close colleagues have
+already replied to.</p></li>
+</ul>
+</li>
+<li><p><strong>Class imbalance:</strong> Since most users engage with only a tiny fraction of the
+messages they see in Slack, we’re faced with a class-imbalance when training
+our regression model.</p>
+<ul>
+<li><p>To combat this problem, we employ a number of proven techniques.</p></li>
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">stratified</span> <span class="pre">sampling</span></code> to create training sets, picking an engaged
+message from a channel and then selecting a fixed number of unengaged ones
+from the surrounding conversation to preserve a fixed ratio of positive to
+negative examples.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Relevancy</strong></p>
+<ul class="simple">
+<li><p>Relevancy, but after trying a few different proxy metrics, we ultimately
+settled on an approximation of time spent in channel based on read and write
+activity.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="search-engine">
+<h2>Search Engine<a class="headerlink" href="#search-engine" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Database Schema</p>
+<ul>
+<li><p>Tables:</p></li>
+<li><p>User: UserID/TimeStamp</p></li>
+<li><p>Search: Query/UserID</p></li>
+<li><p>Articles/Docs: SearchTerms/Keywords</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/searchengine.png" /></p>
+<p><strong><span class="label label-success">Note</span></strong></p>
+<ul class="simple">
+<li><p><strong>Scaling</strong>: if we have large amounts of documents, we cannot fit all in one
+database and will need to shard the documents.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/searchengine2.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="learn-to-rank-wayfair">
+<h2>Learn to Rank (Wayfair)<a class="headerlink" href="#learn-to-rank-wayfair" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Company uses LTR coupled with machine learning and natural language
+processing (NLP) techniques to understand a customer’s intent for queries.</p></li>
+<li><p>Extract text information from different datasets including user reviews,
+product catalog, and clickstream.</p></li>
+<li><p>Next, we can use a variety of NLP techniques to extract entities, analyze
+sentiments, and transform data.</p></li>
+<li><p>Then feed the results into a microservice to identify user intent on a large
+portion of incoming queries.</p></li>
+<li><p>When the Intent Engine can’t make a direct match, they use the keyword search
+model.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/learntorankdesign.png" /></p>
+</div>
+<div class="section" id="autocomplete">
+<h2>Autocomplete<a class="headerlink" href="#autocomplete" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://systemdesignprep.com/autocomplete">Reference</a></p></li>
+</ul>
+<p><img alt="image" src="../../_images/autocomplete.png" /></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/software-engineering/systemdesign.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

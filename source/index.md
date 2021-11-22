@@ -61,7 +61,9 @@ _________
 * [Data Structures](book/software-engineering/structures.md) 
 * [DevOps](book/software-engineering/devops.md) 
 * [Leetcode](book/software-engineering/code.md) 
+* [Python Basics](book/software-engineering/python.md)
 * [System Design](book/software-engineering/systemdesign.md)
+
 
 ###### Statistics 
 * [Statistics](book/statistics/concepts.md)

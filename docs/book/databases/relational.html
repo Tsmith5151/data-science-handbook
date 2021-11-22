@@ -123,6 +123,8 @@ if the transactions were executed serially</p></li>
 <ul class="simple">
 <li><p>Denormalization attempts to improve read performance at the expense of some
 write performance.</p></li>
+<li><p>Redundant copies of the data are written in multiple tables to avoid
+expensive joins.</p></li>
 <li><p>Once data becomes distributed with techniques such as federation and
 sharding, managing joins across data centers further increases complexity.</p></li>
 <li><p>Denormalization might circumvent the need for such complex joins.</p></li>

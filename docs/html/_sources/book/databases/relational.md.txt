@@ -14,6 +14,8 @@ _____
 ### Denormalization
 - Denormalization attempts to improve read performance at the expense of some
   write performance. 
+- Redundant copies of the data are written in multiple tables to avoid
+  expensive joins.  
 - Once data becomes distributed with techniques such as federation and
   sharding, managing joins across data centers further increases complexity.  
 - Denormalization might circumvent the need for such complex joins.

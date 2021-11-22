@@ -66,6 +66,11 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Distributed Databases</a><ul>
+<li><a class="reference internal" href="#cap-theorem">CAP Theorem</a></li>
+<li><a class="reference internal" href="#consistency-vs-availability-tradeoff">Consistency vs Availability Tradeoff</a></li>
+<li><a class="reference internal" href="#consistency-patterns">Consistency patterns</a></li>
+<li><a class="reference internal" href="#availability-patterns">Availability patterns</a></li>
+<li><a class="reference internal" href="#latency-vs-throughput">Latency vs Throughput</a></li>
 <li><a class="reference internal" href="#master-slave">Master + Slave</a></li>
 <li><a class="reference internal" href="#sharding">Sharding</a></li>
 <li><a class="reference internal" href="#apache-solr">Apache Solr</a></li>
@@ -103,6 +108,86 @@
   <div class="section" id="distributed-databases">
 <h1>Distributed Databases<a class="headerlink" href="#distributed-databases" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
+<div class="section" id="cap-theorem">
+<h2>CAP Theorem<a class="headerlink" href="#cap-theorem" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Consistency</strong>: Every read receives the most recent write or an error.</p></li>
+<li><p><strong>Availability</strong>: Every request receives a response, but without guarantee that
+it contains the most recent version of the information.</p></li>
+<li><p><strong>Partition Tolerance</strong>: The system continues to operate despite arbitrary
+partitioning due to network failures.</p></li>
+<li><p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="consistency-vs-availability-tradeoff">
+<h2>Consistency vs Availability Tradeoff<a class="headerlink" href="#consistency-vs-availability-tradeoff" title="Permalink to this headline"></a></h2>
+<p><strong>Consistency and partition Tolerance</strong></p>
+<ul class="simple">
+<li><p>Waiting for a response from the partitioned node might result in a timeout error.</p></li>
+<li><p>When this approach is more applicable: If the use-case requires atomic reads and writes.</p></li>
+</ul>
+<p><strong>Availability and partition Tolerance</strong></p>
+<ul class="simple">
+<li><p>Responses return the most readily available version of the data available on
+any node, but it might not be the latest.</p></li>
+<li><p>When this approach is more applicable: when the system needs to continue
+working despite external errors.</p></li>
+</ul>
+</div>
+<div class="section" id="consistency-patterns">
+<h2>Consistency patterns<a class="headerlink" href="#consistency-patterns" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>With multiple copies of the dataset, we need to synchronize the data so
+clients have a consistent view of the data.</p></li>
+</ul>
+<p><strong>Weak consistency</strong></p>
+<ul class="simple">
+<li><p>Reads may or may not been seen after a write.</p></li>
+<li><p>Weak consistency works well in real time use cases like video chat and
+realtime multiplayer games.</p></li>
+</ul>
+<p><strong>Eventual consistency</strong></p>
+<ul class="simple">
+<li><p>Reads will eventually see it within milliseconds after a write.</p></li>
+<li><p>Data is replicated asynchronously.</p></li>
+</ul>
+<p><strong>Strong consistency</strong></p>
+<ul class="simple">
+<li><p>After a write, reads will see it. Data is replicated synchronously.</p></li>
+<li><p>Strong consistency is applicable when systems that need transactions.</p></li>
+</ul>
+</div>
+<div class="section" id="availability-patterns">
+<h2>Availability patterns<a class="headerlink" href="#availability-patterns" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Two approaches to support high availability: <code class="docutils literal notranslate"><span class="pre">fail-over</span></code> and <code class="docutils literal notranslate"><span class="pre">replication</span></code></p></li>
+</ul>
+<p><strong>Replication</strong></p>
+<ul class="simple">
+<li><p>Master-slave and master-master</p></li>
+</ul>
+<p><strong>Fail-over</strong></p>
+<ul class="simple">
+<li><p>Active-passive: heartbeats are sent between the active and the passive server on standby.</p>
+<ul>
+<li><p>If the heartbeat is interrupted, the passive server takes over the active’s
+IP address and resumes service.</p></li>
+</ul>
+</li>
+<li><p>Active-active: both servers are managing traffic, spreading the load between them.</p></li>
+<li><p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="latency-vs-throughput">
+<h2>Latency vs Throughput<a class="headerlink" href="#latency-vs-throughput" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Latency</strong>: time to perform some action or to produce a result.</p></li>
+<li><ul>
+<li><p><strong>Throughput</strong>: number of actions or results per unit of time.</p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="master-slave">
 <h2>Master + Slave<a class="headerlink" href="#master-slave" title="Permalink to this headline"></a></h2>
 <ul class="simple">
@@ -112,6 +197,8 @@ using caching.</p></li>
 <li><p>The true data is kept at the master database, thus writing only occurs there.</p></li>
 <li><p>Reading is only done in the slave.</p></li>
 <li><p>Master is the true data keeper while a slave is a replication of master.</p></li>
+<li><p>If the master goes offline, the system can continue to operate in read-only
+mode until a slave is promoted to a master or a new master is provisioned.</p></li>
 <li><p>This architecture serves the purpose of safeguarding site reliability.</p></li>
 <li><p>If a site receives a lot of traffic and the only available database is one
 master, it will be overloaded with reading and writing requests.</p></li>
@@ -119,6 +206,16 @@ master, it will be overloaded with reading and writing requests.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/masterslave.png" />
 <img alt="image" src="../../_images/masterslave2.png" /></p>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
+<ul class="simple">
+<li><p>potential for loss of data if the master fails before any new
+written data can be replicated to across other nodes.</p></li>
+<li><p>Most master-master systems are either loosely consistent (violating ACID) or
+have increased write latency due to synchronization.</p></li>
+<li><p>Conflict resolution comes more into play as more write nodes are added and as
+latency increases.</p></li>
+<li><p><a class="reference external" href="https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions">Reference</a></p></li>
+</ul>
 </div>
 <div class="section" id="sharding">
 <h2>Sharding<a class="headerlink" href="#sharding" title="Permalink to this headline"></a></h2>
@@ -133,15 +230,15 @@ shards.</p></li>
 Ids  % mod Number of Database Master Servers).</p></li>
 </ul>
 <p><img alt="image" src="../../_images/sharding.png" /></p>
-<p><span class="label label-warning">Distadvantages</span></p>
+<p><strong><span class="label label-warning">Disadvantages</span></strong></p>
 <ul class="simple">
 <li><p>You’ll need to update your application logic to work with shards, which could
 result in complex SQL queries.</p></li>
 <li><p>Data distribution can become lopsided in a shard. For example, a set of power
 users on a shard could result in increased load to that shard compared to
 others.</p></li>
-<li><p>Rebalancing adds additional complexity. A sharding function based on consistent
-hashing can reduce the amount of transferred data.</p></li>
+<li><p>Rebalancing adds additional complexity.</p></li>
+<li><p>A sharding function based on consistent hashing can reduce the amount of transferred data.</p></li>
 <li><p>Joining data from multiple shards is more complex.</p></li>
 <li><p>Sharding adds more hardware and additional complexity.</p></li>
 </ul>

@@ -1,6 +1,61 @@
 # Distributed Databases 
 ______
 
+### CAP Theorem
+
+- **Consistency**: Every read receives the most recent write or an error.
+- **Availability**: Every request receives a response, but without guarantee that
+  it contains the most recent version of the information. 
+- **Partition Tolerance**: The system continues to operate despite arbitrary
+  partitioning due to network failures.  
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+  
+### Consistency vs Availability Tradeoff
+
+**Consistency and partition Tolerance**
+- Waiting for a response from the partitioned node might result in a timeout error. 
+- When this approach is more applicable: If the use-case requires atomic reads and writes.
+
+**Availability and partition Tolerance**
+- Responses return the most readily available version of the data available on
+  any node, but it might not be the latest. 
+- When this approach is more applicable: when the system needs to continue
+  working despite external errors. 
+
+### Consistency patterns
+- With multiple copies of the dataset, we need to synchronize the data so
+  clients have a consistent view of the data. 
+
+**Weak consistency**
+- Reads may or may not been seen after a write.
+- Weak consistency works well in real time use cases like video chat and
+  realtime multiplayer games. 
+  
+**Eventual consistency**
+- Reads will eventually see it within milliseconds after a write. 
+- Data is replicated asynchronously.
+
+**Strong consistency**
+- After a write, reads will see it. Data is replicated synchronously.
+- Strong consistency is applicable when systems that need transactions.
+
+### Availability patterns
+- Two approaches to support high availability: `fail-over` and `replication`
+  
+**Replication**
+- Master-slave and master-master 
+
+**Fail-over**
+- Active-passive: heartbeats are sent between the active and the passive server on standby. 
+  - If the heartbeat is interrupted, the passive server takes over the active's
+    IP address and resumes service. 
+- Active-active: both servers are managing traffic, spreading the load between them.
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+
+### Latency vs Throughput
+- **Latency**: time to perform some action or to produce a result.
+- - **Throughput**: number of actions or results per unit of time.
+
 ### Master + Slave
 - Master-slave is a way to optimize the I/O in your application other than
   using caching.  
@@ -8,6 +63,8 @@ ______
 - The true data is kept at the master database, thus writing only occurs there.
 - Reading is only done in the slave. 
 - Master is the true data keeper while a slave is a replication of master.
+- If the master goes offline, the system can continue to operate in read-only
+  mode until a slave is promoted to a master or a new master is provisioned. 
 - This architecture serves the purpose of safeguarding site reliability. 
 - If a site receives a lot of traffic and the only available database is one
   master, it will be overloaded with reading and writing requests. 
@@ -16,6 +73,15 @@ ______
 ![image](../assets/masterslave.png)
 ![image](../assets/masterslave2.png)
 
+**<span class="label label-warning">Disadvantages</span>**
+- potential for loss of data if the master fails before any new
+  written data can be replicated to across other nodes. 
+- Most master-master systems are either loosely consistent (violating ACID) or
+  have increased write latency due to synchronization. 
+- Conflict resolution comes more into play as more write nodes are added and as
+  latency increases. 
+- [Reference](https://github.com/donnemartin/system-design-primer#object-oriented-design-interview-questions-with-solutions)
+  
 ### Sharding 
 - Is the process of making partitions of data in a database or search engine,
   such that the data is divided into various smaller distinct chunks, or
@@ -28,15 +94,15 @@ ______
 
 ![image](../assets/sharding.png)
 
-<span class="label label-warning">Distadvantages</span>
+**<span class="label label-warning">Disadvantages</span>**
 - You'll need to update your application logic to work with shards, which could
 result in complex SQL queries. 
 - Data distribution can become lopsided in a shard. For example, a set of power
 users on a shard could result in increased load to that shard compared to
 others. 
-- Rebalancing adds additional complexity. A sharding function based on consistent
-hashing can reduce the amount of transferred data. 
-- Joining data from multiple shards is more complex.
+- Rebalancing adds additional complexity. 
+- A sharding function based on consistent hashing can reduce the amount of transferred data. 
+- Joining data from multiple shards is more complex. 
 - Sharding adds more hardware and additional complexity.
 
 ### Apache Solr 
