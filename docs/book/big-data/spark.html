@@ -93,9 +93,6 @@
 <li><a class="reference internal" href="#map-shuffle">Map/Shuffle</a></li>
 <li><a class="reference internal" href="#joins">Joins</a></li>
 <li><a class="reference internal" href="#partitions">Partitions</a></li>
-<li><a class="reference internal" href="#spark-ml">Spark ML</a></li>
-<li><a class="reference internal" href="#mapreduce">MapReduce</a></li>
-<li><a class="reference internal" href="#spark-vs-mapreduce">Spark vs MapReduce</a></li>
 </ul>
 </li>
 </ul>
@@ -491,51 +488,51 @@ cores are kept busy.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code> default memory = 128 MB. If you decrease too small, “small file
 problem” increases I/O and causes performance degradation.</p></li>
 </ul>
-</div>
-<div class="section" id="spark-ml">
-<h2>Spark ML<a class="headerlink" href="#spark-ml" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p><strong>Transformer</strong>: accepts dataframe as an input and returns a new dataframe with
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>df.repartition(col(&#39;ABC&#39;))\
+.sortWithinPartitions(desc(&quot;X&quot;))\
+.partitionBy(&#39;Y&#39;,&#39;Z&#39;) \
+.format(&#39;delta&#39;)\
+.mode(&#39;overwrite&#39;)\
+.save(&#39;/tmp/delta&#39;)
+
+### Spark ML
+- **Transformer**: accepts dataframe as an input and returns a new dataframe with
 one or more columns appended to it. - simply  applies rule-based
-transformations.</p></li>
-<li><p><strong>Estimator</strong>: learns or “fits” parameters in a dataframe by calling the .fit
-method and returns a Model, which is a transformer</p></li>
-<li><p><strong>Pipeline</strong>: organizes a series of transformers and estimators into a single
-model. Pipelines are estimators, and the output of  the <code class="docutils literal notranslate"><span class="pre">pipeline.fit()</span> </code>returns a PipelineModel, a transformer.</p></li>
-<li><p><strong>One-hot encoding</strong></p>
-<ul>
-<li><p>Convert categorical values into numeric values</p></li>
-<li><p>After performing StringIndexer - OneHotEncoder mades a column of category
-indices to a column of binary vectors.</p></li>
-</ul>
-</li>
-</ul>
+transformations.
+- **Estimator**: learns or “fits” parameters in a dataframe by calling the .fit
+method and returns a Model, which is a transformer 
+- **Pipeline**: organizes a series of transformers and estimators into a single
+model. Pipelines are estimators, and the output of  the `pipeline.fit()
+`returns a PipelineModel, a transformer. 
+- **One-hot encoding**
+  - Convert categorical values into numeric values
+  - After performing StringIndexer - OneHotEncoder mades a column of category
+    indices to a column of binary vectors.  
+   
+### MapReduce
+- MapReduce is a technique for parallelizing the execution of a large
+  collection of tasks.
+- MapReduce persists data back to the disk after a map or reduce action
+- `Map` filters and sorts data while converting it into key-value pairs. 
+- `Reduce` then takes this input and reduces its size by performing some kind
+  of summary operation over the dataset. 
+
+### Spark vs MapReduce
+
+- Apache Spark processes data in random access memory (RAM)
+- Hadoop MapReduce persists data back to the disk after a map or reduce action. 
+- In terms of fault tolerance, MapReduce has a slight advantage here because
+  it relies on hard drives, rather than RAM. 
+  - If a MapReduce process crashes in the middle of execution, it can
+    continue where it left off, whereas Spark will have to start processing
+    from the beginning. 
+
+
+
+ 
+
+</pre></div>
 </div>
-<div class="section" id="mapreduce">
-<h2>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p>MapReduce is a technique for parallelizing the execution of a large
-collection of tasks.</p></li>
-<li><p>MapReduce persists data back to the disk after a map or reduce action</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Map</span></code> filters and sorts data while converting it into key-value pairs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Reduce</span></code> then takes this input and reduces its size by performing some kind
-of summary operation over the dataset.</p></li>
-</ul>
-</div>
-<div class="section" id="spark-vs-mapreduce">
-<h2>Spark vs MapReduce<a class="headerlink" href="#spark-vs-mapreduce" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p>Apache Spark processes data in random access memory (RAM)</p></li>
-<li><p>Hadoop MapReduce persists data back to the disk after a map or reduce action.</p></li>
-<li><p>In terms of fault tolerance, MapReduce has a slight advantage here because
-it relies on hard drives, rather than RAM.</p>
-<ul>
-<li><p>If a MapReduce process crashes in the middle of execution, it can
-continue where it left off, whereas Spark will have to start processing
-from the beginning.</p></li>
-</ul>
-</li>
-</ul>
 </div>
 </div>
 

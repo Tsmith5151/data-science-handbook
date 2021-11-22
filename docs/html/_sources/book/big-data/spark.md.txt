@@ -250,6 +250,13 @@ sc.parallelize([3,4,5]).flatMap(lambda x: range(1,x)).collect()
 - `Partition` default memory = 128 MB. If you decrease too small, “small file
   problem” increases I/O and causes performance degradation.  
 
+```python
+df.repartition(col('ABC'))\
+.sortWithinPartitions(desc("X"))\
+.partitionBy('Y','Z') \
+.format('delta')\
+.mode('overwrite')\
+.save('/tmp/delta')
 
 ### Spark ML
 - **Transformer**: accepts dataframe as an input and returns a new dataframe with

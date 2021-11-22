@@ -69,6 +69,7 @@
 <li><a class="reference internal" href="#dictionaries">Dictionaries</a></li>
 <li><a class="reference internal" href="#sets">Sets</a></li>
 <li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#multi-processing">Multi-Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +121,34 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.geeksforgeeks.org/python-list/">Reference</a></p></li>
 </ul>
+</div>
+<div class="section" id="multi-processing">
+<h2>Multi-Processing<a class="headerlink" href="#multi-processing" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Example below on using multi-processing in python for feature engineering
+(i.e. creating features from lagged windows).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html">Reference1</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/python-multiprocessing/">Reference2</a></p></li>
+</ul>
+<p><strong>Terms</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pool</span></code>: A process pool object which controls a pool of worker processes to
+which jobs can be submitted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map</span></code>: A parallel equivalent of the map().</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">join</span></code>: If the optional argument timeout is None (the default), the method
+blocks until the process whose join() method is called terminates. If timeout
+is a positive number, it blocks at most timeout seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">close</span></code>: Indicate that no more data will be put on this queue by the current
+process.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">prep_func</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">(),</span> <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 </div>
 
