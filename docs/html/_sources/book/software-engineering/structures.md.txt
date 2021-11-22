@@ -1,7 +1,7 @@
 # Data Structures & Algorithms
 _____
 
-### Time Compexity 
+### Time Complexity  
 
 ![image](../assets/time_complexity1.png)
 
@@ -96,6 +96,9 @@ _____
   down into smaller and smaller subproblems until you get to a small enough
   problem that it can be solved trivially. 
 - Usually recursion involves a function calling itself.
+
+![image](../assets/recursion.png)
+[Reference - python recursion explained](https://www.youtube.com/watch?v=wMNrSM5RFMc)
 
 **<span class="label label-info">Notes</span>**
 - A recursive algorithm must have a base case.
