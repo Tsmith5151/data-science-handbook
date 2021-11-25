@@ -1,4 +1,4 @@
-# Data Structures & Algorithms
+# Algorithms & Data Structures 
 _____
 
 ### Time Complexity  
@@ -113,7 +113,7 @@ _____
 - Even though we are calling the same function over and over, each call creates
   a new scope for the variables that are local to the function.
 
-### Trees
+### Binary Trees
 - A tree is a hierarchical structure where data is organized hierarchically and
   are linked together. This structure is different from a linked list whereas,
   in a linked list, items are linked in a linear order.
@@ -128,6 +128,23 @@ _____
 
 ![image](../assets/binary_tree.png)
  
+
+##### Traversals 
+```python
+         _10_
+        /     \
+       7       11
+     /  \        \
+    6    8       20
+   /      \     /   \
+   1      9    14   22
+``` 
+- Pre-order:  [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] --> Root -> Left -> Right
+- In-order:   [1, 6, 7, 8, 9, 10, 11, 14, 20, 22] --> Left -> Root -> Right
+- Post-order: [1, 6, 9, 8, 7, 14, 22, 20, 11, 10] --> Left -> Right -> Root
+
+[Reference](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+
 ### Depth First Search Trees
 
 - Depth-first search is an algorithm for traversing or searching tree or graph
@@ -213,3 +230,16 @@ continue this loop until there is no unmarked adjacent node.
 [Abdul Bari YouTube
 Channel](https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw)
 [NeetCode YouTube Channel](https://www.youtube.com/c/NeetCode)
+
+
+### Greedy Algorithm
+
+- A greedy algorithm is an algorithmic strategy that makes the best optimal choice at each small stage with the goal of this eventually leading to a globally optimum solution. 
+- This means that the algorithm picks the best solution at the moment without regard for consequences. It picks the best immediate output, but does not consider the big picture, hence it is considered greedy.
+- [Reference](https://www.geeksforgeeks.org/greedy-algorithms/)
+- [Reference](https://www.techopedia.com/definition/16931/greedy-algorithm)
+
+
+### Knuth-Morris-Pratt
+- A string matching algorithm that uses the longest prefix of the pattern that is also a suffix of the pattern.
+- 

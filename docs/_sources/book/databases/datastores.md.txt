@@ -81,21 +81,28 @@ ______
 
 ### Snowflake
 - Snowflake offers a cloud-based data storage and analytics service, generally
-termed `data warehouse-as-a-service`.   
+termed `data warehouse-as-a-service`.    
 - Snowflake uses virtual compute instances for its compute needs and a storage
-service for persistent storage of data. 
+service for persistent storage of data.   
 - [Reference](https://docs.snowflake.com/en/user-guide/intro-key-concepts.html)
+
+**<span class="label label-success">Three Main Components</span>**
+1. Database Storage
+2. Query Processing
+3. Cloud Services
 
 **Architecture**
 - Snowflake's architecture allows storage and compute to scale independently.
 - Similar to shared-disk architectures, Snowflake uses a central data
   repository for persisted data that is accessible from all compute nodes in
-  the platform.  
+  the platform.   
 - Snowflake processes queries using `MPP` (massively parallel processing)
   compute clusters where each node in the cluster stores a portion of the
-  entire data set locally.  
+  entire data set locally.   
 - This approach offers the data management simplicity of a shared-disk
-  architecture. 
+  architecture.  
+
+![image](../assets/snowflake.png)
 
 **Database storage**
 - The database storage layer holds all data loaded into Snowflake, including

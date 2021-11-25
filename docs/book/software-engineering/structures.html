@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Structures &amp; Algorithms &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <title>Algorithms &amp; Data Structures &#8212; Data Science Hand.. 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
@@ -65,7 +65,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Data Structures &amp; Algorithms</a><ul>
+<li><a class="reference internal" href="#">Algorithms &amp; Data Structures</a><ul>
 <li><a class="reference internal" href="#time-complexity">Time Complexity</a></li>
 <li><a class="reference internal" href="#array">Array</a></li>
 <li><a class="reference internal" href="#deque-python">Deque (Python)</a></li>
@@ -74,12 +74,17 @@
 <li><a class="reference internal" href="#queues">Queues</a></li>
 <li><a class="reference internal" href="#hash-map">Hash Map</a></li>
 <li><a class="reference internal" href="#recursion">Recursion</a></li>
-<li><a class="reference internal" href="#trees">Trees</a></li>
+<li><a class="reference internal" href="#binary-trees">Binary Trees</a><ul>
+<li><a class="reference internal" href="#traversals">Traversals</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#depth-first-search-trees">Depth First Search Trees</a></li>
 <li><a class="reference internal" href="#dfs-vs-bfs">DFS vs BFS</a></li>
 <li><a class="reference internal" href="#heaps">Heaps</a></li>
 <li><a class="reference internal" href="#backtracking">Backtracking</a></li>
 <li><a class="reference internal" href="#trie-data-structure">Trie Data Structure</a></li>
+<li><a class="reference internal" href="#greedy-algorithm">Greedy Algorithm</a></li>
+<li><a class="reference internal" href="#knuth-morris-pratt">Knuth-Morris-Pratt</a></li>
 </ul>
 </li>
 </ul>
@@ -111,8 +116,8 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="data-structures-algorithms">
-<h1>Data Structures &amp; Algorithms<a class="headerlink" href="#data-structures-algorithms" title="Permalink to this headline"></a></h1>
+  <div class="section" id="algorithms-data-structures">
+<h1>Algorithms &amp; Data Structures<a class="headerlink" href="#algorithms-data-structures" title="Permalink to this headline"></a></h1>
 <hr class="docutils" />
 <div class="section" id="time-complexity">
 <h2>Time Complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline"></a></h2>
@@ -262,8 +267,8 @@ the calling function to access.</p></li>
 a new scope for the variables that are local to the function.</p></li>
 </ul>
 </div>
-<div class="section" id="trees">
-<h2>Trees<a class="headerlink" href="#trees" title="Permalink to this headline"></a></h2>
+<div class="section" id="binary-trees">
+<h2>Binary Trees<a class="headerlink" href="#binary-trees" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A tree is a hierarchical structure where data is organized hierarchically and
 are linked together. This structure is different from a linked list whereas,
@@ -278,6 +283,24 @@ in sorted order.</p></li>
 <strong>p</strong>: The pointer to the parent node.</p></li>
 </ul>
 <p><img alt="image" src="../../_images/binary_tree.png" /></p>
+<div class="section" id="traversals">
+<h3>Traversals<a class="headerlink" href="#traversals" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>         <span class="n">_10_</span>
+        <span class="o">/</span>     \
+       <span class="mi">7</span>       <span class="mi">11</span>
+     <span class="o">/</span>  \        \
+    <span class="mi">6</span>    <span class="mi">8</span>       <span class="mi">20</span>
+   <span class="o">/</span>      \     <span class="o">/</span>   \
+   <span class="mi">1</span>      <span class="mi">9</span>    <span class="mi">14</span>   <span class="mi">22</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Pre-order:  [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] –&gt; Root -&gt; Left -&gt; Right</p></li>
+<li><p>In-order:   [1, 6, 7, 8, 9, 10, 11, 14, 20, 22] –&gt; Left -&gt; Root -&gt; Right</p></li>
+<li><p>Post-order: [1, 6, 9, 8, 7, 14, 22, 20, 11, 10] –&gt; Left -&gt; Right -&gt; Root</p></li>
+</ul>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/">Reference</a></p>
+</div>
 </div>
 <div class="section" id="depth-first-search-trees">
 <h2>Depth First Search Trees<a class="headerlink" href="#depth-first-search-trees" title="Permalink to this headline"></a></h2>
@@ -371,6 +394,22 @@ for the purpose of searching.</p></li>
 <a class="reference external" href="https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw">Abdul Bari YouTube
 Channel</a>
 <a class="reference external" href="https://www.youtube.com/c/NeetCode">NeetCode YouTube Channel</a></p>
+</div>
+<div class="section" id="greedy-algorithm">
+<h2>Greedy Algorithm<a class="headerlink" href="#greedy-algorithm" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A greedy algorithm is an algorithmic strategy that makes the best optimal choice at each small stage with the goal of this eventually leading to a globally optimum solution.</p></li>
+<li><p>This means that the algorithm picks the best solution at the moment without regard for consequences. It picks the best immediate output, but does not consider the big picture, hence it is considered greedy.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/greedy-algorithms/">Reference</a></p></li>
+<li><p><a class="reference external" href="https://www.techopedia.com/definition/16931/greedy-algorithm">Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="knuth-morris-pratt">
+<h2>Knuth-Morris-Pratt<a class="headerlink" href="#knuth-morris-pratt" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>A string matching algorithm that uses the longest prefix of the pattern that is also a suffix of the pattern.</p></li>
+<li></li>
+</ul>
 </div>
 </div>
 
