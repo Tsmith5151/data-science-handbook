@@ -84,7 +84,6 @@ ______
 termed `data warehouse-as-a-service`.    
 - Snowflake uses virtual compute instances for its compute needs and a storage
 service for persistent storage of data.   
-- [Reference](https://docs.snowflake.com/en/user-guide/intro-key-concepts.html)
 
 **<span class="label label-success">Three Main Components</span>**
 1. Database Storage
@@ -103,6 +102,7 @@ service for persistent storage of data.
   architecture.  
 
 ![image](../assets/snowflake.png)
+[Reference](https://docs.snowflake.com/en/user-guide/intro-key-concepts.html)
 
 **Database storage**
 - The database storage layer holds all data loaded into Snowflake, including
