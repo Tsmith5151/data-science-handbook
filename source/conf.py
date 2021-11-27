@@ -94,7 +94,7 @@ html_theme_options = {
     # Bootswatch (http://bootswatch.com/) theme.
     # - Bootstrap 2: https://bootswatch.com/2
     # - Bootstrap 3: https://bootswatch.com/3
-    'bootswatch_theme': "flatly",
+    'bootswatch_theme': "cerulean",
 
     # Choose Bootstrap version.
     # Values: "3" (default) or "2" (in quotes)

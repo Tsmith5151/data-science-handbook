@@ -22,6 +22,12 @@ _____
 - O(nlog n)
   - sort array 
 
+**Lists**
+- Adding or removing element from a list of O(n)
+
+**Heaps**
+- Finding the min or max in a heap is linear time: O(n)
+
 **Linear Time Complexity**
 
 ![image](../assets/time_complexity2.png)
@@ -146,7 +152,7 @@ _____
 [Reference](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
 
 ### Depth First Search Trees
-
+- Recursive algorithm to traverse a tree in a depth first manner.
 - Depth-first search is an algorithm for traversing or searching tree or graph
   data structures. 
 - The algorithm starts at the root node (selecting some arbitrary node as the
@@ -170,6 +176,15 @@ continue this loop until there is no unmarked adjacent node.
 
 ![image](../assets/dfs1.png)
 ![image](../assets/dfs2.png)
+
+### Breadth First Search 
+- BFS is an iterative algorithm for traversing or searching tree or graph data
+  structures.
+- The data structure commonly used for memory allocation is a queue. 
+- BFS algorithm starts at the root node and explores all the adjacent nodes
+  before moving to the next level.
+- Example of BFS [here](https://www.youtube.com/watch?v=pV2kpPD66nE&t=602s).
+
 
 ### DFS vs BFS
 ![image](../assets/dfs3.png)
