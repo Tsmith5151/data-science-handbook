@@ -66,7 +66,10 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Algorithms &amp; Data Structures</a><ul>
-<li><a class="reference internal" href="#time-complexity">Time Complexity</a></li>
+<li><a class="reference internal" href="#time-complexity">Time Complexity</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#array">Array</a></li>
 <li><a class="reference internal" href="#deque-python">Deque (Python)</a></li>
 <li><a class="reference internal" href="#linked-list">Linked List</a></li>
@@ -74,7 +77,8 @@
 <li><a class="reference internal" href="#queues">Queues</a></li>
 <li><a class="reference internal" href="#hash-map">Hash Map</a></li>
 <li><a class="reference internal" href="#recursion">Recursion</a></li>
-<li><a class="reference internal" href="#binary-trees">Binary Trees</a><ul>
+<li><a class="reference internal" href="#binary-trees">Binary Trees</a></li>
+<li><a class="reference internal" href="#binary-search-trees">Binary Search Trees</a><ul>
 <li><a class="reference internal" href="#traversals">Traversals</a></li>
 </ul>
 </li>
@@ -127,35 +131,22 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/">Link</a></p></li>
 </ul>
-<p><strong>Examples</strong></p>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<p><strong>- O(1):</strong></p>
 <ul class="simple">
-<li><p>O(1):</p>
-<ul>
 <li><p>linear operation</p></li>
-<li><p>hashmap lookup</p></li>
-</ul>
-</li>
-<li><p>O(n):</p>
-<ul>
-<li><p>for loop</p></li>
-</ul>
-</li>
-<li><p>O(n2):</p>
-<ul>
-<li><p>loop inside of a loop</p></li>
-</ul>
-</li>
-<li><p>O(log n):</p>
-<ul>
+<li><p>hashmap lookup<br /><strong>- O(n):</strong></p></li>
+<li><p>for loops</p></li>
+<li><p>binary trees
+<strong>- O(n2):</strong></p></li>
+<li><p>loop inside of a loop
+<strong>- O(log n):</strong></p></li>
 <li><p>Binary Search: input size is divided in half for each loop</p></li>
 <li><p>Heaps</p></li>
-</ul>
-</li>
-<li><p>O(nlog n)</p>
-<ul>
+<li><p>Insert/Delete/Search for Binary Trees
+<strong>- O(nlogn)</strong></p></li>
 <li><p>sort array</p></li>
-</ul>
-</li>
 </ul>
 <p><strong>Lists</strong></p>
 <ul class="simple">
@@ -167,6 +158,7 @@
 </ul>
 <p><strong>Linear Time Complexity</strong></p>
 <p><img alt="image" src="../../_images/time_complexity2.png" /></p>
+</div>
 </div>
 <div class="section" id="array">
 <h2>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h2>
@@ -282,16 +274,35 @@ a new scope for the variables that are local to the function.</p></li>
 <li><p>A tree is a hierarchical structure where data is organized hierarchically and
 are linked together. This structure is different from a linked list whereas,
 in a linked list, items are linked in a linear order.</p></li>
+<li><p>Every node in a binary search tree comprises the following attributes.</p>
+<ul>
+<li><p><strong>key</strong>: The value stored in the node.</p></li>
+<li><p><strong>left</strong>: The pointer to the left child.</p></li>
+<li><p><strong>right</strong>: The pointer to the right child.</p></li>
+<li><p><strong>p</strong>: The pointer to the parent node.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image" src="../../_images/binary_tree.png" /></p>
+</div>
+<div class="section" id="binary-search-trees">
+<h2>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline"></a></h2>
+<ul class="simple">
 <li><p>A binary search tree (BST), as the name suggests, is a binary tree where data
 is organized in a hierarchical structure. This data structure stores values
 in sorted order.</p></li>
-<li><p>Every node in a binary search tree comprises the following attributes.
-<strong>key</strong>: The value stored in the node.
-<strong>left</strong>: The pointer to the left child.
-<strong>right</strong>: The pointer to the right child.
-<strong>p</strong>: The pointer to the parent node.</p></li>
+<li><p>Nodes are arranged in a BST with the following properties</p>
+<ul>
+<li><p>The left subtree of a particular node will always contain nodes with keys
+less than that node’s key.</p></li>
+<li><p>The right subtree of a particular node will always contain nodes with keys
+greater than that node’s key.</p></li>
+<li><p>The left and the right subtree of a particular node will also, in turn, be
+binary search trees.</p></li>
 </ul>
-<p><img alt="image" src="../../_images/binary_tree.png" /></p>
+</li>
+<li><p><a class="reference external" href="https://www.educative.io/edpresso/what-is-a-binary-search-tree">Reference</a></p></li>
+</ul>
 <div class="section" id="traversals">
 <h3>Traversals<a class="headerlink" href="#traversals" title="Permalink to this headline"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>         <span class="n">_10_</span>
@@ -304,11 +315,26 @@ in sorted order.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Pre-order:  [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] –&gt; Root -&gt; Left -&gt; Right</p></li>
-<li><p>In-order:   [1, 6, 7, 8, 9, 10, 11, 14, 20, 22] –&gt; Left -&gt; Root -&gt; Right</p></li>
-<li><p>Post-order: [1, 6, 9, 8, 7, 14, 22, 20, 11, 10] –&gt; Left -&gt; Right -&gt; Root</p></li>
+<li><p><strong>Pre-order:</strong></p>
+<ul>
+<li><p>traversal will visit nodes in <code class="docutils literal notranslate"><span class="pre">Parent</span></code>-<code class="docutils literal notranslate"><span class="pre">LeftChild</span></code>-<code class="docutils literal notranslate"><span class="pre">RightChild</span></code> order.</p></li>
+<li><p>Example: [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] –&gt; Root -&gt; Left -&gt; Right</p></li>
 </ul>
-<p><a class="reference external" href="https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/">Reference</a></p>
+</li>
+<li><p><strong>In-order:</strong></p>
+<ul>
+<li><p>traversal will visit nodes in <code class="docutils literal notranslate"><span class="pre">LeftChild</span></code>-<code class="docutils literal notranslate"><span class="pre">Parent</span></code>-<code class="docutils literal notranslate"><span class="pre">RightChild</span></code> order.</p></li>
+<li><p>In this way, the tree is traversed in an ascending order of keys.</p></li>
+<li><p>Example:[1, 6, 7, 8, 9, 10, 11, 14, 20, 22] –&gt; Left -&gt; Root -&gt; Right</p></li>
+</ul>
+</li>
+<li><p><strong>Post-order:</strong></p>
+<ul>
+<li><p>Traversal will visit nodes in <code class="docutils literal notranslate"><span class="pre">LeftChild</span></code>-<code class="docutils literal notranslate"><span class="pre">RightChild</span></code>-<code class="docutils literal notranslate"><span class="pre">Parent</span></code> order</p></li>
+<li><p>[1, 6, 9, 8, 7, 14, 22, 20, 11, 10] –&gt; Left -&gt; Right -&gt; Root</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="depth-first-search-trees">

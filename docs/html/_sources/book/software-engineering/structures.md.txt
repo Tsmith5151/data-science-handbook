@@ -8,18 +8,20 @@ _____
 **<span class="label label-success">Cheat Sheet</span>**
 - [Link](https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/)
   
-**Examples**
-- O(1):
+#### Examples
+**- O(1):**
   - linear operation
   - hashmap lookup  
-- O(n):
-  - for loop
-- O(n2):
+**- O(n):**
+  - for loops
+  - binary trees 
+**- O(n2):**
   - loop inside of a loop
-- O(log n):
+**- O(log n):**
   - Binary Search: input size is divided in half for each loop
   - Heaps 
-- O(nlog n)
+  - Insert/Delete/Search for Binary Trees
+**- O(nlogn)**
   - sort array 
 
 **Lists**
@@ -123,17 +125,28 @@ _____
 - A tree is a hierarchical structure where data is organized hierarchically and
   are linked together. This structure is different from a linked list whereas,
   in a linked list, items are linked in a linear order.
+- Every node in a binary search tree comprises the following attributes.
+  - **key**: The value stored in the node.
+  - **left**: The pointer to the left child.
+  - **right**: The pointer to the right child.
+  - **p**: The pointer to the parent node.
+
+![image](../assets/binary_tree.png)
+
+
+### Binary Search Trees
 - A binary search tree (BST), as the name suggests, is a binary tree where data
   is organized in a hierarchical structure. This data structure stores values
   in sorted order.
-- Every node in a binary search tree comprises the following attributes.
-**key**: The value stored in the node.
-**left**: The pointer to the left child.
-**right**: The pointer to the right child.
-**p**: The pointer to the parent node.
+- Nodes are arranged in a BST with the following properties
+  - The left subtree of a particular node will always contain nodes with keys
+    less than that node’s key. 
+  - The right subtree of a particular node will always contain nodes with keys
+    greater than that node’s key. 
+  - The left and the right subtree of a particular node will also, in turn, be
+    binary search trees. 
+- [Reference](https://www.educative.io/edpresso/what-is-a-binary-search-tree)
 
-![image](../assets/binary_tree.png)
- 
 
 ##### Traversals 
 ```python
@@ -145,11 +158,17 @@ _____
    /      \     /   \
    1      9    14   22
 ``` 
-- Pre-order:  [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] --> Root -> Left -> Right
-- In-order:   [1, 6, 7, 8, 9, 10, 11, 14, 20, 22] --> Left -> Root -> Right
-- Post-order: [1, 6, 9, 8, 7, 14, 22, 20, 11, 10] --> Left -> Right -> Root
+- **Pre-order:** 
+  - traversal will visit nodes in `Parent`-`LeftChild`-`RightChild` order.
+  - Example: [10, 7, 6, 1, 8, 9, 11, 20, 14, 22] --> Root -> Left -> Right
+- **In-order:**
+  - traversal will visit nodes in `LeftChild`-`Parent`-`RightChild` order. 
+  - In this way, the tree is traversed in an ascending order of keys.
+  - Example:[1, 6, 7, 8, 9, 10, 11, 14, 20, 22] --> Left -> Root -> Right
+- **Post-order:** 
+  - Traversal will visit nodes in `LeftChild`-`RightChild`-`Parent` order
+  - [1, 6, 9, 8, 7, 14, 22, 20, 11, 10] --> Left -> Right -> Root
 
-[Reference](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
 
 ### Depth First Search Trees
 - Recursive algorithm to traverse a tree in a depth first manner.
