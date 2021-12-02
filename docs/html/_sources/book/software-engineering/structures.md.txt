@@ -2,37 +2,35 @@
 _____
 
 ### Time Complexity  
+**<span class="label label-success">Cheat Sheet</span>**
+- [Link](https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/)
 
 ![image](../assets/time_complexity1.png)
 
-**<span class="label label-success">Cheat Sheet</span>**
-- [Link](https://www.geeksforgeeks.org/complexity-cheat-sheet-for-python-operations/)
-  
-#### Examples
-**- O(1):**
-  - linear operation
-  - hashmap lookup  
-**- O(n):**
-  - for loops
-  - binary trees 
-**- O(n2):**
-  - loop inside of a loop
-**- O(log n):**
-  - Binary Search: input size is divided in half for each loop
-  - Heaps 
-  - Insert/Delete/Search for Binary Trees
-**- O(nlogn)**
-  - sort array 
-
-**Lists**
-- Adding or removing element from a list of O(n)
-
-**Heaps**
-- Finding the min or max in a heap is linear time: O(n)
-
-**Linear Time Complexity**
-
 ![image](../assets/time_complexity2.png)
+
+### Notation Examples
+
+**O(1):**
+- Linear operation
+- Hashmap look-up  
+- Finding min/max values in a Heap
+
+**O(n):**
+- Iterative loop
+- Adding/Removing elements from a list 
+- Binary Trees 
+  
+**O(n^2):**
+- Loop inside of a loop
+
+**O(log n):**
+- Binary Search: input size is divided in half for each loop
+- Insert/Delete/Search for Binary Trees or Heaps
+
+**O(nlogn):**
+- Sort input array 
+- Heap sort
 
 ### Array
 - Structure of fixed-size, which can hold items of the same data type. - It can
