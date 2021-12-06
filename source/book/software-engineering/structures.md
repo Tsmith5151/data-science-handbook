@@ -9,6 +9,7 @@ _____
 
 ![image](../assets/time_complexity2.png)
 
+
 ### Notation Examples
 
 **O(1):**
@@ -23,6 +24,7 @@ _____
   
 **O(n^2):**
 - Loop inside of a loop
+- Quick Sort (worst case); depends on position of the pivot.
 
 **O(log n):**
 - Binary Search: input size is divided in half for each loop
@@ -31,6 +33,47 @@ _____
 **O(nlogn):**
 - Sort input array 
 - Heap sort
+- Quick Sort (best case)
+- Merge Sort 
+
+______
+
+### Sort Algorithms
+
+#### Quicksort
+
+**<span class="label label-success">Steps</span>**
+- Iterate over each element in the list and check if it's smaller than the pivot. 
+  - `pivot`: splits the list in half and is often taken as the median of
+    initial, mean, and ending value of the list. 
+- Next, move the pivot value to index_0.   
+- Now we will have two pointers, `i` at index_1 and `j` at index_2. 
+  - We will loop over the list and check if `j` is less than the `pivot`,
+  - If so, swap the values of `i` and `j` and advance the pointers. 
+    - In this case, everything less than the index of `i` is less than the pivot
+      value and everything to the right of i is greater than the pivot value. If `j`
+      is greater than the pivot value, keep incrementing the index of `j` to to
+      the end of list.  
+- Next swap the pivot value with value in index `i`.
+    - `smaller` == left partition
+    - `larger` == right partition
+- This is a recursive function and we can now call the quick sort algorithm on
+  the left hand and right hand side of the list.  
+
+
+#### Merge Sort
+- Merge sort is a divide and conquer algorithm
+- Recursive as the method calls itself
+- MergeSort function repeatedly divides the array into two halves until we
+  reach a stage where we try to perform MergeSort on a subarray of size. 
+- Next, the merge function picks up the sorted sub-arrays and merges them to
+  gradually sort the entire array. 
+- Very efficient for large datasets.
+- Reference: https://www.programiz.com/dsa/merge-sort
+
+![image](../assets/merge_sort.png)
+
+______
 
 ### Array
 - Structure of fixed-size, which can hold items of the same data type. - It can
@@ -46,7 +89,7 @@ _____
 
 
 ### Deque (Python)
-- Deque (Doubly Ended Queue) in Python is implemented using the module “collections“. 
+- Deque (`Doubly Ended Queue`) in Python is implemented using the module “collections“. 
 - Deque is preferred over list in the cases where we need quicker append and
   pop operations from both the ends of container, as deque provides an O(1)
   time complexity for append and pop operations as compared to list which
@@ -273,5 +316,4 @@ Channel](https://www.youtube.com/channel/UCZCFT11CWBi3MHNlGf019nw)
 
 
 ### Knuth-Morris-Pratt
-- A string matching algorithm that uses the longest prefix of the pattern that is also a suffix of the pattern.
-- 
+- A string matching algorithm that uses the longest prefix of the pattern that is also a suffix of the pattern. 

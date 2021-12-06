@@ -68,6 +68,11 @@
 <li><a class="reference internal" href="#">Algorithms &amp; Data Structures</a><ul>
 <li><a class="reference internal" href="#time-complexity">Time Complexity</a></li>
 <li><a class="reference internal" href="#notation-examples">Notation Examples</a></li>
+<li><a class="reference internal" href="#sort-algorithms">Sort Algorithms</a><ul>
+<li><a class="reference internal" href="#quicksort">Quicksort</a></li>
+<li><a class="reference internal" href="#merge-sort">Merge Sort</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#array">Array</a></li>
 <li><a class="reference internal" href="#deque-python">Deque (Python)</a></li>
 <li><a class="reference internal" href="#linked-list">Linked List</a></li>
@@ -148,6 +153,7 @@
 <p><strong>O(n^2):</strong></p>
 <ul class="simple">
 <li><p>Loop inside of a loop</p></li>
+<li><p>Quick Sort (worst case); depends on position of the pivot.</p></li>
 </ul>
 <p><strong>O(log n):</strong></p>
 <ul class="simple">
@@ -158,8 +164,63 @@
 <ul class="simple">
 <li><p>Sort input array</p></li>
 <li><p>Heap sort</p></li>
+<li><p>Quick Sort (best case)</p></li>
+<li><p>Merge Sort</p></li>
 </ul>
 </div>
+<hr class="docutils" />
+<div class="section" id="sort-algorithms">
+<h2>Sort Algorithms<a class="headerlink" href="#sort-algorithms" title="Permalink to this headline"></a></h2>
+<div class="section" id="quicksort">
+<h3>Quicksort<a class="headerlink" href="#quicksort" title="Permalink to this headline"></a></h3>
+<p><strong><span class="label label-success">Steps</span></strong></p>
+<ul class="simple">
+<li><p>Iterate over each element in the list and check if it’s smaller than the pivot.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pivot</span></code>: splits the list in half and is often taken as the median of
+initial, mean, and ending value of the list.</p></li>
+</ul>
+</li>
+<li><p>Next, move the pivot value to index_0.</p></li>
+<li><p>Now we will have two pointers, <code class="docutils literal notranslate"><span class="pre">i</span></code> at index_1 and <code class="docutils literal notranslate"><span class="pre">j</span></code> at index_2.</p>
+<ul>
+<li><p>We will loop over the list and check if <code class="docutils literal notranslate"><span class="pre">j</span></code> is less than the <code class="docutils literal notranslate"><span class="pre">pivot</span></code>,</p></li>
+<li><p>If so, swap the values of <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> and advance the pointers.</p>
+<ul>
+<li><p>In this case, everything less than the index of <code class="docutils literal notranslate"><span class="pre">i</span></code> is less than the pivot
+value and everything to the right of i is greater than the pivot value. If <code class="docutils literal notranslate"><span class="pre">j</span></code>
+is greater than the pivot value, keep incrementing the index of <code class="docutils literal notranslate"><span class="pre">j</span></code> to to
+the end of list.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Next swap the pivot value with value in index <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">smaller</span></code> == left partition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">larger</span></code> == right partition</p></li>
+</ul>
+</li>
+<li><p>This is a recursive function and we can now call the quick sort algorithm on
+the left hand and right hand side of the list.</p></li>
+</ul>
+</div>
+<div class="section" id="merge-sort">
+<h3>Merge Sort<a class="headerlink" href="#merge-sort" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Merge sort is a divide and conquer algorithm</p></li>
+<li><p>Recursive as the method calls itself</p></li>
+<li><p>MergeSort function repeatedly divides the array into two halves until we
+reach a stage where we try to perform MergeSort on a subarray of size.</p></li>
+<li><p>Next, the merge function picks up the sorted sub-arrays and merges them to
+gradually sort the entire array.</p></li>
+<li><p>Very efficient for large datasets.</p></li>
+<li><p>Reference: https://www.programiz.com/dsa/merge-sort</p></li>
+</ul>
+<p><img alt="image" src="../../_images/merge_sort.png" /></p>
+</div>
+</div>
+<hr class="docutils" />
 <div class="section" id="array">
 <h2>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h2>
 <ul class="simple">
@@ -177,7 +238,7 @@ its value or its index</p></li>
 <div class="section" id="deque-python">
 <h2>Deque (Python)<a class="headerlink" href="#deque-python" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Deque (Doubly Ended Queue) in Python is implemented using the module “collections“.</p></li>
+<li><p>Deque (<code class="docutils literal notranslate"><span class="pre">Doubly</span> <span class="pre">Ended</span> <span class="pre">Queue</span></code>) in Python is implemented using the module “collections“.</p></li>
 <li><p>Deque is preferred over list in the cases where we need quicker append and
 pop operations from both the ends of container, as deque provides an O(1)
 time complexity for append and pop operations as compared to list which
@@ -455,7 +516,6 @@ Channel</a>
 <h2>Knuth-Morris-Pratt<a class="headerlink" href="#knuth-morris-pratt" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>A string matching algorithm that uses the longest prefix of the pattern that is also a suffix of the pattern.</p></li>
-<li></li>
 </ul>
 </div>
 </div>
