@@ -68,7 +68,7 @@ goal is to predict each pixel's class in an image.
 - The energy function is computed by a pixel-wise softmax over the final
   feature map and then applied cross-entropy loss function.
 
-**Metric:** 
+### Metrics 
 - `IoU (intersection of union)` -> Area overlap / Area of Union 
 
 **<span class="label label-info">Notes</span>**
