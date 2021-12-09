@@ -1,0 +1,26 @@
+# Production Monitoring 
+__________
+
+### Data Drift
+- Drifts involve a statistical change in the data, the best approach to detect
+  them is by monitoring  its statistical properties
+
+**Address Model Drift:**
+
+- You could implement a system that periodically trains your models after some
+time t, or once it detects a drift  you could refresh a model’s weight by
+extending its training with new data. 
+
+**Alerts** 
+- Recurring, Incremental, Outlier, Abrupt 
+- Adaptive Sliding Window (very common approach)
+    - Works by keeping track of several statistical properties of data within a
+      window that  automatically grows and shrinks
+- **Kolmogorov-Smirnov Test**
+    - K-S test is nonparametric, meaning doesn’t assume any particular
+      underlying distribution 
+    - This test compares your data with a known distribution and test if they
+      come from the same distribution. 
+	- Null Hypothesis
+	- Samples are from the same distribution
+

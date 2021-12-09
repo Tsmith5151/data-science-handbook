@@ -27,11 +27,11 @@ _________
 
 ###### Machine Learning
 * [Concepts](book/machine-learning/concepts.md)
+* [A/B Tests](book/machine-learning/ab-test.md)
 * [Algorithms](book/machine-learning/algorithms.md)
 * [Clustering](book/machine-learning/clustering.md)
 * [Feature Selection](book/machine-learning/feature-selection.md)
 * [Metrics](book/machine-learning/metrics.md)
-* [Monitoring](book/machine-learning/monitor.md)
 
 ###### ML Engineering 
 * [Docker](book/ml-engineering/docker.md)
@@ -39,6 +39,7 @@ _________
 * [Infrastructure](book/ml-engineering/infrastructure.md)
 * [Kubernetes](book/ml-engineering/kubernetes.md)
 * [Networking](book/ml-engineering/networking.md)
+* [MLOps](book/ml-engineering/mlops.md)
 
 ###### Natural Language Processing
 * [Concepts](book/nlp/concepts.md)

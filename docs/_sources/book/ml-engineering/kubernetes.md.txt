@@ -53,10 +53,15 @@ _____
   - Can see status of pods
 
 ### Kubeflow
-- Curated set of tools for running ML workflows
-- Makes ML use-cases portable and scalable
+- Kubeflow is the Machine Learning toolkit for Kubernetes
+- **Components**: Notebooks, pipelines, training, and serving
+- Kubeflow helps makes ML use-cases portable and scalable
 - Easily deploy workflows to Kubernetes
 - Train models, Tensorboard, serve model, build pipelines 
-- Login to Jupyter Hub
+
+**Pipelines**
+- An engine for scheduling multi-step ML workflows
+- SDK to defining and building pipeline components
+- UI to visualize and track experiments/jobs/runs. 
 
 ![image](../assets/kubeflow.png)

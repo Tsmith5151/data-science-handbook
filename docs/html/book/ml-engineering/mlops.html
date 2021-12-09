@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLOps &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">MLOps</a><ul>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#design-considerations">Design Considerations</a><ul>
+<li><a class="reference internal" href="#data-centric-view">Data Centric View</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-version-control-dvc">Data Version Control (DVC)</a><ul>
+<li><a class="reference internal" href="#dvc-pipelines">DVC Pipelines</a></li>
+<li><a class="reference internal" href="#dvc-basic-commands">DVC Basic Commands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#continuous-machine-learning-cml">Continuous Machine Learning (CML)</a></li>
+<li><a class="reference internal" href="#production-monitoring">Production Monitoring</a><ul>
+<li><a class="reference internal" href="#types-of-drift">Types of Drift</a></li>
+<li><a class="reference internal" href="#detecting-drift">Detecting Drift</a><ul>
+<li><a class="reference internal" href="#span-class-label-label-success-detect-drift-for-structured-images-span"><span class="label label-success">Detect Drift for Structured Images</span></a></li>
+<li><a class="reference internal" href="#span-class-label-label-success-detect-drift-for-images-span"><span class="label label-success">Detect Drift for Images</span></a></li>
+<li><a class="reference internal" href="#span-class-label-label-success-detecting-model-drift-span"><span class="label label-success">Detecting Model Drift</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-drift-ml-architecture">Data Drift ML Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="mlops">
+<h1>MLOps<a class="headerlink" href="#mlops" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://madewithml.com/">MadewithML</a></p></li>
+<li><p><a class="reference external" href="https://dvc.org/">DVC</a></p></li>
+<li><p><a class="reference external" href="https://github.com/iterative/cml">CML</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mlflow/mlflow">MLflow</a></p></li>
+<li><p><a class="reference external" href="https://dagshub.com">DAGsHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/grafana/grafana">Grafana</a></p></li>
+<li><p><a class="reference external" href="https://github.com/prometheus/prometheus">Prometheus</a></p></li>
+<li><p><a class="reference external" href="https://github.com/EthicalML/awesome-production-machine-learning">Awesome Machine Learning </a></p></li>
+</ul>
+</div>
+<div class="section" id="design-considerations">
+<h2>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline"></a></h2>
+<p><strong><span class="label label-success">Key Concepts</span></strong></p>
+<ul class="simple">
+<li><p><strong>Reproducibility</strong></p>
+<ul>
+<li><p>Guaranteed training experiments are reproducible:</p>
+<ul>
+<li><p>Versioned data, code, and models</p></li>
+<li><p>Automatically tracked experiments</p></li>
+<li><p>Ability to compare experiments</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Infrastructure</strong></p>
+<ul>
+<li><p>Ability to quickly switch between local and cloud environment (e.g. VM vs Kubernetes)</p></li>
+<li><p>Cached pipeline states for faster experiment iterations.</p></li>
+</ul>
+</li>
+<li><p><strong>Scaling</strong>:</p>
+<ul>
+<li><p>Ability to parallelize tasks/jobs when working with large datasets</p></li>
+</ul>
+</li>
+<li><p><strong>Model serving</strong></p>
+<ul>
+<li><p>Pre-built helpers to compare and visualize parameters and results.</p></li>
+<li><p>Automated evaluation of each pipeline run with tools like Tensorboard.</p></li>
+<li><p>Automated statistics visualization of each pipeline run.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="data-centric-view">
+<h3>Data Centric View<a class="headerlink" href="#data-centric-view" title="Permalink to this headline"></a></h3>
+<p>The most important task for MLOps is to consistently ensure high-quality data
+in all phases of the ML project lifecycle. Good data is considered as:</p>
+<ul class="simple">
+<li><p>Defined consistently (definition of labels are unambiguous)</p></li>
+<li><p>Quality coverage of important cases (inputs X)</p></li>
+<li><p>Has timely feedback from production data (distribution covers data drift and
+concept drift)</p></li>
+<li><p>Sized appropriately</p></li>
+</ul>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=06-AZXmwHjo">Reference - Andrew Ng</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="data-version-control-dvc">
+<h2>Data Version Control (DVC)<a class="headerlink" href="#data-version-control-dvc" title="Permalink to this headline"></a></h2>
+<p>Versioning Machine Learning workflows is critical in order to ensure the
+data, models, and code can be shareable and reproducible. There are several
+open source frameworks to assist with versioning such as <code class="docutils literal notranslate"><span class="pre">DVC</span></code>.</p>
+<p><strong><span class="label label-success">Key Concepts</span></strong></p>
+<ul class="simple">
+<li><p>Open source <a class="reference external" href="https://github.com/iterative/dvc">toolbox</a> for data science and
+machine learning projects.</p></li>
+<li><p>Tool to manage and version datasets, machine learning models, and ML
+pipelines.</p></li>
+<li><p>Removes the need to create versioning databases or use special file/folder
+structure.</p></li>
+<li><p>Checkout different data versions for the purposes of testing and running
+sanity checks.</p></li>
+<li><p>Run benchmarks against previously deployed models before a new
+one is validated and released into production.</p></li>
+</ul>
+<p><strong><span class="label label-success">How it Works</span></strong></p>
+<ul class="simple">
+<li><p>DVC keeps metafiles in <code class="docutils literal notranslate"><span class="pre">Git</span></code> to describe and version control your data
+sets and models that are stored in a remote data store such as:</p>
+<ul>
+<li><p>AWS S3 Bucket, Azure Blob Storage, Google Drive, HDFS, etc.</p></li>
+</ul>
+</li>
+<li><p>Git still handles all of the version control for our code and metafiles, but
+DVC helps extends Git version control large files that we want to keep
+outside of the Git repository.</p></li>
+<li><p>DVC is not entirely for just “data”, but works for any file type.</p></li>
+</ul>
+<p><a class="reference external" href="https://dvc.org/">Reference</a>
+<img alt="image" src="../../_images/dvc.png" /></p>
+<div class="section" id="dvc-pipelines">
+<h3>DVC Pipelines<a class="headerlink" href="#dvc-pipelines" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Pipelines and corresponding data can easily be versioned (using Git), allowing
+for quick iterations and testing along with reproducing your workflow and
+results.</p></li>
+<li><p>Stages in the ML pipeline are defined in a <code class="docutils literal notranslate"><span class="pre">dvc.yaml</span></code> file.</p></li>
+<li><p>The stages form a pipeline form a dependency graph (DAG) when connected to
+each other.</p></li>
+<li><p>Each pipeline run tracks the metadata, parameters and can be compared to other runs.</p></li>
+<li><p>The data for each pipeline is automatically versioned and tracked as it flows
+through.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=71IGzyH95UY">Tutorial</a></p></li>
+</ul>
+<p><strong><span class="label label-success">Advantages</span></strong></p>
+<ul class="simple">
+<li><p><strong>Automation:</strong> allows you to run a sequence of steps in the ML pipeline
+which makes iterating on your project faster.</p>
+<ul>
+<li><p>DVC will automatically determines which parts of a pipeline need to be run,
+as it caches the results to avoid unnecessary re-runs.</p></li>
+</ul>
+</li>
+<li><p><strong>Reproducibility</strong>: <code class="docutils literal notranslate"><span class="pre">dvc.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">dvc.lock</span></code> files describe what data to use and
+which commands will generate the pipeline results;  Git makes it easy to
+version these files.</p></li>
+</ul>
+</div>
+<div class="section" id="dvc-basic-commands">
+<h3>DVC Basic Commands<a class="headerlink" href="#dvc-basic-commands" title="Permalink to this headline"></a></h3>
+<p><img alt="image" src="../../_images/dvc2.png" />
+<a class="reference external" href="https://github.com/iterative/dvc">Reference</a></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="continuous-machine-learning-cml">
+<h2>Continuous Machine Learning (CML)<a class="headerlink" href="#continuous-machine-learning-cml" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Continuous Machine Learning <code class="docutils literal notranslate"><span class="pre">CML</span></code> is an open-source
+<a class="reference external" href="https://github.com/iterative/cml">CLI tool</a> for implementing continuous
+integration &amp; delivery (CI/CD) with a focus on MLOps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CML</span></code> assists with orchestration, testing and monitoring ML applications.</p></li>
+<li><p>Integrates with GitHub Actions.</p></li>
+<li><p>CML assists with automating development workflows:</p>
+<ul>
+<li><p>Machine provisioning: for training (e.g. Docker Container) using AWS/Azure/GCP or on-prem</p></li>
+<li><p>Comparing ML experiments</p></li>
+<li><p>Monitoring changing datasets with DVC.</p>
+<ul>
+<li><p>DVC can also help visualize how metrics differ between commits in the report.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CML</span></code> Supports generating Markdown reports (e.g. plots/metrics) embedded in a
+pull-request.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">train-my-model</span>
+
+<span class="nt">on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">deploy-runner</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">ubuntu-latest</span><span class="p p-Indicator">]</span>
+    <span class="nt">steps</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">iterative/setup-cml@v1</span>
+
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">deploy</span>
+        <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+        <span class="nt">env</span><span class="p">:</span>
+          <span class="nt">repo_token</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.PERSONAL_ACCESS_TOKEN }}</span>
+          <span class="nt">AWS_ACCESS_KEY_ID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.AWS_ACCESS_KEY_ID }}</span>
+          <span class="nt">AWS_SECRET_ACCESS_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.AWS_SECRET_ACCESS_KEY }}</span>
+        <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+          <span class="no">cml-runner \</span>
+          <span class="no">--cloud aws \</span>
+          <span class="no">--cloud-region us-west \</span>
+          <span class="no">--cloud-type=t2.micro \</span>
+          <span class="no">--labels=cml-runner</span>
+  <span class="nt">run</span><span class="p">:</span>
+    <span class="nt">needs</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">deploy-runner</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">self-hosted</span><span class="p p-Indicator">,</span><span class="nv">cml-runner</span><span class="p p-Indicator">]</span>
+    <span class="nt">container</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker://dvcorg/cml</span>
+
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">python-version</span><span class="p">:</span> <span class="s">&#39;3.6&#39;</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cml</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="nt">repo_token</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.PERSONAL_ACCESS_TOKEN }}</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">python --version</span>
+        <span class="no">pip install -r requirements.txt</span>
+        <span class="no">python train.py</span>
+        <span class="no">echo &quot;## Report from your EC2 Instance&quot; &gt; report.md</span>
+        <span class="no">cat metrics.txt &gt;&gt; report.md</span>
+        <span class="no">cml-publish &quot;confusion_matrix.png&quot; --md &gt;&gt; report.md</span>
+        <span class="no">cml-send-comment report.md</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/iterative/cml-runner-base-case/blob/main/.github/workflows/cml.yaml">Reference</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="production-monitoring">
+<h2>Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permalink to this headline"></a></h2>
+<div class="section" id="types-of-drift">
+<h3>Types of Drift<a class="headerlink" href="#types-of-drift" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>Concept Drift</strong> when the change in P(Y|X) is a shifted in the actual relationship between the model inputs and the output.</p></li>
+<li><p><strong>Prediction Drift</strong> when the change in P(Y_pred|X) is shifted in the model’s
+predictions.</p></li>
+<li><p><strong>Label Drift</strong> when the change in P(Y Ground Truth) is shifted in the model’s
+output or label distribution.</p></li>
+<li><p><strong>Feature Drift</strong> when a change in P(X) is a shifted in the model’s input
+data distribution.</p></li>
+</ul>
+</div>
+<div class="section" id="detecting-drift">
+<h3>Detecting Drift<a class="headerlink" href="#detecting-drift" title="Permalink to this headline"></a></h3>
+<p>Data drifts involve a statistical change in the underlying data. Below are
+several approaches than can be implemented to automatically detect drift.</p>
+<div class="section" id="span-class-label-label-success-detect-drift-for-structured-images-span">
+<h4><span class="label label-success">Detect Drift for Structured Images</span><a class="headerlink" href="#span-class-label-label-success-detect-drift-for-structured-images-span" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p><strong>Data Type Check:</strong> inferred vs observed data types</p></li>
+<li><p><strong>Completeness Check:</strong> completeness of non-null values (%) vs threshold</p></li>
+<li><p><strong>Baseline Drift Check:</strong> deviation from baseline (%) vs threshold</p></li>
+<li><p><strong>Missing Column Check:</strong> observed columns vs baseline columns</p></li>
+<li><p><strong>Extra Column Check:</strong> observed columns vs baseline columns</p></li>
+<li><p><strong>Categorical Values Check:</strong> observed unknown values vs baseline known values</p></li>
+<li><p><strong>Data Quality Checks:</strong> Recurring, Incremental, Outlier, Abrupt Changes, etc.</p></li>
+<li><p><strong>Adaptive Sliding Window:</strong> Works by keeping track of several statistical
+properties of data within a window that  automatically grows and shrinks.</p></li>
+<li><p><strong>Kolmogorov-Smirnov Test</strong> a nonparametric test, meaning doesn’t assume
+any particular underlying distribution. This test compares your data with a
+known distribution and test if they come from the same distribution.</p>
+<ul>
+<li><p><em>Null Hypothesis:</em> Samples are from the same distribution</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="span-class-label-label-success-detect-drift-for-images-span">
+<h4><span class="label label-success">Detect Drift for Images</span><a class="headerlink" href="#span-class-label-label-success-detect-drift-for-images-span" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>One approach to detect data drift for image data is to train an
+<code class="docutils literal notranslate"><span class="pre">Autoencoder</span></code> on the training dataset and to use this representation to
+reconstruct data that is being presented to the model at inference time.</p></li>
+<li><p>If intuition is that the reconstruction error is high then the data being
+presented to the model is different from what it was trained on.</p></li>
+<li><p><strong>Steps:</strong></p>
+<ul>
+<li><p>Learn a low dimensional representation of the training dataset: <code class="docutils literal notranslate"><span class="pre">encoder</span></code>.</p></li>
+<li><p>Reconstruct a validation dataset using the representation from Step 1 :
+<code class="docutils literal notranslate"><span class="pre">decoder</span></code></p></li>
+<li><p>Store the error loss as baseline for the reconstruction loss.</p></li>
+<li><p>Determine if the image presented at inference time exceeds the baseline.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="span-class-label-label-success-detecting-model-drift-span">
+<h4><span class="label label-success">Detecting Model Drift</span><a class="headerlink" href="#span-class-label-label-success-detecting-model-drift-span" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p><strong>Kullback–Leibler</strong>: measures how one probability distribution is different
+from a second, reference probability distribution (e.g. training vs
+production).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-drift-ml-architecture">
+<h3>Data Drift ML Architecture<a class="headerlink" href="#data-drift-ml-architecture" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Example from AWS <a class="reference external" href="https://www.youtube.com/watch?v=J9T0X9Jxl_w">presentation</a>.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/driftarchitecture.png" /></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/ml-engineering/mlops.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

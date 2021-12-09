@@ -1,0 +1,45 @@
+# Production Monitoring 
+__________
+
+### Types of Drift
+
+- **Concept Drift** when the change in P(Y|X) is a shifted in the actual relationship between the model inputs and the output. 
+- **Prediction Drift** when the change in P(Y_pred|X) is shifted in the model’s
+  predictions. 
+- **Label Drift** when the change in P(Y Ground Truth) is shifted in the model’s
+  output or label distribution. 
+- **Feature Drift** when a change in P(X) is a shifted in the model’s input
+  data distribution. 
+
+### Detecting Drift
+Data drifts involve a statistical change in the underlying data. Below are
+several approaches than can be implemented to automatically detect drift.
+
+###### <span class="label label-success">Detecting Data Drift</span>
+- **Data Type Check:** inferred vs observed data types
+- **Completeness Check:** completeness of non-null values (%) vs threshold
+- **Baseline Drift Check:** deviation from baseline (%) vs threshold
+- **Missing Column Check:** observed columns vs baseline columns
+- **Extra Column Check:** observed columns vs baseline columns
+- **Categorical Values Check:** observed unknown values vs baseline known values
+- **Data Quality Checks:** Recurring, Incremental, Outlier, Abrupt Changes, etc.
+- **Adaptive Sliding Window:** Works by keeping track of several statistical
+  properties of data within a window that  automatically grows and shrinks. 
+
+###### <span class="label label-success">Detecting Model/Label Drift</span>
+
+- **Kullback–Leibler**: measures how one probability distribution is different
+  from a second, reference probability distribution (e.g. training vs
+  production). 
+- **Kolmogorov-Smirnov Test** a nonparametric test, meaning doesn’t assume
+  any particular underlying distribution. This test compares your data with a
+  known distribution and test if they come from the same distribution. 
+	- *Null Hypothesis:* Samples are from the same distribution
+
+### Data Drift ML Architecture
+- Example from AWS [presentation](https://www.youtube.com/watch?v=J9T0X9Jxl_w).
+  
+![image](../assets/driftarchitecture.png)
+
+
+

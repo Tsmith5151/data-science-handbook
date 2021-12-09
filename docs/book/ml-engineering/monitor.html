@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Production Monitoring &#8212; Data Science Hand.. 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css" />
+    <link rel="stylesheet" href="../../_static/css/style.css" type="text/css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Handbook</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Section <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Production Monitoring</a><ul>
+<li><a class="reference internal" href="#types-of-drift">Types of Drift</a></li>
+<li><a class="reference internal" href="#detecting-drift">Detecting Drift</a><ul>
+<li><a class="reference internal" href="#span-class-label-label-success-detecting-data-drift-span"><span class="label label-success">Detecting Data Drift</span></a></li>
+<li><a class="reference internal" href="#span-class-label-label-success-detecting-model-label-drift-span"><span class="label label-success">Detecting Model/Label Drift</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-drift-ml-architecture">Data Drift ML Architecture</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="production-monitoring">
+<h1>Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permalink to this headline"></a></h1>
+<hr class="docutils" />
+<div class="section" id="types-of-drift">
+<h2>Types of Drift<a class="headerlink" href="#types-of-drift" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><strong>Concept Drift</strong> when the change in P(Y|X) is a shifted in the actual relationship between the model inputs and the output.</p></li>
+<li><p><strong>Prediction Drift</strong> when the change in P(Y_pred|X) is shifted in the model’s
+predictions.</p></li>
+<li><p><strong>Label Drift</strong> when the change in P(Y Ground Truth) is shifted in the model’s
+output or label distribution.</p></li>
+<li><p><strong>Feature Drift</strong> when a change in P(X) is a shifted in the model’s input
+data distribution.</p></li>
+</ul>
+</div>
+<div class="section" id="detecting-drift">
+<h2>Detecting Drift<a class="headerlink" href="#detecting-drift" title="Permalink to this headline"></a></h2>
+<p>Data drifts involve a statistical change in the underlying data. Below are
+several approaches than can be implemented to automatically detect drift.</p>
+<div class="section" id="span-class-label-label-success-detecting-data-drift-span">
+<h3><span class="label label-success">Detecting Data Drift</span><a class="headerlink" href="#span-class-label-label-success-detecting-data-drift-span" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>Data Type Check:</strong> inferred vs observed data types</p></li>
+<li><p><strong>Completeness Check:</strong> completeness of non-null values (%) vs threshold</p></li>
+<li><p><strong>Baseline Drift Check:</strong> deviation from baseline (%) vs threshold</p></li>
+<li><p><strong>Missing Column Check:</strong> observed columns vs baseline columns</p></li>
+<li><p><strong>Extra Column Check:</strong> observed columns vs baseline columns</p></li>
+<li><p><strong>Categorical Values Check:</strong> observed unknown values vs baseline known values</p></li>
+<li><p><strong>Data Quality Checks:</strong> Recurring, Incremental, Outlier, Abrupt Changes, etc.</p></li>
+<li><p><strong>Adaptive Sliding Window:</strong> Works by keeping track of several statistical
+properties of data within a window that  automatically grows and shrinks.</p></li>
+</ul>
+</div>
+<div class="section" id="span-class-label-label-success-detecting-model-label-drift-span">
+<h3><span class="label label-success">Detecting Model/Label Drift</span><a class="headerlink" href="#span-class-label-label-success-detecting-model-label-drift-span" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>Kullback–Leibler</strong>: measures how one probability distribution is different
+from a second, reference probability distribution (e.g. training vs
+production).</p></li>
+<li><p><strong>Kolmogorov-Smirnov Test</strong> a nonparametric test, meaning doesn’t assume
+any particular underlying distribution. This test compares your data with a
+known distribution and test if they come from the same distribution.</p>
+<ul>
+<li><p><em>Null Hypothesis:</em> Samples are from the same distribution</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-drift-ml-architecture">
+<h2>Data Drift ML Architecture<a class="headerlink" href="#data-drift-ml-architecture" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Example from AWS <a class="reference external" href="https://www.youtube.com/watch?v=J9T0X9Jxl_w">presentation</a>.</p></li>
+</ul>
+<p><img alt="image" src="../../_images/driftarchitecture.png" /></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/book/ml-engineering/monitor.md.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Trace Smith, Damon Resnick.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
